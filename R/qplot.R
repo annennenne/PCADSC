@@ -28,16 +28,17 @@
 #' @seealso \code{\link{PCADSC}}
 #' @importFrom ggplot2 ggplot qplot
 #' @export
-qplot.PCADSC <- function(pcadscObj, varLabels=NULL, covCO=NULL,
-                         splitLabels=NULL, ...) {
-  splitLevels <- pcadscObj$splitLevels
-  nCat1 <- pcadscObj$nObs1
-  nCat2 <- pcadscObj$nObs2
-  splitBy <- pcadscObj$splitBy
-  pcaFrame <- pcadscObj$pcaFrame
+plotPCADSC <- function(x, varLabels=NULL, covCO=NULL,
+                         splitLabels=NULL) {
+  pcadscObj <- x
+  splitLevels <- pcadscObj@splitLevels
+  nCat1 <- pcadscObj@nObs1
+  nCat2 <- pcadscObj@nObs2
+  splitBy <- pcadscObj@splitBy
+  pcaFrame <- pcadscObj@pcaFrame
 
   if (is.null(varLabels)) {
-    varLabels <- pcadscObj$varNames
+    varLabels <- pcadscObj@varNames
   }
   if (is.null(splitLabels)) {
     splitLabels <- splitLevels
@@ -63,5 +64,11 @@ qplot.PCADSC <- function(pcadscObj, varLabels=NULL, covCO=NULL,
     theme(legend.position="bottom") +
     facet_wrap(~ group, ncol=2,
                labeller=as_labeller(facetLabels)) +
-    scale_fill_discrete(name=NULL, labels=varLabels)
+    scale_fill_discrete(name=NULL, labels=varLabels) +
+    theme_bw()
 }
+
+
+####is not run for some reason??########
+#' @export
+setMethod("qplot","PCADSC", plotPCADSC)

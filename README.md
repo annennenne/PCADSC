@@ -10,3 +10,21 @@ library(devtools)
 install_github('annepetersen1/PCADSC')
 ```
 
+The basic functionality of the packages can be inspected using the following lines of code:
+```{r}
+library(PCADSC)
+
+#load iris data
+data(iris)
+
+#Define grouping variable, grouping the observations by whether their species is
+#Setosa or not
+iris$group <- "setosa"
+iris$group[iris$Species != "setosa"] <- "non-setosa"
+
+#make a PCADSC object, splitting the data by "group"
+irisPCADSC <- makePCADSC(iris, "group", 
+                             var=setdiff(names(iris), c("group", "Species")))
+plotPCADSC(irisPCADSC)
+printPCADSC(irisPCADSC)
+```

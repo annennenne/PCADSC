@@ -2,11 +2,13 @@
 % Please edit documentation in R/loadComp.R
 \name{loadComp}
 \alias{loadComp}
-\title{importFrom stats na.omit princomp}
+\title{importFrom stats na.omit princomp
+importFrom reshape2 melt}
 \usage{
 loadComp(data, vars, varCO = NULL)
 }
 \description{
 importFrom stats na.omit princomp
+importFrom reshape2 melt
 }
 

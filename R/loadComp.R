@@ -5,6 +5,7 @@
 #vars: variable names that should be included
 
 #' importFrom stats na.omit princomp
+#' importFrom reshape2 melt
 loadComp <- function(data, vars, varCO=NULL) {
   if (is.null(varCO)) {
     varCO <- 1
@@ -27,7 +28,7 @@ loadComp <- function(data, vars, varCO=NULL) {
   cvc <- paste(round(cvc*100, 2), "%")
 
   #combine
-  pxx <- melt(px)
+  pxx <- reshape2::melt(px)
   pxx$cvc <- pxx$pcvc <- rep(NA, nrow(pxx))
   for (i in 1:n) {
     thisComp <- which(pxx$Var2==i)
