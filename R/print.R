@@ -1,3 +1,5 @@
+setGeneric("print")
+
 #' @title Print a PCADSC object
 #' @description Print an overview of the results of PCADSC, as represented by a PCADSC object generated
 #' by \code{\link{makePCADSC}}.
@@ -22,8 +24,10 @@
 #'                         var=setdiff(names(iris), c("group", "Species")))
 #' print(irisPCADSC)
 #'
+#' @importFrom pander pander
+#' @importFrom methods setMethod
 #' @export
-printPCADSC <- function(x, ...) {
+setMethod("print", "PCADSC", function(x, ...) {
   pcadscObj <- x
   frame <- pcadscObj@pcaFrame
   splitBy <- pcadscObj@splitBy
@@ -66,8 +70,7 @@ printPCADSC <- function(x, ...) {
     sep="\n"))
   cat(pander(loadFrame))
 }
+)
 
-
-#' @importFrom methods setMethod
-#' @export
-setMethod("print", "PCADSC", printPCADSC)
+#'@export
+setMethod("show", "PCADSC", function(object) print(object))

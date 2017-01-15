@@ -10,9 +10,10 @@ License: GPL-2
 Encoding: UTF-8
 LazyData: true
 Imports:
-    ggplot2,
     reshape2,
-    methods
+    methods,
+    pander
 Depends:
+    ggplot2, 
     lava
 RoxygenNote: 5.0.1

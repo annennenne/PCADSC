@@ -1,9 +1,11 @@
+setGeneric("qplot")
+
 #' @title Plot a PCADSC object
 #'
-#' @description Given af PCADSC object, \code{pcadscObj}, (as produced by \code{\link{PCADSC}}), a data
+#' @description Given af PCADSC object, \code{x}, (as produced by \code{\link{makePCADSC}}), a data
 #' structure comparison plot is generated in the style of  \code{ggplot2}.
 #'
-#' @param pcadscObj A PCADSC object (see \code{\link{PCADSC}}).
+#' @param x A PCADSC object (see \code{\link{PCADSC}}).
 #'
 #' @param varLabels A vector of character string labels for the variables used in
 #' \code{pcadscObj}. If non-null, these labels appear in the plot instead of the
@@ -25,11 +27,16 @@
 #' @examples
 #' #Example showing how to use splitLabels
 #'
-#' @seealso \code{\link{PCADSC}}
-#' @importFrom ggplot2 ggplot qplot
+#' @seealso \code{\link{makePCADSC}}, \code{\link{PCADSC}}
+#'
+#' @importFrom methods setMethod
+#' @importFrom ggplot2 qplot ggplot aes geom_bar coord_flip scale_x_reverse
+#'             scale_y_continuous geom_text xlab ylab theme facet_wrap
+#'             as_labeller scale_fill_discrete theme_bw
 #' @export
-plotPCADSC <- function(x, varLabels=NULL, covCO=NULL,
-                         splitLabels=NULL) {
+setMethod("qplot","PCADSC",
+          function(x, varLabels=NULL, covCO=NULL,
+                                     splitLabels=NULL) {
   pcadscObj <- x
   splitLevels <- pcadscObj@splitLevels
   nCat1 <- pcadscObj@nObs1
@@ -67,8 +74,4 @@ plotPCADSC <- function(x, varLabels=NULL, covCO=NULL,
     scale_fill_discrete(name=NULL, labels=varLabels) +
     theme_bw()
 }
-
-
-####is not run for some reason??########
-#' @export
-setMethod("qplot","PCADSC", plotPCADSC)
+)
