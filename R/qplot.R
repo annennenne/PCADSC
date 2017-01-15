@@ -1,4 +1,5 @@
 setGeneric("qplot")
+setGeneric("plot")
 
 #' @title Plot a PCADSC object
 #'
@@ -75,3 +76,5 @@ setMethod("qplot","PCADSC",
     theme_bw()
 }
 )
+
+setMethod("plot", "PCADSC", function(x, y = NULL, ...) qplot(x, ...))
