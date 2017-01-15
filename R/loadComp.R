@@ -6,10 +6,15 @@
 
 #' importFrom stats na.omit princomp
 #' importFrom reshape2 melt
-loadComp <- function(data, vars, varCO=NULL) {
+loadComp <- function(data, vars = NULL, varCO=NULL) {
   if (is.null(varCO)) {
     varCO <- 1
   }
+
+  if (is.null(vars)) {
+    vars <- names(data)
+  }
+
   n <- length(vars)
   p <- princomp(sapply(na.omit(data[, vars]), as.numeric))
   px <- round(matrix(c(p$loadings), n,

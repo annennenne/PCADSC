@@ -20,6 +20,11 @@
 #'
 #' @return A list including the following objects: ...
 #'
+#' @details Blablabla.
+#' Note that \code{\link[tibble]{tibble}}s and \code{\link[data.table]{data.table}}s are
+#' accepted as input, but they are instantly converted to \code{\link{data.frame}}s. Future
+#' releases might include specific implementation for these data representations.
+#'
 #' @examples
 #'
 #' #load iris data
@@ -36,14 +41,45 @@
 #' qplot(irisPCADSC)
 #' print(irisPCADSC)
 #'
-#' @seealso \code{\link{printPCADSC}} \code{\link{plotPCADSC}}
+#' @seealso \code{\link{PCADSC}}, \code{\link{print,PCADSC-method}},
+#'  \code{\link{qplot,PCADSC-method}}
 #'
 #' @export
 makePCADSC <- function(data, splitBy, var=NULL, covCO=NULL) {
+  #define var
   if (is.null(var)) var <- setdiff(names(data), splitBy)
+
+  #If data is tibble, data.table or matrix, convert it to data.frame
+  #If data is neither, throw error
+  if (any(class(data) %in% c("data.table", "tbl", "tbl_df", "matrix"))) {
+    data <- as.data.frame(data)
+    message("Note: The data was converted to a data.frame in order for PCADSC to run.")
+  }
+  if (class(data) != "data.frame") {
+    stop("The inputted data must be of type data.frame, data.table, tibble or matrix.")
+  }
+
+  #check if all variables are numeric
+  isNum <- sapply(data[, var], "is.numeric")
+  if (!all(isNum)) {
+    stop(paste("All variables must be numeric for PCA decomposition",
+               "to be meaningful. The following non-numeric variables",
+               "were found:", paste(names(isNum[!isNum]), collapse = ", ")))
+  }
+
+  #check if splitBy has more/less than two levels
   splitLevels <- unique(data[, splitBy])
-  data1 <- data[data[, splitBy]==splitLevels[1], ]
-  data2 <- data[data[, splitBy]==splitLevels[2], ]
+  if (length(splitLevels) != 2) {
+    stop(paste("splitLevels must have exactly two levels,",
+               "but it was found to have", length(splitLevels),
+               "levels."))
+  }
+
+  #split and standardize data
+  data1 <- stdData(data[data[, splitBy]==splitLevels[1], var])
+  data2 <- stdData(data[data[, splitBy]==splitLevels[2], var])
+
+  #do PCA
   res1 <- loadComp(data1, var)
   res2 <- loadComp(data2, var)
   load1 <- res1$loadings
@@ -61,9 +97,12 @@ makePCADSC <- function(data, splitBy, var=NULL, covCO=NULL) {
   out
 }
 
-#' @export
-PCADSC <- setClass("PCADSC",
-                   slots = list(pcaFrame = "data.frame", splitBy = "character",
-                                splitLevels = "character", varNames = "character",
-                                n1 = "numeric", n2 = "numeric", nObs1 = "numeric",
-                                nObs2 = "numeric"))
+
+
+
+################Not exported below##################################################
+
+#Standardize each variable in a dataset (subtract mean, divide by SD)
+stdData <- function(data) {
+  as.data.frame(lapply(data, function(x) (x - mean(x))/sd(x)))
+}
