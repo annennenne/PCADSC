@@ -1,13 +1,6 @@
 setGeneric("qplot")
 setGeneric("plot")
 
-#' @title Plot a PCADSC object
-#'
-#' @description Given af PCADSC object, \code{x}, (as produced by \code{\link{makePCADSC}}), a data
-#' structure comparison plot is generated in the style of  \code{ggplot2}.
-#'
-#' @param x A PCADSC object (see \code{\link{PCADSC}}).
-#'
 #' @param varLabels A vector of character string labels for the variables used in
 #' \code{pcadscObj}. If non-null, these labels appear in the plot instead of the
 #' variable names. Note that they must be listed in the same order as the variables
@@ -23,21 +16,17 @@ setGeneric("plot")
 #' If \code{NULL} (the default), the original levels of the splitting variable
 #' are used.
 #'
-#' @return A PCADSC plot.
-#'
-#' @examples
-#' #Example showing how to use splitLabels
-#'
-#' @seealso \code{\link{makePCADSC}}, \code{\link{PCADSC}}
-#'
 #' @importFrom methods setMethod
-#' @importFrom ggplot2 qplot ggplot aes geom_bar coord_flip scale_x_reverse
+#' @importFrom ggplot2 qplot ggplot aes_string geom_bar coord_flip scale_x_reverse
 #'             scale_y_continuous geom_text xlab ylab theme facet_wrap
 #'             as_labeller scale_fill_discrete theme_bw
-#' @export
+#'
+#'@describeIn PCADSC Plot a PCADSC object
+#'@include PCADSC.R
+#'@export
 setMethod("qplot","PCADSC",
-          function(x, varLabels=NULL, covCO=NULL,
-                                     splitLabels=NULL) {
+          function(x, varLabels=NULL, covCO=NULL, splitLabels=NULL) {
+
   pcadscObj <- x
   splitLevels <- pcadscObj@splitLevels
   nCat1 <- pcadscObj@nObs1
@@ -60,13 +49,16 @@ setMethod("qplot","PCADSC",
                    paste(splitLabels[2], ", n = ", nCat2, sep=""))
   names(facetLabels) <- splitLevels
 
-  ggplot(pcaFrame, aes(x=comp, y=loading, fill=var)) +
+  #browser()
+    #note: aes_string is used for devtools::check() to stop complaining
+    #about undocumented variables. It is not necessary at all.
+  ggplot(pcaFrame, aes_string(x="comp", y="loading", fill="var")) +
     geom_bar(stat="identity") +
     coord_flip() +
-    scale_x_reverse(breaks=c(1, seq(10, 50, 10))) +
+    scale_x_reverse() +
     scale_y_continuous(limits=c(0, 1.4),
                        breaks=c(0, 0.25, 0.5, 0.75, 1)) +
-    geom_text(aes(label=cvc), y=1.2, cex=4, na.rm=T) +
+    geom_text(aes_string(label="cvc"), y=1.2, cex=4, na.rm=T) +
     xlab("Principal component") +
     ylab("Standardized loading") +
     theme(legend.position="bottom") +
@@ -77,4 +69,6 @@ setMethod("qplot","PCADSC",
 }
 )
 
+
+#'@rdname qplot,PCADSC-method
 setMethod("plot", "PCADSC", function(x, y = NULL, ...) qplot(x, ...))

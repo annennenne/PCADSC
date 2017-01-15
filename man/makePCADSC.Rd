@@ -30,6 +30,12 @@ Calculate standardized PCA loadings and accumulated variance contributions
 separately on two parts of a dataset in order to perform non-parametric data structure
 comparisons.
 }
+\details{
+Blablabla.
+Note that \code{\link[tibble]{tibble}}s and \code{\link[data.table]{data.table}}s are
+accepted as input, but they are instantly converted to \code{\link{data.frame}}s. Future
+releases might include specific implementation for these data representations.
+}
 \examples{
 
 #load iris data
@@ -48,6 +54,7 @@ print(irisPCADSC)
 
 }
 \seealso{
-\code{\link{printPCADSC}} \code{\link{plotPCADSC}}
+\code{\link{PCADSC}}, \code{\link{print,PCADSC-method}},
+ \code{\link{qplot,PCADSC-method}}
 }
 

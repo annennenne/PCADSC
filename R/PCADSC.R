@@ -2,6 +2,15 @@
 #'
 #' Blabla
 #'
+#' @slot pcaFrame ...
+#' @slot splitBy ...
+#' @slot splitLevels ...
+#' @slot varNames ...
+#' @slot n1 ...
+#' @slot n2 ...
+#' @slot nObs1 ...
+#' @slot nObs2 ...
+#'
 #' @examples
 #' #load iris data
 #'   data(iris)
@@ -20,9 +29,11 @@
 #' #print it
 #'  print(irisPCADSC)
 #'
-#' @importFrom methods setClass
+#'
+#'
+#' @importFrom methods setClass new
 #' @export
-setClass("PCADSC",
+PCADSC <- setClass("PCADSC",
                    slots = list(pcaFrame = "data.frame", splitBy = "character",
                                 splitLevels = "character", varNames = "character",
                                 n1 = "numeric", n2 = "numeric", nObs1 = "numeric",

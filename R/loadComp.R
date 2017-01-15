@@ -4,8 +4,8 @@
 #varCO option is not yet implemented
 #vars: variable names that should be included
 
-#' importFrom stats na.omit princomp
-#' importFrom reshape2 melt
+#' @importFrom stats na.omit princomp
+#' @importFrom reshape2 melt
 loadComp <- function(data, vars = NULL, varCO=NULL) {
   if (is.null(varCO)) {
     varCO <- 1
@@ -16,7 +16,7 @@ loadComp <- function(data, vars = NULL, varCO=NULL) {
   }
 
   n <- length(vars)
-  p <- princomp(sapply(na.omit(data[, vars]), as.numeric))
+  p <- stats::princomp(sapply(stats::na.omit(data[, vars]), as.numeric))
   px <- round(matrix(c(p$loadings), n,
                      dimnames=list(vars, 1:n)), 4)
 

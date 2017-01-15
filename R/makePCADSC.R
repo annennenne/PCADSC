@@ -103,6 +103,7 @@ makePCADSC <- function(data, splitBy, var=NULL, covCO=NULL) {
 ################Not exported below##################################################
 
 #Standardize each variable in a dataset (subtract mean, divide by SD)
+#' @importFrom stats sd
 stdData <- function(data) {
   as.data.frame(lapply(data, function(x) (x - mean(x))/sd(x)))
 }

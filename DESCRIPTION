@@ -1,6 +1,6 @@
 Package: PCADSC
 Type: Package
-Title: Tools for Principal Component Analysis-based Data Structure Comparison
+Title: Tools for Principal Component Analysis-based Data Structure Comparisons
 Version: 0.1.0
 Author: Anne H. Petersen
 Maintainer: Anne H. Petersen <ahpe@sund.ku.dk>
@@ -12,8 +12,12 @@ LazyData: true
 Imports:
     reshape2,
     methods,
-    pander
-Depends:
-    ggplot2, 
-    lava
+    pander,
+    ggplot2
 RoxygenNote: 5.0.1
+Collate:
+    'PCADSC.R'
+    'loadComp.R'
+    'makePCADSC.R'
+    'print.R'
+    'qplot.R'
