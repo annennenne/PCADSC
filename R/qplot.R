@@ -34,6 +34,13 @@ setMethod("qplot","PCADSC",
   splitBy <- pcadscObj@splitBy
   pcaFrame <- pcadscObj@pcaFrame
 
+  if (is.null(covCO)) covCO <- 1
+  if (covCO != 1) {
+    maxUseComp <- min(pcaFrame$comp[pcaFrame$cvc_raw > covCO])
+    pcaFrame <- pcaFrame[pcaFrame$comp <= maxUseComp, ]
+  }
+  nComp <- max(pcaFrame$comp)
+
   if (is.null(varLabels)) {
     varLabels <- pcadscObj@varNames
   }
@@ -45,6 +52,8 @@ setMethod("qplot","PCADSC",
     splitLabels <- c(sl1, sl2)
   }
 
+
+
   facetLabels <- c(paste(splitLabels[1], ", n = ", nCat1, sep=""),
                    paste(splitLabels[2], ", n = ", nCat2, sep=""))
   names(facetLabels) <- splitLevels
@@ -55,7 +64,7 @@ setMethod("qplot","PCADSC",
   ggplot(pcaFrame, aes_string(x="comp", y="loading", fill="var")) +
     geom_bar(stat="identity") +
     coord_flip() +
-    scale_x_reverse() +
+    scale_x_reverse(breaks = 1:nComp) +
     scale_y_continuous(limits=c(0, 1.4),
                        breaks=c(0, 0.25, 0.5, 0.75, 1)) +
     geom_text(aes_string(label="cvc"), y=1.2, cex=4, na.rm=T) +
