@@ -1,7 +1,7 @@
 Package: PCADSC
 Type: Package
 Title: Tools for Principal Component Analysis-based Data Structure Comparisons
-Version: 0.1.0
+Version: 0.2.0
 Author: Anne H. Petersen
 Maintainer: Anne H. Petersen <ahpe@sund.ku.dk>
 Description: More about what it does (maybe more than one line)
