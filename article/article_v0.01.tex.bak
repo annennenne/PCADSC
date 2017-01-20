@@ -1,0 +1,204 @@
+\documentclass[titlepage,11pt,twoside]{article}
+
+
+
+\usepackage[dvips]{graphicx}
+
+\usepackage[myheadings]{fullpage}
+\usepackage{pmetrika}
+\usepackage{pmbib}
+\usepackage{color}
+\usepackage{mathtools}
+\usepackage{amssymb}
+
+
+%\usepackage{submit}
+
+\newcommand{\bfU}{\mbox{\boldmath$\mathsf{U}$}}
+\newcommand{\bfu}{\mbox{\boldmath$\mathsf{u}$}}
+\newcommand{\hl}[1]{\textcolor{magenta}{#1}}
+\newcommand{\RR}{\mathbb{R}}
+\DeclareMathOperator*{\V}{V}
+\newcommand{\argmax}{\text{argmax}}
+
+
+%\begin{figure}[h]
+%\centerline{\includegraphics{figure03.eps}}
+%\caption{Projection of item discrimination vectors onto $V_{\theta_T}$ hyperplance for a six item three-dimensional approximate sample structure.}
+%\end{figure}
+
+
+%\raggedbottom
+\flushbottom
+
+
+%\firstpage{1}
+%\setcounter{lastpage}{999}
+\setcounter{secnumdepth}{3}
+
+\begin{document}
+
+\linespacing{1}
+
+\title{Something that is not PCADSC}
+
+\author{Anne H. Petersen, Bo Bang, Karl Markussen}
+
+
+\affil{University of Copenhagen}
+
+
+\vspace{\fill}
+
+
+
+
+\linespacing{1}
+
+%\RepeatTitle{Psychometrics: From Practice to Theory and Back}
+
+\begin{center}\vskip3pt
+
+
+\vspace{32pt}
+
+Abstract\vskip3pt
+
+\end{center}
+
+
+\begin{abstract}
+abstract...
+\begin{keywords}
+keywords... 
+\end{keywords}
+\end{abstract}
+
+\vspace{\fill}\newpage
+
+\section{Introduction}
+The origin stories of datasets have largely changed over time. While data was often gathered with a specific scientific inquiry in mind in the past, a lot of data is accumulated without such a specific purpose nowadays. This is both due to the vast amounts of data registrations online and due to a trend towards more open source research in a lot of different scientific disciplines. Especially the latter phenomenon poses new challenges with respect to data quality assessment. When data is collected and made public without a specific end-point in mind, how do we ensure that e.g. differences in measurement instruments do not cause the data to be effectively divided into subsets that are simply not comparable? 
+
+
+A lot of sophisticated methods are available for answering this type of question when we are willing to assume a statistical model of some sort. But when these models are taken away, a remarkable void of methods is left behind. What is needed is a procedure that compares differences in overall data structures in two (or more) subsets of a dataset without assuming neither directional nor hierarchical relationships between the variables. We propose a new method for this task, namely Principal Component Analysis-based Data Structure Comparison (PCADSC). This method employs the principal component decomposition of the data matrix performed on two subsets of a dataset in order to create intuitive visualizations of data structure differences. \hl{Mention R package.}
+
+
+This manuscript is structured as follows: First, in Section 2, we present the data structure comparison problem in more detail and discuss what statistical methods are already available for solving similar challenges. Next, in Section 3, we move on to a description of the PCADSC procedure, including a brief introduction to principal component analysis (PCA) in general. In Section 4, we conduct a small simulation study in order to investigate the performance of PCADSC and in Section 5, we present a worked data example using the open source, online available PISA data (\hl{ref}), which is an example of a dataset where multiple data collection methods \hl{Til Karl: Eller hvad var det?} have been employed.
+
+
+
+
+\section{Something about state of the art}
+\subsection{\hl{More detailed description of the type of problem we wish to address}}
+\hl{
+\begin{itemize}
+\item Two subsets of a dataset, i.e. to datasets with the same variables, but different observations
+\item Wish to compare structures without specifying a model or even any variables of interest
+\item The most central example is the question of whether the two subsets can readily be combined in a (unknown) data analysis, or if the subset-inducing variable actually implies heterogeneity across the subset division
+	\begin{itemize}
+		\item Examples: Large scale open source datasets such as the PISA data and ESS (European Social Survey) data and ...(?). In these datasets, the data producers are very far away from the majority of the data analysts. Therefore, problem-specific recommendations about potential instrument-induced challenges in the datasets are not available for the data analysts. How can data producers ensure that this will not be an issue, at least not related to known data gathering differences?
+		\item Other examples?
+		\item Perhaps a description of what happens if we are to combine the two subsets of the datasets without taking a e.g. an instrument-effect into account. When will it cause problems (maybe: causal graph style?)?
+		\item Mention somewhere: We want a solution that is largely independent of the sizes of the two subsets of data. Thereby, a lot of methods that compare each subset to the full dataset in some sense are excluded.
+	\end{itemize}	
+\end{itemize}
+}
+
+\subsection{\hl{Describe existing methods used to solve similar questions or parts of the question we are addressing}}
+\hl{
+\begin{itemize}
+\item The simplest case: variable-by-variable tests in distributional differences
+	\begin{itemize}
+		\item Simple, but scales poorly
+		\item Only relates to marginal differences and not to the interplay between variables
+	\end{itemize}
+\item Karl's papers?
+\item Anne's papers: IRT-based methods for surveys
+	\begin{itemize}
+		\item Moves beyond the marginal approach, but needs a model pre-specified
+		\item Thus, it is not a general data structure comparison method, but rather a fitted-model comparison method. It addresses the interplay between the model and the data, not the data alone. This is fundamentally a different (though related) question.
+	\end{itemize}
+\end{itemize}
+}
+
+
+\section{PCADSC - description of the method}
+\hl{Description from Anne's master's thesis. Rewrite. Self plagiarism issues?}
+
+As mentioned above, the purpose of PCADSC is comparing overall data structures in two or more subsets of a dataset. But before we can get further into describing this procedure, we must first define what exactly is meant by "overall structure". One such definition is the structure of the covariance matrix of the dataset. If we assume all variables in the dataset to be jointly normal with zero means, the covariance matrix is a sufficient statistic for describing the simultaneous distribution of all the variables. This gives it a very nice interpretation as a measure of the overall structure. If we do not accept the normality assumption, pairwise correlations and variable variances are still interesting quantities that say something about the interrelations between the variables, at least in terms of linear relationships. All in all, the empirical covariance matrix is a reasonable place to start looking for differences in "overall data structures".
+
+Though the idea sounds appealing, it is quite difficult to assess similarity of matrices, and moreover, this becomes increasinly difficult for large numbers of variables and thus high dimensional covariance matrices. There is simply too much information to consider at once. 
+
+However, by clever use of linear algebra, we can construct a decomposition of the covariance matrix that makes it easier to gain an overview of the data. We propose a new method based on principal component analysis that seems to be able to identify differences in datasets based on intuitive, visual inspections. We refer to this method as principal component analysis-based data structure comparison (PCADSC) and we present the procedure below. But first, we give a minimal introduction to principal component analysis in general with reference to Koch (2014).
+
+
+\subsection{Principal component analysis - a very brief introduction}
+Principal component analysis (PCA) allows us to decompose a data matrix consisting of $n$ observations of $d$ variables into $d$ orthogonal vectors of length $d$. This is in itself not very impressive nor useful. But PCA does not result in just any basis of the data matrix. The basis chosen using PCA has the very favorable property that each vector is chosen such that they maximize the accumulated explained variance. These vectors are usually denoted \textit{principal component scores} or simply \textit{principal components} and they are constructed as linear combinations of the variables in the dataset (or, equivalently, as projections of the data matrix). The coefficients of each variable in these projections are denoted \textit{loadings}. Let $S \in \RR^{d \times d}$ denote the empirical covariance matrix and let $X \in \RR^{n \times d}$ denote our observed data matrix. $d$ is the number of variables while $n$ is the number of observations. The deconstruction procedure then goes as follows:
+\begin{enumerate}
+\item The vector of loadings corresponding to the first principal component, $\eta_1 \in \RR^d$, is chosen such that the component explains as much variance as possible. More precisely, for any unit vector $u \in \RR^d$ we find that $\V(u^T X^T)$ is maximized when $u = \eta_1$. Let $\lambda_1 = \V(\eta_1^T X^T)$. 
+\item The second vector of loadings is then chosen as $\eta_2 = \argmax_{u: \, u \perp \eta_1} \V(u^T X^T)$ and we again define $\lambda_2 := \V(\eta_2 X)$.
+\item The third vector of loadings is $\eta_3 = \argmax_{u: \, u \perp \{\eta_1, \eta_2\}} \V(u^T X^T)$ and $\lambda_3 :=  \V(\eta_3^T X^T)$ \\
+\vdots 
+\item[\refstepcounter{enumi} $d$.] The $d$th vector of loadings is $\eta_d = \argmax_{u: \, u \perp \{eta_1, ..., \eta_{d-1}\}} \V(u^T X^T)$ and $\lambda_d = V(\eta_d^T X^T)$.
+\end{enumerate}
+The $\eta_i$s and $\lambda_i$s are determined uniquely (up to scaling) and they are given as the eigenvectors and eigenvalues of $S$, respectively. Moreover, we find that $X = \sum_{i=1}^d \eta_j \eta_j^T X$, so the procedure is really just a clever choice of rotation of the data, such that it is split up into vectors that are ordered by their variances, or more precisely, their variance contributions. We define the contribution to the total variance of the $k$th principal component as $\frac{\lambda_k}{tr(S)}$ and please note that, due to the properties of eigenvalue decomposition, $tr(S) = \sum_{i=1}^d \lambda_i$, which is the sum of the variances of the variables in the dataset.
+
+ In this introduction, we have assumed full rank of the covariance matrix $S$ for simplicity, but it should be noted that this assumption is in no way needed for the results to hold. 
+
+\subsection{PCA-based data structure comparison}
+Above, we promised a method for intuitive, visual inspection of data structure similarities, but as of now, all intuition might have been lost in technicalities. The main point we want to emphasize from PCA is that we can interpret the eigenvector/eigenvalue-pairs of the covariance matrix as tools for obtaining a different representation of the dataset. Specifically, we can interpret the PCA loadings (eigenvectors) as weights that determine the relative influence of each variable in each component. If two different data sets with the same variables, but different samples of observations, then have similar loading patterns, the two data sets will agree on which variables explain the most variance and also \textit{how} this variance is explained.  Looking at the PCA loadings and the cumulative explained variance thus provides a straightforward non-parametric graphical approach for assessing similarity between two datasets. \\
+
+Our proposal of a PCADSC method consist of three steps. These steps should be performed separately for each of the two (or more) datasets that we wish to compare. Note that the datasets must have the same variables, but different sample sizes are allowed. The three steps are:
+\begin{enumerate}
+\item \hl{Standardize. Full data or subsets? And also: Something about what to do if not all variables are numerical.}
+\item Compute the PCA loadings and the variance contributions of each principal component.
+\item For each principal component, standardize the loadings, i.e. scale them such that they sum to one.
+\item Produce a plot consisting of a bar for each principal component, decorated with the cumulative variance contribution corresponding to this component. The bar should be of length one and colored according to the variables loading the component.
+\end{enumerate}
+The plots resulting from this procedure should be inspected focusing on two properties: Similarities in loading patterns, which will correspond to similar visual impressions, and similarities in variance contributions.  \hl{Refer to example/show plot.}
+
+
+
+\section{Simulation study}
+\hl{
+\begin{itemize}
+\item Relevant simulation setup? 
+	\begin{itemize}
+		\item Maybe something similar to the one from my thesis? 
+		\item Maybe also something similar to the very minimal approach taken by Bo in his R-script: Show that if the datastructures are identical, PCADSC does not produce "false positives"
+	\end{itemize}
+\item How do we validate performance?
+\item How do we report findings without showing a huge amount of plots?
+\end{itemize}
+}
+
+\section{Data example stuff}
+\hl{
+\begin{itemize}
+\item PISA data? Karl?
+\end{itemize}
+}
+\section{Discussion}
+
+\hl{
+\begin{itemize}
+\item Generalizing the results to non-numeric variables?
+\item Generalizing the results to covariance matrices that are not of full rank?
+\item ?
+\end{itemize}
+}
+
+\section{Concluding Remarks}
+
+\vspace{\fill}\clearpage
+
+\begin{thebibliography}
+
+\bibitem Ackerman, T.A. (1992). A didactic explanation of item bias, item impact, and item validity from a multidimensional perspective. \textit{Journal of Educational Measurement}, \textit{29}, 67--91.
+
+
+\end{thebibliography}
+\vspace{\fill}
+
+%\vfill\eject
+\end{document}

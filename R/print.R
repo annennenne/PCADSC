@@ -1,29 +1,14 @@
-#' @title Print a PCADSC object
-#' @description Print an overview of the results of PCADSC, as represented by a PCADSC object generated
-#' by \code{\link{makePCADSC}}.
-#'
-#' @param x A PCADSC object
+setGeneric("print")
+
+#' @param x A \code{PCADSC} object
 #' @param ... For internal use only
 #'
-#' @seealso \code{\link{makePCADSC}} \code{\link{plotPCADSC}}
-#'
-#' @examples
-#'
-#' #load iris data
-#' data(iris)
-#'
-#' #Define grouping variable, grouping the observations by whether their species is
-#' #Setosa or not
-#' iris$group <- "setosa"
-#' iris$group[iris$Species != "setosa"] <- "non-setosa"
-#'
-#' #make a PCADSC object, splitting the data by "group"
-#' irisPCADSC <- makePCADSC(iris, "group",
-#'                         var=setdiff(names(iris), c("group", "Species")))
-#' print(irisPCADSC)
-#'
+#' @describeIn PCADSC Print an overview of a PCADSC object
+#' @importFrom pander pander
+#' @importFrom methods setMethod
+#' @include PCADSC.R
 #' @export
-printPCADSC <- function(x, ...) {
+setMethod("print", "PCADSC", function(x, ...) {
   pcadscObj <- x
   frame <- pcadscObj@pcaFrame
   splitBy <- pcadscObj@splitBy
@@ -66,8 +51,11 @@ printPCADSC <- function(x, ...) {
     sep="\n"))
   cat(pander(loadFrame))
 }
+)
 
-
-#' @importFrom methods setMethod
-#' @export
-setMethod("print", "PCADSC", printPCADSC)
+#' @param object A \code{PCADSC} object
+#'
+#'@describeIn PCADSC Show a PCADSC object. Alias for \code{print}.
+#'@importFrom methods setMethod show
+#'@export
+setMethod("show", "PCADSC", function(object) print(object))

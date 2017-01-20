@@ -25,6 +25,10 @@ iris$group[iris$Species != "setosa"] <- "non-setosa"
 #make a PCADSC object, splitting the data by "group"
 irisPCADSC <- makePCADSC(iris, "group", 
                              var=setdiff(names(iris), c("group", "Species")))
-plotPCADSC(irisPCADSC)
-printPCADSC(irisPCADSC)
+
+#plot it
+qplot(irisPCADSC)
+
+#print object overview
+irisPCADSC
 ```
