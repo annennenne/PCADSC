@@ -17,6 +17,7 @@ Imports:
 RoxygenNote: 5.0.1
 Collate:
     'PCADSC.R'
+    'hairplot.R'
     'loadComp.R'
     'makePCADSC.R'
     'print.R'

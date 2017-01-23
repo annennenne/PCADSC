@@ -1,4 +1,16 @@
-# Hairplot
+#' Hairplot
+#'
+#' @examples
+#' #load iris data
+#'   data(iris)
+#'
+#' #Define grouping variable, grouping the observations by whether their species is
+#' #Setosa or not
+#'  iris$group <- "setosa"
+#'  iris$group[iris$Species != "setosa"] <- "non-setosa"
+#'
+#' #Make hairplot
+#'  hairplot(iris[iris$group == "setosa", 1:4], iris[iris$group == "non-setosa", 1:4])
 #' @export
 hairplot <- function(data1,data2,standardize=TRUE,make.plot=TRUE,arrow.len=0.05) {
   # stadardize
@@ -31,3 +43,5 @@ hairplot <- function(data1,data2,standardize=TRUE,make.plot=TRUE,arrow.len=0.05)
   # return
   return(angles)
 }
+
+
