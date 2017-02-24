@@ -141,7 +141,7 @@ Principal component analysis (PCA) allows us to decompose a data matrix consisti
 \item The second vector of loadings is then chosen as $\eta_2 = \argmax_{u: \, u \perp \eta_1} \V(u^T X^T)$ and we again define $\lambda_2 := \V(\eta_2 X)$.
 \item The third vector of loadings is $\eta_3 = \argmax_{u: \, u \perp \{\eta_1, \eta_2\}} \V(u^T X^T)$ and $\lambda_3 :=  \V(\eta_3^T X^T)$ \\
 \vdots 
-\item[\refstepcounter{enumi} $d$.] The $d$th vector of loadings is $\eta_d = \argmax_{u: \, u \perp \{eta_1, ..., \eta_{d-1}\}} \V(u^T X^T)$ and $\lambda_d = V(\eta_d^T X^T)$.
+\item[\refstepcounter{enumi} $d$.] The $d$th vector of loadings is $\eta_d = \argmax_{u: \, u \perp \{\eta_1, ..., \eta_{d-1}\}} \V(u^T X^T)$ and $\lambda_d = V(\eta_d^T X^T)$.
 \end{enumerate}
 The $\eta_i$s and $\lambda_i$s are determined uniquely (up to scaling) and they are given as the eigenvectors and eigenvalues of $S$, respectively. Moreover, we find that $X = \sum_{i=1}^d \eta_j \eta_j^T X$, so the procedure is really just a clever choice of rotation of the data, such that it is split up into vectors that are ordered by their variances, or more precisely, their variance contributions. We define the contribution to the total variance of the $k$th principal component as $\frac{\lambda_k}{tr(S)}$ and please note that, due to the properties of eigenvalue decomposition, $tr(S) = \sum_{i=1}^d \lambda_i$, which is the sum of the variances of the variables in the dataset.
 
