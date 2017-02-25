@@ -77,18 +77,19 @@ keywords...
 \vspace{\fill}\newpage
 
 \section{Introduction}
-The origin stories of datasets have largely changed over time. While data was often gathered with a specific scientific inquiry in mind in the past, a lot of data is accumulated without such a specific purpose nowadays. This is both due to the vast amounts of data registrations online and due to a trend towards more open source research in a lot of different scientific disciplines. Especially the latter phenomenon poses new challenges with respect to data quality assessment. When data is collected and made public without a specific end-point in mind, how do we ensure that e.g. differences in measurement instruments do not cause the data to be effectively divided into subsets that are simply not comparable? 
+\label{sec:introduction}
+The origin stories of datasets have changed over time. While in the past, data was often collected with a specific scientific inquiry in mind, today, a lot of data is accumulated without such a specific purpose. This is due to vast amounts of data being registered online and due to a trend towards more open source research. The latter phenomenon in particular poses new challenges wrt. data quality assessment. When data are collected and made public without a specific end-point in mind, how do we ensure that e.g.\ differences in measurement instruments do not cause the data to be effectively divided into subsets that are simply not comparable? 
+
+Sophisticated methods for addressing this question are available when we are willing to assume a statistical model, but when these models are taken away, a remarkable void of methods is left behind. What is needed is a procedure that compares differences in overall data structures in two (or more) subsets of a dataset without assuming neither directional nor hierarchical relationships between the variables. We propose a new method for this task, namely Principal Component Analysis-based Data Structure Comparison (PCADSC). This method employs the principal component decomposition of the data matrix performed on two subsets of a dataset in order to create intuitive visualizations of data structure differences. \hl{Mention R package.}
 
 
-A lot of sophisticated methods are available for answering this type of question when we are willing to assume a statistical model of some sort. But when these models are taken away, a remarkable void of methods is left behind. What is needed is a procedure that compares differences in overall data structures in two (or more) subsets of a dataset without assuming neither directional nor hierarchical relationships between the variables. We propose a new method for this task, namely Principal Component Analysis-based Data Structure Comparison (PCADSC). This method employs the principal component decomposition of the data matrix performed on two subsets of a dataset in order to create intuitive visualizations of data structure differences. \hl{Mention R package.}
-
-
-This manuscript is structured as follows: First, in Section 2, we present the data structure comparison problem in more detail and discuss what statistical methods are already available for solving similar challenges. Next, in Section 3, we move on to a description of the PCADSC procedure, including a brief introduction to principal component analysis (PCA) in general. In Section 4, we conduct a small simulation study in order to investigate the performance of PCADSC and in Section 5, we present a worked data example using the open source, online available PISA data (\hl{ref}), which is an example of a dataset where multiple data collection methods \hl{Til Karl: Eller hvad var det?} have been employed.
+This manuscript is structured as follows: First, in Section \ref{sec:stateoftheart}, we present the data structure comparison problem in more detail and discuss what statistical methods are already available for solving similar challenges. Next, in Section \ref{sec:pcadscintro}, we move on to a description of the PCADSC procedure, including a brief introduction to principal component analysis (PCA) in general. In Section \ref{sec:dataexample}, we present a worked data example using the open source, online available PISA data (\hl{ref}), which is an example of a dataset where multiple data collection methods \hl{Eller måske lande?} have been employed.
 
 
 
 
 \section{Something about state of the art}
+\label{sec:stateoftheart}
 \subsection{\hl{More detailed description of the type of problem we wish to address}}
 \hl{
 \begin{itemize}
@@ -123,7 +124,8 @@ This manuscript is structured as follows: First, in Section 2, we present the da
 
 
 \section{PCADSC - description of the method}
-\hl{Description from Anne's master's thesis. Rewrite. Self plagiarism issues?}
+\label{sec:pcadscintro}
+\hl{Description from Anne's master's thesis. Rewrite.}
 
 As mentioned above, the purpose of PCADSC is comparing overall data structures in two or more subsets of a dataset. But before we can get further into describing this procedure, we must first define what exactly is meant by "overall structure". One such definition is the structure of the covariance matrix of the dataset. If we assume all variables in the dataset to be jointly normal with zero means, the covariance matrix is a sufficient statistic for describing the simultaneous distribution of all the variables. This gives it a very nice interpretation as a measure of the overall structure. If we do not accept the normality assumption, pairwise correlations and variable variances are still interesting quantities that say something about the interrelations between the variables, at least in terms of linear relationships. All in all, the empirical covariance matrix is a reasonable place to start looking for differences in "overall data structures".
 
@@ -159,27 +161,45 @@ The plots resulting from this procedure should be inspected focusing on two prop
 
 
 
-\section{Simulation study}
-\hl{
-\begin{itemize}
-\item Relevant simulation setup? 
-	\begin{itemize}
-		\item Maybe something similar to the one from my thesis? 
-		\item Maybe also something similar to the very minimal approach taken by Bo in his R-script: Show that if the datastructures are identical, PCADSC does not produce "false positives"
-	\end{itemize}
-\item How do we validate performance?
-\item How do we report findings without showing a huge amount of plots?
-\end{itemize}
-}
 
 \section{Data example stuff}
-\hl{
-\begin{itemize}
-\item PISA data? Karl?
-\end{itemize}
-}
-\section{Discussion}
+\label{sec:dataexample}
+We will now turn to a concrete data example in order to illustrate the possibilities of each of the methods presented above \hl{more than just PCADSC?}. We use data from the 2012 version of the European Social Survey (ESS) project, a very large dataset that is available online at \hl{link?}. As the name suggests, the data comes from a survey that was conducted primarily in Europe aiming to collect information about the social conditions of the citizens \hl{ref?}. As with all international (or simply multi-center) studies, one might be concerned about whether or not the data from different countries can readily be combined. This is the question we will address using PCADSC in the current section.
 
+All computations and figures presented in this section where created using our R package PCADSC, which is available at \hl{... github? CRAN?}. 
+
+\subsection{Data}
+\begin{figure}
+\center
+\includegraphics[scale=1]{surveyTable.png}
+\caption{\hl{Make a new table here}}
+\label{surveyTable}
+\end{figure}
+The ESS 2012 data contains a total of 626 variables collected from 54673 citizens in 29 countries. Here, we will only work with a subset of 35 questionnaire items that are all related to psychological well-being. These 35 items can be collected into 6 distinct scales (\hl{REF: ESS6 Topline Results Series 5}), as illustrated in Figure \ref{surveyTable}. We represent each of these scales by a single variable, which is calculated as the average score within the items related to that variable (\hl{ref to someone that says that is sensible?}). For simplicity, we use only complete cases for this construction.
+
+In the following, we only compare two countries, namely Denmark and Bulgaria, which have $n_{BG} = 1798$ and $n_{DK} = 1498$ complete cases in the variables of interest, respectively. For these two countries, the ESS authors highlight differences in the relationship between the psychological well-being scales on an nation-aggregated level (\hl{REF: ESS6 Topline Results Series 5}) which might reflect large, cultural differences. Simply put, we do not expect happiness and psychological well-being to be the same phenomena in Bulgaria and Denmark \hl{more here about why, about the cultures?}. Therefore, a successful method for data comparisons should be able to detect these differences. 
+
+\subsection{PCADSC}
+\begin{figure}
+\center
+\includegraphics[scale = 0.8]{essPCADSC.pdf}
+\caption{\hl{something}}
+\label{plotESSPCADSC}
+\end{figure}
+
+\begin{figure}
+\center
+\includegraphics[scale = 0.8]{essWallyPCADSC.pdf}
+\caption{\hl{something}}
+\label{plotESSPCADSCWally}
+\end{figure}
+
+Figure \ref{plotESSPCADSC} illustrates the results of conducting PCADSC on the psychological well-being data from the ESS. While the first principal component, which is responsible for explaining 50-60 \% of the variance in the data, is very similar, we see quite large differences in the remaining components. In the second component, we see that the two countries disagree in the relative importance of the scales \textit{Community wellbeing} and \textit{Vitality}. In the third and fourth components, general disagreement  is found, thus implying that components representing almost half of the variability in the data are not very similar across the two countries. This implies that the datasets are fundamentally different and that we should therefore be wary about combining them in a joint analysis, just as the ESS authors suggested. But did we really illustrate a data structure difference due to country differences or did we just illustrate the variability of the results of the PCA method? In order to investigate this further, we refer to a so-called \textit{Wally plot} (\hl{ref: Claus Ekstrøm}). In this plot, we compare the results of PCADSC conducted with grouping by country with several random, but similar grouping variables. Specifically, we produce 7 PCADSC plots where the country variable was replaced by a randomly generated variable that divides the observations into two groups of the same sizes as the country samples. The results are illustrated in Figure \ref{plotESSPCADSCWally}. Here, we see that the differences in the second component are not matched in any of the randomly grouped PCADSC runs. In fact, the 7 runs are remarkably similar, thereby illustrating that PCADSC seems to be very robust with respect to random groupings: The signal in the data is not blurred by the random subdivisions. When it comes to the differences in the third component for the two groups, we find much larger variability in the 7 random runs. \hl{more comments here}... 
+
+
+
+\section{Discussion}
+\label{sec:discussion}
 \hl{
 \begin{itemize}
 \item Generalizing the results to non-numeric variables?
@@ -189,12 +209,13 @@ The plots resulting from this procedure should be inspected focusing on two prop
 }
 
 \section{Concluding Remarks}
+\label{sec:conclusion}
 
 \vspace{\fill}\clearpage
 
 \begin{thebibliography}
 
-\bibitem Ackerman, T.A. (1992). A didactic explanation of item bias, item impact, and item validity from a multidimensional perspective. \textit{Journal of Educational Measurement}, \textit{29}, 67--91.
+\bibitem Ackerman, T.A. (1992). \hl{EXAMPLE POST.} A didactic explanation of item bias, item impact, and item validity from a multidimensional perspective. \textit{Journal of Educational Measurement}, \textit{29}, 67--91.
 
 
 \end{thebibliography}

@@ -164,11 +164,38 @@ The plots resulting from this procedure should be inspected focusing on two prop
 
 \section{Data example stuff}
 \label{sec:dataexample}
-\hl{
-\begin{itemize}
-\item PISA 
-\end{itemize}
-}
+We will now turn to a concrete data example in order to illustrate the possibilities of each of the methods presented above \hl{more than just PCADSC?}. We use data from the 2012 version of the European Social Survey (ESS) project, a very large dataset that is available online at \hl{link?}. As the name suggests, the data comes from a survey that was conducted primarily in Europe aiming to collect information about the social conditions of the citizens \hl{ref?}. As with all international (or simply multi-center) studies, one might be concerned about whether or not the data from different countries can readily be combined. This is the question we will address using PCADSC in the current section.
+
+All computations and figures presented in this section where created using our R package PCADSC, which is available at \hl{... github? CRAN?}. 
+
+\subsection{Data}
+\begin{figure}
+\center
+\includegraphics[scale=1]{surveyTable.png}
+\caption{\hl{Make a new table here}}
+\label{surveyTable}
+\end{figure}
+The ESS 2012 data contains a total of 626 variables collected from 54673 citizens in 29 countries. Here, we will only work with a subset of 35 questionnaire items that are all related to psychological well-being. These 35 items can be collected into 6 distinct scales (\hl{REF: ESS6 Topline Results Series 5}), as illustrated in Figure \ref{surveyTable}. We represent each of these scales by a single variable, which is calculated as the average score within the items related to that variable (\hl{ref to someone that says that is sensible?}). For simplicity, we use only complete cases for this construction.
+
+In the following, we only compare two countries, namely Denmark and Bulgaria, which have $n_{BG} = 1798$ and $n_{DK} = 1498$ complete cases in the variables of interest, respectively. For these two countries, the ESS authors highlight differences in the relationship between the psychological well-being scales on an nation-aggregated level (\hl{REF: ESS6 Topline Results Series 5}) which might reflect large, cultural differences. Simply put, we do not expect happiness and psychological well-being to be the same phenomena in Bulgaria and Denmark \hl{more here about why, about the cultures?}. Therefore, a successful method for data comparisons should be able to detect these differences. 
+
+\subsection{PCADSC}
+\begin{figure}
+\center
+\includegraphics[scale = 0.8]{essPCADSC.pdf}
+\caption{\hl{something}}
+\label{plotESSPCADSC}
+\end{figure}
+
+\begin{figure}
+\center
+\includegraphics[scale = 0.8]{essWallyPCADSC.pdf}
+\caption{\hl{something}}
+\label{plotESSPCADSCWally}
+\end{figure}
+
+Figure \ref{plotESSPCADSC} illustrates the results of conducting PCADSC on the psychological well-being data from the ESS. While the first principal component, which is responsible for explaining 50-60 \% of the variance in the data, is very similar, we see quite large differences in the remaining components. In the second component, we see that the two countries disagree in the relative importance of the scales \textit{Community wellbeing} and \textit{Vitality}. In the third and fourth components, general disagreement  is found, thus implying that components representing almost half of the variability in the data are not very similar across the two countries. This implies that the datasets are fundamentally different and that we should therefore be wary about combining them in a joint analysis, just as the ESS authors suggested. But did we really illustrate a data structure difference due to country differences or did we just illustrate the variability of the results of the PCA method? In order to investigate this further, we refer to a so-called \textit{Wally plot} (\hl{ref: Claus Ekstrøm}). In this plot, we compare the results of PCADSC conducted with grouping by country with several random, but similar grouping variables. Specifically, we produce 7 PCADSC plots where the country variable was replaced by a randomly generated variable that divides the observations into two groups of the same sizes as the country samples. The results are illustrated in Figure \ref{plotESSPCADSCWally}. Here, we see that the differences in the second component are not matched in any of the randomly grouped PCADSC runs. In fact, the 7 runs are remarkably similar, thereby illustrating that PCADSC seems to be very robust with respect to random groupings: The signal in the data is not blurred by the random subdivisions. When it comes to the differences in the third component for the two groups, we find much larger variability in the 7 random runs. \hl{more comments here}... 
+
 
 
 \section{Discussion}
