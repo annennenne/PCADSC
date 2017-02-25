@@ -14,7 +14,7 @@
 \S4method{show}{PCADSC}(object)
 
 \S4method{qplot}{PCADSC}(x, varLabels = NULL, covCO = NULL,
-  splitLabels = NULL)
+  splitLabels = NULL, hideCumVar = FALSE)
 }
 \arguments{
 \item{x}{A \code{PCADSC} object}
@@ -37,6 +37,9 @@ to create the PCADSC object, \code{pcadscObj}, given as a named list (see exampl
 These labels will appear in the headers of the two PCADSC plots.
 If \code{NULL} (the default), the original levels of the splitting variable
 are used.}
+
+\item{hideCumVar}{If \code{TRUE} (the default), cummulated explained variance
+percentages are not shown for each component.}
 }
 \description{
 Blabla

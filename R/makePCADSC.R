@@ -49,6 +49,12 @@ makePCADSC <- function(data, splitBy, var=NULL, covCO=NULL) {
   #define var
   if (is.null(var)) var <- setdiff(names(data), splitBy)
 
+  #TO DO:
+  #-  check if any variables are essentially empty. This will cause an error
+  #   as we then divide by zero when standardizing
+  #-  Make sure it deals with factor splitBy varibales correctly
+
+
   #If data is tibble, data.table or matrix, convert it to data.frame
   #If data is neither, throw error
   if (any(class(data) %in% c("data.table", "tbl", "tbl_df", "matrix"))) {

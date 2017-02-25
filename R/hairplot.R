@@ -1,5 +1,13 @@
 #' Hairplot
 #'
+#' @description ????
+#'
+#' @param data1 ???
+#' @param data2 ???
+#' @param standardize ???
+#' @param make.plot ????
+#' @param arrow.len ???
+#'
 #' @examples
 #' #load iris data
 #'   data(iris)
@@ -11,6 +19,8 @@
 #'
 #' #Make hairplot
 #'  hairplot(iris[iris$group == "setosa", 1:4], iris[iris$group == "non-setosa", 1:4])
+#'
+#' @importFrom graphics axis arrows
 #' @export
 hairplot <- function(data1,data2,standardize=TRUE,make.plot=TRUE,arrow.len=0.05) {
   # stadardize

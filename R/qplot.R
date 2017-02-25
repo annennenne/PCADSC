@@ -16,6 +16,9 @@ setGeneric("plot")
 #' If \code{NULL} (the default), the original levels of the splitting variable
 #' are used.
 #'
+#' @param hideCumVar If \code{TRUE} (the default), cummulated explained variance
+#' percentages are not shown for each component.
+#'
 #' @importFrom methods setMethod
 #' @importFrom ggplot2 qplot ggplot aes_string geom_bar coord_flip scale_x_reverse
 #'             scale_y_continuous geom_text xlab ylab theme facet_wrap
@@ -25,7 +28,8 @@ setGeneric("plot")
 #'@include PCADSC.R
 #'@export
 setMethod("qplot","PCADSC",
-          function(x, varLabels=NULL, covCO=NULL, splitLabels=NULL) {
+          function(x, varLabels=NULL, covCO=NULL, splitLabels=NULL,
+                   hideCumVar = FALSE) {
 
   pcadscObj <- x
   splitLevels <- pcadscObj@splitLevels
@@ -61,20 +65,25 @@ setMethod("qplot","PCADSC",
   #browser()
     #note: aes_string is used for devtools::check() to stop complaining
     #about undocumented variables. It is not necessary at all.
-  ggplot(pcaFrame, aes_string(x="comp", y="loading", fill="var")) +
+  p <- ggplot(pcaFrame, aes_string(x="comp", y="loading", fill="var")) +
     geom_bar(stat="identity") +
     coord_flip() +
     scale_x_reverse(breaks = 1:nComp) +
-    scale_y_continuous(limits=c(0, 1.4),
-                       breaks=c(0, 0.25, 0.5, 0.75, 1)) +
-    geom_text(aes_string(label="cvc"), y=1.2, cex=4, na.rm=T) +
     xlab("Principal component") +
     ylab("Standardized loading") +
-    theme(legend.position="bottom") +
     facet_wrap(~ group, ncol=2,
                labeller=as_labeller(facetLabels)) +
     scale_fill_discrete(name=NULL, labels=varLabels) +
-    theme_bw()
+    theme_bw() +
+    theme(legend.position="bottom")
+  if (hideCumVar) {
+    return(p + scale_y_continuous(breaks=c(0, 0.25, 0.5, 0.75, 1)))
+  } else {
+    p +
+      scale_y_continuous(limits=c(0, 1.4),
+                         breaks=c(0, 0.25, 0.5, 0.75, 1)) +
+      geom_text(aes_string(label="cvc"), y=1.2, cex=4, na.rm=T)
+  }
 }
 )
 
