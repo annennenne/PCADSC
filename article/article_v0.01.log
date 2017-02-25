@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.1)  24 FEB 2017 11:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.1)  25 FEB 2017 07:39
 entering extended mode
 **article_v0.01.tex
 (article_v0.01.tex
@@ -234,23 +234,23 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 106.
  [2] [3]
 LaTeX Font Info:    Font shape `U/mp4/m/n' will be
-(Font)              scaled to size 10.95pt on input line 138.
+(Font)              scaled to size 10.95pt on input line 141.
 LaTeX Font Info:    Font shape `U/mp4/m/n' will be
-(Font)              scaled to size 8.0pt on input line 138.
+(Font)              scaled to size 8.0pt on input line 141.
 LaTeX Font Info:    Font shape `U/mp4/m/n' will be
-(Font)              scaled to size 6.0pt on input line 138.
+(Font)              scaled to size 6.0pt on input line 141.
 LaTeX Font Info:    Font shape `U/mp4sl/m/n' will be
-(Font)              scaled to size 10.95pt on input line 138.
+(Font)              scaled to size 10.95pt on input line 141.
 LaTeX Font Info:    Font shape `U/mp4sl/m/n' will be
-(Font)              scaled to size 8.0pt on input line 138.
+(Font)              scaled to size 8.0pt on input line 141.
 LaTeX Font Info:    Font shape `U/mp4sl/m/n' will be
-(Font)              scaled to size 6.0pt on input line 138.
-LaTeX Font Info:    Try loading font information for U+msa on input line 138.
+(Font)              scaled to size 6.0pt on input line 141.
+LaTeX Font Info:    Try loading font information for U+msa on input line 141.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 138.
+LaTeX Font Info:    Try loading font information for U+msb on input line 141.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -265,7 +265,7 @@ Here is how much of TeX's memory you used:
  6231 multiletter control sequences out of 15000+200000
  12196 words of font info for 44 fonts, out of 3000000 for 9000
  1028 hyphenation exceptions out of 8191
- 33i,6n,26p,1100b,265s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 33i,10n,26p,1176b,265s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
 m/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc1
 0.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C
@@ -280,7 +280,7 @@ c/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
 Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program F
 iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiK
 TeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on article_v0.01.pdf (7 pages, 174526 bytes).
+Output written on article_v0.01.pdf (7 pages, 177671 bytes).
 PDF statistics:
  86 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
