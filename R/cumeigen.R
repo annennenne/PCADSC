@@ -1,6 +1,3 @@
-##Author: Bo Markussen##
-#' Cumulative eigenvalues
-#'
 #' @title Cumulative eigenvalue plot
 #'
 #' @description Compares eigenvalues by cumulative Bland-Altman type plots. Kolmogorov-Smirnov and Cramer-von Mises tests evaluated by permutation tests
@@ -32,9 +29,9 @@
 #' #make a PCADSC object, splitting the data by "group"
 #' cumeigen(iris, "group",var=setdiff(names(iris), c("group", "Species")))
 #'
+#' @importFrom graphics polygon matlines lines
 #' @export
-# cumulated differences
-cumeigen <- function(data,splitBy,var=NULL,B=1000,make.plot=TRUE) {
+cumeigen <- function(data,splitBy,var=NULL,B=1000,make.plot=FALSE) {
   #define var
   if (is.null(var)) var <- setdiff(names(data), splitBy)
 
@@ -99,7 +96,7 @@ cumeigen <- function(data,splitBy,var=NULL,B=1000,make.plot=TRUE) {
   for (i in 1:B) {
     ii <- sample(1:n,n1)
     data1 <- as.matrix(stddata(data[ii,var]))
-    data2 <- as.matrix(stddata(data[setdiff(1:n,ii),var]))
+    data2 <- as.matrix(stddata(data[-ii,var]))
     y1 <- eigen(1/(n1-1)*t(data1)%*%data1,only.values=TRUE)$values
     y2 <- eigen(1/(n2-1)*t(data2)%*%data2,only.values=TRUE)$values
     y.sim[,i]  <- c(0,cumsum(y1-y2))
