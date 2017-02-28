@@ -32,5 +32,6 @@ hairplot(data1, data2, standardize = TRUE, make.plot = TRUE,
 
 #Make hairplot
  hairplot(iris[iris$group == "setosa", 1:4], iris[iris$group == "non-setosa", 1:4])
+
 }
 

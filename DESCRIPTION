@@ -2,8 +2,8 @@ Package: PCADSC
 Type: Package
 Title: Tools for Principal Component Analysis-based Data Structure Comparisons
 Version: 0.2.0
-Author: Anne H. Petersen
-Maintainer: Anne H. Petersen <ahpe@sund.ku.dk>
+Authors@R: c(person("Anne H.", "Petersen", , email="ahpe@sund.ku.dk", role=c("aut", "cre")),
+             person("Bo", "Markussen", , email="bomar@math.ku.dk", role=c("aut")))
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 License: GPL-2
@@ -13,14 +13,15 @@ Imports:
     reshape2,
     methods,
     pander,
-    ggplot2
+    ggplot2,
+    Matrix
 RoxygenNote: 5.0.1
 Collate:
     'PCADSC.R'
+    'cumeigen.R'
     'hairplot.R'
     'loadComp.R'
     'makePCADSC.R'
     'print.R'
     'qplot.R'
     'wallyPlot.R'
-    'cumeigen.R'
