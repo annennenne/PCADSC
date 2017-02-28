@@ -31,7 +31,7 @@
 #'
 #' @importFrom graphics polygon matlines lines
 #' @export
-cumeigen <- function(data,splitBy,var=NULL,B=1000,make.plot=FALSE) {
+cumeigen <- function(data,splitBy,var=NULL,B=1000,make.plot=TRUE) {
   #define var
   if (is.null(var)) var <- setdiff(names(data), splitBy)
 

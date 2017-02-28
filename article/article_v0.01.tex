@@ -22,6 +22,7 @@
 \DeclareMathOperator*{\V}{V}
 \newcommand{\argmax}{\text{argmax}}
 \newcommand{\R}[1]{\texttt{#1}}
+\newcommand{\acos}{\text{arccos}}
 
 
 %\begin{figure}[h]
@@ -43,7 +44,8 @@
 \linespacing{1}
 
 %\title{Something that is not PCADSC}
-\title{Structure comparison for multivariate data by\ldots / with application to \ldots}
+%\title{Structure comparison for multivariate data by\ldots / with application to \ldots}
+\title{Explorative data structure comparison with application to \ldots}
 
 \author{Anne H. Petersen, Bo Bang, Karl Markussen}
 
@@ -132,7 +134,7 @@ This manuscript is structured as follows: First, in Section \ref{sec:stateofthea
 
 As mentioned above, the purpose of PCADSC is comparing overall data structures in two or more subsets of a dataset. But before we can get further into describing this procedure, we must first define what exactly is meant by "overall structure". One such definition is the structure of the covariance matrix of the dataset. If we assume all variables in the dataset to be jointly normal with zero means, the covariance matrix is a sufficient statistic for describing the simultaneous distribution of all the variables. This gives it a very nice interpretation as a measure of the overall structure. If we do not accept the normality assumption, pairwise correlations and variable variances are still interesting quantities that say something about the interrelations between the variables, at least in terms of linear relationships. All in all, the empirical covariance matrix is a reasonable place to start looking for differences in "overall data structures".
 
-Though the idea sounds appealing, it is quite difficult to assess similarity of matrices, and moreover, this becomes increasinly difficult for large numbers of variables and thus high dimensional covariance matrices. There is simply too much information to consider at once. 
+Though the idea sounds appealing, it is quite difficult to assess similarity of matrices, and moreover, this becomes increasingly difficult for large numbers of variables and thus high dimensional covariance matrices. There is simply too much information to consider at once. 
 
 However, by clever use of linear algebra, we can construct a decomposition of the covariance matrix that makes it easier to gain an overview of the data. We propose a new method based on principal component analysis that seems to be able to identify differences in datasets based on intuitive, visual inspections. We refer to this method as principal component analysis-based data structure comparison (PCADSC) and we present the procedure below. But first, we give a minimal introduction to principal component analysis in general with reference to Koch (2014).
 
@@ -146,14 +148,14 @@ However, by clever use of linear algebra, we can construct a decomposition of th
 \min_{K_q} \sum_{i=1}^n \min_{z \in K_q} \lVert x_i - \bar{x} - z \rVert^2 =
 \min_{K_q} \sum_{i=1}^n \lVert x_i - \bar{x} - \text{proj}_{K_q}(x_i - \bar{x}) \rVert^2.
 \end{equation*} 
-PCA ensures the existence of a subspace $\hat{K}_q \subset \RR^d$ that attains this minimum, and it provides an explicit description of $\hat{K}_q$ and the rank-q-reconstruction error. Thus, let $S = U \Lambda U^\top$ be the eigenvalue decomposition of the empirical covariance $S = \frac{1}{n-1} \sum_{i=1}^n (x_i-\bar{x}) (x_i-\bar{x})^\top \in \RR^d$. Here $\Lambda \in \RR^d$ is the diagonal matrix with the eigenvectors $\lambda_1 \ge \dotsm \ge \lambda_d \ge 0$ in the diagonal, and $U \in \RR^d$ is the orthogonal matrix with the associated eigenvectors $\eta_1,\dotsc,\eta_d \in \RR^d$ of $S$ in the columns. The eigenvalues are uniquely defined, and the eigenvectors are uniquely defined up to a sign whenever the eigenvalues are different. If some of the eigenvalue are identical, e.g.\ $\lambda_i=\lambda_{i+1}=\dotsm=\lambda_j$, then the associated eigenvectors $\eta_i,\eta_{i+1},\dotsc,\eta_j$ are uniquely defined up to a common rotation. In practice this only happens if $n < d$, in which case the last $d-n$ eigenvalues will be zero. It is a result from linear algebra that the rank-q-reconstruction error for $q < d$ is achieved for
+PCA ensures the existence of a subspace $\hat{K}_q \subset \RR^d$ that attains this minimum, and it provides an explicit description of $\hat{K}_q$ and the rank-q-reconstruction error. Thus, let $S = U \Lambda U^\top$ be the eigenvalue decomposition of the empirical covariance $S = \frac{1}{n-1} \sum_{i=1}^n (x_i-\bar{x}) (x_i-\bar{x})^\top \in \RR^d$. Here $\Lambda \in \RR^d$ is the diagonal matrix with the eigenvectors $\lambda_1 \ge \dotsm \ge \lambda_d \ge 0$ in the diagonal, and $U \in \RR^d$ is the orthogonal matrix with the associated eigenvectors $\eta_1,\dotsc,\eta_d \in \RR^d$ in the columns. The eigenvalues are uniquely defined, and the eigenvectors are uniquely defined up to a change of sign whenever the eigenvalues are different. If some of the eigenvalues are identical, e.g.\ $\lambda_i=\lambda_{i+1}=\dotsm=\lambda_j$, then the associated eigenvectors $\eta_i,\eta_{i+1},\dotsc,\eta_j$ are uniquely defined up to a common rotation. In practice this only happens if $n < d$, in which case the last $d-n$ eigenvalues will be zero. It is a result from linear algebra that the rank-q-reconstruction error for $q < d$ is achieved for
 \begin{equation*}
 \hat{K}_q = \text{span}\{\eta_1,\dotsc,\eta_q\}
 \end{equation*}
-and equals $\sum_{i=q+1}^d \lambda_i$. In the terminology of PCA the eigenvectors $\eta_j \in \RR^d$ are called \emph{loadings}, and the eigenvalues $\lambda_j \ge 0$ may be understood as \emph{variation components}. The projections $\eta_j^\top (x_i - \bar{x})$ of the observations onto the loadings are called \emph{scores}. The $j$th loading can also found as the unit vector $u \in \RR^d$ orthogonal to $\hat{K}_{j-1}$, where the initial subspace is defined as $\hat{K}_0 = \{0\}$, that maximizes the variation of the associated scores
+and equals $\sum_{j=q+1}^d \lambda_j$. In the terminology of PCA the eigenvectors $\eta_j \in \RR^d$ are called \emph{loadings}, and the eigenvalues $\lambda_j \ge 0$ may be understood as \emph{variation components}. The projections $\eta_j^\top (x_i - \bar{x})$ of the observations onto the loadings are called \emph{scores}. The $j$th loading can also found as the unit vector $u \in \RR^d$ orthogonal to $\hat{K}_{j-1}$, where the initial subspace is defined as $\hat{K}_0 = \{0\}$, that maximizes the variation of the associated scores
 \begin{align*}
 \eta_j &= \argmax_{u \in \RR^d\colon u \perp \hat{K}_{j-1}} \sum_{i=1}^n \lVert u^\top (x_i - \bar{x}) \rVert^2, &
-\lambda_j &= \frac{1}{n-1} \sum_{i=1}^n \lVert \eta_j^\top (x_i - \bar{x}) \rVert^2
+\lambda_j &= \frac{1}{n-1} \sum_{i=1}^n \lVert \eta_j^\top (x_i - \bar{x}) \rVert^2.
 \end{align*}
  
 It is worth emphasizing that the greedy approach of successively adding the next direction $\eta_j$ explaining most of the remaining variation, also gives the sequence $\hat{K}_q = \hat{K}_{q-1} \oplus \text{span} \{\eta_q\}$ of subspaces minimizing the rank-q-reconstruction error. This strong interpretation of PCA, which is often overlooked in the literature, means that the sequence of loadings $\eta_j$ and associated variation components $\lambda_j$ describe the structure of the dataset simultaneously for all approximating dimension $q$. This implies that the loadings and variation components can be used to investigate the structure of the dataset without the need to decide on an approximating dimension $q$.
@@ -173,7 +175,49 @@ It is worth emphasizing that the greedy approach of successively adding the next
 % In this introduction, we have assumed full rank of the covariance matrix $S$ for simplicity, but it should be noted that this assumption is in no way needed for the results to hold. 
 
 \subsection{PCA-based data structure comparison}
-Above, we promised a method for intuitive, visual inspection of data structure similarities, but as of now, all intuition might have been lost in technicalities. The main point we want to emphasize from PCA is that we can interpret the eigenvector/eigenvalue-pairs of the covariance matrix as tools for obtaining a different representation of the dataset. Specifically, we can interpret the PCA loadings (eigenvectors) as weights that determine the relative influence of each variable in each component. If two different data sets with the same variables, but different samples of observations, then have similar loading patterns, the two data sets will agree on which variables explain the most variance and also \textit{how} this variance is explained.  Looking at the PCA loadings and the cumulative explained variance thus provides a straightforward non-parametric graphical approach for assessing similarity between two datasets. \\
+Above, we promised a method for intuitive, visual inspection of data structure similarities, but as of now, all intuition might have been lost in technicalities. The main point we want to emphasize from PCA is that we can interpret the eigenvector/eigenvalue-pairs of the covariance matrix as tools for obtaining a different representation of the dataset. Specifically, we can interpret the PCA loadings (eigenvectors) as weights that determine the relative influence of each variable in each component. If two different data sets with the same variables, but different samples of observations, then have similar loading patterns, the two data sets will agree on which variables explain the most variance and also \textit{how} this variance is explained.  Looking at the PCA loadings and the cumulative explained variance thus provides a straightforward non-parametric graphical approach for assessing similarity between two datasets. 
+
+{\color{red}
+We propose the following three diagnostic plots:
+\begin{description}
+\item[CumVarAgreement:] Cumulated Bland-Altman plot for the variation decomposition.
+\item[Hairplot:] Plot of the loadings for one of the datasets in the coordinate system of the other dataset.
+\item[Pancakeplot:] This is the ``classical'' PCADSC.
+\end{description}
+
+Below we describe the details of these plots. Consider two different datasets in the same $d$ variables. Let $\lambda_{k1} \ge \dotsm \ge \lambda_{kd}$ and $\eta_{k1},\dotsc,\eta_{kd}$ be the variation components and the loadings for dataset $k=1,2$.
+
+\medskip
+
+\textbf{CumVarAgreement:} To be done.
+
+\bigskip
+
+\textbf{Hairplot:} Let $\lambda_{\max} = \max\{ \lambda_{11}, \lambda_{21} \}$ be the largest variation component for the two datasets. The empirical covariance matrix $S_1$ for the first dataset has the following orthogonal decomposition in the coordinate system of the second dataset
+\begin{equation*}
+S_1 = \sum_{k=1}^d \lambda_{1j} \eta_{1k} \eta_{1k}^\top
+= \lambda_{\max} \sum_{k=1}^d 
+\Bigg( \sum_{j=1}^d \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} (\eta_{1k} \eta_{2j}^\top) \eta_{2j} \Bigg) 
+\Bigg( \sum_{j=1}^d \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} (\eta_{1k} \eta_{2j}^\top) \eta_{2j} \Bigg)^\top.
+\end{equation*}
+We propose to visualize this decomposition by plotting arrows with length $l_{kj}$ and angle $\theta_{kj}/2$ anticlockwise from the diagonal in the $j$th row and the $k$th column of a $d \times d$ grid display, where
+\begin{align*}
+l_{kj} &= \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} \lvert \eta_{1k} \eta_{2j}^\top \rvert, &
+\theta_{kj} &= \acos(\lvert \eta_{1k} \eta_{2j}^\top \rvert).
+\end{align*}
+Using the same grid display, but interchanging the first and the second dataset as well as the rows and the columns, and using the angles clockwise, similar arrows are plotted in a different color. 
+
+In our implementation we have used blue for the first and the second set of arrows, respectively. In this plot the blue arrows in the $k$th column visualize the decomposition of the $k$th principal components for the first dataset in the coordinate system of the second dataset. The scaling of the length by $\lambda_{\max}$ is made so that the longest arrow has unit length, and the absolute value of the projection $\eta_{1k} \eta_{2j}^\top$ is inserted due to the indeterminacy of the direction of loading vectors. This indeterminacy also implies the angle between loadings from the two datasets always can be chosen to be in the interval $[0,\pi/2]$. We can visualize both the decomposition of $S_1$ and $S_2$ in the same plot by divide the angles by two and using anticlockwise and clockwise shifts from the diagonal. Similarly, the red arrows in the $j$th row visualize the decomposition of the $j$th principal components for the second dataset in the coordinate system of the first dataset. 
+
+If the structures of the two datasets are identical, then we will have coinciding blue and red arrows along the diagonal in the grid display, and nothing else as the off-diagonal arrows would have zero length. Differences in the variation components are visualized as differences in the lengths of the arrows, also in the diagonal. And loadings in other directions than the corresponding loading from the other dataset are visualized as angle separation of the blue and the red arrows in the diagonal as well as arrows of non vanishing length in the off-diagonal.
+
+\bigskip
+
+Remarks: Presently permutation tests based on the Kolmogorov-Smirnov and the Cram\'er-von Mises test statistics has been implemented for CumVarAgreement. This should also be possible for the Hairplot based on the off-diagonal components. For the Pancakeplot a Wallyplot has been implemented (however, in Claus' Wally plot the position of the ``observed dataset'' is also random).
+
+\bigskip
+
+}
 
 Our proposal of a PCADSC method consist of three steps. These steps should be performed separately for each of the two (or more) datasets that we wish to compare. Note that the datasets must have the same variables, but different sample sizes are allowed. The three steps are:
 \begin{enumerate}
@@ -215,11 +259,30 @@ In the following, we only compare two countries, namely Denmark and Bulgaria, wh
 \begin{figure}
 \center
 \includegraphics[scale = 0.8]{essWallyPCADSC.pdf}
-\caption{\hl{something}}
+\caption{\hl{something.}}
 \label{plotESSPCADSCWally}
 \end{figure}
 
+\begin{figure}
+\center
+\includegraphics[scale = 0.8]{essHairplot.png}
+\caption{The blue arrows show the principal components of the first dataset decomposed in the coordinate system of the principal components of the second dataset. And the red arrows the reverse.}
+\label{plotESSHairplot}
+\end{figure}
+
+\begin{figure}
+\center
+\includegraphics[scale = 0.8]{essCumVarAgreement.png}
+\caption{\hl{something.}}
+\label{plotCumVarAgreement}
+\end{figure}
+
 Figure \ref{plotESSPCADSC} illustrates the results of conducting PCADSC on the psychological well-being data from the ESS. While the first principal component, which is responsible for explaining 50-60 \% of the variance in the data, is very similar for the two countries, we see quite large differences in the remaining components. In the second component, we see that the two countries disagree in the relative importance of the scales \textit{Community wellbeing} and \textit{Vitality}. In the third and fourth components, general disagreement  is found. All in all, components 2-4, representing almost half of the variability in the data, are not very similar across the two countries. Moreover, the two subsets of the data also differ with respect to how much variance is explained by each component, and the difference is particularly big for the first component. This component has approximately 15 \%  more explanatory power in the Bulgarian subsample than it does in the Danish. 
+
+{\color{red} 
+Figure \ref{plotESSHairplot} shows the hairplot. The blue arrows visualize the decomposition of the principal components for the first dataset in the coordinate system of the second dataset. We see that PC2 also loads on PC3, that PC3 also loads on PC4, and that PC4 also loads on PC2 and PC3. The red arrows visualize the decomposition of the principal components for the second dataset in the coordinate system of the first dataset. We see that PC2 also loads on PC4, that PC3 also loads on PC2 and PC4, and that PC4 also loads on PC3. For PC1, PC5 and PC6 the main difference is in the size of the variation component.
+}
+
 
 In summary, we find that the datasets are fundamentally different and that we should therefore be wary about combining them in a joint analysis, which was also the conclusion of the ESS authors, though based on country-level aggregated statistics. \\
 

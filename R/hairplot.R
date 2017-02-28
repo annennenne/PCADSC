@@ -1,38 +1,88 @@
-#' Hairplot
+#' @title Hairplot
 #'
-#' @description ????
+#' @description Compares eigenvalues and eigenvectors form two datasets. Kolmogorov-Smirnov and Cramer-von Mises tests evaluated by permutation tests might be implemented later.
 #'
-#' @param data1 ???
-#' @param data2 ???
-#' @param standardize ???
-#' @param make.plot ????
-#' @param arrow.len ???
+#' @param data A dataset, either a \code{data.frame} or a \code{matrix} with variables
+#' in columns and observations in rows. WHAT TO DO ABOUT DATA.TABLES AND ALSO TIBBLES. BOTH WILL BE
+#' PROBLEMATIC AS OF NOW.
+#'
+#' @param splitBy A grouping variable with two levels defining the two groups within the
+#' dataset whose data structures we wish to compare. If \code{splitBy} has more than
+#' two levels, only the first two levels are used.
+#'
+#' @param var The variable names in \code{data} to include in the PCADSC. If \code{NULL}
+#' (the default), all variables except for \code{splitBy} are used.
+#'
+#' @param make.plot Should a plot be generated?
+#'
+#' @param B Number of simulations
+#'
+#' @param arrow.len Length of arrow on plot
 #'
 #' @examples
 #' #load iris data
-#'   data(iris)
+#' data(iris)
 #'
 #' #Define grouping variable, grouping the observations by whether their species is
 #' #Setosa or not
-#'  iris$group <- "setosa"
-#'  iris$group[iris$Species != "setosa"] <- "non-setosa"
+#' iris$group <- "setosa"
+#' iris$group[iris$Species != "setosa"] <- "non-setosa"
 #'
-#' #Make hairplot
-#'  hairplot(iris[iris$group == "setosa", 1:4], iris[iris$group == "non-setosa", 1:4])
+#' #make a PCADSC object, splitting the data by "group"
+#' hairplot(iris, "group",var=setdiff(names(iris), c("group", "Species")))
 #'
 #' @importFrom graphics axis arrows
 #' @export
-hairplot <- function(data1,data2,standardize=TRUE,make.plot=TRUE,arrow.len=0.05) {
-  # stadardize
-  data1 <- MuMIn::stdize(as.matrix(data1),scale=standardize)
-  data2 <- MuMIn::stdize(as.matrix(data2),scale=standardize)
+hairplot <- function(data,splitBy,var=NULL,B=1000,make.plot=TRUE,arrow.len=0.05) {
+  #define var
+  if (is.null(var)) var <- setdiff(names(data), splitBy)
 
-  # eigen decomposition
-  d <-  ncol(data1)
+  #TO DO:
+  #-  check if any variables are essentially empty. This will cause an error
+  #   as we then divide by zero when standardizing
+  #-  Make sure it deals with factor splitBy varibales correctly
+
+  #If data is tibble, data.table or matrix, convert it to matrix
+  #If data is neither, throw error
+  if (any(class(data) %in% c("data.table", "tbl", "tbl_df", "matrix"))) {
+    data <- as.data.frame(data)
+    message("Note: The data was converted to a data.frame in order for cumeigen to run.")
+  }
+  if (class(data) != "data.frame") {
+    stop("The inputted data must be of type data.frame, data.table, tibble or matrix.")
+  }
+
+  #check if all variables are numeric
+  isNum <- sapply(data[, var], "is.numeric")
+  if (!all(isNum)) {
+    stop(paste("All variables must be numeric for PCA decomposition",
+               "to be meaningful. The following non-numeric variables",
+               "were found:", paste(names(isNum[!isNum]), collapse = ", ")))
+  }
+
+  #check if splitBy has more/less than two levels
+  splitLevels <- unique(data[, splitBy])
+  if (length(splitLevels) != 2) {
+    stop(paste("splitLevels must have exactly two levels,",
+               "but it was found to have", length(splitLevels),
+               "levels."))
+  }
+
+  # my stdData
+  stddata <- function(data) {
+    as.data.frame(lapply(data, function(x) (x - mean(x))/sd(x)))
+  }
+
+  #split and standardize data
+  data1 <- as.matrix(stddata(data[data[, splitBy]==splitLevels[1], var]))
+  data2 <- as.matrix(stddata(data[data[, splitBy]==splitLevels[2], var]))
   n1 <- nrow(data1)
   n2 <- nrow(data2)
-  eigen1 <- eigen(1/n1*t(data1)%*%data1)
-  eigen2 <- eigen(1/n2*t(data2)%*%data2)
+  d  <- ncol(data1)
+
+  # eigen decomposition
+  eigen1 <- eigen(1/n1*t(as.matrix(data1))%*%as.matrix(data1))
+  eigen2 <- eigen(1/n2*t(as.matrix(data2))%*%as.matrix(data2))
 
   # find angles
   angles <- matrix(0,d,d)
@@ -44,14 +94,19 @@ hairplot <- function(data1,data2,standardize=TRUE,make.plot=TRUE,arrow.len=0.05)
     axis(1,1:d)
     axis(2,1:d)
     pi <- 2*asin(1)
+    max.eigen <- max(c(eigen1$values[1],eigen2$values[1]))
     for (i in 1:d) for (j in 1:d) {
-      len <- sqrt(eigen1$values[i]/eigen1$values[1]*eigen2$values[j]/eigen2$values[1])
-      arrows(i,j,i+len*cos(angles[i,j]/2),j+len*sin(angles[i,j]/2),length=arrow.len)
+      # plot PC1's in coordinate system of PC2
+      len <- sqrt(eigen1$values[i]/max.eigen)*abs(sum(eigen1$vectors[,i]*eigen2$vectors[,j]))
+      arrows(i,j,i+len*cos((pi-angles[i,j])/2),j+len*sin((pi-angles[i,j])/2),length=arrow.len,col="blue")
+    }
+    for (i in 1:d) for (j in 1:d) {
+      # plot PC2's in coordinate system of PC1
+      len <- sqrt(eigen2$values[j]/max.eigen)*abs(sum(eigen1$vectors[,i]*eigen2$vectors[,j]))
+      arrows(i,j,i+len*cos(angles[i,j]/2),j+len*sin(angles[i,j]/2),length=arrow.len,col="red")
     }
   }
 
   # return
   return(angles)
 }
-
-
