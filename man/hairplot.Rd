@@ -4,34 +4,41 @@
 \alias{hairplot}
 \title{Hairplot}
 \usage{
-hairplot(data1, data2, standardize = TRUE, make.plot = TRUE,
+hairplot(data, splitBy, var = NULL, B = 1000, make.plot = TRUE,
   arrow.len = 0.05)
 }
 \arguments{
-\item{data1}{???}
+\item{data}{A dataset, either a \code{data.frame} or a \code{matrix} with variables
+in columns and observations in rows. WHAT TO DO ABOUT DATA.TABLES AND ALSO TIBBLES. BOTH WILL BE
+PROBLEMATIC AS OF NOW.}
 
-\item{data2}{???}
+\item{splitBy}{A grouping variable with two levels defining the two groups within the
+dataset whose data structures we wish to compare. If \code{splitBy} has more than
+two levels, only the first two levels are used.}
 
-\item{standardize}{???}
+\item{var}{The variable names in \code{data} to include in the PCADSC. If \code{NULL}
+(the default), all variables except for \code{splitBy} are used.}
 
-\item{make.plot}{????}
+\item{B}{Number of simulations}
 
-\item{arrow.len}{???}
+\item{make.plot}{Should a plot be generated?}
+
+\item{arrow.len}{Length of arrow on plot}
 }
 \description{
-????
+Compares eigenvalues and eigenvectors form two datasets. Kolmogorov-Smirnov and Cramer-von Mises tests evaluated by permutation tests might be implemented later.
 }
 \examples{
 #load iris data
-  data(iris)
+data(iris)
 
 #Define grouping variable, grouping the observations by whether their species is
 #Setosa or not
- iris$group <- "setosa"
- iris$group[iris$Species != "setosa"] <- "non-setosa"
+iris$group <- "setosa"
+iris$group[iris$Species != "setosa"] <- "non-setosa"
 
-#Make hairplot
- hairplot(iris[iris$group == "setosa", 1:4], iris[iris$group == "non-setosa", 1:4])
+#make a PCADSC object, splitting the data by "group"
+hairplot(iris, "group",var=setdiff(names(iris), c("group", "Species")))
 
 }
 

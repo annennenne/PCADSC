@@ -14,7 +14,7 @@
 \S4method{show}{PCADSC}(object)
 
 \S4method{qplot}{PCADSC}(x, varLabels = NULL, covCO = NULL,
-  splitLabels = NULL, hideCumVar = FALSE)
+  splitLabels = NULL, varAnnotation = "cum", useComps = NULL)
 }
 \arguments{
 \item{x}{A \code{PCADSC} object}

@@ -1,3 +1,4 @@
+#'@importFrom ggplot2 qplot
 setGeneric("qplot")
 setGeneric("plot")
 
@@ -26,66 +27,9 @@ setGeneric("plot")
 #'
 #'@describeIn PCADSC Plot a PCADSC object
 #'@include PCADSC.R
+#'@include pancakePlot.R
 #'@export
-setMethod("qplot","PCADSC",
-          function(x, varLabels=NULL, covCO=NULL, splitLabels=NULL,
-                   hideCumVar = FALSE) {
-
-  pcadscObj <- x
-  splitLevels <- pcadscObj@splitLevels
-  nCat1 <- pcadscObj@nObs1
-  nCat2 <- pcadscObj@nObs2
-  splitBy <- pcadscObj@splitBy
-  pcaFrame <- pcadscObj@pcaFrame
-
-  if (is.null(covCO)) covCO <- 1
-  if (covCO != 1) {
-    maxUseComp <- min(pcaFrame$comp[pcaFrame$cvc_raw > covCO])
-    pcaFrame <- pcaFrame[pcaFrame$comp <= maxUseComp, ]
-  }
-  nComp <- max(pcaFrame$comp)
-
-  if (is.null(varLabels)) {
-    varLabels <- pcadscObj@varNames
-  }
-  if (is.null(splitLabels)) {
-    splitLabels <- splitLevels
-  } else {
-    sl1 <- splitLabels[[which(names(splitLabels)==splitLevels[1])]]
-    sl2 <- splitLabels[[which(names(splitLabels)==splitLevels[2])]]
-    splitLabels <- c(sl1, sl2)
-  }
-
-
-
-  facetLabels <- c(paste(splitLabels[1], ", n = ", nCat1, sep=""),
-                   paste(splitLabels[2], ", n = ", nCat2, sep=""))
-  names(facetLabels) <- splitLevels
-
-  #browser()
-    #note: aes_string is used for devtools::check() to stop complaining
-    #about undocumented variables. It is not necessary at all.
-  p <- ggplot(pcaFrame, aes_string(x="comp", y="loading", fill="var")) +
-    geom_bar(stat="identity") +
-    coord_flip() +
-    scale_x_reverse(breaks = 1:nComp) +
-    xlab("Principal component") +
-    ylab("Standardized loading") +
-    facet_wrap(~ group, ncol=2,
-               labeller=as_labeller(facetLabels)) +
-    scale_fill_discrete(name=NULL, labels=varLabels) +
-    theme_bw() +
-    theme(legend.position="bottom")
-  if (hideCumVar) {
-    return(p + scale_y_continuous(breaks=c(0, 0.25, 0.5, 0.75, 1)))
-  } else {
-    p +
-      scale_y_continuous(limits=c(0, 1.4),
-                         breaks=c(0, 0.25, 0.5, 0.75, 1)) +
-      geom_text(aes_string(label="cvc"), y=1.2, cex=4, na.rm=T)
-  }
-}
-)
+setMethod("qplot","PCADSC", pancakePlot)
 
 
 #'@rdname qplot,PCADSC-method

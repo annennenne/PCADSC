@@ -30,17 +30,19 @@ loadComp <- function(data, vars = NULL, varCO=NULL) {
   pcvc <- pcvc/sum(pcvc)
   cpcvc <- cvc <- cumsum(pcvc)
   cvc <- paste(round(cvc*100, 2), "%")
+  varpct <- paste(round(pcvc*100, 2), "%")
 
   #combine
   pxx <- reshape2::melt(px)
-  pxx$cvc_raw <- pxx$cvc <- pxx$pcvc <- rep(NA, nrow(pxx))
+  pxx$varpct_raw <- pxx$cvc_raw <- pxx$cvc <- pxx$varpct <- rep(NA, nrow(pxx))
   for (i in 1:n) {
     thisComp <- which(pxx$Var2==i)
     pxx$cvc[thisComp[1]] <- cvc[i]
-    pxx$pcvc[thisComp] <- pcvc[i]
+    pxx$varpct[thisComp[1]] <- varpct[i]
     pxx$cvc_raw[thisComp] <- cpcvc[i]
+    pxx$varpct_raw[thisComp] <- pcvc[i]
   }
 
-  colnames(pxx) <- c("var", "comp", "loading", "pcvc", "cvc", "cvc_raw")
+  colnames(pxx) <- c("var", "comp", "loading", "varpct", "cvc", "cvc_raw", "varpct_raw")
   list(loadings=pxx, nObs=p$n.obs)
 }

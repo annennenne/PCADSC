@@ -98,7 +98,7 @@ ggsave(plot = p2, file = "./article/essWallyPCADSC.pdf",
 
 
 #Do cumeigen stuff:
-PCADSC:::cumeigen(anData, "cntry",  c("EvaluativeWellbeing",
+cumeigen(anData, "cntry",  c("EvaluativeWellbeing",
                                      "EmotionalWellbeing",
                                      "Functioning",
                                      "Vitality",

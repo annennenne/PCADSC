@@ -11,18 +11,20 @@
 #' @param ncol The number of columns of plo0ts in the outputted Wally plot.
 #' @param covCO A cummulated variance cut-off limit. This parameter controls how
 #' many components are illustrated in each of the PCADSC plots.
-#' @param hideCumVar If \code{TRUE} (the default), cummulated explained variance
-#' percentages are not shown for each component.
+#' @param varAnnotation ...
+#' @param useComps ...
 #'
 #' @importFrom ggplot2 theme xlab ylab element_blank
 #' @export
-wallyPCADSC <- function(PCADSCobj, data, nrow, ncol, covCO = 1, hideCumVar = TRUE) {
+wallyPancake <- function(PCADSCobj, data, nrow, ncol, covCO = 1,
+                         varAnnotation = "cum", useComps = NULL) {
   vars <- PCADSCobj@varNames
   nObs1 <- PCADSCobj@nObs1
 
   nTotal <- nrow * ncol
   plots <- list()
-  plots[[1]] <- qplot(PCADSCobj, covCO = covCO, hideCumVar = hideCumVar) +
+  plots[[1]] <- qplot(PCADSCobj, covCO = covCO, varAnnotation = varAnnotation,
+                      useComps = useComps) +
     theme(legend.position = "none") + xlab("") + ylab("") +
     theme(axis.text = element_blank(), axis.ticks = element_blank())
   n <- nrow(data)
@@ -32,7 +34,8 @@ wallyPCADSC <- function(PCADSCobj, data, nrow, ncol, covCO = 1, hideCumVar = TRU
     data$grp <- "Group 2"
     data$grp[grp1] <- "Group 1"
     plots[[i]] <- qplot(makePCADSC(data, splitBy = "grp", var = vars),
-                      covCO = covCO, hideCumVar = hideCumVar) +
+                      covCO = covCO, varAnnotation = varAnnotation,
+                      useComps = useComps) +
       theme(legend.position = "none") + xlab("") + ylab("") +
       theme(axis.text = element_blank(), axis.ticks = element_blank())
   }

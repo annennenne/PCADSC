@@ -15,8 +15,8 @@ setMethod("print", "PCADSC", function(x, ...) {
   splitLevels <- pcadscObj@splitLevels
   nObs1 <- pcadscObj@nObs1
   nObs2 <- pcadscObj@nObs2
-  cvc1 <- cumsum(unique(frame$pcvc[frame$group == splitLevels[1]]))
-  cvc2 <- cumsum(unique(frame$pcvc[frame$group == splitLevels[2]]))
+  cvc1 <- cumsum(unique(frame$varpct_raw[frame$group == splitLevels[1]]))
+  cvc2 <- cumsum(unique(frame$varpct_raw[frame$group == splitLevels[2]]))
   nImportant1 <- min(which(cvc1 > 0.95))
   nImportant2 <- min(which(cvc2 > 0.95))
   name1 <- paste("\"", splitLevels[1], "\"", sep="")

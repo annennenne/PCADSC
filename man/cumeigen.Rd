@@ -4,7 +4,7 @@
 \alias{cumeigen}
 \title{Cumulative eigenvalue plot}
 \usage{
-cumeigen(data, splitBy, var = NULL, B = 1000, make.plot = FALSE)
+cumeigen(data, splitBy, var = NULL, B = 1000, make.plot = TRUE)
 }
 \arguments{
 \item{data}{A dataset, either a \code{data.frame} or a \code{matrix} with variables

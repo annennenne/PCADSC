@@ -22,6 +22,7 @@ Collate:
     'hairplot.R'
     'loadComp.R'
     'makePCADSC.R'
+    'pancakePlot.R'
     'print.R'
     'qplot.R'
-    'wallyPlot.R'
+    'wallyPancake.R'
