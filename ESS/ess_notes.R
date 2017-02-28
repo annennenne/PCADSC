@@ -79,7 +79,7 @@ anData$SupportiveRelationships <- rowMeans(anData[, sMat$var[sMat$scale ==
 library(PCADSC)
 a <- makePCADSC(anData, "cntry",  c("EvaluativeWellbeing",
                                "EmotionalWellbeing",
-                               "Functioning",
+                               "Functioning,"
                                "Vitality",
                                "CommunityWellbeing",
                                "SupportiveRelationships"))
@@ -103,4 +103,20 @@ cumeigen(anData, "cntry",  c("EvaluativeWellbeing",
                                      "Functioning",
                                      "Vitality",
                                      "CommunityWellbeing",
-                                     "SupportiveRelationships"))
+                                     "SupportiveRelationships"), make.plot = T)
+#Do hairplot:
+hairplot(anData, "cntry",  c("EvaluativeWellbeing",
+                             "EmotionalWellbeing",
+                             "Functioning",
+                             "Vitality",
+                             "CommunityWellbeing",
+                             "SupportiveRelationships"))
+
+#Data overview
+library(dataMaid)
+clean(anData, useVars = c("cntry", "EvaluativeWellbeing",
+                                     "EmotionalWellbeing",
+                                     "Functioning",
+                                     "Vitality",
+                                     "CommunityWellbeing",
+                                     "SupportiveRelationships"), replace = TRUE)
