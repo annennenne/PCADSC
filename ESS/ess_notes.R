@@ -9,7 +9,10 @@ useVars <- c("cntry", "stflife", "happy", "fltsd", "fltdpr", "enjlf", "wrhpp", "
              "pplfair", "pplhlp", "pplahlp", "flclpla", "inprdsc", "flapppl", "rehlppl",
              "fltlnl")
 
-anData <- na.omit(data[data$cntry %in% c("DK", "BG"), useVars])
+#anData <- na.omit(data[data$cntry %in% c("DK", "BG"), useVars])
+anData <- na.omit(data[data$cntry %in% c("DK", "SE"), useVars])
+
+
 anData$cntry <- as.character(anData$cntry)
 
 sMat <- list()
@@ -93,3 +96,11 @@ p2 <- wallyPCADSC(a, anData, nrow = 4, ncol = 2)
 ggsave(plot = p2, file = "./article/essWallyPCADSC.pdf",
        width = 8, height = 10)
 
+
+#Do cumeigen stuff:
+PCADSC:::cumeigen(anData, "cntry",  c("EvaluativeWellbeing",
+                                     "EmotionalWellbeing",
+                                     "Functioning",
+                                     "Vitality",
+                                     "CommunityWellbeing",
+                                     "SupportiveRelationships"))

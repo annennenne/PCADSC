@@ -29,7 +29,8 @@
 #' #make a PCADSC object, splitting the data by "group"
 #' cumeigen(iris, "group",var=setdiff(names(iris), c("group", "Species")))
 #'
-#' @importFrom graphics polygon matlines lines
+#' @importFrom graphics polygon matlines lines legend
+#' @importFrom stats quantile
 #' @export
 cumeigen <- function(data,splitBy,var=NULL,B=1000,make.plot=TRUE) {
   #define var
