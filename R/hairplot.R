@@ -20,12 +20,12 @@
 #' #Make hairplot
 #'  hairplot(iris[iris$group == "setosa", 1:4], iris[iris$group == "non-setosa", 1:4])
 #'
-#' @importFrom graphics axis arrows
+#' @importFrom graphics axis arrows plot
 #' @export
 hairplot <- function(data1,data2,standardize=TRUE,make.plot=TRUE,arrow.len=0.05) {
   # stadardize
-  data1 <- MuMIn::stdize(as.matrix(data1),scale=standardize)
-  data2 <- MuMIn::stdize(as.matrix(data2),scale=standardize)
+  data1 <- as.matrix(stdData(data1)) #stdize(as.matrix(data1),scale=standardize)
+  data2 <- as.matrix(stdData(data2)) #stdize(as.matrix(data2),scale=standardize)
 
   # eigen decomposition
   d <-  ncol(data1)
