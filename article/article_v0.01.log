@@ -1,22 +1,13 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.8)  1 MAR 2017 13:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.1)  2 MAR 2017 12:55
 entering extended mode
-**C:/Users/pzs913/Documents/GitHub/PCADSC/article/article_v0.01.tex
-(C:/Users/pzs913/Documents/GitHub/PCADSC/article/article_v0.01.tex
-LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
-abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
-croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
-lician, german, german-x-2012-05-30, greek, gujarati, hindi, hungarian, iceland
-ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
- lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
-german-x-2012-05-30, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
-ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
-an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
-ishmax, welsh, loaded.
+**article_v0.01.tex
+(article_v0.01.tex
+LaTeX2e <2015/01/01> patch level 2
+Babel <3.9m> and hyphenation patterns for 69 languages loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
-Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\size11.clo"
-File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@section=\count80
@@ -31,14 +22,14 @@ File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \bibindent=\dimen102
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
-Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
-Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
-Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
@@ -46,23 +37,21 @@ Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
 File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
-Package graphics Info: Driver file: dvips.def on input line 91.
+Package graphics Info: Driver file: dvips.def on input line 94.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\dvips.def"
-File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+File: dvips.def 2014/10/14 v3.0j Driver-dependent file (DPC,SPQR)
 ))
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
-)
-(C:\Users\pzs913\Documents\GitHub\PCADSC\article\fullpage.sty
+) (fullpage.sty
 Package: fullpage 1994/02/15 v1.0 (PWD)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
-Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
 \FP@margin=\skip43
-)
-(C:\Users\pzs913\Documents\GitHub\PCADSC\article\pmetrika.sty
+) (pmetrika.sty
 Package: pmetrika 2002/03/03 v1.1 (Psychometrika)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\indentfirst.sty"
@@ -81,17 +70,16 @@ Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
 \proofboxsep=\dimen105
 \symboldgreekuc=\mathgroup4
 \symboldgreek=\mathgroup5
-)
-(C:\Users\pzs913\Documents\GitHub\PCADSC\article\pmbib.sty
+) (pmbib.sty
 Package: pmbib 2001/02/22 v1.1 (Psychometrika)
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\color.sty"
-Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+Package: color 2014/10/28 v1.1a Standard LaTeX Color (DPC)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
-Package color Info: Driver file: pdftex.def on input line 130.
+Package color Info: Driver file: pdftex.def on input line 142.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
@@ -108,15 +96,15 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 Package: mathtools 2015/11/12 v1.18 mathematical typesetting tools
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty"
-Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count98
 \calc@Bcount=\count99
 \calc@Adimen=\dimen106
 \calc@Bdimen=\dimen107
 \calc@Askip=\skip44
 \calc@Bskip=\skip45
-LaTeX Info: Redefining \setlength on input line 76.
-LaTeX Info: Redefining \addtolength on input line 77.
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count100
 \calc@Cskip=\skip46
 )
@@ -181,6 +169,8 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 )
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \g_MT_multlinerow_int=\count113
@@ -281,9 +271,9 @@ Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4688.
 \c@Hy@tempcnt=\count117
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\url.sty"
+("C:\Program Files\MiKTeX 2.9\tex\latex\url\url.sty"
 \Urlmuskip=\muskip11
-Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5041.
 \XeTeXLinkMargin=\dimen125
@@ -324,8 +314,7 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibsep=\skip53
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count124
-)
-(C:\Users\pzs913\Documents\GitHub\PCADSC\article\article_v0.01.aux)
+) (article_v0.01.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
@@ -340,7 +329,6 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
-
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count125
@@ -369,10 +357,9 @@ LaTeX Info: Redefining \ref on input line 43.
 LaTeX Info: Redefining \pageref on input line 43.
 LaTeX Info: Redefining \nameref on input line 43.
 
-(C:\Users\pzs913\Documents\GitHub\PCADSC\article\article_v0.01.out)
-(C:\Users\pzs913\Documents\GitHub\PCADSC\article\article_v0.01.out)
+(article_v0.01.out) (article_v0.01.out)
 \@outlinefile=\write3
- [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
+ [1{C:/Users/pdq668/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 ]
 Missing character: There is no Ã in font cmr10!
@@ -381,7 +368,7 @@ LaTeX Font Info:    Try loading font information for OMS+cmr on input line 116.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 116.
@@ -411,65 +398,63 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <surveyTable.png, id=107, 307.1475pt x 408.92775pt>
 File: surveyTable.png Graphic file (type png)
  <use surveyTable.png>
-Package pdftex.def Info: surveyTable.png used on input line 246.
+Package pdftex.def Info: surveyTable.png used on input line 242.
 (pdftex.def)             Requested size: 307.14674pt x 408.92674pt.
 
-[7] [8 <C:/Users/pzs913/Documents/GitHub/PCADSC/article/surveyTable.png>]
-<essPCADSC.pdf, id=127, 578.16pt x 289.08pt>
+[7] [8 <./surveyTable.png>] <essPCADSC.pdf, id=127, 578.16pt x 289.08pt>
 File: essPCADSC.pdf Graphic file (type pdf)
- <use essPCADSC.pdf>
-Package pdftex.def Info: essPCADSC.pdf used on input line 257.
-(pdftex.def)             Requested size: 462.52863pt x 231.2643pt.
 
-<essWallyPCADSC.pdf, id=128, 578.16pt x 722.7pt>
+<use essPCADSC.pdf>
+Package pdftex.def Info: essPCADSC.pdf used on input line 253.
+(pdftex.def)             Requested size: 462.52863pt x 231.2643pt.
+ <essWallyPCADSC.pdf, id=128, 578.16pt x 722.7pt>
 File: essWallyPCADSC.pdf Graphic file (type pdf)
- <use essWallyPCADSC.pdf>
-Package pdftex.def Info: essWallyPCADSC.pdf used on input line 264.
+
+<use essWallyPCADSC.pdf>
+Package pdftex.def Info: essWallyPCADSC.pdf used on input line 260.
 (pdftex.def)             Requested size: 462.52863pt x 578.16078pt.
 
 
-LaTeX Warning: Float too large for page by 28.48077pt on input line 267.
+LaTeX Warning: Float too large for page by 28.48077pt on input line 263.
 
 <essHairplot.png, id=129, 529.22719pt x 456.20438pt>
 File: essHairplot.png Graphic file (type png)
  <use essHairplot.png>
-Package pdftex.def Info: essHairplot.png used on input line 271.
+Package pdftex.def Info: essHairplot.png used on input line 267.
 (pdftex.def)             Requested size: 423.38232pt x 364.96399pt.
 
 <essCumVarAgreement.png, id=130, 529.22719pt x 456.20438pt>
 File: essCumVarAgreement.png Graphic file (type png)
 
 <use essCumVarAgreement.png>
-Package pdftex.def Info: essCumVarAgreement.png used on input line 278.
+Package pdftex.def Info: essCumVarAgreement.png used on input line 274.
 (pdftex.def)             Requested size: 423.38232pt x 364.96399pt.
- [9 <C:/Users/pzs913/Documents/GitHub/PCADSC/article/essPCADSC.pdf>] [10 <C:/Us
-ers/pzs913/Documents/GitHub/PCADSC/article/essWallyPCADSC.pdf>] [11 <C:/Users/p
-zs913/Documents/GitHub/PCADSC/article/essHairplot.png>] [12 <C:/Users/pzs913/Do
-cuments/GitHub/PCADSC/article/essCumVarAgreement.png>]
+ [9 <./essPCADSC.pdf>] [10 <./essWallyPCADSC.pdf>]
+[11 <./essHairplot.png>] [12 <./essCumVarAgreement.png>]
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no ¸ in font cmr10!
- [13] (C:\Users\pzs913\Documents\GitHub\PCADSC\article\article_v0.01.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 315.
-
-[14
+ [13]
+(article_v0.01.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 311.
+ [14
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 315.
- (C:\Users\pzs913\Documents\GitHub\PCADSC\article\article_v0.01.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 315.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 315.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 311.
+ (article_v0.01.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 311.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 311.
 Package rerunfilecheck Info: File `article_v0.01.out' has not changed.
 (rerunfilecheck)             Checksum: 58870A5F92297C1DFC0334DB39AFA8B8;883.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 315.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 311.
  ) 
 Here is how much of TeX's memory you used:
- 7144 strings out of 493921
- 102559 string characters out of 3147280
- 190419 words of memory out of 3000000
- 10301 multiletter control sequences out of 15000+200000
+ 7136 strings out of 493673
+ 101626 string characters out of 3143958
+ 194699 words of memory out of 3000000
+ 10348 multiletter control sequences out of 15000+200000
  12964 words of font info for 47 fonts, out of 3000000 for 9000
- 844 hyphenation exceptions out of 8191
- 33i,11n,28p,1450b,432s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 1028 hyphenation exceptions out of 8191
+ 33i,11n,28p,1402b,432s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program F
 iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiK
@@ -486,7 +471,7 @@ s/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
 sfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/s
 ymbols/msbm10.pfb>
-Output written on article_v0.01.pdf (14 pages, 405547 bytes).
+Output written on article_v0.01.pdf (14 pages, 406548 bytes).
 PDF statistics:
  241 PDF objects out of 1000 (max. 8388607)
  41 named destinations out of 1000 (max. 500000)

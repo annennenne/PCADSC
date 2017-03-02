@@ -146,14 +146,12 @@ However, by clever use of linear algebra, we can construct a decomposition of th
 
 \subsection{Principal component analysis}
 
-Consider $n$ observations $x_1,\dotsc,x_n \in \RR^d$ of $d$ variables, let $\bar{x} = \frac{1}{n} \sum_{i=1}^n x_n$ denote their average and let $S = \frac{1}{n-1} \sum_{i=1}^n (x_i-\bar{x}) (x_i-\bar{x})^\top \in \RR^d$ denote the empirical covariance. 
-
-\emph{Principal component analysis} (PCA) may be interpreted in terms of the \emph{rank-q-reconstruction error}. Suppose that we want to describe each of the observations by $q$ numbers instead of the original $d$ numbers. The rank-q-reconstruction error is defined as the minimal squared error that is achievable by linear subspaces $K_q \subset \RR^d$ of dimension $q < d$, that is
+Consider $n$ observations $x_1,\dotsc,x_n \in \RR^d$ of $d$ variables, let $\bar{x} = \frac{1}{n} \sum_{i=1}^n x_n$ denote their average and let $S = \frac{1}{n-1} \sum_{i=1}^n (x_i-\bar{x}) (x_i-\bar{x})^\top \in \RR^{d \times d}$ denote the empirical covariance. Suppose that we want to describe the observations by $q$ numbers instead of the original $d$ numbers. The associated \emph{rank-q-reconstruction error} is defined as the minimal squared error that is achievable by linear subspaces $K_q \subset \RR^d$ of dimension $q < d$, that is
 \begin{equation*}
 \min_{K_q} \sum_{i=1}^n \min_{z \in K_q} \lVert x_i - \bar{x} - z \rVert^2 =
 \min_{K_q} \sum_{i=1}^n \lVert x_i - \bar{x} - \text{proj}_{K_q}(x_i - \bar{x}) \rVert^2.
 \end{equation*}
-PCA ensures the existence of a subspace $\hat{K}_q \subset \RR^d$ that attains this minimum, and it provides an explicit description of $\hat{K}_q$ and the rank-q-reconstruction error. Thus, let $S = U \Lambda U^\top$ be the eigenvalue decomposition of $S$. Here $\Lambda \in \RR^d$ is the diagonal matrix with the eigenvectors $\lambda_1 \ge \dotsm \ge \lambda_d \ge 0$ in the diagonal, and $U \in \RR^d$ is the orthogonal matrix with the associated eigenvectors $\eta_1,\dotsc,\eta_d \in \RR^d$ in the columns. The eigenvalues are uniquely defined, and the eigenvectors are uniquely defined up to a change of sign whenever the eigenvalues are different. If some of the eigenvalues are identical, e.g.\ $\lambda_i=\lambda_{i+1}=\dotsm=\lambda_j$, then the associated eigenvectors $\eta_i,\eta_{i+1},\dotsc,\eta_j$ are uniquely defined up to a common rotation. In practice this only happens if $n < d$, in which case the last $d-n$ eigenvalues will be zero. It is a result from linear algebra that the rank-q-reconstruction error for $q < d$ is achieved for
+\emph{Principal component analysis} (PCA) ensures the existence of a subspace $\hat{K}_q \subset \RR^d$ that attains this minimum, and it provides an explicit description of $\hat{K}_q$ and the rank-q-reconstruction error. Thus, let $S = U \Lambda U^\top$ be the eigenvalue decomposition of $S$. Here $\Lambda \in \RR^d$ is the diagonal matrix with the eigenvectors $\lambda_1 \ge \dotsm \ge \lambda_d \ge 0$ in the diagonal, and $U \in \RR^d$ is the orthogonal matrix with the associated eigenvectors $\eta_1,\dotsc,\eta_d \in \RR^d$ in the columns. The eigenvalues are uniquely defined, and the eigenvectors are uniquely defined up to a change of sign whenever the eigenvalues are different. If some of the eigenvalues are identical, e.g.\ $\lambda_i=\lambda_{i+1}=\dotsm=\lambda_j$, then the associated eigenvectors $\eta_i,\eta_{i+1},\dotsc,\eta_j$ are uniquely defined up to a common rotation. In practice this only happens if $n < d$, in which case the last $d-n$ eigenvalues will be zero. It is a result from linear algebra that the rank-q-reconstruction error for $q < d$ is achieved for
 \begin{equation*}
 \hat{K}_q = \text{span}\{\eta_1,\dotsc,\eta_q\}
 \end{equation*}
@@ -178,41 +176,41 @@ It is worth emphasizing that the greedy approach of successively adding the next
 % In this introduction, we have assumed full rank of the covariance matrix $S$ for simplicity, but it should be noted that this assumption is in no way needed for the results to hold.
 
 \subsection{PCA-based data structure comparison}
-Above, we promised a method for intuitive, visual inspection of data structure similarities, but as of now, all intuition might have been lost in technicalities. The main point we want to emphasize from PCA is that we can interpret the eigenvector/eigenvalue-pairs of the covariance matrix as tools for obtaining a different representation of the dataset. Specifically, we can interpret the PCA loadings (eigenvectors) as weights that determine the relative influence of each variable in each component. If two different data sets with the same variables, but different samples of observations, then have similar loading patterns, the two data sets will agree on which variables explain the most variance and also \textit{how} this variance is explained.  Looking at the PCA loadings and the cumulative explained variance thus provides a straightforward non-parametric graphical approach for assessing similarity between two datasets.
+Above, we promised a method for intuitive, visual inspection of data structure similarities, but as of now, all intuition might have been lost in technicalities. The main point we want to emphasize from PCA is that whereas the scores describe the observations, the variation components and the accompanying loadings describe the usage of the variables. If two different datasets with the same variables, but different samples of observations, have similar loading patterns, then the variables appear to be measuring the same underlying quantities in both data situations. This can be the case while the two sets of scores could be arbitrarily different, which e.g.\ could happen if the two datasets were taken from two different populations of subjects. On the other hand, if the loading patterns are different in the two datasets, then this indicates that the variables are used differently in the two data situations, and hence it would be criticizable to use these variables for comparisons across the two datasets.  
 
-{\color{red}
-We propose the following three diagnostic plots:
-\begin{description}
-\item[CumVarAgreement:] Cumulated Bland-Altman plot for the variation decomposition.
-\item[Hairplot:] Plot of the loadings for one of the datasets in the coordinate system of the other dataset.
-\item[Pancakeplot:] This is the ``classical'' PCADSC.
-\end{description}
+%Specifically, we can interpret the loadings as weights that determine the relative influence of each variable in each principal component.
 
-Below we describe the details of these plots. Consider two different datasets in the same $d$ variables. Let $\lambda_{k1} \ge \dotsm \ge \lambda_{kd}$ and $\eta_{k1},\dotsc,\eta_{kd}$ be the variation components and the loadings for dataset $k=1,2$.
+%the two data sets will agree on which variables explain the most variance and also how this variance is explained.  Looking at the PCA loadings and the cumulative explained variance thus provides a straightforward non-parametric graphical approach for assessing similarity between two datasets.
+
+In this paper we propose three diagnostic plots for comparing the loading patterns in two different datasets. These three plots will be referred to as the \emph{CumEigenPlot}, the \emph{HairPlot} and the \emph{PancakePlot}. In order to describe these plots we consider two different datasets with $n_1$ and $n_2$ observations, respectively, but in the same $d$ variables. We assume that the variables have been standardized separately within the two datasets to have zero mean and unit standard deviation \hl{(justification for this choice should be further elaborated. And also: Something about what to do if not all variables are numerical.)}. The empirical covariance matrices for the two datasets are called $S_1$ and $S_2$, respectively. Due to the standardization these are the same as the empirical correlation matrices. Finally, let $\lambda_{i1} \ge \dotsm \ge \lambda_{id}$ and $\eta_{i1},\dotsc,\eta_{id}$ be the variation components and the loadings for dataset $i=1,2$.
 
 \medskip
 
-\textbf{CumVarAgreement:} To be done.
+Description of the \emph{CumEigenPlot}: \hl{This is a cumulated Bland-Altman plot for the variation components. Details will be given later decomposition.}
 
-\bigskip
+\medskip
 
-\textbf{Hairplot:} Let $\lambda_{\max} = \max\{ \lambda_{11}, \lambda_{21} \}$ be the largest variation component for the two datasets. The empirical covariance matrix $S_1$ for the first dataset has the following orthogonal decomposition in the coordinate system of the second dataset
+Description of the \emph{HairPlot:} Let $\lambda_{\max} = \max\{ \lambda_{11}, \lambda_{21} \}$ be the largest variation component for the two datasets. The empirical covariance matrix $S_1$ for the first dataset has the following orthogonal decomposition in the coordinate system of the second dataset
 \begin{equation*}
 S_1 = \sum_{k=1}^d \lambda_{1j} \eta_{1k} \eta_{1k}^\top
 = \lambda_{\max} \sum_{k=1}^d
 \Bigg( \sum_{j=1}^d \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} (\eta_{1k} \eta_{2j}^\top) \eta_{2j} \Bigg)
-\Bigg( \sum_{j=1}^d \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} (\eta_{1k} \eta_{2j}^\top) \eta_{2j} \Bigg)^\top.
+\Bigg( \sum_{j=1}^d \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} (\eta_{1k} \eta_{2j}^\top) \eta_{2j} \Bigg)^\top,
 \end{equation*}
-We propose to visualize this decomposition by plotting arrows with length $l_{kj}$ and angle $\theta_{kj}/2$ anticlockwise from the diagonal in the $j$th row and the $k$th column of a $d \times d$ grid display, where
+and we have a similar decomposition of $S_2$ in the coordinate system of the first dataset. We propose to visualize these two decompositions in a $d \times d$ grid display. In the $j$th row and $k$th column of this display we plot two arrows based at the lower left corner of the grid cell. The first arrow has length $\mu_{jk}$ and angle $\theta_{jk}/2$ anticlockwise from the diagonal, and the second arrow has length $\nu_{jk}$ and angle $\theta_{jk}/2$ clockwise from the diagonal. To facilitate the following description we will refer to the arrows drawn anticlockwise as the blue arrows, and the arrows drawn clockwise as the red arrows. The lengths $\mu_{jk}$ and $\nu_{jk}$ and the angle $\theta_{kj}$ are given by
 \begin{align*}
-l_{kj} &= \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} \lvert \eta_{1k} \eta_{2j}^\top \rvert, &
-\theta_{kj} &= \acos(\lvert \eta_{1k} \eta_{2j}^\top \rvert).
+\mu_{jk} &= \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} \lvert \eta_{1k} \eta_{2j}^\top \rvert, &
+\nu_{jk} &= \sqrt{\frac{\lambda_{2j}}{\lambda_{\max}}} \lvert \eta_{2j} \eta_{1k}^\top \rvert, &
+\theta_{jk} &= \acos(\lvert \eta_{1k} \eta_{2j}^\top \rvert).
 \end{align*}
-Using the same grid display, but interchanging the first and the second dataset as well as the rows and the columns, and using the angles clockwise, similar arrows are plotted in a different color.
 
-In our implementation we have used blue for the first and the second set of arrows, respectively. In this plot the blue arrows in the $k$th column visualize the decomposition of the $k$th principal components for the first dataset in the coordinate system of the second dataset. The scaling of the length by $\lambda_{\max}$ is made so that the longest arrow has unit length, and the absolute value of the projection $\eta_{1k} \eta_{2j}^\top$ is inserted due to the indeterminacy of the direction of loading vectors. This indeterminacy also implies the angle between loadings from the two datasets always can be chosen to be in the interval $[0,\pi/2]$. We can visualize both the decomposition of $S_1$ and $S_2$ in the same plot by divide the angles by two and using anticlockwise and clockwise shifts from the diagonal. Similarly, the red arrows in the $j$th row visualize the decomposition of the $j$th principal components for the second dataset in the coordinate system of the first dataset.
+The absolute value of the projection $\eta_{1k} \eta_{2j}^\top$ is inserted due to the indeterminacy of the direction of loading vectors. This indeterminacy implies that the angle between loadings from the two datasets always can be chosen to be in the interval $[0,\pi/2]$, and hence the decomposition of $S_1$ and $S_2$ can be visualized in a joint plot by dividing the angles by two and using anticlockwise and clockwise shifts from the diagonal. Furthermore, the scaling of the lengths by $\lambda_{\max}$ is made so that the longest arrow has at most unit length.
 
-If the structures of the two datasets are identical, then we will have coinciding blue and red arrows along the diagonal in the grid display, and nothing else as the off-diagonal arrows would have zero length. Differences in the variation components are visualized as differences in the lengths of the arrows, also in the diagonal. And loadings in other directions than the corresponding loading from the other dataset are visualized as angle separation of the blue and the red arrows in the diagonal as well as arrows of non vanishing length in the off-diagonal.
+In the \emph{HairPlot} the blue arrows in the $k$th column of the grid display visualize the decomposition of the $k$th principal components for the first dataset in the coordinate system of the second dataset. Similarly, the red arrows in the $j$th row visualize the decomposition of the $j$th principal components for the second dataset in the coordinate system of the first dataset. If the structures of the two datasets are identical, then we will have coinciding blue and red arrows along the diagonal in the grid display, and nothing else as arrows in the off-diagonal cells would have zero length. Differences in the variation components are visualized as differences in the lengths of the blue and the red arrows, also in the diagonal. And loadings in other directions than the corresponding loading from the other dataset are visualized as angle separation of the blue and the red arrows in the diagonal cells as well as arrows of non vanishing length in the off-diagonal cells.
+
+%Using the same grid display, but interchanging the first and the second dataset as well as the rows and the columns, and using the angles clockwise, similar arrows are plotted in a different color.
+
+%In our implementation we have used blue for the first and the second set of arrows, respectively.
 
 \bigskip
 
@@ -220,9 +218,7 @@ Remarks: Presently permutation tests based on the Kolmogorov-Smirnov and the Cra
 
 \bigskip
 
-}
-
-Our proposal of a PCADSC method consist of three steps. These steps should be performed separately for each of the two (or more) datasets that we wish to compare. Note that the datasets must have the same variables, but different sample sizes are allowed. The three steps are:
+Description of the \emph{PancakePlot}: Our proposal of a PCADSC method consist of three steps. These steps should be performed separately for each of the two (or more) datasets that we wish to compare. Note that the datasets must have the same variables, but different sample sizes are allowed. The three steps are:
 \begin{enumerate}
 \item \hl{Standardize. Full data or subsets? And also: Something about what to do if not all variables are numerical.}
 \item Compute the PCA loadings and the variance contributions of each principal component.
