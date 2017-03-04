@@ -182,17 +182,31 @@ Above, we promised a method for intuitive, visual inspection of data structure s
 
 %the two data sets will agree on which variables explain the most variance and also how this variance is explained.  Looking at the PCA loadings and the cumulative explained variance thus provides a straightforward non-parametric graphical approach for assessing similarity between two datasets.
 
-In this paper we propose three diagnostic plots, referred to as the \emph{CumEigenPlot}, \emph{HairPlot} and \emph{PancakePlot}, for comparing the loading patterns in two datasets. In order to describe these plots we consider two different datasets in the same $d$ variables and with $n_1$ and $n_2$ observations, respectively. For dataset $i=1,2$ let $S_i \in \RR^{d \times d}$ be the empirical correlation matrix, and let $\lambda_{i1} \ge \dotsm \ge \lambda_{id} \ge 0 $ and $\eta_{i1},\dotsc,\eta_{id} \in \RR^{d}$ be the corresponding variation components and loadings. The correlation matrices correspond to the covariance matrices for the variables after these have been standardized to unit standard deviation separately within the two datasets.
+In this paper we propose three diagnostic plots, referred to as the \emph{CumEigenPlot}, \emph{HairPlot} and \emph{PancakePlot}, for comparing the loading patterns in two datasets. In order to describe these plots we consider two different datasets in the same $d$ variables and with $n_1$ and $n_2$ observations, respectively. For dataset $i=1,2$ let $S_i \in \RR^{d \times d}$ be the empirical correlation matrix \hl{(find a way to introduce the empirial correlation matrix instead)}, and let $\lambda_{i1} \ge \dotsm \ge \lambda_{id} \ge 0 $ and $\eta_{i1},\dotsc,\eta_{id} \in \RR^{d}$ be the corresponding variation components and loadings. The correlation matrices correspond to the covariance matrices for the variables after these have been standardized to unit standard deviation separately within the two datasets. Similarly, let $S \in \RR^{d \times d}$ be the empirical correlation matrix for the combined dataset with $n_1+n_2$ observations, and let $\lambda_1 \ge \dotsm \ge \lambda_d \ge 0$ and $\eta_1,\dotsc,\eta_d \in \RR^d$ be the corresponding variation components and loadings.
 
 \hl{To do: justification for using correlation matrices should be further elaborated. And also: Something about what to do if not all variables are numerical. Using correlation matrices is not the same as assuming standadized variables; there is a difference in the permutations.} 
 
 \medskip
 
-Description of the \emph{CumEigenPlot}: \hl{This is a cumulated Bland-Altman plot for the variation components. Details will be given later decomposition.}
+Description of the \emph{CumEigenPlot}: This plot compares the variation components. If these are the same in the two sample populations, then the best estimate for the variation components are $\lambda_1 \ge \dotsm \ge \lambda_d \ge 0$ found in the combined dataset. And we would expect $\lambda_{i1} \ge \dotsm \ge \lambda_{id} \ge 0$ for $i=1,2$ to be alike excepts sample variation. In order to investigate whether the same proportion of the total variation can be described by the same number of principal components in the two datasets we plot a piecewise linear curve connecting the points 
+\begin{align*}
+(0,0), &&
+(\lambda_1,\lambda_{11}-\lambda_{12}), &&
+(\lambda_1 + \lambda_2,\lambda_{11}+\lambda_{12}-\lambda_{12}-\lambda_{22}), &&
+\ldots, &&
+\bigg( \sum_{j=1}^d \lambda_j, \sum_{j=1}^d \lambda_{1j} - \sum_{j=1}^d \lambda_{2j} \bigg).
+\end{align*}
+This may be seen as a cumulated Bland-Altman plot for the variation components (\hl{reference to cumulated residuals and to Bland-Altman}). Note that since we are using correlation matrices the last point will always be $(d,0)$. Thus, this curve will begin and end at the x-axis. And the larger excursions it makes away from the x-axis the less alike the cumulated variation components for the two datasets are.
+
+Whether the excursions in the observed curve are large or within the range of sample variation can be quantified by a permutation test. The idea is that we randomly reallocate the $n_1+n_2$ observations in the combined dataset to two datasets with $n_1$ and $n_2$ observations, respectively, and then repeat the procedure described above. The random reallocation by construction ensures that the two resampled datasets are alike except their sample size and sampling variation. In the \emph{CumEigenPlot} we make 1000 independent random reallocations, and plot the observed curve together with 20 of the resampled curves as well as a shaded region visualizing pointwise 95pct coverage intervals. This provides a graphical validation tool. P-values for the null hypothesis that the variation components are the same are easily provided for any appropriate test statistic by the resampling procedure as well. We have implemented the \emph{Kolmogorov-Smirnov} and the \emph{Cram\'er-von Mises} test statistics, which are given by
+\begin{align*}
+\text{KS} &= \max_{k=1,\dotsc,d} \bigg\lvert \sum_{j=1}^k \lambda_{1j} - \sum_{j=1}^k \lambda_{2j} \bigg\rvert, &
+\text{CvM} &= \sum_{k=1}^{d-1} \frac{\lambda_k + \lambda_{k+1}}{2} \bigg( \sum_{j=1}^k \lambda_{1j} - \sum_{j=1}^k \lambda_{2j} \bigg)^2.
+\end{align*}  
 
 \medskip
 
-Description of the \emph{HairPlot:} Let $\lambda_{\max} = \max\{ \lambda_{11}, \lambda_{21} \}$ be the largest variation component for the two datasets. The empirical covariance matrix $S_1$ for the first dataset has the following orthogonal decomposition in the coordinate system of the second dataset
+Description of the \emph{HairPlot:} Let $\lambda_{\max} = \max\{ \lambda_{11}, \lambda_{21} \}$ be the largest variation component for the two datasets. The empirical correlation matrix $S_1$ for the first dataset has the following orthogonal decomposition in the coordinate system of the second dataset
 \begin{equation*}
 S_1 = \sum_{k=1}^d \lambda_{1j} \eta_{1k} \eta_{1k}^\top
 = \lambda_{\max} \sum_{k=1}^d
