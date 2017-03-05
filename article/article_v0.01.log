@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.1)  4 MAR 2017 14:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.1)  5 MAR 2017 12:14
 entering extended mode
 **article_v0.01.tex
 (article_v0.01.tex
@@ -314,8 +314,7 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibsep=\skip53
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count124
-)
-No file article_v0.01.aux.
+) (article_v0.01.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
@@ -357,9 +356,10 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 43.
 LaTeX Info: Redefining \pageref on input line 43.
 LaTeX Info: Redefining \nameref on input line 43.
-\@outlinefile=\write3
 
-[1{C:/Users/pdq668/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
+(article_v0.01.out) (article_v0.01.out)
+\@outlinefile=\write3
+ [1{C:/Users/pdq668/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 ]
 
@@ -379,14 +379,6 @@ Package natbib Warning: Citation `Liu2016' on page 2 undefined on input line 91
 .
 
 
-LaTeX Warning: Reference `sec:stateoftheart' on page 2 undefined on input line 
-96.
-
-
-LaTeX Warning: Reference `sec:pcadscintro' on page 2 undefined on input line 96
-.
-
-
 LaTeX Warning: Reference `sec:dataexample' on page 2 undefined on input line 96
 .
 
@@ -401,88 +393,90 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 116.
  [2] [3]
 LaTeX Font Info:    Font shape `U/mp4/m/n' will be
-(Font)              scaled to size 10.95pt on input line 149.
+(Font)              scaled to size 10.95pt on input line 151.
 LaTeX Font Info:    Font shape `U/mp4/m/n' will be
-(Font)              scaled to size 8.0pt on input line 149.
+(Font)              scaled to size 8.0pt on input line 151.
 LaTeX Font Info:    Font shape `U/mp4/m/n' will be
-(Font)              scaled to size 6.0pt on input line 149.
+(Font)              scaled to size 6.0pt on input line 151.
 LaTeX Font Info:    Font shape `U/mp4sl/m/n' will be
-(Font)              scaled to size 10.95pt on input line 149.
+(Font)              scaled to size 10.95pt on input line 151.
 LaTeX Font Info:    Font shape `U/mp4sl/m/n' will be
-(Font)              scaled to size 8.0pt on input line 149.
+(Font)              scaled to size 8.0pt on input line 151.
 LaTeX Font Info:    Font shape `U/mp4sl/m/n' will be
-(Font)              scaled to size 6.0pt on input line 149.
-LaTeX Font Info:    Try loading font information for U+msa on input line 149.
+(Font)              scaled to size 6.0pt on input line 151.
+LaTeX Font Info:    Try loading font information for U+msa on input line 151.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 149.
+LaTeX Font Info:    Try loading font information for U+msb on input line 151.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [4] [5] [6] [7]
-<surveyTable.png, id=59, 307.1475pt x 408.92775pt>
+<surveyTable.png, id=84, 307.1475pt x 408.92775pt>
 File: surveyTable.png Graphic file (type png)
  <use surveyTable.png>
-Package pdftex.def Info: surveyTable.png used on input line 258.
+Package pdftex.def Info: surveyTable.png used on input line 278.
 (pdftex.def)             Requested size: 307.14674pt x 408.92674pt.
 
+[8]
 
-LaTeX Warning: Reference `surveyTable' on page 8 undefined on input line 262.
+LaTeX Warning: Reference `surveyTable' on page 9 undefined on input line 282.
 
-<essPCADSC.pdf, id=61, 578.16pt x 289.08pt>
+<essPCADSC.pdf, id=96, 578.16pt x 289.08pt>
 File: essPCADSC.pdf Graphic file (type pdf)
  <use essPCADSC.pdf>
-Package pdftex.def Info: essPCADSC.pdf used on input line 269.
+Package pdftex.def Info: essPCADSC.pdf used on input line 289.
 (pdftex.def)             Requested size: 462.52863pt x 231.2643pt.
- [8] [9 <./surveyTable.png>] <essWallyPCADSC.pdf, id=78, 578.16pt x 722.7pt>
-File: essWallyPCADSC.pdf Graphic file (type pdf)
 
-<use essWallyPCADSC.pdf>
-Package pdftex.def Info: essWallyPCADSC.pdf used on input line 276.
+<essWallyPCADSC.pdf, id=97, 578.16pt x 722.7pt>
+File: essWallyPCADSC.pdf Graphic file (type pdf)
+ <use essWallyPCADSC.pdf>
+Package pdftex.def Info: essWallyPCADSC.pdf used on input line 296.
 (pdftex.def)             Requested size: 462.52863pt x 578.16078pt.
 
 
-LaTeX Warning: Float too large for page by 28.48077pt on input line 279.
+LaTeX Warning: Float too large for page by 28.48077pt on input line 299.
 
-<essHairplot.png, id=79, 529.22719pt x 456.20438pt>
+<essHairplot.png, id=98, 529.22719pt x 456.20438pt>
 File: essHairplot.png Graphic file (type png)
  <use essHairplot.png>
-Package pdftex.def Info: essHairplot.png used on input line 283.
+Package pdftex.def Info: essHairplot.png used on input line 303.
 (pdftex.def)             Requested size: 423.38232pt x 364.96399pt.
 
-<essCumVarAgreement.png, id=80, 529.22719pt x 456.20438pt>
+<essCumVarAgreement.png, id=99, 529.22719pt x 456.20438pt>
 File: essCumVarAgreement.png Graphic file (type png)
 
 <use essCumVarAgreement.png>
-Package pdftex.def Info: essCumVarAgreement.png used on input line 290.
+Package pdftex.def Info: essCumVarAgreement.png used on input line 310.
 (pdftex.def)             Requested size: 423.38232pt x 364.96399pt.
 
 
-LaTeX Warning: Reference `plotESSPCADSC' on page 10 undefined on input line 295
-.
+LaTeX Warning: Reference `plotESSPCADSC' on page 9 undefined on input line 315.
 
 
-LaTeX Warning: Reference `plotESSHairplot' on page 10 undefined on input line 2
-98.
+
+LaTeX Warning: Reference `plotESSHairplot' on page 9 undefined on input line 31
+8.
 
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no ¸ in font cmr10!
 
-LaTeX Warning: Reference `plotESSPCADSCWally' on page 10 undefined on input lin
-e 305.
+LaTeX Warning: Reference `plotESSPCADSCWally' on page 9 undefined on input line
+ 325.
 
-[10 <./essPCADSC.pdf>] [11 <./essWallyPCADSC.pdf>] [12 <./essHairplot.png>]
-[13 <./essCumVarAgreement.png>] [14] (article_v0.01.bbl)
+[9] [10 <./surveyTable.png>] [11 <./essPCADSC.pdf>] [12 <./essWallyPCADSC.pdf>]
+[13 <./essHairplot.png>] [14 <./essCumVarAgreement.png>] [15]
+(article_v0.01.bbl)
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 327.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 327.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 347.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 347.
 (article_v0.01.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 327.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 327.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 347.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 347.
 
 
 Package rerunfilecheck Warning: File `article_v0.01.out' has changed.
@@ -490,7 +484,7 @@ Package rerunfilecheck Warning: File `article_v0.01.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `article_v0.01.out':
-(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             Before: 006DFF2E26182F46D720CDCB43C933C5;616
 (rerunfilecheck)             After:  58870A5F92297C1DFC0334DB39AFA8B8;883.
 
 LaTeX Warning: There were undefined references.
@@ -498,14 +492,14 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 327.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 347.
  ) 
 Here is how much of TeX's memory you used:
- 7103 strings out of 493673
- 101104 string characters out of 3143958
- 195843 words of memory out of 3000000
- 10326 multiletter control sequences out of 15000+200000
- 12964 words of font info for 47 fonts, out of 3000000 for 9000
+ 7129 strings out of 493673
+ 101406 string characters out of 3143958
+ 196094 words of memory out of 3000000
+ 10339 multiletter control sequences out of 15000+200000
+ 14277 words of font info for 52 fonts, out of 3000000 for 9000
  1028 hyphenation exceptions out of 8191
  33i,12n,28p,1402b,432s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
@@ -524,9 +518,9 @@ s/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
 sfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/s
 ymbols/msbm10.pfb>
-Output written on article_v0.01.pdf (14 pages, 402747 bytes).
+Output written on article_v0.01.pdf (15 pages, 407863 bytes).
 PDF statistics:
- 182 PDF objects out of 1000 (max. 8388607)
- 36 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 217 PDF objects out of 1000 (max. 8388607)
+ 41 named destinations out of 1000 (max. 500000)
+ 82 words of extra memory for PDF output out of 10000 (max. 10000000)
 

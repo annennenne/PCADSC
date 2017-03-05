@@ -141,7 +141,9 @@ As mentioned above, the purpose of PCADSC is comparing overall data structures i
 
 Though the idea sounds appealing, it is quite difficult to assess similarity of matrices, and moreover, this becomes increasingly difficult for large numbers of variables and thus high dimensional covariance matrices. There is simply too much information to consider at once.
 
-However, by clever use of linear algebra, we can construct a decomposition of the covariance matrix that makes it easier to gain an overview of the data. We propose a new method based on principal component analysis that seems to be able to identify differences in datasets based on intuitive, visual inspections. We refer to this method as principal component analysis-based data structure comparison (PCADSC) and we present the procedure below. But first, we give a minimal introduction to principal component analysis in general with reference to Koch (2014).
+However, by 
+%clever 
+use of linear algebra, we can construct a decomposition of the covariance matrix that makes it easier to gain an overview of the data. We propose a new method based on principal component analysis that seems to be able to identify differences in datasets based on intuitive, visual inspections. We refer to this method as principal component analysis-based data structure comparison (PCADSC) and we present the procedure below. But first, we give a minimal introduction to principal component analysis in general with reference to Koch (2014).
 
 
 \subsection{Principal component analysis}
@@ -182,9 +184,27 @@ Above, we promised a method for intuitive, visual inspection of data structure s
 
 %the two data sets will agree on which variables explain the most variance and also how this variance is explained.  Looking at the PCA loadings and the cumulative explained variance thus provides a straightforward non-parametric graphical approach for assessing similarity between two datasets.
 
-In this paper we propose three diagnostic plots, referred to as the \emph{CumEigenPlot}, \emph{HairPlot} and \emph{PancakePlot}, for comparing the loading patterns in two datasets. In order to describe these plots we consider two different datasets in the same $d$ variables and with $n_1$ and $n_2$ observations, respectively. For dataset $i=1,2$ let $S_i \in \RR^{d \times d}$ be the empirical correlation matrix \hl{(find a way to introduce the empirial correlation matrix instead)}, and let $\lambda_{i1} \ge \dotsm \ge \lambda_{id} \ge 0 $ and $\eta_{i1},\dotsc,\eta_{id} \in \RR^{d}$ be the corresponding variation components and loadings. The correlation matrices correspond to the covariance matrices for the variables after these have been standardized to unit standard deviation separately within the two datasets. Similarly, let $S \in \RR^{d \times d}$ be the empirical correlation matrix for the combined dataset with $n_1+n_2$ observations, and let $\lambda_1 \ge \dotsm \ge \lambda_d \ge 0$ and $\eta_1,\dotsc,\eta_d \in \RR^d$ be the corresponding variation components and loadings.
+In this paper we propose three diagnostic plots for comparing the loading patterns in two datasets $x_{11},\dotsc,x_{1 n_1} \in \RR^d$ and $x_{21},\dotsc,x_{2 n_2} \in \RR^d$ in the same $d$ variables. The construction of these plots, which are called \emph{CumEigenPlot}, \emph{HairPlot} and \emph{PancakePlot}, proceeds in the following steps:
+\begin{enumerate}
+\item Standardized the observations $x_{i1},\dotsc,x_{i n_i}$ to have zero mean and unit standard deviation separately for each of the $d$ variables within each datasets. Let $\tilde{x}_{ij} \in \RR^d$ for $i=1,2$ and $j=1,\dotsc,n_i$ be the standardized observations, and form the principal component analysis
+\begin{equation*}
+S_i = \frac{1}{n_i-1} \sum_{j=1}^{n_i} \tilde{x}_{ij} \tilde{x}_{ij}^\top = \sum_{k=1}^d \lambda_{ik} \eta_{ik} \eta_{ik}^\top \quad \text{for $i=1,2$.} 
+\end{equation*}
+\item Combine the standardized datasets into a joint dataset $\tilde{x}_1,\dotsc,\tilde{x}_n \in \RR^d$ with $n=n_1+n_2$ observations, and form the principal component analysis
+\begin{equation*}
+S = \frac{1}{n-2} \sum_{j=1}^n \tilde{x}_j \tilde{x}_j^\top = \sum_{k=1}^d \lambda_k \eta_k \eta_k^\top.
+\end{equation*}
+\item Make the diagnostic plot of interest. Details of these plots will be described below.
+\item To investigate the sample variation randomly reallocate the combined dataset formed in step 2 to two datasets of $n_1$ and $n_2$ observations, respectively, and redo step 1 and 3. This is done several times, e.g.\ 10000 times, and compared to the plot for the original allocation.
+\end{enumerate} 
 
-\hl{To do: justification for using correlation matrices should be further elaborated. And also: Something about what to do if not all variables are numerical. Using correlation matrices is not the same as assuming standadized variables; there is a difference in the permutations.}
+Before describing the details of the  \emph{CumEigenPlot}, \emph{HairPlot} and \emph{PancakePlot} we make some general remarks. The covariance matrix for the standardized variables is the same as the correlation matrix for the original variables. The standardization makes the variables comparable on the same scale, i.e.\ units of standard deviation, and it implies that the diagonal elements of $S$, $S_1$, and $S_2$ all equals 1. This also holds for the reallocated datasets, and in particular we have $\sum_{k=1}^d \lambda_k = \sum_{k=1}^d \lambda_{1k} = \sum_{k=1}^d \lambda_{2k} =  d$. The random reallocations in step 4 provide resamples under the null hypothesis that the two sample populations have the same structure in the $d$ variables, except that the two populations are allowed to have the own standard deviations for each of the variables. This exception is induced by the initial step 1, which performs a standardization within the two datasets before they are combined in step 2. These resamples can be used for a visualization of the sample variation, and if a test statistic can be defined in step 3, then a p-value for the null hypothesis may be computed. Such p-values are know as permutation tests for Goodness-of-Fit (\hl{reference?}).
+
+%In order to describe these plots we consider two different datasets in the same $d$ variables and with $n_1$ and $n_2$ observations, respectively. For dataset $i=1,2$ let $S_i \in \RR^{d \times d}$ be the empirical correlation matrix \hl{(find a way to introduce the empirial correlation matrix instead)}, and let $\lambda_{i1} \ge \dotsm \ge \lambda_{id} \ge 0 $ and $\eta_{i1},\dotsc,\eta_{id} \in \RR^{d}$ be the corresponding variation components and loadings. The correlation matrices correspond to the covariance matrices for the variables after these have been standardized to unit standard deviation separately within the two datasets. Similarly, let $S \in \RR^{d \times d}$ be the empirical correlation matrix for the combined dataset with $n_1+n_2$ observations, and let $\lambda_1 \ge \dotsm \ge \lambda_d \ge 0$ and $\eta_1,\dotsc,\eta_d \in \RR^d$ be the corresponding variation components and loadings.
+
+\hl{To do: justification for using correlation matrices should be further elaborated. And also: Something about what to do if not all variables are numerical. 
+%Using correlation matrices is not the same as assuming standadized variables; there is a difference in the permutations.
+}
 
 \medskip
 
@@ -208,7 +228,7 @@ Whether the excursions in the observed curve are large or within the range of sa
 
 Description of the \emph{HairPlot:} Let $\lambda_{\max} = \max\{ \lambda_{11}, \lambda_{21} \}$ be the largest variation component for the two datasets. The empirical correlation matrix $S_1$ for the first dataset has the following orthogonal decomposition in the coordinate system of the second dataset
 \begin{equation*}
-S_1 = \sum_{k=1}^d \lambda_{1j} \eta_{1k} \eta_{1k}^\top
+S_1 = \sum_{k=1}^d \lambda_{1k} \eta_{1k} \eta_{1k}^\top
 = \lambda_{\max} \sum_{k=1}^d
 \Bigg( \sum_{j=1}^d \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} (\eta_{1k} \eta_{2j}^\top) \eta_{2j} \Bigg)
 \Bigg( \sum_{j=1}^d \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} (\eta_{1k} \eta_{2j}^\top) \eta_{2j} \Bigg)^\top,
