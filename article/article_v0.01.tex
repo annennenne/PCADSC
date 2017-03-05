@@ -184,7 +184,7 @@ Above, we promised a method for intuitive, visual inspection of data structure s
 
 %the two data sets will agree on which variables explain the most variance and also how this variance is explained.  Looking at the PCA loadings and the cumulative explained variance thus provides a straightforward non-parametric graphical approach for assessing similarity between two datasets.
 
-In this paper we propose three diagnostic plots for comparing the loading patterns in two datasets $x_{11},\dotsc,x_{1 n_1} \in \RR^d$ and $x_{21},\dotsc,x_{2 n_2} \in \RR^d$ in the same $d$ variables. The construction of these plots, which are called \emph{CumEigenPlot}, \emph{HairPlot} and \emph{PancakePlot}, proceeds in the following steps:
+In this paper we propose three diagnostic plots for comparing the loading patterns in two datasets $x_{11},\dotsc,x_{1 n_1} \in \RR^d$ and $x_{21},\dotsc,x_{2 n_2} \in \RR^d$ in the same $d$ variables. The construction of these plots, which we call \emph{CumEigenPlot}, \emph{HairPlot} and \emph{PancakePlot}, proceeds in the following steps:
 \begin{enumerate}
 \item Standardized the observations $x_{i1},\dotsc,x_{i n_i}$ to have zero mean and unit standard deviation separately for each of the $d$ variables within each datasets. Let $\tilde{x}_{ij} \in \RR^d$ for $i=1,2$ and $j=1,\dotsc,n_i$ be the standardized observations, and form the principal component analysis
 \begin{equation*}
@@ -194,7 +194,7 @@ S_i = \frac{1}{n_i-1} \sum_{j=1}^{n_i} \tilde{x}_{ij} \tilde{x}_{ij}^\top = \sum
 \begin{equation*}
 S = \frac{1}{n-2} \sum_{j=1}^n \tilde{x}_j \tilde{x}_j^\top = \sum_{k=1}^d \lambda_k \eta_k \eta_k^\top.
 \end{equation*}
-\item Make the diagnostic plot of interest. Details of these plots will be described below.
+\item Make the diagnostic plot of interest. Details of the plots will be described below.
 \item To investigate the sample variation randomly reallocate the combined dataset formed in step 2 to two datasets of $n_1$ and $n_2$ observations, respectively, and redo step 1 and 3. This is done several times, e.g.\ 10000 times, and compared to the plot for the original allocation.
 \end{enumerate} 
 
@@ -208,21 +208,26 @@ Before describing the details of the  \emph{CumEigenPlot}, \emph{HairPlot} and \
 
 \medskip
 
-Description of the \emph{CumEigenPlot}: This plot compares the variation components. If these are the same in the two sample populations, then the best estimate for the variation components are $\lambda_1 \ge \dotsm \ge \lambda_d \ge 0$ found in the combined dataset. And we would expect $\lambda_{i1} \ge \dotsm \ge \lambda_{id} \ge 0$ for $i=1,2$ to be alike excepts sample variation. In order to investigate whether the same proportion of the total variation can be described by the same number of principal components in the two datasets we plot a piecewise linear curve connecting the points
+Description of the \emph{CumEigenPlot}: This plot compares the variation components. 
+%If these are the same in the two sample populations, then the best estimate for the variation components are $\lambda_1 \ge \dotsm \ge \lambda_d \ge 0$ found in the combined dataset. And we would expect $\lambda_{i1} \ge \dotsm \ge \lambda_{id} \ge 0$ for $i=1,2$ to be alike excepts sample variation. 
+In order to investigate whether the same proportion of the total variation can be described by the same number of principal components in the two datasets we plot a piecewise linear curve connecting the points
 \begin{align*}
 (0,0), &&
 (\lambda_1,\lambda_{11}-\lambda_{12}), &&
-(\lambda_1 + \lambda_2,\lambda_{11}+\lambda_{12}-\lambda_{12}-\lambda_{22}), &&
+(\lambda_1 + \lambda_2,\lambda_{11}+\lambda_{12}-\lambda_{21}-\lambda_{22}), &&
 \ldots, &&
 \bigg( \sum_{j=1}^d \lambda_j, \sum_{j=1}^d \lambda_{1j} - \sum_{j=1}^d \lambda_{2j} \bigg).
 \end{align*}
-This may be seen as a cumulated Bland-Altman plot for the variation components (\hl{reference to cumulated residuals and to Bland-Altman}). Note that since we are using correlation matrices the last point will always be $(d,0)$. Thus, this curve will begin and end at the x-axis. And the larger excursions it makes away from the x-axis the less alike the cumulated variation components for the two datasets are.
+This may be seen as a cumulated Bland-Altman plot for the variation components (\hl{reference to cumulated residuals and to Bland-Altman}). Note that due to the standardization the last point will be equal to $(d,0)$. Thus, this curve will begin and end at the x-axis. And the larger excursions it makes away from the x-axis the less alike the cumulated variation components for the two datasets are.
 
-Whether the excursions in the observed curve are large or within the range of sample variation can be quantified by a permutation test. The idea is that we randomly reallocate the $n_1+n_2$ observations in the combined dataset to two datasets with $n_1$ and $n_2$ observations, respectively, and then repeat the procedure described above. The random reallocation by construction ensures that the two resampled datasets are alike except their sample size and sampling variation. In the \emph{CumEigenPlot} we make 1000 independent random reallocations, and plot the observed curve together with 20 of the resampled curves as well as a shaded region visualizing pointwise 95pct coverage intervals. This provides a graphical validation tool. P-values for the null hypothesis that the variation components are the same are easily provided for any appropriate test statistic by the resampling procedure as well. We have implemented the \emph{Kolmogorov-Smirnov} and the \emph{Cram\'er-von Mises} test statistics, which are given by
+In step 3 we have implemented both the \emph{Kolmogorov-Smirnov} and the \emph{Cram\'er-von Mises} test statistics given by
 \begin{align*}
 \text{KS} &= \max_{k=1,\dotsc,d} \bigg\lvert \sum_{j=1}^k \lambda_{1j} - \sum_{j=1}^k \lambda_{2j} \bigg\rvert, &
 \text{CvM} &= \sum_{k=1}^{d-1} \frac{\lambda_k + \lambda_{k+1}}{2} \bigg( \sum_{j=1}^k \lambda_{1j} - \sum_{j=1}^k \lambda_{2j} \bigg)^2.
 \end{align*}
+From the random reallocations in step 4 we hence get p-values for the Kolmogorov-Smirnov and the Cram\'er-von Mises Goodness-of-Fit tests. Step 4 is also used to visualize the sampling variation in a display, where we plot the observed curve together with 20 of the resampled curves as well as a shaded region visualizing pointwise 95pct coverage intervals. If the observed curve is very different from the resampled curves or if it is substantially outside the shaded region, then this also indicate differences between the two datasets.
+
+%Whether the excursions in the observed curve are large or within the range of sample variation can be quantified by a permutation test. The idea is that we randomly reallocate the $n_1+n_2$ observations in the combined dataset to two datasets with $n_1$ and $n_2$ observations, respectively, and then repeat the procedure described above. The random reallocation by construction ensures that the two resampled datasets are alike except their sample size and sampling variation. In the \emph{CumEigenPlot} we make 1000 independent random reallocations, and plot  P-values for the null hypothesis that the variation components are the same are easily provided for any appropriate test statistic by the resampling procedure as well. 
 
 \medskip
 
