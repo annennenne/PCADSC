@@ -111,7 +111,7 @@ This manuscript is structured as follows: First, in Section \ref{sec:stateofthea
 		\item Other examples?
 		\item Perhaps a description of what happens if we are to combine the two subsets of the datasets without taking a e.g. an instrument-effect into account. When will it cause problems (maybe: causal graph style?)?
 		\item Mention somewhere: We want a solution that is largely independent of the sizes of the two subsets of data. Thereby, a lot of methods that compare each subset to the full dataset in some sense are excluded.
-	\end{itemize}	
+	\end{itemize}
 \end{itemize}
 }
 
@@ -141,7 +141,9 @@ As mentioned above, the purpose of PCADSC is comparing overall data structures i
 
 Though the idea sounds appealing, it is quite difficult to assess similarity of matrices, and moreover, this becomes increasingly difficult for large numbers of variables and thus high dimensional covariance matrices. There is simply too much information to consider at once.
 
-However, by clever use of linear algebra, we can construct a decomposition of the covariance matrix that makes it easier to gain an overview of the data. We propose a new method based on principal component analysis that seems to be able to identify differences in datasets based on intuitive, visual inspections. We refer to this method as principal component analysis-based data structure comparison (PCADSC) and we present the procedure below. But first, we give a minimal introduction to principal component analysis in general with reference to Koch (2014).
+However, by 
+%clever 
+use of linear algebra, we can construct a decomposition of the covariance matrix that makes it easier to gain an overview of the data. We propose a new method based on principal component analysis that seems to be able to identify differences in datasets based on intuitive, visual inspections. We refer to this method as principal component analysis-based data structure comparison (PCADSC) and we present the procedure below. But first, we give a minimal introduction to principal component analysis in general with reference to Koch (2014).
 
 
 \subsection{Principal component analysis}
@@ -176,25 +178,62 @@ It is worth emphasizing that the greedy approach of successively adding the next
 % In this introduction, we have assumed full rank of the covariance matrix $S$ for simplicity, but it should be noted that this assumption is in no way needed for the results to hold.
 
 \subsection{PCA-based data structure comparison}
-Above, we promised a method for intuitive, visual inspection of data structure similarities, but as of now, all intuition might have been lost in technicalities. The main point we want to emphasize from PCA is that whereas the scores describe the observations, the variation components and the accompanying loadings describe the usage of the variables. If two different datasets with the same variables, but different samples of observations, have similar loading patterns, then the variables appear to be measuring the same underlying quantities in both data situations. This can be the case while the two sets of scores could be arbitrarily different, which e.g.\ could happen if the two datasets were taken from two different populations of subjects. On the other hand, if the loading patterns are different in the two datasets, then this indicates that the variables are used differently in the two data situations, and hence it would be criticizable to use these variables for comparisons across the two datasets.  
+Above, we promised a method for intuitive, visual inspection of data structure similarities, but as of now, all intuition might have been lost in technicalities. The main point we want to emphasize from PCA is that whereas the scores describe the observations, the variation components and the accompanying loadings describe the usage of the variables. If two different datasets with the same variables, but different samples of observations, have similar loading patterns, then the variables appear to be measuring the same underlying quantities in both data situations. This can be the case while the two sets of scores could be arbitrarily different, which e.g.\ could happen if the two datasets were taken from two different populations of subjects. On the other hand, if the loading patterns are different in the two datasets, then this indicates that the variables are used differently in the two data situations, and hence it would be criticizable to use these variables for comparisons across the two datasets.
 
 %Specifically, we can interpret the loadings as weights that determine the relative influence of each variable in each principal component.
 
 %the two data sets will agree on which variables explain the most variance and also how this variance is explained.  Looking at the PCA loadings and the cumulative explained variance thus provides a straightforward non-parametric graphical approach for assessing similarity between two datasets.
 
-In this paper we propose three diagnostic plots, referred to as the \emph{CumEigenPlot}, \emph{HairPlot} and \emph{PancakePlot}, for comparing the loading patterns in two datasets. In order to describe these plots we consider two different datasets in the same $d$ variables and with $n_1$ and $n_2$ observations, respectively. For dataset $i=1,2$ let $S_i \in \RR^{d \times d}$ be the empirical correlation matrix, and let $\lambda_{i1} \ge \dotsm \ge \lambda_{id} \ge 0 $ and $\eta_{i1},\dotsc,\eta_{id} \in \RR^{d}$ be the corresponding variation components and loadings. The correlation matrices correspond to the covariance matrices for the variables after these have been standardized to unit standard deviation separately within the two datasets.
-
-\hl{To do: justification for using correlation matrices should be further elaborated. And also: Something about what to do if not all variables are numerical. Using correlation matrices is not the same as assuming standadized variables; there is a difference in the permutations.} 
-
-\medskip
-
-Description of the \emph{CumEigenPlot}: \hl{This is a cumulated Bland-Altman plot for the variation components. Details will be given later decomposition.}
-
-\medskip
-
-Description of the \emph{HairPlot:} Let $\lambda_{\max} = \max\{ \lambda_{11}, \lambda_{21} \}$ be the largest variation component for the two datasets. The empirical covariance matrix $S_1$ for the first dataset has the following orthogonal decomposition in the coordinate system of the second dataset
+In this paper we propose three diagnostic plots for comparing the loading patterns in two datasets $x_{11},\dotsc,x_{1 n_1} \in \RR^d$ and $x_{21},\dotsc,x_{2 n_2} \in \RR^d$ in the same $d$ variables. The construction of these plots, which we call \emph{CumEigenPlot}, \emph{HairPlot} and \emph{PancakePlot}, proceeds in the following steps:
+\begin{enumerate}
+\item Standardized the observations $x_{i1},\dotsc,x_{i n_i}$ to have zero mean and unit standard deviation separately for each of the $d$ variables within each datasets. Let $\tilde{x}_{ij} \in \RR^d$ for $i=1,2$ and $j=1,\dotsc,n_i$ be the standardized observations, and form the principal component analysis
 \begin{equation*}
-S_1 = \sum_{k=1}^d \lambda_{1j} \eta_{1k} \eta_{1k}^\top
+S_i = \frac{1}{n_i-1} \sum_{j=1}^{n_i} \tilde{x}_{ij} \tilde{x}_{ij}^\top = \sum_{k=1}^d \lambda_{ik} \eta_{ik} \eta_{ik}^\top \quad \text{for $i=1,2$.} 
+\end{equation*}
+\item Combine the standardized datasets into a joint dataset $\tilde{x}_1,\dotsc,\tilde{x}_n \in \RR^d$ with $n=n_1+n_2$ observations, standardize this dataset, and form the principal component analysis
+\begin{equation*}
+S = \frac{1}{n-2} \sum_{j=1}^n \tilde{x}_j \tilde{x}_j^\top = \sum_{k=1}^d \lambda_k \eta_k \eta_k^\top.
+\end{equation*}
+\item Make the diagnostic plot of interest. Details of the plots will be described below.
+\item To investigate the sample variation randomly reallocate the combined and standardized dataset formed in step 2 to two datasets of $n_1$ and $n_2$ observations, respectively, and redo step 1 and 3. This is done several times, e.g.\ 10000 times, and compared to the plot for the original allocation.
+\end{enumerate} 
+
+Before describing the details of the  \emph{CumEigenPlot}, \emph{HairPlot} and \emph{PancakePlot} we make some general remarks. The covariance matrix for the standardized variables is the same as the correlation matrix for the original variables. The standardization makes the variables comparable on the same scale, i.e.\ units of standard deviation, and it implies that the diagonal elements of $S$, $S_1$, and $S_2$ all equals 1. This also holds for the reallocated datasets, and in particular we have $\sum_{k=1}^d \lambda_k = \sum_{k=1}^d \lambda_{1k} = \sum_{k=1}^d \lambda_{2k} =  d$. The random reallocations in step 4 provide resamples under the null hypothesis that the two sample populations have the same structure in the $d$ variables, except that the two populations are allowed to have the own standard deviations for each of the variables. This exception is induced by the initial step 1, which performs a standardization within the two datasets before they are combined in step 2. These resamples can be used for a visualization of the sample variation, and if a test statistic can be defined in step 3, then a p-value for the null hypothesis may be computed. Such p-values are know as permutation tests for Goodness-of-Fit (\hl{reference?}).
+
+%In order to describe these plots we consider two different datasets in the same $d$ variables and with $n_1$ and $n_2$ observations, respectively. For dataset $i=1,2$ let $S_i \in \RR^{d \times d}$ be the empirical correlation matrix \hl{(find a way to introduce the empirial correlation matrix instead)}, and let $\lambda_{i1} \ge \dotsm \ge \lambda_{id} \ge 0 $ and $\eta_{i1},\dotsc,\eta_{id} \in \RR^{d}$ be the corresponding variation components and loadings. The correlation matrices correspond to the covariance matrices for the variables after these have been standardized to unit standard deviation separately within the two datasets. Similarly, let $S \in \RR^{d \times d}$ be the empirical correlation matrix for the combined dataset with $n_1+n_2$ observations, and let $\lambda_1 \ge \dotsm \ge \lambda_d \ge 0$ and $\eta_1,\dotsc,\eta_d \in \RR^d$ be the corresponding variation components and loadings.
+
+\hl{To do: justification for using correlation matrices should be further elaborated. And also: Something about what to do if not all variables are numerical. 
+%Using correlation matrices is not the same as assuming standadized variables; there is a difference in the permutations.
+}
+
+\medskip
+
+Description of the \emph{CumEigenPlot}: This plot compares the variation components. 
+%If these are the same in the two sample populations, then the best estimate for the variation components are $\lambda_1 \ge \dotsm \ge \lambda_d \ge 0$ found in the combined dataset. And we would expect $\lambda_{i1} \ge \dotsm \ge \lambda_{id} \ge 0$ for $i=1,2$ to be alike excepts sample variation. 
+In order to investigate whether the same proportion of the total variation can be described by the same number of principal components in the two datasets we plot a piecewise linear curve connecting the points
+\begin{align*}
+(0,0), &&
+(\lambda_1,\lambda_{11}-\lambda_{12}), &&
+(\lambda_1 + \lambda_2,\lambda_{11}+\lambda_{12}-\lambda_{21}-\lambda_{22}), &&
+\ldots, &&
+\bigg( \sum_{j=1}^d \lambda_j, \sum_{j=1}^d \lambda_{1j} - \sum_{j=1}^d \lambda_{2j} \bigg).
+\end{align*}
+This may be seen as a cumulated Bland-Altman plot for the variation components (\hl{reference to cumulated residuals and to Bland-Altman}). Note that due to the standardization the last point will be equal to $(d,0)$. Thus, this curve will begin and end at the x-axis. And the larger excursions it makes away from the x-axis the less alike the cumulated variation components for the two datasets are.
+
+In step 3 we have implemented both the \emph{Kolmogorov-Smirnov} and the \emph{Cram\'er-von Mises} test statistics given by
+\begin{align*}
+\text{KS} &= \max_{k=1,\dotsc,d} \bigg\lvert \sum_{j=1}^k \lambda_{1j} - \sum_{j=1}^k \lambda_{2j} \bigg\rvert, &
+\text{CvM} &= \sum_{k=1}^{d-1} \frac{\lambda_k + \lambda_{k+1}}{2} \bigg( \sum_{j=1}^k \lambda_{1j} - \sum_{j=1}^k \lambda_{2j} \bigg)^2.
+\end{align*}
+From the random reallocations in step 4 we get p-values for the Kolmogorov-Smirnov and the Cram\'er-von Mises Goodness-of-Fit tests. Step 4 is also used to visualize the sampling variation in a display, where we plot the observed curve together with 20 of the resampled curves as well as a shaded region visualizing pointwise 95pct coverage intervals. If the observed curve is very different from the resampled curves or if it is substantially outside the shaded region, then this also indicate differences between the two datasets.
+
+%Whether the excursions in the observed curve are large or within the range of sample variation can be quantified by a permutation test. The idea is that we randomly reallocate the $n_1+n_2$ observations in the combined dataset to two datasets with $n_1$ and $n_2$ observations, respectively, and then repeat the procedure described above. The random reallocation by construction ensures that the two resampled datasets are alike except their sample size and sampling variation. In the \emph{CumEigenPlot} we make 1000 independent random reallocations, and plot  P-values for the null hypothesis that the variation components are the same are easily provided for any appropriate test statistic by the resampling procedure as well. 
+
+\bigskip
+
+Description of the \emph{HairPlot:} This plot simultaneously compares the variation components and the loadings. Let $\lambda_{\max} = \max\{ \lambda_{11}, \lambda_{21} \}$ be the largest variation component for the two datasets. The empirical correlation matrix $S_1$ for the first dataset has the following orthogonal decomposition in the coordinate system of the second dataset
+\begin{equation*}
+S_1 = \sum_{k=1}^d \lambda_{1k} \eta_{1k} \eta_{1k}^\top
 = \lambda_{\max} \sum_{k=1}^d
 \Bigg( \sum_{j=1}^d \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} (\eta_{1k} \eta_{2j}^\top) \eta_{2j} \Bigg)
 \Bigg( \sum_{j=1}^d \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} (\eta_{1k} \eta_{2j}^\top) \eta_{2j} \Bigg)^\top,
@@ -208,19 +247,26 @@ and we have a similar decomposition of $S_2$ in the coordinate system of the fir
 
 The absolute value of the projection $\eta_{1k} \eta_{2j}^\top$ is inserted due to the indeterminacy of the direction of loading vectors. This indeterminacy implies that the angle between loadings from the two datasets always can be chosen to be in the interval $[0,\pi/2]$, and hence the decomposition of $S_1$ and $S_2$ can be visualized in a joint plot by dividing the angles by two and using anticlockwise and clockwise shifts from the diagonal. Furthermore, the scaling of the lengths by $\lambda_{\max}$ is made so that the longest arrow has at most unit length.
 
-In the \emph{HairPlot} the blue arrows in the $k$th column of the grid display visualize the decomposition of the $k$th principal components for the first dataset in the coordinate system of the second dataset. Similarly, the red arrows in the $j$th row visualize the decomposition of the $j$th principal components for the second dataset in the coordinate system of the first dataset. If the structures of the two datasets are identical, then we will have coinciding blue and red arrows along the diagonal in the grid display, and nothing else as arrows in the off-diagonal cells would have zero length. Differences in the variation components are visualized as differences in the lengths of the blue and the red arrows, also in the diagonal. And loadings in other directions than the corresponding loading from the other dataset are visualized as angle separation of the blue and the red arrows in the diagonal cells as well as arrows of non vanishing length in the off-diagonal cells.
+In the \emph{HairPlot} the blue arrows in the $k$th column of the grid display visualize the decomposition of the $k$th principal components for the first dataset in the coordinate system of the second dataset. Similarly, the red arrows in the $j$th row visualize the decomposition of the $j$th principal components for the second dataset in the coordinate system of the first dataset. If the structures of the two datasets are identical, then we will have coinciding blue and red arrows along the diagonal in the grid display, and nothing else as arrows in the off-diagonal cells would have zero length. Differences in the variation components are visualized as differences in the lengths of the blue and the red arrows, also in the diagonal. And loadings in other directions than the corresponding loading from the other dataset are visualized as angle separation of the blue and the red arrows in the diagonal cells as well as arrows of non vanishing length in the off-diagonal cells. The name \emph{HairPlot} arise by seeing the arrows as \emph{hairs}. Using this interpretation we may say that a more ``hairy'' plot indicates less agreement between the two loading patterns.
 
-%Using the same grid display, but interchanging the first and the second dataset as well as the rows and the columns, and using the angles clockwise, similar arrows are plotted in a different color.
+Along with the visual comparison we have also implemented numerical tests in step 3. Separately for the off-diagonal grid cells we may use the lengths $\mu_{jk}$ and $\nu_{jk}$ as test statistics, and for the on-diagonal grid cells we use the distance between the scaled loadings as test statistics, that is
+\begin{equation*}
+\chi_k = \lambda_{\max}^{-1} \lvert \lambda_{1k} \eta_{1k} - \lambda_{2k} \eta_{2k} \rvert, \quad \text{for $k=1,\dotsc,d$.}
+\end{equation*}
+In total this gives $2d^2 - d$ tests, which should be corrected for the family wise type I error using a methods that doesn't assume independence among the tests. We also construct overall Kolmogorov-Smirnov and Cram\'er-von Mises type test statistics by
+\begin{align*}
+\text{KS}_1 &= \max_{j,k=1,\dotsc,d} (1_{j \neq k} \mu_{jk} + 1_{j=k} \chi_k), &
+\text{CvM}_1 &= \sum_{j=1}^d \sum_{k=1}^d (1_{j \neq k} \mu_{jk} + 1_{j=k} \chi_k)^2, \\
+\text{KS}_2 &= \max_{j,k=1,\dotsc,d} (1_{j \neq k} \nu_{jk} + 1_{j=k} \chi_k), &
+\text{CvM}_2 &= \sum_{j=1}^d \sum_{k=1}^d (1_{j \neq k} \nu_{jk} + 1_{j=k} \chi_k)^2.
+\end{align*}
 
-%In our implementation we have used blue for the first and the second set of arrows, respectively.
 
 \bigskip
 
-Remarks: Presently permutation tests based on the Kolmogorov-Smirnov and the Cram\'er-von Mises test statistics has been implemented for CumVarAgreement. This should also be possible for the Hairplot based on the off-diagonal components. For the Pancakeplot a Wallyplot has been implemented (however, in Claus' Wally plot the position of the ``observed dataset'' is also random).
+Description of the \emph{PancakePlot}: This plot compares the loadings. 
 
-\bigskip
-
-Description of the \emph{PancakePlot}: Our proposal of a PCADSC method consist of three steps. These steps should be performed separately for each of the two (or more) datasets that we wish to compare. Note that the datasets must have the same variables, but different sample sizes are allowed. The three steps are:
+Our proposal of a PCADSC method consist of three steps. These steps should be performed separately for each of the two (or more) datasets that we wish to compare. Note that the datasets must have the same variables, but different sample sizes are allowed. The three steps are:
 \begin{enumerate}
 \item \hl{Standardize. Full data or subsets? And also: Something about what to do if not all variables are numerical.}
 \item Compute the PCA loadings and the variance contributions of each principal component.
