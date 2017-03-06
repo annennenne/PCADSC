@@ -31,7 +31,7 @@
 #'
 #' @importFrom graphics polygon matlines lines legend
 #' @importFrom stats quantile
-#' @importFrom ggplot2 aes geom_polygon geom_line scale_x_continuous
+#' @importFrom ggplot2 ggplot aes_string geom_polygon geom_line scale_x_continuous
 #' scale_y_continuous theme_bw theme element_blank xlab ylab geom_line
 #' scale_linetype_manual annotate unit
 #' @export
@@ -132,10 +132,10 @@ cumeigen <- function(data,splitBy,var=NULL,B=1000,make.plot=TRUE) {
     yBreaks <- round(c(0 + yMaxVal * c(1/3, 2/3, 3/3), 0,
                        0 - yMaxVal * c(1/3, 2/3, 3/3)),1)
 
-    ggplot(pFsim, aes(x = x, y = y)) +
+    ggplot(pFsim, aes_string(x = "x", y = "y")) +
       annotate(geom = "polygon", x = c(x, rev(x)), y = c(y.min, rev(y.max)),
                fill = "aliceblue") +
-     geom_line(aes(group = run, linetype = factor(run)), col = "grey", size = 0) +
+     geom_line(aes_string(group = "run", linetype = factor("run")), col = "grey", size = 0) +
       scale_x_continuous(limits = c(x[1],x[d+1]), breaks = 0:length(x)) +
       scale_y_continuous(limits = c(yMinVal, yMaxVal),
                          breaks = yBreaks) +
