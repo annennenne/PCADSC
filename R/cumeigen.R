@@ -31,6 +31,9 @@
 #'
 #' @importFrom graphics polygon matlines lines legend
 #' @importFrom stats quantile
+#' @importFrom ggplot2 aes geom_polygon geom_line scale_x_continuous
+#' scale_y_continuous theme_bw theme element_blank xlab ylab geom_line
+#' scale_linetype_manual annotate unit
 #' @export
 cumeigen <- function(data,splitBy,var=NULL,B=1000,make.plot=TRUE) {
   #define var
@@ -109,18 +112,63 @@ cumeigen <- function(data,splitBy,var=NULL,B=1000,make.plot=TRUE) {
   KS.pvalue <- mean(KS.sim >= KS.obs)
   CvM.pvalue <- mean(CvM.sim >= CvM.obs)
 
-  # make plot
-  if (make.plot) {
-    y.min <- apply(y.sim,1,quantile,probs=0.025)
-    y.max <- apply(y.sim,1,quantile,probs=0.975)
-    plot(c(x[1],x[d+1]),c(1.01*min(c(y.obs,as.vector(y.sim))),1.01*max(c(y.obs,as.vector(y.sim)))),type="n",
-         xlab="Cumulated joint eigenvalues",ylab="Cumulated difference of eigenvalues")
-    polygon(c(x,rev(x)),c(y.min,rev(y.max)),col="aliceblue",border=NA)
-    matlines(x,y.sim[,1:min(20,B)],col="gray")
-    lines(x,y.obs,lwd=2)
-    legend("topleft",paste(c("KS: p=","CvM: p="),round(c(KS.pvalue,CvM.pvalue),3),sep=""))
+  if (!make.plot) {
+    # return
+    return(list(KS.pvalue=KS.pvalue,CvM.pvalue=CvM.pvalue))
   }
 
+  # make plot
+ # if (make.plot) {
+    y.min <- apply(y.sim,1,quantile,probs=0.025)
+    y.max <- apply(y.sim,1,quantile,probs=0.975)
+    nSims <- min(20, B)
+    y.sim.small <- y.sim[, 1:nSims]
+    pFsim <- data.frame(x = rep(x, ncol(y.sim.small)),
+                     y = c(y.sim.small),
+                     type = c(rep("sim", ncol(y.sim.small)*nrow(y.sim.small))),
+                     run = c(rep(1:ncol(y.sim.small), each = length(x))))
+    yMaxVal <- 1.01*max(c(y.obs,as.vector(y.sim)))
+    yMinVal <- 1.01*min(c(y.obs,as.vector(y.sim)))
+    yBreaks <- round(c(0 + yMaxVal * c(1/3, 2/3, 3/3), 0,
+                       0 - yMaxVal * c(1/3, 2/3, 3/3)),1)
+
+    ggplot(pFsim, aes(x = x, y = y)) +
+      annotate(geom = "polygon", x = c(x, rev(x)), y = c(y.min, rev(y.max)),
+               fill = "aliceblue") +
+     geom_line(aes(group = run, linetype = factor(run)), col = "grey", size = 0) +
+      scale_x_continuous(limits = c(x[1],x[d+1]), breaks = 0:length(x)) +
+      scale_y_continuous(limits = c(yMinVal, yMaxVal),
+                         breaks = yBreaks) +
+      theme_bw() +
+      theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+      xlab("Cumulated joint eigenvalues") +
+      ylab("Cumulated difference of eigenvalues") +
+      scale_linetype_manual(guide = FALSE, values = rep(1:5, 5*ceiling(nSims/5))) +
+      annotate(geom = "label", label = paste(paste(c("KS:   p = ","CvM: p = "),
+                                                  round(c(KS.pvalue,CvM.pvalue),3),sep=""),
+                                            collapse = "\n"),
+               x = -Inf, y = Inf, hjust = "left", vjust = "top",
+               label.r = unit(0, "lines"),
+               label.padding = unit(1, "lines")) +
+      annotate(geom = "line", x = x, y = y.obs, size = 1)
+
+
+  #}
+# if (make.plot) {
+#    y.min <- apply(y.sim,1,quantile,probs=0.025)
+#    y.max <- apply(y.sim,1,quantile,probs=0.975)
+#    plot(c(x[1],x[d+1]),c(1.01*min(c(y.obs,as.vector(y.sim))),
+#                          1.01*max(c(y.obs,as.vector(y.sim)))),type="n",
+#         xlab="Cumulated joint eigenvalues",ylab="Cumulated difference of eigenvalues")
+#    polygon(c(x,rev(x)),c(y.min,rev(y.max)),col="aliceblue",border=NA)
+#    matlines(x,y.sim[,1:min(20,B)],col="gray")
+#    lines(x,y.obs,lwd=2)
+#    legend("topleft",paste(c("KS: p=","CvM: p="),round(c(KS.pvalue,CvM.pvalue),3),sep=""))
+#  }
+
+
   # return
-  return(list(KS.pvalue=KS.pvalue,CvM.pvalue=CvM.pvalue))
+  #return(list(KS.pvalue=KS.pvalue,CvM.pvalue=CvM.pvalue))
 }
+
+
