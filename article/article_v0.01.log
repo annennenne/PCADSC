@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.1)  6 MAR 2017 14:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.1)  6 MAR 2017 17:09
 entering extended mode
 **article_v0.01.tex
 (article_v0.01.tex
@@ -410,19 +410,19 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 151.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [4] [5] [6] [7]
-[8] <surveyTable.png, id=113, 307.1475pt x 408.92775pt>
+[8] <surveyTable.png, id=110, 307.1475pt x 408.92775pt>
 File: surveyTable.png Graphic file (type png)
  <use surveyTable.png>
 Package pdftex.def Info: surveyTable.png used on input line 290.
 (pdftex.def)             Requested size: 307.14674pt x 408.92674pt.
 
-<essPCADSC.pdf, id=116, 578.16pt x 289.08pt>
+<essPCADSC.pdf, id=113, 578.16pt x 289.08pt>
 File: essPCADSC.pdf Graphic file (type pdf)
  <use essPCADSC.pdf>
 Package pdftex.def Info: essPCADSC.pdf used on input line 301.
 (pdftex.def)             Requested size: 462.52863pt x 231.2643pt.
 
-<essWallyPCADSC.pdf, id=117, 578.16pt x 722.7pt>
+<essWallyPCADSC.pdf, id=114, 578.16pt x 722.7pt>
 File: essWallyPCADSC.pdf Graphic file (type pdf)
  <use essWallyPCADSC.pdf>
 Package pdftex.def Info: essWallyPCADSC.pdf used on input line 308.
@@ -431,13 +431,13 @@ Package pdftex.def Info: essWallyPCADSC.pdf used on input line 308.
 
 LaTeX Warning: Float too large for page by 28.48077pt on input line 311.
 
-<essHairplot.png, id=118, 529.22719pt x 456.20438pt>
+<essHairplot.png, id=115, 529.22719pt x 456.20438pt>
 File: essHairplot.png Graphic file (type png)
  <use essHairplot.png>
 Package pdftex.def Info: essHairplot.png used on input line 315.
 (pdftex.def)             Requested size: 423.38232pt x 364.96399pt.
 
-<essCumVarAgreement.png, id=119, 529.22719pt x 456.20438pt>
+<essCumVarAgreement.png, id=116, 529.22719pt x 456.20438pt>
 File: essCumVarAgreement.png Graphic file (type png)
 
 <use essCumVarAgreement.png>
@@ -446,6 +446,9 @@ Package pdftex.def Info: essCumVarAgreement.png used on input line 322.
  [9] [10 <./surveyTable.png>]
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no ¸ in font cmr10!
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [11 <./essPCADSC.pdf>] [12 <./essWallyPCADSC.pdf>] [13 <./essHairplot.png>] [1
 4 <./essCumVarAgreement.png>] [15]
 No file article_v0.01.bbl.
@@ -462,8 +465,8 @@ Package rerunfilecheck Info: File `article_v0.01.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 359.
  ) 
 Here is how much of TeX's memory you used:
- 7133 strings out of 493673
- 101449 string characters out of 3143958
+ 7129 strings out of 493673
+ 101425 string characters out of 3143958
  196572 words of memory out of 3000000
  10345 multiletter control sequences out of 15000+200000
  14277 words of font info for 52 fonts, out of 3000000 for 9000
@@ -485,9 +488,9 @@ s/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
 sfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/s
 ymbols/msbm10.pfb>
-Output written on article_v0.01.pdf (15 pages, 411145 bytes).
+Output written on article_v0.01.pdf (15 pages, 410742 bytes).
 PDF statistics:
- 237 PDF objects out of 1000 (max. 8388607)
- 41 named destinations out of 1000 (max. 500000)
+ 233 PDF objects out of 1000 (max. 8388607)
+ 37 named destinations out of 1000 (max. 500000)
  122 words of extra memory for PDF output out of 10000 (max. 10000000)
 

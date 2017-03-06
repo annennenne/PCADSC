@@ -261,19 +261,19 @@ In total this gives $2d^2 - d$ tests, which should be corrected for the family w
 \text{CvM}_2 &= \sum_{j=1}^d \sum_{k=1}^d (1_{j \neq k} \nu_{jk} + 1_{j=k} \chi_k)^2.
 \end{align*}
 
-
 \bigskip
 
-Description of the \emph{PancakePlot}: This plot compares the loadings. 
+Description of the \emph{PancakePlot}: This plot compares the loadings. The \emph{PancakePlot} consists of two parallel vertical barplots, one for each of the datasets, with one bar for each of the $d$ loading vector $\eta_{ij} \in \RR^d$. In the bars the relative contributions of the $d$ variables are visualized by separate colors for the different variables. Due to the indeterminacy of the sign all the signs are removed from the coefficients in the loadings, and the relative contribution is defined as the resulting coefficients divided by their total sum. The bars are ordered according to the variation components, and we also insert the cumulative variation components next to the barplots. The plots resulting from this procedure should be inspected focusing on two properties: Similarities in loading patterns, which will correspond to similar visual impressions, and similarities in variance contributions.  \hl{Refer to example/show plot.}
 
-Our proposal of a PCADSC method consist of three steps. These steps should be performed separately for each of the two (or more) datasets that we wish to compare. Note that the datasets must have the same variables, but different sample sizes are allowed. The three steps are:
-\begin{enumerate}
-\item \hl{Standardize. Full data or subsets? And also: Something about what to do if not all variables are numerical.}
-\item Compute the PCA loadings and the variance contributions of each principal component.
-\item For each principal component, standardize the loadings, i.e. scale them such that they sum to one.
-\item Produce a plot consisting of a bar for each principal component, decorated with the cumulative variance contribution corresponding to this component. The bar should be of length one and colored according to the variables loading the component.
-\end{enumerate}
-The plots resulting from this procedure should be inspected focusing on two properties: Similarities in loading patterns, which will correspond to similar visual impressions, and similarities in variance contributions.  \hl{Refer to example/show plot.}
+We not implemented a test statistic for the \emph{PancakePlot}, but in order to visualize the sample variation the observed plot can be shown together with resampled plots generated in step 4.
+
+%Our proposal of a PCADSC method consist of three steps. These steps should be performed separately for each of the two (or more) datasets that we wish to compare. Note that the datasets must have the same variables, but different sample sizes are allowed. The three steps are:
+%\begin{enumerate}
+%\item \hl{Standardize. Full data or subsets? And also: Something about what to do if not all variables are numerical.}
+%\item Compute the PCA loadings and the variance contributions of each principal component.
+%\item For each principal component, standardize the loadings, i.e. scale them such that they sum to one.
+%\item Produce a plot consisting of a bar for each principal component, decorated with the cumulative variance contribution corresponding to this component. The bar should be of length one and colored according to the variables loading the component.
+%\end{enumerate}
 
 
 
