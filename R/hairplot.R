@@ -114,7 +114,7 @@ hairplot <- function(data,splitBy,var=NULL,B=1000,make.plot=TRUE,arrow.len=0.05)
                             rep(1:d, d) + c(len2)*cos(c(angles)/2)),
                    yend = c(rep(1:d, each = d) + c(len1)*sin((pi-c(angles))/2),
                             rep(1:d, each = d) + c(len2)*sin(c(angles)/2)),
-                   type = rep(c("1st", "2nd"), each = 2*d))
+                   type = rep(c("1st", "2nd"), each = d*d))
 
   ggplot(pF[, , drop = F], aes_string(x = "x", y = "y", col = "type",
                                       xend = "xend", yend = "yend")) +
