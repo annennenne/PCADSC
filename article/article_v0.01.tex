@@ -12,6 +12,10 @@
 \usepackage{amssymb}
 \usepackage{hyperref}
 \usepackage{natbib}
+%\usepackage[backend=biber,natbib=true, style=authoryear-comp]{biblatex}
+
+
+
 
 
 %\usepackage{submit}
@@ -148,21 +152,21 @@ use of linear algebra, we can construct a decomposition of the covariance matrix
 
 \subsection{Principal component analysis}
 
-Consider $n$ observations $x_1,\dotsc,x_n \in \RR^d$ of $d$ variables, let $\bar{x} = \frac{1}{n} \sum_{i=1}^n x_n$ denote their average and let $S = \frac{1}{n-1} \sum_{i=1}^n (x_i-\bar{x}) (x_i-\bar{x})^\top \in \RR^{d \times d}$ denote the empirical covariance. Suppose that we want to describe the observations by $q$ numbers instead of the original $d$ numbers. The associated \emph{rank-q-reconstruction error} is defined as the minimal squared error that is achievable by linear subspaces $K_q \subset \RR^d$ of dimension $q < d$, that is
+Consider $n$ observations $x_1,\dotsc,x_n \in \RR^d$ of $d$ variables, let $\bar{x} = \frac{1}{n} \sum_{i=1}^n x_n$ denote their average\hl{(s?)} and let $S = \frac{1}{n-1} \sum_{i=1}^n (x_i-\bar{x}) (x_i-\bar{x})^\top \in \RR^{d \times d}$ denote the empirical covariance \hl{Is $\bar{x} \in \RR^d$ with $\bar{x} = (\bar{x_1}, ..., \bar{x_d})^T$?}. Suppose that we want to describe the observations by $q$ numbers instead of the original $d$ numbers. The associated \emph{rank-q-reconstruction error} is defined as the minimal squared error that is achievable by linear subspaces $K_q \subset \RR^d$ of dimension $q < d$, that is
 \begin{equation*}
 \min_{K_q} \sum_{i=1}^n \min_{z \in K_q} \lVert x_i - \bar{x} - z \rVert^2 =
 \min_{K_q} \sum_{i=1}^n \lVert x_i - \bar{x} - \text{proj}_{K_q}(x_i - \bar{x}) \rVert^2.
 \end{equation*}
-\emph{Principal component analysis} (PCA) ensures the existence of a subspace $\hat{K}_q \subset \RR^d$ that attains this minimum, and it provides an explicit description of $\hat{K}_q$ and the rank-q-reconstruction error. Thus, let $S = U \Lambda U^\top$ be the eigenvalue decomposition of $S$. Here $\Lambda \in \RR^d$ is the diagonal matrix with the eigenvectors $\lambda_1 \ge \dotsm \ge \lambda_d \ge 0$ in the diagonal, and $U \in \RR^d$ is the orthogonal matrix with the associated eigenvectors $\eta_1,\dotsc,\eta_d \in \RR^d$ in the columns. The eigenvalues are uniquely defined, and the eigenvectors are uniquely defined up to a change of sign whenever the eigenvalues are different. If some of the eigenvalues are identical, e.g.\ $\lambda_i=\lambda_{i+1}=\dotsm=\lambda_j$, then the associated eigenvectors $\eta_i,\eta_{i+1},\dotsc,\eta_j$ are uniquely defined up to a common rotation. In practice this only happens if $n < d$, in which case the last $d-n$ eigenvalues will be zero. It is a result from linear algebra that the rank-q-reconstruction error for $q < d$ is achieved for
+\emph{Principal component analysis} (PCA) ensures the existence of a subspace $\hat{K}_q \subset \RR^d$ that attains this minimum, and it provides an explicit description of $\hat{K}_q$ and the rank-q-reconstruction error. Thus, let $S = U \Lambda U^\top$ be the eigenvalue decomposition of $S$. Here $\Lambda \in \RR^d$ is the diagonal matrix with the eigenvectors $\lambda_1 \ge \dotsm \ge \lambda_d \ge 0$ in the diagonal, and $U \in \RR^d$ is the orthogonal matrix with the associated eigenvectors $\eta_1,\dotsc,\eta_d \in \RR^d$ in the columns. The eigenvalues are uniquely defined, and the eigenvectors are uniquely defined up to a change of sign whenever the eigenvalues are different. If some of the eigenvalues are identical, e.g.\ $\lambda_i=\lambda_{i+1}=\dotsm=\lambda_j$, then the associated eigenvectors $\eta_i,\eta_{i+1},\dotsc,\eta_j$ are uniquely defined up to a common rotation. In practice this only happens if $n < d$, in which case the last $d-n$ eigenvalues will be zero \hl{Anne: What about covariance matrices that are not of full rank (e.g. because of colinearity)? Won't we find eigenvalue multiplicities $> 1$ here as well?}. It is a result from linear algebra that the rank-q-reconstruction error for $q < d$ is achieved for
 \begin{equation*}
 \hat{K}_q = \text{span}\{\eta_1,\dotsc,\eta_q\}
 \end{equation*}
-and equals $\sum_{j=q+1}^d \lambda_j$. The eigenvectors $\eta_j \in \RR^d$ are called \emph{loadings}, and the eigenvalues $\lambda_j \ge 0$ may be understood as \emph{variation components}. The projections $\eta_j^\top (x_i - \bar{x})$ of the observations onto the loadings are called \emph{scores}. The $j$th loading can also found as the unit vector $u \in \RR^d$ orthogonal to $\hat{K}_{j-1}$, where the initial subspace is defined as $\hat{K}_0 = \{0\}$, that maximizes the variation of the associated scores
+and equals $\sum_{j=q+1}^d \lambda_j$. The eigenvectors $\eta_j \in \RR^d$ are called \emph{loadings}, and the eigenvalues $\lambda_j \ge 0$ may be understood as \emph{variation components}. The projections $\eta_j^\top (x_i - \bar{x})$ of the observations onto the loadings are called \emph{scores}. The $j$th loading can also be found iteratively as the unit vector $u \in \RR^d$ orthogonal to $\hat{K}_{j-1}$, where the initial subspace is defined as $\hat{K}_0 = \{0\}$, that maximizes the variation of the associated scores:
 \begin{align*}
 \eta_j &= \argmax_{u \in \RR^d\colon u \perp \hat{K}_{j-1}} \sum_{i=1}^n \lVert u^\top (x_i - \bar{x}) \rVert^2, &
 \lambda_j &= \frac{1}{n-1} \sum_{i=1}^n \lVert \eta_j^\top (x_i - \bar{x}) \rVert^2.
 \end{align*}
-It is worth emphasizing that the greedy approach of successively adding the next direction $\eta_j$ explaining most of the remaining variation, also gives the sequence $\hat{K}_q = \hat{K}_{q-1} \oplus \text{span} \{\eta_q\}$ of subspaces minimizing the rank-q-reconstruction error. This strong interpretation of PCA, which is often overlooked in the literature, means that the sequence of loadings $\eta_j$ and their associated variation components $\lambda_j$ yield a simultaneous description of the structure of the data set for all approximating dimensions $q$. This implies that the loadings and variation components can be used to investigate the structure of the data set without the need to decide on an approximating dimension $q$.
+\hl{Anne: Should we maybe assume standardized $x$s here also? I feel like it is part of the PCA algorithm and subtracting the mean in the above seems off for that reason.} It is worth emphasizing that the greedy approach of successively adding the next direction $\eta_j$ explaining most of the remaining variation, also gives the sequence $\hat{K}_q = \hat{K}_{q-1} \oplus \text{span} \{\eta_q\}$ of subspaces minimizing the rank-q-reconstruction error. This strong interpretation of PCA, which is often overlooked in the literature, means that the sequence of loadings $\eta_j$ and their associated variation components $\lambda_j$ yield a simultaneous description of the structure of the data set for all approximating dimensions $q$. This implies that the loadings and variation components can be used to investigate the structure of the data set without the need to decide on an approximating dimension $q$.
 
 
 %Principal component analysis (PCA) allows us to decompose a data matrix consisting of $n$ observations of $d$ variables into $d$ orthogonal vectors of length $d$. This is in itself not very impressive nor useful. But PCA does not result in just any basis of the data matrix. The basis chosen using PCA has the very favorable property that each vector is chosen such that they maximize the accumulated explained variance. These vectors are usually denoted \textit{principal component scores} or simply \textit{principal components} and they are constructed as linear combinations of the variables in the dataset (or, equivalently, as projections of the data matrix). The coefficients of each variable in these projections are denoted \textit{loadings}. Let $S \in \RR^{d \times d}$ denote the empirical covariance matrix and let $X \in \RR^{n \times d}$ denote our observed data matrix. $d$ is the number of variables while $n$ is the number of observations. The deconstruction procedure then goes as follows:
@@ -177,7 +181,7 @@ It is worth emphasizing that the greedy approach of successively adding the next
 %
 % In this introduction, we have assumed full rank of the covariance matrix $S$ for simplicity, but it should be noted that this assumption is in no way needed for the results to hold.
 
-\subsection{PCA-based data structure comparison}
+\subsection{PCA-based data structure comparisons}
 Above, we promised a method for intuitive, visual inspection of data structure similarities, but as of now, all intuition might have been lost in technicalities. The main point we want to emphasize from PCA is that whereas the scores describe the observations, the variation components and the accompanying loadings describe the usage of the variables. If two different datasets with the same variables, but different samples of observations, have similar loading patterns, then the variables appear to be measuring the same underlying quantities in both data situations. This can be the case while the two sets of scores could be arbitrarily different, which e.g.\ could happen if the two datasets were taken from two different populations of subjects. On the other hand, if the loading patterns are different in the two datasets, then this indicates that the variables are used differently in the two data situations, and hence it would be criticizable to use these variables for comparisons across the two datasets.
 
 %Specifically, we can interpret the loadings as weights that determine the relative influence of each variable in each principal component.
@@ -198,17 +202,26 @@ S = \frac{1}{n-2} \sum_{j=1}^n \tilde{x}_j \tilde{x}_j^\top = \sum_{k=1}^d \lamb
 \item To investigate the sample variation randomly reallocate the combined and standardized dataset formed in step 2 to two datasets of $n_1$ and $n_2$ observations, respectively, and redo step 1 and 3. This is done several times, e.g.\ 10000 times, and compared to the plot for the original allocation.
 \end{enumerate} 
 
-Before describing the details of the  \emph{CumEigenPlot}, \emph{HairPlot} and \emph{PancakePlot} we make some general remarks. The covariance matrix for the standardized variables is the same as the correlation matrix for the original variables. The standardization makes the variables comparable on the same scale, i.e.\ units of standard deviation, and it implies that the diagonal elements of $S$, $S_1$, and $S_2$ all equals 1. This also holds for the reallocated datasets, and in particular we have $\sum_{k=1}^d \lambda_k = \sum_{k=1}^d \lambda_{1k} = \sum_{k=1}^d \lambda_{2k} =  d$. The random reallocations in step 4 provide resamples under the null hypothesis that the two sample populations have the same structure in the $d$ variables, except that the two populations are allowed to have the own standard deviations for each of the variables. This exception is induced by the initial step 1, which performs a standardization within the two datasets before they are combined in step 2. These resamples can be used for a visualization of the sample variation, and if a test statistic can be defined in step 3, then a p-value for the null hypothesis may be computed. Such p-values are know as permutation tests for Goodness-of-Fit (\hl{reference?}).
+Before describing the details of the  \emph{CumEigenPlot}, \emph{HairPlot} and \emph{PancakePlot} we make some general remarks. First, it should be noted that PCA is sensitive to scaling, as the procedure deconstructs the covariance matrix in components according to the most explained variance. This implies that if a variable has a very large sample variance (possibly because of its scale), this variable will be always be deemed highly influential, no matter the structure of the data. Therefore, the variables should always be scaled prior to performing PCA. Note that the covariance matrix for the standardized variables is the same as the correlation matrix for the original variables, so this simply corresponds to performing data structural comparisons of the correlation matrices rather than the covariance matrices. \hl{Do we still need more about this topic? Then we can add something like:
+\begin{itemize}
+\item Following the greedy interpretation of PCA, we know that the first eigenvector is chosen as
+$$\eta_1 = \argmax_{u \in \RR^d} \sum_{i=1}^n \lVert u^\top (x_i - \bar{x}) \rVert^2  = \text{argmax}_{u \in \RR^d} \V(u^T X^T) $$
+\item Now, imagine that $\V(x_1) >> \V(x_j)$ for all $j \in 2, ..., d$. Note that $(1, 0, ..., 0) X^T = x_i$. Then, clearly a vector $u$ that only picks out the first variable from the data matrix $X$, namely $u^T = (1, 0, ..., 0)$ will allow us to only look at the variance of $x_1$, which is very large. This has nothing to do with the interplay between variables, as the phenomenon will disappear if we scale $x_1$
+\item A more formal explanation could come from this kind of intuition, if needed.
+\end{itemize}
+}
+The standardization makes the variables comparable on the same scale, i.e.\ units of standard deviation, and it implies that the diagonal elements of $S$, $S_1$, and $S_2$ all equals 1. This also holds for the reallocated datasets, and in particular we have $\sum_{k=1}^d \lambda_k = \sum_{k=1}^d \lambda_{1k} = \sum_{k=1}^d \lambda_{2k} =  d$. The random reallocations in step 4 provide resamples under the null hypothesis that the two sample populations have the same structure in the $d$ variables, except that the two populations are allowed to have the own standard deviations for each of the variables. This exception is induced by the initial step 1, which performs a standardization within the two datasets before they are combined in step 2. These resamples can be used for a visualization of the sample variation, and if a test statistic can be defined in step 3, then a $p$-value for the null hypothesis may be computed. Such $p$-values are know as permutation tests for Goodness-of-Fit (\hl{reference?}).
 
 %In order to describe these plots we consider two different datasets in the same $d$ variables and with $n_1$ and $n_2$ observations, respectively. For dataset $i=1,2$ let $S_i \in \RR^{d \times d}$ be the empirical correlation matrix \hl{(find a way to introduce the empirial correlation matrix instead)}, and let $\lambda_{i1} \ge \dotsm \ge \lambda_{id} \ge 0 $ and $\eta_{i1},\dotsc,\eta_{id} \in \RR^{d}$ be the corresponding variation components and loadings. The correlation matrices correspond to the covariance matrices for the variables after these have been standardized to unit standard deviation separately within the two datasets. Similarly, let $S \in \RR^{d \times d}$ be the empirical correlation matrix for the combined dataset with $n_1+n_2$ observations, and let $\lambda_1 \ge \dotsm \ge \lambda_d \ge 0$ and $\eta_1,\dotsc,\eta_d \in \RR^d$ be the corresponding variation components and loadings.
 
-\hl{To do: justification for using correlation matrices should be further elaborated. And also: Something about what to do if not all variables are numerical. 
+\hl{To do: Something about what to do if not all variables are numerical. Anne: Maybe leave this for the discussion?
 %Using correlation matrices is not the same as assuming standadized variables; there is a difference in the permutations.
 }
 
 \medskip
 
-Description of the \emph{CumEigenPlot}: This plot compares the variation components. 
+\subsubsection{Description of the \emph{CumEigenPlot}}
+ This plot compares the variation components. 
 %If these are the same in the two sample populations, then the best estimate for the variation components are $\lambda_1 \ge \dotsm \ge \lambda_d \ge 0$ found in the combined dataset. And we would expect $\lambda_{i1} \ge \dotsm \ge \lambda_{id} \ge 0$ for $i=1,2$ to be alike excepts sample variation. 
 In order to investigate whether the same proportion of the total variation can be described by the same number of principal components in the two datasets we plot a piecewise linear curve connecting the points
 \begin{align*}
@@ -218,20 +231,22 @@ In order to investigate whether the same proportion of the total variation can b
 \ldots, &&
 \bigg( \sum_{j=1}^d \lambda_j, \sum_{j=1}^d \lambda_{1j} - \sum_{j=1}^d \lambda_{2j} \bigg).
 \end{align*}
-This may be seen as a cumulated Bland-Altman plot for the variation components (\hl{reference to cumulated residuals and to Bland-Altman}). Note that due to the standardization the last point will be equal to $(d,0)$. Thus, this curve will begin and end at the x-axis. And the larger excursions it makes away from the x-axis the less alike the cumulated variation components for the two datasets are.
+This may be seen as a cumulated Bland-Altman plot for the variation components (\hl{reference to cumulated residuals and to Bland-Altman}). Note that due to the standardization the last point will be equal to $(d,0)$. Thus, this curve will begin and end at the x-axis. And the larger excursions it makes away from the x-axis the less alike the cumulated variation components for the two datasets are. \hl{Is this an informative x-axis? Should we maybe consider scaling it?}
 
 In step 3 we have implemented both the \emph{Kolmogorov-Smirnov} and the \emph{Cram\'er-von Mises} test statistics given by
 \begin{align*}
 \text{KS} &= \max_{k=1,\dotsc,d} \bigg\lvert \sum_{j=1}^k \lambda_{1j} - \sum_{j=1}^k \lambda_{2j} \bigg\rvert, &
 \text{CvM} &= \sum_{k=1}^{d-1} \frac{\lambda_k + \lambda_{k+1}}{2} \bigg( \sum_{j=1}^k \lambda_{1j} - \sum_{j=1}^k \lambda_{2j} \bigg)^2.
 \end{align*}
-From the random reallocations in step 4 we get p-values for the Kolmogorov-Smirnov and the Cram\'er-von Mises Goodness-of-Fit tests. Step 4 is also used to visualize the sampling variation in a display, where we plot the observed curve together with 20 of the resampled curves as well as a shaded region visualizing pointwise 95pct coverage intervals. If the observed curve is very different from the resampled curves or if it is substantially outside the shaded region, then this also indicate differences between the two datasets.
+\hl{Maybe more here on what the null hypothesis of these tests is?} 
+From the random reallocations in step 4 we get $p$-values for the Kolmogorov-Smirnov and the Cram\'er-von Mises Goodness-of-Fit tests. Step 4 is also used to visualize the sampling variation in a display, where we plot the observed curve together with 20 of the resampled curves as well as a shaded region visualizing pointwise 95 \% coverage intervals. If the observed curve is very different from the resampled curves or if it is substantially outside the shaded region, then this also indicates differences between the two datasets.
 
 %Whether the excursions in the observed curve are large or within the range of sample variation can be quantified by a permutation test. The idea is that we randomly reallocate the $n_1+n_2$ observations in the combined dataset to two datasets with $n_1$ and $n_2$ observations, respectively, and then repeat the procedure described above. The random reallocation by construction ensures that the two resampled datasets are alike except their sample size and sampling variation. In the \emph{CumEigenPlot} we make 1000 independent random reallocations, and plot  P-values for the null hypothesis that the variation components are the same are easily provided for any appropriate test statistic by the resampling procedure as well. 
 
 \bigskip
 
-Description of the \emph{HairPlot:} This plot simultaneously compares the variation components and the loadings. Let $\lambda_{\max} = \max\{ \lambda_{11}, \lambda_{21} \}$ be the largest variation component for the two datasets. The empirical correlation matrix $S_1$ for the first dataset has the following orthogonal decomposition in the coordinate system of the second dataset
+\subsubsection{Description of the \emph{HairPlot}} 
+This plot simultaneously compares the variation components and the loadings. Let $\lambda_{\max} = \max\{ \lambda_{11}, \lambda_{21} \}$ be the largest variation component for the two datasets. The empirical correlation matrix $S_1$ for the first dataset has the following orthogonal decomposition in the coordinate system of the second dataset
 \begin{equation*}
 S_1 = \sum_{k=1}^d \lambda_{1k} \eta_{1k} \eta_{1k}^\top
 = \lambda_{\max} \sum_{k=1}^d
@@ -261,9 +276,10 @@ In total this gives $2d^2 - d$ tests, which should be corrected for the family w
 \text{CvM}_2 &= \sum_{j=1}^d \sum_{k=1}^d (1_{j \neq k} \nu_{jk} + 1_{j=k} \chi_k)^2.
 \end{align*}
 
-\bigskip
+%\bigskip
 
-Description of the \emph{PancakePlot}: This plot compares the loadings. The \emph{PancakePlot} consists of two parallel vertical barplots, one for each of the datasets, with one bar for each of the $d$ loading vector $\eta_{ij} \in \RR^d$. In the bars the relative contributions of the $d$ variables are visualized by separate colors for the different variables. Due to the indeterminacy of the sign all the signs are removed from the coefficients in the loadings, and the relative contribution is defined as the resulting coefficients divided by their total sum. The bars are ordered according to the variation components, and we also insert the cumulative variation components next to the barplots. The plots resulting from this procedure should be inspected focusing on two properties: Similarities in loading patterns, which will correspond to similar visual impressions, and similarities in variance contributions.  \hl{Refer to example/show plot.}
+\subsubsection{Description of the \emph{PancakePlot}}
+This plot compares the loadings. The \emph{PancakePlot} consists of two parallel vertical barplots, one for each of the datasets, with one bar for each of the $d$ loading vector $\eta_{ij} \in \RR^d$. In the bars the relative contributions of the $d$ variables are visualized by separate colors for the different variables. Due to the indeterminacy of the sign all the signs are removed from the coefficients in the loadings, and the relative contribution is defined as the resulting coefficients divided by their total sum. The bars are ordered according to the variation components, and we also insert the cumulative variation components next to the barplots. The plots resulting from this procedure should be inspected focusing on two properties: Similarities in loading patterns, which will correspond to similar visual impressions, and similarities in variance contributions.  \hl{Refer to example/show plot.}
 
 We not implemented a test statistic for the \emph{PancakePlot}, but in order to visualize the sample variation the observed plot can be shown together with resampled plots generated in step 4.
 

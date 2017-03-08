@@ -8,7 +8,7 @@ useVars <- c("cntry", "stflife", "happy", "fltsd", "fltdpr", "enjlf", "wrhpp", "
              "wrbknrm", "deaimpp", "flteeff", "slprl", "cldgng", "enrglot", "ppltrst",
              "pplfair", "pplhlp", "pplahlp", "flclpla", "inprdsc", "flapppl", "rehlppl",
              "fltlnl")
-
+#
 #anData <- na.omit(data[data$cntry %in% c("DK", "BG"), useVars])
 anData <- na.omit(data[data$cntry %in% c("DK", "SE"), useVars])
 
@@ -77,21 +77,23 @@ anData$SupportiveRelationships <- rowMeans(anData[, sMat$var[sMat$scale ==
 
 #Do PCADSC
 library(PCADSC)
+library(ggplot2)
+library(gridExtra)
 a <- makePCADSC(anData, "cntry",  c("EvaluativeWellbeing",
                                "EmotionalWellbeing",
-                               "Functioning,"
+                               "Functioning",
                                "Vitality",
                                "CommunityWellbeing",
                                "SupportiveRelationships"))
 
 
-p1 <- qplot(a)
+p1 <- pancakePlot(a)
 
 ggsave(plot = p1, file = "./article/essPCADSC.pdf",
        width = 8, height = 4)
 
 set.seed(1234)
-p2 <- wallyPCADSC(a, anData, nrow = 4, ncol = 2)
+p2 <- wallyPancake(a, anData, nrow = 4, ncol = 2)
 
 ggsave(plot = p2, file = "./article/essWallyPCADSC.pdf",
        width = 8, height = 10)
