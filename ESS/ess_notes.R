@@ -74,12 +74,78 @@ anData$fltlnl <- 10 - ((anData$fltlnl - 1) * (10/3))
 anData$SupportiveRelationships <- rowMeans(anData[, sMat$var[sMat$scale ==
                                                                "Supportive relationships"]])
 
+data_SEDK <- anData
+
+anData <- na.omit(data[data$cntry %in% c("DK", "BG"), useVars])
+
+anData$cntry <- as.character(anData$cntry)
+
+sMat <- list()
+sMat$var <- names(anData)[-1]
+sMat$scale <- c(rep("Evaluative wellbeing", 2),
+                rep("Emotional wellbeing", 6),
+                rep("Functioning", 14),
+                rep("Vitality", 4),
+                rep("Community wellbeing", 5),
+                rep("Supportive relationships", 4))
+
+
+#Evaluative wellbeing
+sapply(anData[, sMat$var[sMat$scale == "Evaluative wellbeing"]], range) #same number of levels
+anData$EvaluativeWellbeing <- rowMeans(anData[, sMat$var[sMat$scale == "Evaluative wellbeing"]])
+
+#Emotional wellbeing
+sapply(anData[, sMat$var[sMat$scale == "Emotional wellbeing"]], range) #same number of levels
+for (v in sMat$var[sMat$scale == "Emotional wellbeing"])  {
+  anData[, v] <- anData[, v] - 1
+}
+for (v in c("fltsd", "fltdpr", "fltanx")) {
+  anData[, v] <- 3 - anData[, v]
+}
+anData$EmotionalWellbeing <- rowMeans(anData[, sMat$var[sMat$scale == "Emotional wellbeing"]])
+
+#Functioning
+sapply(anData[, sMat$var[sMat$scale == "Functioning"]], range)
+for (v in setdiff(sMat$var[sMat$scale == "Functioning"],
+                  c("tmimdng", "tmabdng", "tmendng", "sedirlf", "deaimpp")))  {
+  anData[, v] <- (anData[, v]-1)*2.5
+}
+for (v in c("dclvlf", "accdng", "dngval", "optftr", "lotsgot", "pstvms")) {
+  anData[, v] <- 10 - anData[, v]
+}
+anData$Functioning <- rowMeans(anData[, sMat$var[sMat$scale == "Functioning"]])
+
+#Vitality
+sapply(anData[, sMat$var[sMat$scale == "Vitality"]], range)
+for (v in sMat$var[sMat$scale == "Vitality"])  {
+  anData[, v] <- anData[, v] - 1
+}
+for (v in c("flteeff", "slprl", "cldgng")) {
+  anData[, v] <- 3 - anData[, v]
+}
+anData$Vitality <- rowMeans(anData[, sMat$var[sMat$scale == "Vitality"]])
+
+#Community vellbeing
+sapply(anData[, sMat$var[sMat$scale == "Community wellbeing"]], range)
+anData$pplahlp <- (10/6)*anData$pplahlp
+anData$flclpla <- 10 - ((10/4)*(anData$flclpla - 1))
+anData$CommunityWellbeing <- rowMeans(anData[, sMat$var[sMat$scale == "Community wellbeing"]])
+
+#Supportive relationships
+sapply(anData[, sMat$var[sMat$scale == "Supportive relationships"]], range)
+anData$inprdsc <- anData$inprdsc * (10/6)
+anData$rehlppl <- anData$rehlppl * (10/6)
+anData$fltlnl <- 10 - ((anData$fltlnl - 1) * (10/3))
+anData$SupportiveRelationships <- rowMeans(anData[, sMat$var[sMat$scale ==
+                                                               "Supportive relationships"]])
+
+data_BGDK <- anData
 
 #Do PCADSC
 library(PCADSC)
 library(ggplot2)
 library(gridExtra)
-a <- makePCADSC(anData, "cntry",  c("EvaluativeWellbeing",
+a1 <- makePCADSC(data_SEDK, "cntry",  c("EvaluativeWellbeing",
                                "EmotionalWellbeing",
                                "Functioning",
                                "Vitality",
@@ -87,38 +153,90 @@ a <- makePCADSC(anData, "cntry",  c("EvaluativeWellbeing",
                                "SupportiveRelationships"))
 
 
-p1 <- pancakePlot(a)
+p1 <- pancakePlot(a1)
 
-ggsave(plot = p1, file = "./article/essPCADSC.pdf",
-       width = 8, height = 4)
+ggsave(plot = p1, file = "./article/essDKSEpancake.pdf",
+       width = 8, height = 5)
+
+a2 <- makePCADSC(data_BGDK, "cntry",  c("EvaluativeWellbeing",
+                                       "EmotionalWellbeing",
+                                       "Functioning",
+                                       "Vitality",
+                                       "CommunityWellbeing",
+                                       "SupportiveRelationships"))
+
+
+p2 <- pancakePlot(a2)
+
+ggsave(plot = p2, file = "./article/essDKBGpancake.pdf",
+       width = 8, height = 5)
+
+p2c <- pancakePlot(a2, useComps = 2:4)
+
+ggsave(plot = p2c, file = "./article/essDKBGpancake234.pdf",
+       width = 8, height = 5)
+
 
 set.seed(1234)
-p2 <- wallyPancake(a, anData, nrow = 4, ncol = 2)
+p3a <- wallyPancake(a1, data_SEDK, nrow = 2, ncol = 3, varAnnotation = NULL)
+p3b <- wallyPancake(a2, data_BGDK, nrow = 2, ncol = 3, varAnnotation = NULL)
+set.seed(12324)
+p3c <- wallyPancake(a2, data_BGDK, nrow = 2, ncol = 3,
+                    useComps = 2:4, varAnnotation = NULL)
 
-ggsave(plot = p2, file = "./article/essWallyPCADSC.pdf",
-       width = 8, height = 10)
+ggsave(plot = p3a, file = "./article/essDKSEWallyPCADSC.pdf",
+       width = 10, height = 7)
+ggsave(plot = p3b, file = "./article/essDKBGWallyPCADSC.pdf",
+       width = 10, height = 7)
+ggsave(plot = p3c, file = "./article/essDKBGWallyPCADSC234.pdf",
+       width = 10, height = 7)
 
 
 #Do cumeigen stuff:
-cumeigen(anData, "cntry",  c("EvaluativeWellbeing",
+cumeigen(data_SEDK, "cntry",  c("EvaluativeWellbeing",
                                      "EmotionalWellbeing",
                                      "Functioning",
                                      "Vitality",
                                      "CommunityWellbeing",
                                      "SupportiveRelationships"), make.plot = T)
+ggsave(file = "./article/essDKSEce.pdf", width = 8, height = 5)
+
+cumeigen(data_BGDK, "cntry",  c("EvaluativeWellbeing",
+                                "EmotionalWellbeing",
+                                "Functioning",
+                                "Vitality",
+                                "CommunityWellbeing",
+                                "SupportiveRelationships"), make.plot = T)
+ggsave(file = "./article/essDKBGce.pdf", width = 8, height = 5)
+
+
+
 #Do hairplot:
-hairplot(anData, "cntry",  c("EvaluativeWellbeing",
+hairplot(data_SEDK, "cntry",  c("EvaluativeWellbeing",
                              "EmotionalWellbeing",
                              "Functioning",
                              "Vitality",
                              "CommunityWellbeing",
                              "SupportiveRelationships"))
+ggsave(file = "./article/essDKSEhair.pdf", width = 8, height = 5)
+
+hairplot(data_BGDK, "cntry",  c("EvaluativeWellbeing",
+                                "EmotionalWellbeing",
+                                "Functioning",
+                                "Vitality",
+                                "CommunityWellbeing",
+                                "SupportiveRelationships")) +
+  geom_abline(slope = 1, intercept = 0) +
+  geom_abline(slope = 1, intercept = -1) +
+  geom_abline(slope = 1, intercept = -2)
+ggsave(file = "./article/essDKBGhair.pdf", width = 8, height = 5)
+
 
 #Data overview
-library(dataMaid)
-clean(anData, useVars = c("cntry", "EvaluativeWellbeing",
-                                     "EmotionalWellbeing",
-                                     "Functioning",
-                                     "Vitality",
-                                     "CommunityWellbeing",
-                                     "SupportiveRelationships"), replace = TRUE)
+#library(dataMaid)
+#clean(anData, useVars = c("cntry", "EvaluativeWellbeing",
+#                                     "EmotionalWellbeing",
+#                                     "Functioning",
+#                                     "Vitality",
+#                                     "CommunityWellbeing",
+#                                     "SupportiveRelationships"), replace = TRUE)

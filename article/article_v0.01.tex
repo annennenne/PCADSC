@@ -50,7 +50,7 @@
 
 %\title{Something that is not PCADSC}
 %\title{Structure comparison for multivariate data by\ldots / with application to \ldots}
-\title{Explorative data structure comparison with application to \ldots}
+\title{Exploratory data structure comparisons using Principal Component Analysis}
 
 \author{Anne H. Petersen, Bo Markussen, Karl Bang Christensen}
 
@@ -166,7 +166,7 @@ and equals $\sum_{j=q+1}^d \lambda_j$. The eigenvectors $\eta_j \in \RR^d$ are c
 \eta_j &= \argmax_{u \in \RR^d\colon u \perp \hat{K}_{j-1}} \sum_{i=1}^n \lVert u^\top (x_i - \bar{x}) \rVert^2, &
 \lambda_j &= \frac{1}{n-1} \sum_{i=1}^n \lVert \eta_j^\top (x_i - \bar{x}) \rVert^2.
 \end{align*}
-\hl{Anne: Should we maybe assume standardized $x$s here also? I feel like it is part of the PCA algorithm and subtracting the mean in the above seems off for that reason.} It is worth emphasizing that the greedy approach of successively adding the next direction $\eta_j$ explaining most of the remaining variation, also gives the sequence $\hat{K}_q = \hat{K}_{q-1} \oplus \text{span} \{\eta_q\}$ of subspaces minimizing the rank-q-reconstruction error. This strong interpretation of PCA, which is often overlooked in the literature, means that the sequence of loadings $\eta_j$ and their associated variation components $\lambda_j$ yield a simultaneous description of the structure of the data set for all approximating dimensions $q$. This implies that the loadings and variation components can be used to investigate the structure of the data set without the need to decide on an approximating dimension $q$.
+\hl{Anne: Should we maybe assume standardized $x$s here also? I feel like it is part of the PCA algorithm and subtracting the mean in the above seems off for that reason. Also: Something is wrong with the dimensions here. $u$ is $d \times 1$, $x_i$ is $d \times 1$(?) - how do we get $\eta_j$ to also be $d \times 1$?} It is worth emphasizing that the greedy approach of successively adding the next direction $\eta_j$ explaining most of the remaining variation, also gives the sequence $\hat{K}_q = \hat{K}_{q-1} \oplus \text{span} \{\eta_q\}$ of subspaces minimizing the rank-q-reconstruction error. This strong interpretation of PCA, which is often overlooked in the literature, means that the sequence of loadings $\eta_j$ and their associated variation components $\lambda_j$ yield a simultaneous description of the structure of the data set for all approximating dimensions $q$. This implies that the loadings and variation components can be used to investigate the structure of the data set without the need to decide on an approximating dimension $q$.
 
 
 %Principal component analysis (PCA) allows us to decompose a data matrix consisting of $n$ observations of $d$ variables into $d$ orthogonal vectors of length $d$. This is in itself not very impressive nor useful. But PCA does not result in just any basis of the data matrix. The basis chosen using PCA has the very favorable property that each vector is chosen such that they maximize the accumulated explained variance. These vectors are usually denoted \textit{principal component scores} or simply \textit{principal components} and they are constructed as linear combinations of the variables in the dataset (or, equivalently, as projections of the data matrix). The coefficients of each variable in these projections are denoted \textit{loadings}. Let $S \in \RR^{d \times d}$ denote the empirical covariance matrix and let $X \in \RR^{n \times d}$ denote our observed data matrix. $d$ is the number of variables while $n$ is the number of observations. The deconstruction procedure then goes as follows:
@@ -205,7 +205,7 @@ S = \frac{1}{n-2} \sum_{j=1}^n \tilde{x}_j \tilde{x}_j^\top = \sum_{k=1}^d \lamb
 Before describing the details of the  \emph{CumEigenPlot}, \emph{HairPlot} and \emph{PancakePlot} we make some general remarks. First, it should be noted that PCA is sensitive to scaling, as the procedure deconstructs the covariance matrix in components according to the most explained variance. This implies that if a variable has a very large sample variance (possibly because of its scale), this variable will be always be deemed highly influential, no matter the structure of the data. Therefore, the variables should always be scaled prior to performing PCA. Note that the covariance matrix for the standardized variables is the same as the correlation matrix for the original variables, so this simply corresponds to performing data structural comparisons of the correlation matrices rather than the covariance matrices. \hl{Do we still need more about this topic? Then we can add something like:
 \begin{itemize}
 \item Following the greedy interpretation of PCA, we know that the first eigenvector is chosen as
-$$\eta_1 = \argmax_{u \in \RR^d} \sum_{i=1}^n \lVert u^\top (x_i - \bar{x}) \rVert^2  = \text{argmax}_{u \in \RR^d} \V(u^T X^T) $$
+$$\eta_1 = \argmax_{u \in \RR^d} \sum_{i=1}^n \lVert u^\top (x_i - \bar{x}) \rVert^2  = \text{argmax}_{u \in \RR^d} \tilde{\V}(u^T X^T) $$
 \item Now, imagine that $\V(x_1) >> \V(x_j)$ for all $j \in 2, ..., d$. Note that $(1, 0, ..., 0) X^T = x_i$. Then, clearly a vector $u$ that only picks out the first variable from the data matrix $X$, namely $u^T = (1, 0, ..., 0)$ will allow us to only look at the variance of $x_1$, which is very large. This has nothing to do with the interplay between variables, as the phenomenon will disappear if we scale $x_1$
 \item A more formal explanation could come from this kind of intuition, if needed.
 \end{itemize}
@@ -238,7 +238,7 @@ In step 3 we have implemented both the \emph{Kolmogorov-Smirnov} and the \emph{C
 \text{KS} &= \max_{k=1,\dotsc,d} \bigg\lvert \sum_{j=1}^k \lambda_{1j} - \sum_{j=1}^k \lambda_{2j} \bigg\rvert, &
 \text{CvM} &= \sum_{k=1}^{d-1} \frac{\lambda_k + \lambda_{k+1}}{2} \bigg( \sum_{j=1}^k \lambda_{1j} - \sum_{j=1}^k \lambda_{2j} \bigg)^2.
 \end{align*}
-\hl{Maybe more here on what the null hypothesis of these tests is?} 
+\hl{Maybe more here on what the null hypothesis and range of these test statistics are?} 
 From the random reallocations in step 4 we get $p$-values for the Kolmogorov-Smirnov and the Cram\'er-von Mises Goodness-of-Fit tests. Step 4 is also used to visualize the sampling variation in a display, where we plot the observed curve together with 20 of the resampled curves as well as a shaded region visualizing pointwise 95 \% coverage intervals. If the observed curve is very different from the resampled curves or if it is substantially outside the shaded region, then this also indicates differences between the two datasets.
 
 %Whether the excursions in the observed curve are large or within the range of sample variation can be quantified by a permutation test. The idea is that we randomly reallocate the $n_1+n_2$ observations in the combined dataset to two datasets with $n_1$ and $n_2$ observations, respectively, and then repeat the procedure described above. The random reallocation by construction ensures that the two resampled datasets are alike except their sample size and sampling variation. In the \emph{CumEigenPlot} we make 1000 independent random reallocations, and plot  P-values for the null hypothesis that the variation components are the same are easily provided for any appropriate test statistic by the resampling procedure as well. 
@@ -247,24 +247,30 @@ From the random reallocations in step 4 we get $p$-values for the Kolmogorov-Smi
 
 \subsubsection{Description of the \emph{HairPlot}} 
 This plot simultaneously compares the variation components and the loadings. Let $\lambda_{\max} = \max\{ \lambda_{11}, \lambda_{21} \}$ be the largest variation component for the two datasets. The empirical correlation matrix $S_1$ for the first dataset has the following orthogonal decomposition in the coordinate system of the second dataset
+%\begin{equation*}
+%S_1 = \sum_{k=1}^d \lambda_{1k} \eta_{1k} \eta_{1k}^\top
+%= \lambda_{\max} \sum_{k=1}^d
+%\Bigg( \sum_{j=1}^d \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} (\eta_{1k} \eta_{2j}^\top) \eta_{2j} \Bigg)
+%\Bigg( \sum_{j=1}^d \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} (\eta_{1k} \eta_{2j}^\top) \eta_{2j} \Bigg)^\top,
+%\end{equation*}
 \begin{equation*}
 S_1 = \sum_{k=1}^d \lambda_{1k} \eta_{1k} \eta_{1k}^\top
 = \lambda_{\max} \sum_{k=1}^d
-\Bigg( \sum_{j=1}^d \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} (\eta_{1k} \eta_{2j}^\top) \eta_{2j} \Bigg)
-\Bigg( \sum_{j=1}^d \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} (\eta_{1k} \eta_{2j}^\top) \eta_{2j} \Bigg)^\top,
+\Bigg( \sum_{j=1}^d \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} \eta_{2j} (\eta_{2j}^\top \eta_{1k}) \Bigg)
+\Bigg( \sum_{j=1}^d \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} \eta_{2j} (\eta_{2j}^\top \eta_{1k}) \Bigg)^\top,
 \end{equation*}
-and we have a similar decomposition of $S_2$ in the coordinate system of the first dataset. We propose to visualize these two decompositions in a $d \times d$ grid display. In the $j$th row and $k$th column of this display we plot two arrows based at the lower left corner of the grid cell. The first arrow has length $\mu_{jk}$ and angle $\theta_{jk}/2$ anticlockwise from the diagonal, and the second arrow has length $\nu_{jk}$ and angle $\theta_{jk}/2$ clockwise from the diagonal. To facilitate the following description we will refer to the arrows drawn anticlockwise as the blue arrows, and the arrows drawn clockwise as the red arrows. The lengths $\mu_{jk}$ and $\nu_{jk}$ and the angle $\theta_{kj}$ are given by
+and we have a similar decomposition of $S_2$ in the coordinate system of the first dataset \hl{Anne: it was not completely clear to me what this meant the first xx times I read it - expand?}. We propose to visualize these two decompositions in a $d \times d$ grid display. In the $j$th row and $k$th column of this display we plot two arrows based at the lower left corner of the grid cell. The first arrow has length $\mu_{jk}$ and angle $\theta_{jk}/2$ anticlockwise from the diagonal, and the second arrow has length $\nu_{jk}$ and angle $\theta_{jk}/2$ clockwise from the diagonal. To facilitate the following description we will refer to the arrows drawn anticlockwise as the blue arrows, and the arrows drawn clockwise as the red arrows. The lengths $\mu_{jk}$ and $\nu_{jk}$ and the angle $\theta_{kj}$ are given by
 \begin{align*}
-\mu_{jk} &= \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} \lvert \eta_{1k} \eta_{2j}^\top \rvert, &
-\nu_{jk} &= \sqrt{\frac{\lambda_{2j}}{\lambda_{\max}}} \lvert \eta_{2j} \eta_{1k}^\top \rvert, &
-\theta_{jk} &= \acos(\lvert \eta_{1k} \eta_{2j}^\top \rvert).
+\mu_{jk} &= \sqrt{\frac{\lambda_{1k}}{\lambda_{\max}}} \lvert \eta_{1k}^\top \eta_{2j} \rvert, &
+\nu_{jk} &= \sqrt{\frac{\lambda_{2j}}{\lambda_{\max}}} \lvert \eta_{2j}^\top \eta_{1k} \rvert, &
+\theta_{jk} &= \acos(\lvert \eta_{1k}^\top \eta_{2j} \rvert).
 \end{align*}
-
+\hl{Maybe emphasize inner product/angle-interpretation here?}
 The absolute value of the projection $\eta_{1k} \eta_{2j}^\top$ is inserted due to the indeterminacy of the direction of loading vectors. This indeterminacy implies that the angle between loadings from the two datasets always can be chosen to be in the interval $[0,\pi/2]$, and hence the decomposition of $S_1$ and $S_2$ can be visualized in a joint plot by dividing the angles by two and using anticlockwise and clockwise shifts from the diagonal. Furthermore, the scaling of the lengths by $\lambda_{\max}$ is made so that the longest arrow has at most unit length.
 
-In the \emph{HairPlot} the blue arrows in the $k$th column of the grid display visualize the decomposition of the $k$th principal components for the first dataset in the coordinate system of the second dataset. Similarly, the red arrows in the $j$th row visualize the decomposition of the $j$th principal components for the second dataset in the coordinate system of the first dataset. If the structures of the two datasets are identical, then we will have coinciding blue and red arrows along the diagonal in the grid display, and nothing else as arrows in the off-diagonal cells would have zero length. Differences in the variation components are visualized as differences in the lengths of the blue and the red arrows, also in the diagonal. And loadings in other directions than the corresponding loading from the other dataset are visualized as angle separation of the blue and the red arrows in the diagonal cells as well as arrows of non vanishing length in the off-diagonal cells. The name \emph{HairPlot} arise by seeing the arrows as \emph{hairs}. Using this interpretation we may say that a more ``hairy'' plot indicates less agreement between the two loading patterns.
+In the \emph{HairPlot} the blue arrows in the $k$th column of the grid display visualize the decomposition of the $k$th principal component for the first dataset in the coordinate system of the second dataset. Similarly, the red arrows in the $j$th row visualize the decomposition of the $j$th principal components for the second dataset in the coordinate system of the first dataset. \hl{Can we expand on this in a non-technical way?} If the structures of the two datasets are identical, then we will have coinciding blue and red arrows along the diagonal in the grid display, and nothing else as arrows in the off-diagonal cells would have zero length. Differences in the variation components are visualized as differences in the lengths of the blue and the red arrows, also in the diagonal. And loadings in other directions than the corresponding loading from the other dataset are visualized as angle separation of the blue and the red arrows in the diagonal cells as well as arrows of non vanishing length in the off-diagonal cells. The name \emph{HairPlot} arise by seeing the arrows as \emph{hairs}. Using this interpretation we may say that a more ``hairy'' plot indicates less agreement between the two loading patterns.
 
-Along with the visual comparison we have also implemented numerical tests in step 3. Separately for the off-diagonal grid cells we may use the lengths $\mu_{jk}$ and $\nu_{jk}$ as test statistics, and for the on-diagonal grid cells we use the distance between the scaled loadings as test statistics, that is
+Along with the visual comparison we have also implemented numerical tests in step 3 \hl{Anne: Is a test really necessary here? Isn't the point of this plot to point us towards the most interesting components, not to quantify exactly how much they differ? I'm unsure as to whether a significant difference will necessarily be empirically/clinically relevant and likewise, if a non-significant difference will always be one we can disregard of...}. Separately for the off-diagonal grid cells we may use the lengths $\mu_{jk}$ and $\nu_{jk}$ as test statistics, and for the on-diagonal grid cells we use the distance between the scaled loadings as test statistics, that is
 \begin{equation*}
 \chi_k = \lambda_{\max}^{-1} \lvert \lambda_{1k} \eta_{1k} - \lambda_{2k} \eta_{2k} \rvert, \quad \text{for $k=1,\dotsc,d$.}
 \end{equation*}
@@ -279,7 +285,7 @@ In total this gives $2d^2 - d$ tests, which should be corrected for the family w
 %\bigskip
 
 \subsubsection{Description of the \emph{PancakePlot}}
-This plot compares the loadings. The \emph{PancakePlot} consists of two parallel vertical barplots, one for each of the datasets, with one bar for each of the $d$ loading vector $\eta_{ij} \in \RR^d$. In the bars the relative contributions of the $d$ variables are visualized by separate colors for the different variables. Due to the indeterminacy of the sign all the signs are removed from the coefficients in the loadings, and the relative contribution is defined as the resulting coefficients divided by their total sum. The bars are ordered according to the variation components, and we also insert the cumulative variation components next to the barplots. The plots resulting from this procedure should be inspected focusing on two properties: Similarities in loading patterns, which will correspond to similar visual impressions, and similarities in variance contributions.  \hl{Refer to example/show plot.}
+This plot compares the loadings. The \emph{PancakePlot} consists of two parallel vertical barplots, one for each of the datasets, with one bar for each of the $d$ loading vector $\eta_{ij} \in \RR^d$. In the bars the relative contributions of the $d$ variables are visualized by separate colors for the different variables. Due to the indeterminacy of the sign all the signs are removed from the coefficients in the loadings, and the relative contribution is defined as the resulting coefficients divided by their total sum. The bars are ordered according to the variation components, and we also insert the cumulative variation components next to the barplots. The plots resulting from this procedure should be inspected focusing on two properties: Similarities in loading patterns, which will correspond to similar visual impressions, and similarities in variance contributions.  \hl{Refer to example/show plot. Also, from Anne to Anne: A bit further elaboration here, especially mention the loadings as weights interpretation}
 
 We not implemented a test statistic for the \emph{PancakePlot}, but in order to visualize the sample variation the observed plot can be shown together with resampled plots generated in step 4.
 
@@ -291,6 +297,7 @@ We not implemented a test statistic for the \emph{PancakePlot}, but in order to 
 %\item Produce a plot consisting of a bar for each principal component, decorated with the cumulative variance contribution corresponding to this component. The bar should be of length one and colored according to the variables loading the component.
 %\end{enumerate}
 
+\hl{Mention somewere how we propose for people to use the plots: First CE, then hair, then pancake focusing in hairy components.}
 
 
 
