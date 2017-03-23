@@ -392,18 +392,17 @@ Looking at the chroma plot in Figure \ref{plotSE.pancake}, the same tale is told
 
 When deciding whether to combine two data sets for analysis, the issue of heterogeneity across data sets must be addressed. Simple methods suffer drawbacks and will likely scale poorly. Parametric models using, e.g., latent variable models moves beyond the marginal approach, but need a pre-specified model.
 
-New tools, referred to collectively as Principal Component Analysis-based Data Structure Comparisons (PCADSC), for the task of deciding if the two two data sets can be combine for analysis were proposed and discussed in the paper. They employ the principal component decomposition of the empirical covariance matrix performed on two subsets of a dataset in order to create intuitive visualizations of data structure differences yielding a solution that is largely independent of the sizes  the two data sets.
+New tools, refered to collectively as Principal Component Analysis-based Data Structure Comparisons (PCADSC), for the task of deciding if the two two data sets can be combine for analysis were proposed and discussed in the paper. They employ the principal component decomposition of the empirical covariance matrix performed on two subsets of a dataset in order to create intuitive visualizations of data structure differences yielding a solution that is largely independent of the sizes  the two data sets.
 
-\hl{
-The methodology is quite general and in principle any plot that can be made can be included ('di-scree plot') ... [rephrase!!]
+Further topics need to be addressed. These include generalizing the methods to be able to address (i) the results to binary, ordinal or even nominal categorical variables, (ii) generalizing the results to covariance matrices that are not of full rank.
+\item Investigate sensitivity towards the sample sizes $n_1$ and $n_2$
+\item Limitations: What sorts of problems can never be found using PCADSC?
+\begin{itemize}
+\item Differences in scaling, as we standardize all variables
+\item More?
+\end{itemize}
+\end{itemize}
 }
-
-Further topics need to be addressed. These include generalizing the methods to be able to address (i) binary, ordinal or even nominal categorical variables, (ii) covariance matrices that are not of full rank.
-
-More evaluation of the performance is also needed. Investigating sensitivity towards the sample sizes $n_1$ and $n_2$ 
-
-The limitations of the PCADSC procedures should also be sudied in more detail. It seems unlikely that the procedure would be able to disclose differences in scaling, since all variables are standardized in the procedure. This type of heterogeneity should thus be adjusted for in later analyses of the combined data set.
-
 
 %\section{Concluding Remarks}
 %\label{sec:conclusion}

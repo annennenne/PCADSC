@@ -1,0 +1,28 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\astroncite{Brambilla and McKinlay}{1987}]{Brambilla1987}
+Brambilla, D.~J. and McKinlay, S.~M. (1987).
+\newblock {A comparison of responses to mailed questionnaires and telephone
+  interviews in a mixed mode health survey.}
+\newblock {\em American journal of epidemiology}, 126(5):962--71.
+
+\bibitem[\protect\astroncite{Liu}{2016}]{Liu2016}
+Liu, M. (2016).
+\newblock Comparing data quality between online panel and intercept samples.
+\newblock {\em Methodological Innovations}, 9:2059799116672877.
+
+\bibitem[\protect\astroncite{McHorney et~al.}{1994}]{McHorney1994}
+McHorney, C.~A., Kosinski, M., and Ware, J.~E. (1994).
+\newblock {Comparisons of the costs and quality of norms for the SF-36 health
+  survey collected by mail versus telephone interview: results from a national
+  survey.}
+\newblock {\em Medical care}, 32(6):551--67.
+
+\bibitem[\protect\astroncite{Powers et~al.}{2005}]{Powers2005}
+Powers, J.~R., Mishra, G., and Young, A.~F. (2005).
+\newblock {Differences in mail and telephone responses to self-rated health:
+  use of multiple imputation in correcting for response bias.}
+\newblock {\em Australian and New Zealand journal of public health},
+  29(2):149--54.
+
+\end{thebibliography}
