@@ -10,7 +10,7 @@ library(devtools)
 install_github('annepetersen1/PCADSC')
 ```
 
-The basic functionality of the packages can be inspected using the following lines of code:
+The basic functionality of the package can be inspected using the following lines of code:
 ```{r}
 library(PCADSC)
 
