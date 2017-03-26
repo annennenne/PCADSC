@@ -13,8 +13,10 @@
 \usepackage{hyperref}
 \usepackage{natbib}
 \usepackage{multirow}
+%\usepackage{colortbl}
 %\usepackage[backend=biber,natbib=true, style=authoryear-comp]{biblatex}
-
+\usepackage[table]{xcolor}
+\definecolor{lightgray}{gray}{0.9}
 
 
 
@@ -26,7 +28,8 @@
 \newcommand{\hl}[1]{\textcolor{magenta}{#1}}
 \newcommand{\RR}{\mathbb{R}}
 \DeclareMathOperator*{\V}{V}
-\newcommand{\argmax}{\text{argmax}}
+\DeclareMathOperator*{\argmax}{argmax}
+%\newcommand{\argmax}{\text{argmax}}
 \newcommand{\R}[1]{\texttt{#1}}
 \newcommand{\acos}{\text{arccos}}
 
@@ -51,7 +54,7 @@
 
 %\title{Something that is not PCADSC}
 %\title{Structure comparison for multivariate data by\ldots / with application to \ldots}
-\title{Exploratory data structure comparisons: Three new tools based on Principal Component Analysis}
+\title{Exploratory data structure comparisons: Three new visual tools based on Principal Component Analysis}
 
 \author{Anne H. Petersen, Bo Markussen, Karl Bang Christensen}
 
@@ -65,7 +68,7 @@
 
 \linespacing{1}
 
-%\RepeatTitle{Psychometrics: From Practice to Theory and Back}
+%\RepeatTitle{Exploratory data structure comparisons: Three new tools based on Principal Component Analysis}
 
 \begin{center}\vskip3pt
 
@@ -80,7 +83,7 @@ Abstract\vskip3pt
 \begin{abstract}
 abstract...
 \begin{keywords}
-keywords...
+Principal component analysis, multi-center studies, data structure comparisons \hl{Is this how you do keywords? Karl? Bo?}
 \end{keywords}
 \end{abstract}
 
@@ -98,6 +101,9 @@ Classical statistical methodology is aimed at analyzing data from designed exper
 \end{itemize}
 
 \hl{Maybe something here about what PCA is usually used for, e.g. dimension reduction, exploratory data analysis, ...}
+
+
+\hl{Maybe broaden the raison d'etre of PCADSC a bit: It is also a useful tool for doing initial, exploratory data analysis and it helps us to identify potential problems or challenges early in the study design development, before concrete model choices have been made, thereby aiding a more economic use of resources and a less ad-hoc approach to the types of problems that PCADSC can find.}
 
 Assume that we have two data sets with the same variables, but different observations represented as a data set with
 a subset-inducing variable. Assume next that we wish to compare structures without specifying a model, or even a variable of interest. The central question is whether the two data sets can readily be combined for the purpose of later data analysis, or if the subset-inducing variable implies heterogeneity across the subset division.
@@ -155,7 +161,7 @@ S_i = \frac{1}{n_i-1} \sum_{j=1}^{n_i} \tilde{x}_{ij} \tilde{x}_{ij}^\top = \sum
 \end{equation*}
 thereby obtaining loadings $\eta_{ik}$ and variance components $\lambda_{ik}$ for $i \in \{1, 2\}$ and $k \in 1, ..., d$.
 \end{enumerate}
-The hereby obtains PCA decompositions of the covariance matrices can then be compared. We present three diagnostics plots that are designed to shine a light on different types and nuances of data structure differences. These three plots are
+The hereby obtains PCA decompositions of the covariance matrices can then be compared. We present three diagnostics plots that are designed to shine a light on different types and nuances of data structure differences. These three plots are:
 
 
 \begin{description}
@@ -165,7 +171,9 @@ The hereby obtains PCA decompositions of the covariance matrices can then be com
 \end{description}
 For the deepest understanding of the data structure differences in two datasets, we suggest using all three steps in the above order. 
 
-But before diving deeper into the details of the \emph{CE plot}, the \emph{angle plot} and the \emph{chroma plot}, a general remark about standardization in PCA is in place. We would like to emphasize that PCA is sensitive to scaling, as the procedure deconstructs the covariance matrix in components according to the most explained variance. This implies that if a variable has a very large sample variance (possibly because of its scale), this variable will be always be deemed highly influential, no matter the structure of the data. Therefore, the variables should always be scaled prior to performing PCA. Note that the covariance matrix for the standardized variables is the same as the correlation matrix for the original variables, so this simply corresponds to performing data structural comparisons of the correlation matrices rather than the covariance matrices. The standardization makes the variables comparable on the same scale, i.e.\ units of standard deviation, and it implies that the diagonal elements of $S$, $S_1$, and $S_2$ all equals 1, and thus also that $\sum_{k=1}^d \lambda_k = \sum_{k=1}^d \lambda_{1k} = \sum_{k=1}^d \lambda_{2k} =  d$. 
+But before diving deeper into the details of the \emph{CE plot}, the \emph{angle plot} and the \emph{chroma plot}, a general remark about standardization in PCA is in place. We would like to emphasize that PCA is sensitive to scaling, as the procedure deconstructs the covariance matrix in components according to the most explained variance. This implies that if a variable has a very large sample variance (possibly because of its scale), this variable will be always be deemed highly influential, no matter the structure of the data. Therefore, the variables should always be scaled prior to performing PCA. Note that the covariance matrix for the standardized variables is the same as the correlation matrix for the original variables, so this simply corresponds to performing data structural comparisons of the correlation matrices rather than the covariance matrices. The standardization makes the variables comparable on the same scale, i.e.\ units of standard deviation, and it implies that the diagonal elements of $S$, $S_1$, and $S_2$ all equals 1, and thus also that 
+$$\sum_{k=1}^d \lambda_k = \sum_{k=1}^d \lambda_{1k} = \sum_{k=1}^d \lambda_{2k} =  d$$
+which will simplify some expressions below. 
 
 \subsubsection{The cumulative eigenvalue plot}
  The cumulative eigenvalue (CE) plot compares the variation components, i.e. the eigenvalues of the covariance matrix.
@@ -176,7 +184,7 @@ In order to investigate whether the same proportion of the total variation can b
 (\lambda_1,\lambda_{11}-\lambda_{12}), &&
 (\lambda_1 + \lambda_2,\lambda_{11}+\lambda_{12}-\lambda_{21}-\lambda_{22}), &&
 \ldots, &&
-\bigg( \sum_{j=1}^d \lambda_j, \sum_{j=1}^d \lambda_{1j} - \sum_{j=1}^d \lambda_{2j} \bigg).
+\bigg( \sum_{j=1}^d \lambda_j, \sum_{j=1}^d \lambda_{1j} - \sum_{j=1}^d \lambda_{2j} \bigg)
 \end{align*}
 This may be seen as a cumulative Bland-Altman plot for the variation components (\hl{reference to cumulative residuals and to Bland-Altman}). Note that due to the standardization, the last point will always be equal to $(d,0)$. Thus, this curve will begin and end at the x-axis. And the larger excursions it makes away from the x-axis, the less alike the cumulative variation components for the two datasets are. Moreover, a positive cumulative differences implies that dataset 1 holds more information in the first components than dataset 2 does. 
 
@@ -237,37 +245,19 @@ The plots resulting from this procedure should be inspected focusing on two prop
 
 \section{European differences in psychological well-being: A data example}
 \label{sec:dataexample}
-We will now turn to a concrete data example in order to illustrate the capabilities of the methods presented above. We use data from the 2012 version of the European Social Survey (ESS) project to investigate inter-country differences in psychological well-being and happiness. This investigation is motivated by an increasingly popular new tendency to publish miscellaneous rankings of countries in fields as different as educational quality (\hl{ref: PISA stuff}), \hl{XXX} and citizen happiness (\hl{ref OECD?}). From a methodological point of view, such international rankings are very concerning, as they rely on the fundamental assumption  that the measured concepts are inherently the same across countries. The PCADSC tools qualify as a suite of methods for exploring the validity of this assumption empirically.
+We will now turn to a concrete data example in order to illustrate the capabilities of the methods presented above. We use data from the 2012 version of the European Social Survey (ESS) project to investigate inter-country differences in psychological well-being and happiness. This investigation is motivated by an increasingly popular new tendency to publish miscellaneous rankings of countries in fields as different as educational quality (e.g. the PISA tests) and citizen happiness (e.g. the UN \textit{World Happiness Report} project). From a methodological point of view, such international rankings are very concerning, as they rely on the fundamental assumption  that the measured concepts are inherently the same across countries. The PCADSC tools qualify as a suite of methods for exploring the validity of this assumption empirically.
 
-In the rankings of happiness, Denmark has repeatedly been awarded with the title of "happiest country" (\hl{ref?}. However, little critical discussion has been aimed at whether or not this title is in any way meaningful. Does there exist such a thing as a universal, internationally valid concept of happiness? Or do different aspects of psychological well-being or happiness simply do not have the same relative meaning in different cultural and socioeconomic settings? This is in fact a question concerning comparability of data structures. If two countries differ e.g. in terms of how social networks are typically build and structured, with one emphasizing family relations and the other mostly focusing on other social relations, having a weak family connection does not have the same implications in the first country as it does in the second one. More specifically, whereas in the first country, lack of familial network might be related to loneliness, lack of general social capital and isolation, in the second country, the quality of the family network might not be informative at all about other aspects of a person's social or psychological well-being. The two countries thus differ in how different aspects or measures of psychological well-being are interrelated, which is essentially a difference in data structures. And therefore, comparing the two countries in these measures is not a meaningful endeavor.
+For international comparisons of educational systems, the PISA tests have repeatedly been criticized for not being meaningful objects for international comparisons, especially due to problems with differential item functions (\cite{Kankaras2014}; \cite{Kreiner2014}) and translation problems (\cite{Asil2016}). \hl{Til Karl: Måske kender du nogle flere studier her, vi bør nævne?} 
 
-In this section we will use the PCADSC tools to unveil such differences between Denmark and Bulgaria. These two countries have previously been highlighted to be very different in terms of what defines happiness (\hl{REF: ESS6 Topline Results Series 5}). This might be the result of large, cultural and socioeconomic differences between the two countries. Therefore, a successful method for data comparisons should be able to detect these differences by looking at data on psychological well-being from these two countries.
+In the rankings of happiness, not much work has yet been devoted to evaluating the assumption of international comparabiltity, though \cite{Veenhoven2012} presents a theoretically thorough, but empirically simplistic, summary of possible reasons for lack of comparability and \cite{Lolle2016} shows highly potent translation issues for the term \textit{happiness}. The main question is whether or not there exist such a thing as a universal, internationally valid concept of happiness. Or do different aspects of psychological well-being or happiness simply not have the same relative meaning in different cultural and socioeconomic settings? This is in fact a question concerning comparability of data structures. If two countries differ e.g. in terms of how social networks are typically build and structured, with one emphasizing family relations and the other mostly focusing on other social relations, having a weak family connection does not have the same implications in the first country as it does in the second one. More specifically, whereas in the first country, lack of familial network might be related to loneliness, lack of general social capital and isolation, in the second country, the quality of the family network might not be informative at all about other aspects of a person's social or psychological well-being. The two countries thus differ in how different aspects or measures of psychological well-being are interrelated, which is essentially a difference in data structures. And therefore, comparing the two countries in these measures is not a meaningful endeavor. In this paper, we will focus on a single aspect of overall happiness, namely psychological well-being,
+
+In this section, we use the PCADSC tools to unveil international differences in one aspect of happiness, namely psychological well-being. Our starting point is Denmark, a small, northern European country that has repeatedly been awarded with the title of "happiest country in the world"  by the \textit{World Happiness Report}, most recently in 2016 (\cite{WHR2016}), and we wish to investigate if this title is really meaningful at all. In order to do this, we compare the Danish ESS psychological well-being data with that of Bulgaria. Though both countries are European and thus not geographically nor culturally as far apart as some other countries might be, these two countries have previously been highlighted to be very different in terms of what defines happiness (\cite{ESStopline5} {\hl{Is this the correct way to refer to a technical report?}). Moreover,intra-European, regional differences in the relationship between social capital and happiness have also been demonstrated (\cite{Rodriguez2014}), with a much less strong relationship between the two in Northern- compared to other European countries. In particular, interpersonal relations should play a less important role in Denmark, compared to Bulgaria. Therefore, a successful method for data comparisons should be able to detect these differences by looking at data on psychological well-being from these two countries.
 
 We also compare the Danish data with Swedish data in order to illustrate that the PCADSC tools actually do have some discriminatory power. Denmark and Sweden are both Scandinavian countries and are often deemed very similar in terms of culture and history. Therefore, we expect fundamental concepts such as psychological well-being to similar across these two countries.
 
-%As Denmark has repeatedly been awarded with the title of "the happiest country", we have included this country
-
-%Specifically, we take on a critical perspective on
-
-%, a very large dataset that is freely available online at \url{www.europeansocialsurvey.org}. As the name suggests, the data comes from a survey that was conducted primarily in Europe aiming to collect information about the social conditions of the citizens \hl{reference?}. As with all international (or, simply, multi-center) studies, one might be concerned about whether or not the data from different countries can readily be combined. This is the question we will address using PCADSC in the current section.
-
-All computations and figures presented in this section where created using our \R{R} package \R{PCADSC}, which is available online at \url{www.github.com/AnnePetersen1/PCADSC} \hl{maybe do a CRAN submission instead?}.
+All computations and figures presented in this section where created using our \R{R} package \R{PCADSC}, which is available online at \url{www.github.com/AnnePetersen1/PCADSC}.
 
 \subsection{Data}
-%\begin{figure}
-%\center
-%\includegraphics[scale=1]{surveyTable.png}
-%\caption{\hl{Make a new table here}}
-%\label{surveyTable}
-%\end{figure}
-
-%\begin{table}[t]
-%\centering
-%\begin{tabular}{cl}
-%Wellbeing dimension & ESS item \\
-%\multirow{2}{*}{Evaluative wellbeing} & X \\ & Y \\
-%\end{tabular}
-%\end{table}
 
 \begin{table}[t]
 \centering
@@ -289,7 +279,8 @@ Supportive relationships & 7.42 & 8.25 & 8.92 & 6.17 & 7.25 & 8.08 & 7.42 & 8.25
 \end{table}
 
 
-The ESS 2012 data contains a total of 626 variables collected from 54673 citizens in 29 countries. Here, we will only work with a subset of 35 questionnaire items that are all related to psychological well-being. These 35 items can be divided into 6 distinct scales, namely \textit{Evaluative wellbeing}, \textit{Emotional wellbeing}, \textit{Functioning}, \textit{Vitality}, \textit{Community wellbeing} and \textit{Supportive relationships}. More details on these scales is to be found in (\hl{ref: ESS6 Topline Results Series 5}). We represent each of these scales by a single variable, which is calculated as the average score within the items related to that variable (\hl{ref to someone that says that is sensible?}) and scaled such that it takes a value between 0 and 10. For simplicity, we use only complete cases for this construction and thus exclude all participants that did not answer all the 35 questionnaire items used below. This gives us $n_{DK} = 1498$ observations in the Danish sample, $n_{BG} = 1798$ observations in the Bulgarian sample and $n_{SE} = 1736$. Table \ref{tableDistr} summarizes the marginal distributions of the six dimensions of psychological well-being, stratified by country.
+
+The ESS 2012 data contains a total of 626 variables collected from 54673 citizens of 29 countries. Here, we will only work with a subset of 35 questionnaire items that are all related to psychological well-being. These 35 items can be divided into 6 distinct scales, namely \textit{Evaluative wellbeing}, \textit{Emotional wellbeing}, \textit{Functioning}, \textit{Vitality}, \textit{Community wellbeing} and \textit{Supportive relationships}. More details on these scales can be found in (\cite{ESStopline5}) and the relationship between questionnaire items and scales is summarized in Table \ref{table:items} in the appendices. We represent each of the scales by a single variable, which is calculated as the average score within the items related to that variable and scaled such that it takes a value between 0 and 10. For simplicity, we use only complete cases for this construction and thus exclude all participants that did not answer all the 35 questionnaire items used below. This gives us $n_{DK} = 1498$ observations in the Danish sample, $n_{BG} = 1798$ observations in the Bulgarian sample and $n_{SE} = 1736$ Swedish observations. Table \ref{tableDistr} summarizes the marginal distributions of the six dimensions of psychological well-being, stratified by country.
 
 
 
@@ -305,7 +296,7 @@ The ESS 2012 data contains a total of 626 variables collected from 54673 citizen
 \begin{figure}
 \center
 \includegraphics[scale = 0.7]{essDKBGpancake234.pdf}
-\caption{\hl{something}}
+\caption{A chroma plot comparing the 2nd, 3rd and 4th principal components of the Bulgiarian- and Danish psychological well-being data. The component-bars are annotated with their relative variance contributions (denoted $\tilde\sigma_i$ in the above).}
 \label{plotBG.pancake}
 \end{figure}
 
@@ -318,16 +309,13 @@ The ESS 2012 data contains a total of 626 variables collected from 54673 citizen
 
 
 
-Figure \ref{plotBG.cehair} presents the CE plot and the angle plot obtained from comparing the Danish and Bulgarian psychological well-being scales. The CE plot show a remarkable degree of lacking comparability: The cumulative difference in the eigenvalue by far exceeds what could come about randomly if there really was no difference in the data structure. This is also confirmed by the Kolmogorov-Smirnov and the Cram\'er-von Mises tests, which both result in $p$-values that are virtually zero.
+Figure \ref{plotBG.cehair} presents the CE plot and the angle plot obtained from comparing the Danish and Bulgarian psychological well-being scales. The CE plot show a remarkable degree of lacking comparability: The cumulative differences in the eigenvalues by far exceed what could come about randomly if there really were no difference in the data structures. This is also confirmed by the Kolmogorov-Smirnov and the Cram\'er-von Mises tests, which both result in $p$-values that are virtually zero.
 
-Moving on to the angle plot, we find that the differences are primarily to be found in the second, third and fourth principal components (PCs): The blue arrows visualize the decomposition of the principal components for the first dataset in the coordinate system of the second dataset. We see that PC2 also loads on PC3, that PC3 also loads on PC4, and that PC4 also loads on PC2 and PC3. The red arrows visualize the decomposition of the principal components for the second dataset in the coordinate system of the first dataset. Here, we see that PC2 also loads on PC4, that PC3 also loads on PC2 and PC4, and that PC4 also loads on PC3. Thus, if we wish to understand why differences in the data structures occur, an inspection of the loadings of components 2, 3 and 4 might be informative.
+Moving on to the angle plot, we find that the differences are primarily to be found in the second, third and fourth principal components (PCs): The blue arrows visualize the decomposition of the principal components for the Bulgarian dataset in the coordinate system of the Danish dataset. We see that PC2 also loads on PC3, that PC3 also loads on PC4, and that PC4 also loads on PC2 and PC3. The red arrows visualize the decomposition of the principal components for the Danish dataset in the coordinate system of the Bulgarian dataset. Here, we see that PC2 also loads on PC4, that PC3 also loads on PC2 and PC4, and that PC4 also loads on PC3. Thus, if we wish to understand why differences in the data structures occur, an inspection of the loadings of components 2, 3 and 4 might be informative.
 
- The chroma blot in Figure \ref{plotBG.pancake} allows us to look closer into these components. Here, we find that the relative importance of the \textit{Community wellbeing} and \textit{Supportive relationships} scales is much larger in the Bulgarian sample than in the Danish. In the Danish data, on the other hand, we find that \textit{Vitality} and \textit{Emotional well-being} seem to play bigger roles, as they appear with larger loadings in more high-ranking components in this sample, relative to the Bulgarian.
+The chroma blot in Figure \ref{plotBG.pancake} allows us to look closer into these components. Here, we find that the relative importance of the \textit{Community wellbeing} and \textit{Supportive relationships} scales is much larger in the Bulgarian sample than in the Danish. In the Danish data, on the other hand, we find that \textit{Vitality} and \textit{Emotional well-being} seem to play bigger roles, as they appear with larger loadings in more high-ranking components in this sample, relative to the Bulgarian.
 
-All in all, we find that psychological well-being does not seem to be the same concept in Bulgaria as in Denmark. The two countries disagree both in how many dimensions are needed to capture the most important parts of the concept (as illustrated by the differences in eigenvalue) and in how these dimensions are then weighted among the 6 scales (as illustrated by the angle and chroma plots). In Bulgaria, interpersonal features seem to be more informative of psychological wellbeing, whereas in Denmark, individual characteristic play a relatively bigger role. Thus, the datasets are fundamentally different and that we should therefore be wary about combining them in a joint analysis, which was also the conclusion of the ESS authors, though based on country-level aggregated statistics. \\
-
-\hl{I have dropped the Wally-plots for now, as I'm not really sure they are that useful.}
-
+All in all, we find that psychological well-being does not seem to be the same concept in Bulgaria and Denmark. The two countries disagree both in how many dimensions are needed to capture the most important parts of the concept (as illustrated by the differences in eigenvalues) and in how these dimensions are then weighted among the 6 scales (as illustrated by the angle- and chroma plots). In Bulgaria, interpersonal features seem to be more informative of psychological well-being, whereas in Denmark, individual characteristic play a relatively larger role, which corresponds with previous findings. Thus, the datasets are fundamentally different and that we should therefore be wary about combining them in a joint analysis, which was also the conclusion of the ESS authors, though based on country-level aggregated statistics (\cite{ESStopline5}). Moreover, the two countries cannot be ranked in terms of which country is "the most happy", at least not by referring to psychological well-being dimensions such as those encountered here.
 
 % While the first principal component, which is responsible for explaining 50-60 \% of the variance in the data, is very similar for the two countries, we see quite large differences in the remaining components. In the second component, we see that the two countries disagree in the relative importance of the scales \textit{Community wellbeing} and \textit{Vitality}. In the third and fourth components, general disagreement  is found. All in all, components 2-4, representing almost half of the variability in the data, are not very similar across the two countries. Moreover, the two subsets of the data also differ with respect to how much variance is explained by each component, and the difference is particularly big for the first component. This component has approximately 15 \%  more explanatory power in the Bulgarian subsample than it does in the Danish.
 
@@ -350,7 +338,7 @@ All in all, we find that psychological well-being does not seem to be the same c
 \begin{figure}
 \center
 \includegraphics[scale = 0.7]{essDKSEpancake.pdf}
-\caption{A chroma plot for comparing the loading patterns of the Danish and the Swedish subsamples. Note that the bars for each component is annotated with its cumulative variance score, that is, how much variance can be explained by having information of this and the preceding components.}
+\caption{A chroma plot for comparing the loading patterns of the Danish and the Swedish subsamples. Note that the bars for each component is annotated with its cumulative variance score (denoted $\tilde\sigma^c_i$ in the above), that is, how much variance can be explained by having information of this and the preceding components.}
 \label{plotSE.pancake}
 \end{figure}
 
@@ -361,11 +349,11 @@ All in all, we find that psychological well-being does not seem to be the same c
 %\label{plotSE.wally}
 %\end{figure}
 
-We now turn to the comparison of Denmark and Sweden in terms of psychological well-being. Figure \ref{plotSE.cehair} show the CE and angle plots for these two countries. In the CE plot, we now find the cumulative eigenvalue curve to be just within the acceptance region of the null-hypothesis. This is also reflected by the two tests, which now produce $p$-values of $p_{KS} = 0.14$ and $p_{CvM} = 0.09$, respectively, thus accepting the null-hypothesis at the typical 5\% level, but not with overwhelming evidence.
+We now turn to the comparison of Denmark and Sweden in terms of psychological well-being. Figure \ref{plotSE.cehair} shows the CE- and angle plots for these two countries. In the CE plot, we now find the cumulative eigenvalue curve to be just within the acceptance region of the null-hypothesis. This is also reflected by the two tests, which now produce $p$-values of $p_\text{KS} = 0.14$ and $p_\text{CvM} = 0.09$, respectively, thus accepting the null-hypothesis at the typical 5\% level, but not with overwhelming evidence.
 
 The angle plot from Figure \ref{plotSE.cehair} shows that the two datasets agree very strongly about the relative importance of the six scales in the six PCs, as almost all off-diagonal arrows are practically non-existent. This implies that if one already has e.g. the information held in the first PC from the Danish data, this information is in itself mostly sufficient to describe the first PC of the Swedish data.
 
-Looking at the chroma plot in Figure \ref{plotSE.pancake}, the same tale is told once again: Here, we find remarkably similar loading patterns in the first three components (which are responsible for almost 80 \% of the variance in both datasets), and slight, but increasing, differences in the remaining three components. We therefore conclude that any differences in the data structures of the Danish and the Swedish samples are related to the least important dimensions of the datasets and that these dimensions are only responsible for less than 25 \% of the variance in both datasets. In particular, this means that we can combine and compare the Danish and Swedish datasets in a meaningful way and e.g. conclude using Table \ref{tableDistr} that in general, Danes seem to be somewhat more happy than Swedes, and in particular, the unhappy people in Denmark (represented by the 1st quartiles) are generally a lot happier in Denmark than they are in Sweden. A more thorough, statistical investigation could now be put to work on answering \textit{why} this seems to be the case.
+Looking at the chroma plot in Figure \ref{plotSE.pancake}, the same tale is told once again: Here, we find remarkably similar loading patterns in the first three components (which are responsible for almost 80 \% of the variance in both datasets), and slight, but increasing, differences in the remaining three components. We therefore conclude that any differences in the data structures of the Danish and the Swedish samples are related to the least important dimensions of the datasets and that these dimensions are only responsible for less than 25 \% of the variance in both datasets. In particular, this means that we can combine and compare the Danish and Swedish datasets in a meaningful way and e.g. conclude using Table \ref{tableDistr} that in general, Danes seem to be somewhat more happy than Swedes, and in particular that the least happy people in Denmark (represented by the 1st quartiles) are generally a lot happier than the least happy people in Sweden. A more thorough, statistical investigation could now be put to work on answering \textit{why} this seems to be the case.
 
 \section{Discussion}
 \label{sec.Discussion}
@@ -391,5 +379,62 @@ The limitations of the PCADSC procedures should also be sudied in more detail. I
 \newpage
 \bibliographystyle{apa}
 \bibliography{bib}
+
+\appendix 
+
+\section{Supplementary tables}
+\begin{table}[h]
+\centering
+\small
+\rowcolors{1}{}{lightgray}
+\begin{tabular}{ll}
+\hline
+Scale & Items \\
+\hline
+\rowcolor{lightgray} & How satisfied with life as a whole \\
+\rowcolor{lightgray}\multirow{-2}{*}{Evaluative wellbeing }& How happy are you\\
+
+\rowcolor{white} & Felt sad, how often in the past week\\
+\rowcolor{white} & Felt depressed, how often in the past week\\
+\rowcolor{white} & Enjoyed life, how often in the past week\\
+\rowcolor{white} & Were happy, how often in the past week\\
+\rowcolor{white} & Felt anxious, how often in the past week\\
+\rowcolor{white}\multirow{-6}{*}{Emotional wellbeing} & Felt calm and peaceful, how often in the past week\\
+
+\rowcolor{lightgray} & Free to decide how to live my life\\
+\rowcolor{lightgray} & Little chance to show how capable I am\\
+\rowcolor{lightgray} & Feel accomplishment from what I do\\
+\rowcolor{lightgray} & Interested in what you are doing\\
+\rowcolor{lightgray} & Absorbed in what you are doing\\
+\rowcolor{lightgray} & Enthusiastic about what you are doing\\
+\rowcolor{lightgray} & Feel what I do in life is valuable and worthwhile\\
+\rowcolor{lightgray} & Have a sense of direction\\
+\rowcolor{lightgray} & Always optimistic about my future\\
+\rowcolor{lightgray} & There are lots of things I feel I am good at\\
+\rowcolor{lightgray} & In general feel very positive about myself\\
+\rowcolor{lightgray} & At times feel as if I am a failure\\
+\rowcolor{lightgray} & When things go wrong in my life it takes a long time to get back to normal\\
+\rowcolor{lightgray}\multirow{-14}{*}{Functioning} & Deal with important problems\\
+
+\rowcolor{white} & Felt everything did an effort, how often in the past week\\
+\rowcolor{white} & Sleep was restless, how often in the past week\\
+\rowcolor{white} & Could not get going, how often in the past week\\
+\rowcolor{white}\multirow{-4}{*}{Vitality} & Had a lot of energy, how often in the past week\\
+
+\rowcolor{lightgray} &  Most people can be trusted\\
+\rowcolor{lightgray} &  People try to take advantage\\
+\rowcolor{lightgray} &  Most of the time people are helpful\\
+\rowcolor{lightgray} &  Feel people in local area help one another\\
+\rowcolor{lightgray}\multirow{-2}{*}{Community wellbeing}& Feel close to the people in local area\\
+
+\rowcolor{white} & How many with whom you can discuss intimate matters\\
+\rowcolor{white} & Feel appreciated by those you are close to\\
+\rowcolor{white} & Receive help and support\\
+\rowcolor{white}\multirow{-4}{*}{Supportive relationships} & Felt lonely, how often in the past week\\
+\hline
+\end{tabular}
+\caption{Relationship between questionnaire items and scales, as defined in \cite{ESStopline5}. Note that before we construct the scale scores as item means, we transform the individual item scores such that they are all on a scale from 0 to 10 and such that 10 always corresponds being the most happy.}
+\label{table:items}
+\end{table}
 
 \end{document}
