@@ -37,8 +37,7 @@ chromaPlot(irisPCADSC)
 
 Our current to-do list for the package is posted below. If you have any further suggestions for added functionality, or have a bug to report, please open an issue and let us know.
 
-*To do*
-
+**To do**
 - Document everything
 - Make `print()` methods for `pcaRes`, `CEInfo`, `angleInfo`, `chromaInfo` and `PCASDC` objects
 - Make `summary()` methods for `pcaRes`, `CEInfo`, `angleInfo`, `chromaInfo` and `PCASDC` object
