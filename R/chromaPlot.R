@@ -1,7 +1,10 @@
-#' @title ??
+#' @title Chroma plot
 #'
 #' @description ??
-#' @param x ??
+#'
+#' @param x Either a \code{PCADSC} object or a \code{chromaInfo} object, as produced
+#' by \code{\link{PCADSC}} and \code{\link{doChroma}}.
+#'
 #' @param varLabels A vector of character string labels for the variables used in
 #' \code{pcadscObj}. If non-null, these labels appear in the plot instead of the
 #' variable names. Note that they must be listed in the same order as the variables
@@ -9,7 +12,7 @@
 #' \code{pcadscObj$varNames}. If \code{NULL} (the default), these variable
 #' names are used.
 #'
-#' @param covCO Not implemented, something like a variance contribution cut-off, maybe?
+#' @param covCO Variance contribution cut-off
 #'
 #' @param splitLabels Labels for the two categories of the splitting variable used
 #' to create the PCADSC object, \code{pcadscObj}, given as a named list (see examples).
@@ -26,20 +29,51 @@
 #' @param useComps A vector of integers with the numbers of the principal component
 #' that should be included in the plot.
 #'
+#' @examples
+#' #load iris data
+#' data(iris)
+#'
+#' #Define grouping variable, grouping the observations by whether their species is
+#' #Setosa or not
+#' iris$group <- "setosa"
+#' iris$group[iris$Species != "setosa"] <- "non-setosa"
+#'
+#' #make a PCADSC object, splitting the data by "group"
+#' irisPCADSC <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")))
+#'
+#' #make a chroma plot
+#' chromaPlot(irisPCADSC)
+#'
+#'
 #' @importFrom methods setMethod
 #' @importFrom ggplot2 qplot ggplot aes_string geom_bar coord_flip scale_x_reverse
 #'             scale_y_continuous geom_text xlab ylab theme facet_wrap
 #'             as_labeller scale_fill_discrete theme_bw
 #'
 #'@export
-pancakePlot <- function(x, varLabels=NULL, covCO=NULL, splitLabels=NULL,
+chromaPlot <- function(x, varLabels=NULL, covCO=NULL, splitLabels=NULL,
                         varAnnotation = "cum", useComps = NULL) {
-  pcadscObj <- x
-  splitLevels <- pcadscObj@splitLevels
-  nCat1 <- pcadscObj@nObs1
-  nCat2 <- pcadscObj@nObs2
-  splitBy <- pcadscObj@splitBy
-  pcaFrame <- pcadscObj@pcaFrame
+
+  #Check whether x has a valid class
+  objName <- deparse(substitute(x))
+  if ("PCADSC" %in% class(x)) {
+    if (!is.null(x$chromaInfo)) {
+      obj <- x$chromaInfo
+    } else {
+     stop(paste(objName, "does not contain any chroma information.",
+                 "Please call doChroma() on", objName, "before making a chromaPlot."))
+    }
+  } else if ("chromaInfo" %in% class(x)) {
+    obj <- x
+  } else {
+    stop(paste(objName, "must be of class PCADSC or chromaInfo."))
+  }
+
+  splitLevels <- obj$splitLevels
+  nCat1 <- obj$n1
+  nCat2 <- obj$n2
+  splitBy <- obj$splitBy
+  pcaFrame <- obj$cF
 
   if (is.null(covCO)) covCO <- 1
   if (covCO != 1) {
@@ -68,7 +102,7 @@ pancakePlot <- function(x, varLabels=NULL, covCO=NULL, splitLabels=NULL,
   }
 
   if (is.null(varLabels)) {
-    varLabels <- pcadscObj@varNames
+    varLabels <- obj$vars
   }
   if (is.null(splitLabels)) {
     splitLabels <- splitLevels

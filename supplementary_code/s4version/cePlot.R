@@ -27,7 +27,7 @@
 #' iris$group[iris$Species != "setosa"] <- "non-setosa"
 #'
 #' #make a PCADSC object, splitting the data by "group"
-#' cumeigen(iris, "group",var=setdiff(names(iris), c("group", "Species")))
+#' cePlot(iris, "group",var=setdiff(names(iris), c("group", "Species")))
 #'
 #' @importFrom graphics polygon matlines lines legend
 #' @importFrom stats quantile
@@ -35,7 +35,7 @@
 #' scale_y_continuous theme_bw theme element_blank xlab ylab geom_line
 #' scale_linetype_manual annotate unit
 #' @export
-cumeigen <- function(data,splitBy,var=NULL,B=1000,make.plot=TRUE) {
+cePlot <- function(data,splitBy,var=NULL,B=1000,make.plot=TRUE) {
   #define var
   if (is.null(var)) var <- setdiff(names(data), splitBy)
 

@@ -7,13 +7,13 @@
 #' @importFrom stats na.omit princomp
 #' @importFrom reshape2 melt
 loadComp <- function(data, vars = NULL, varCO=NULL) {
-  if (is.null(varCO)) {
-    varCO <- 1
-  }
+ # if (is.null(varCO)) {
+#    varCO <- 1
+#  }
 
-  if (is.null(vars)) {
-    vars <- names(data)
-  }
+#  if (is.null(vars)) {
+#    vars <- names(data)
+#  }
 
   n <- length(vars)
   p <- stats::princomp(sapply(stats::na.omit(data[, vars]), as.numeric))

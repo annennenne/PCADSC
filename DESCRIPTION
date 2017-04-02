@@ -16,13 +16,3 @@ Imports:
     ggplot2,
     Matrix
 RoxygenNote: 5.0.1
-Collate:
-    'PCADSC.R'
-    'cumeigen.R'
-    'hairplot.R'
-    'loadComp.R'
-    'makePCADSC.R'
-    'pancakePlot.R'
-    'print.R'
-    'qplot.R'
-    'wallyPancake.R'

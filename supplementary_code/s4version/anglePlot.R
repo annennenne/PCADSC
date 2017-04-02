@@ -1,4 +1,4 @@
-#' @title Hairplot
+#' @title Angle plot
 #'
 #' @description Compares eigenvalues and eigenvectors form two datasets. Kolmogorov-Smirnov and Cramer-von Mises tests evaluated by permutation tests might be implemented later.
 #'
@@ -29,14 +29,14 @@
 #' iris$group[iris$Species != "setosa"] <- "non-setosa"
 #'
 #' #make a PCADSC object, splitting the data by "group"
-#' hairplot(iris, "group",var=setdiff(names(iris), c("group", "Species")))
+#' anglePlot(iris, "group",var=setdiff(names(iris), c("group", "Species")))
 #'
 #' @importFrom graphics axis arrows
 #' @importFrom ggplot2 ggplot aes_string scale_x_continuous scale_y_continuous
 #' theme_bw theme element_blank xlab ylab geom_segment unit scale_color_manual
 #' @importFrom grid arrow
 #' @export
-hairplot <- function(data,splitBy,var=NULL,B=1000,make.plot=TRUE,arrow.len=0.05) {
+anglePlot <- function(data,splitBy,var=NULL,B=1000,make.plot=TRUE,arrow.len=0.05) {
   #define var
   if (is.null(var)) var <- setdiff(names(data), splitBy)
 

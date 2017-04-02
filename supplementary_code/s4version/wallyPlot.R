@@ -16,7 +16,7 @@
 #'
 #' @importFrom ggplot2 theme xlab ylab element_blank
 #' @export
-wallyPancake <- function(PCADSCobj, data, nrow, ncol, covCO = 1,
+wallyPlot <- function(PCADSCobj, data, nrow, ncol, covCO = 1,
                          varAnnotation = "cum", useComps = NULL) {
   vars <- PCADSCobj@varNames
   nObs1 <- PCADSCobj@nObs1
