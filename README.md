@@ -42,3 +42,4 @@ Our current to-do list for the package is posted below. If you have any further 
 - Document everything
 - Make `print()` methods for `pcaRes`, `CEInfo`, `angleInfo`, `chromaInfo` and `PCASDC` objects
 - Make `summary()` methods for `pcaRes`, `CEInfo`, `angleInfo`, `chromaInfo` and `PCASDC` object
+- Fill out Description field in DESCRIPTION
