@@ -1,6 +1,6 @@
 Package: PCADSC
 Type: Package
-Title: Tools for Principal Component Analysis-based Data Structure Comparisons
+Title: Tools for Principal Component Analysis-Based Data Structure Comparisons
 Version: 0.8.0
 Authors@R: c(person("Anne H.", "Petersen", , email="ahpe@sund.ku.dk", role=c("aut", "cre")),
              person("Bo", "Markussen", , email="bomar@math.ku.dk", role=c("aut")))
