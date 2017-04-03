@@ -61,6 +61,7 @@
 #' CEPlot(irisPCADSC)
 #' CEPlot(irisPCADSC2)
 #'
+#' \dontrun{
 #' #make a chroma plot
 #' chromaPlot(irisPCADSC)
 #' chromaPlot(irisPCADSC)
@@ -79,6 +80,7 @@
 #' #Change variable labels
 #' chromaPlot(irisPCADSC, varLabels = c("Sepal length", "Sepal width", "Petal length",
 #'    "Petal width"))
+#' }
 #'
 #' @seealso \code{\link{PCADSC}}, \code{\link{doChroma}}
 #'
