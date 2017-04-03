@@ -1,2 +1,10 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+app/
+article/
+^README*
+supplementary_code/
+ESS/
+PISA/
+*.pdf
+*.Rmd
