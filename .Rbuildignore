@@ -6,5 +6,5 @@ article/
 supplementary_code/
 ESS/
 PISA/
-*\.pdf
-*\.Rmd
+^.*\.Rmd
+^.*\.pdf
