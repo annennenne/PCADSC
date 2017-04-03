@@ -13,7 +13,7 @@ Description: A suite of non-parametric, visual tools for assessing differences i
     angle plot presents the information loss when moving from the PCA decomposition of one dataset to the 
     PCA decomposition of the other. The chroma plot describes the loading patterns of the two datasets, thereby
     presenting the relative weighting and importance of the variables from the original dataset. 
-Depends:	R (≥ 3.2.2)
+Depends: R (≥ 3.2.2)
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
