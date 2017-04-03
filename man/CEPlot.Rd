@@ -7,13 +7,27 @@
 CEPlot(x, nDraw = NULL)
 }
 \arguments{
-\item{x}{...}
+\item{x}{x A \code{PCADSC} or \code{angleInfo} object, as produced by \code{\link{PCADSC}} or
+\code{\link{doAngle}}, respectively.}
 
-\item{nDraw}{...}
+\item{nDraw}{A positive integer. The number of simulated cumulative eigenvalue curves that should
+be added to the plot.}
 }
 \description{
-Compares eigenvalues by cumulative Bland-Altman type plots.
-Kolmogorov-Smirnov and Cramer-von Mises tests evaluated by permutation tests
+Produce a cumulative eigenvalue (CE) plot from a full or partial \code{PCADSC} object,
+as obtained from a call to \code{\link{PCADSC}}. In either case, this \code{PCADSC} object must have a
+non-\code{NULL} \code{CEInfo} slot (see examples). The CE plot compares the eigenvalues obtained
+from PCA performed separately and jointly on two datasets that consist of different observations
+of the same variables.
+}
+\details{
+In the x-coordinates, cummulative differences in eigenvalues are shown,
+while the y-coordinates are the cummulative sum of the joint eigenvalues. The plot is annotated
+with Kolmogorov-Smirnov and Cramer-von Mises tests evaluated by permutation tests, testing
+the null hypothesis of no difference in eigenvalues. The plot also features a number of cumulative
+simulated cumulative eigenvalue curves as dashed lines. Moreover, a shaded
+area presents pointwise 95 \% confidence bands for the cumulative difference, also obtained using
+the permutation test.
 }
 \examples{
 #load iris data
@@ -27,8 +41,17 @@ iris$group[iris$Species != "setosa"] <- "non-setosa"
 #make a PCADSC object, splitting the data by "group"
 irisPCADSC <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")))
 
+#make a partial PCADSC object from iris and fill out CEInfo in the next call
+irisPCADSC2 <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")),
+   doCE = FALSE)
+irisPCADSC2 <- doCE(irisPCADSC2)
+
 #make a CE plot
 CEPlot(irisPCADSC)
+CEPlot(irisPCADSC2)
 
+}
+\seealso{
+\code{\link{PCADSC}}, \code{\link{doCE}}
 }
 

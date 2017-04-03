@@ -7,11 +7,38 @@
 doCE(x, ...)
 }
 \arguments{
-\item{x}{...}
+\item{x}{Either a \code{PCADSC} or a \code{pcaRes} object.}
 
-\item{...}{...}
+\item{...}{If \code{doCE} is called on a \code{pcaRes} object, the full dataset must also
+be supplied (as \code{data}), as well as the number of resampling steps (\code{B}).}
 }
 \description{
-...
+Computes the information that is needed in order to make a \code{\link{CEPlot}}
+from a \code{PCADSC} or \code{pcaRes} object. Typically, this function is called on a partial
+\code{PCADSC} object in order to add \code{CEInfo} (see examples).
+}
+\examples{
+#load iris data
+data(iris)
+
+#Define grouping variable, grouping the observations by whether their species is
+#Setosa or not
+iris$group <- "setosa"
+iris$group[iris$Species != "setosa"] <- "non-setosa"
+
+#make a partial PCADSC object, splitting the data by "group"
+irisPCADSC <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")),
+   doCE = FALSE)
+
+#No CEInfo available
+irisPCADSC$CEInfo
+
+#Add and show CEInfo
+irisPCADSC <- doCE(irisPCADSC)
+irisPCADSC$CEInfo
+
+}
+\seealso{
+\code{\link{CEPlot}}, \code{\link{PCADSC}}
 }
 

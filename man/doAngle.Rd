@@ -7,9 +7,35 @@
 doAngle(x)
 }
 \arguments{
-\item{x}{...}
+\item{x}{Either a \code{PCADSC} or a \code{pcaRes} object.}
 }
 \description{
-...
+Computes the information that is needed in order to make an \code{\link{anglePlot}}
+from a \code{PCADSC} or \code{pcaRes} object. Typically, this function is called on a partial
+\code{PCADSC} object in order to add \code{angleInfo} (see examples).
+}
+\examples{
+#load iris data
+data(iris)
+
+#Define grouping variable, grouping the observations by whether their species is
+#Setosa or not
+iris$group <- "setosa"
+iris$group[iris$Species != "setosa"] <- "non-setosa"
+
+#make a partial PCADSC object, splitting the data by "group"
+irisPCADSC <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")),
+   doAngle = FALSE)
+
+#No angleInfo available
+irisPCADSC$angleInfo
+
+#Add and show angleInfo
+irisPCADSC <- doAngle(irisPCADSC)
+irisPCADSC$angleInfo
+
+}
+\seealso{
+\code{\link{anglePlot}}, \code{\link{PCADSC}}
 }
 

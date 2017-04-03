@@ -1,9 +1,32 @@
 #' @title Compute chroma information
 #'
-#' @description Compute standardized PCA loadings and cummulative variance contributions
-#' BLABLA
+#' @description Computes the information that is needed in order to make a \code{\link{chromaPlot}}
+#' from a \code{PCADSC} or \code{pcaRes} object. Typically, this function is called on a partial
+#' \code{PCADSC} object in order to add \code{chromaInfo} (see examples).
 #'
-#' @param x ...
+#' @param x Either a \code{PCADSC} or a \code{pcaRes} object.
+#'
+#' @examples
+#' #load iris data
+#' data(iris)
+#'
+#' #Define grouping variable, grouping the observations by whether their species is
+#' #Setosa or not
+#' iris$group <- "setosa"
+#' iris$group[iris$Species != "setosa"] <- "non-setosa"
+#'
+#' #make a partial PCADSC object, splitting the data by "group"
+#' irisPCADSC <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")),
+#'    doChroma = FALSE)
+#'
+#' #No chromaInfo available
+#' irisPCADSC$chromaInfo
+#'
+#' #Add and show chromaInfo
+#' irisPCADSC <- doChroma(irisPCADSC)
+#' irisPCADSC$chromaInfo
+#'
+#' @seealso \code{\link{chromaPlot}}, \code{\link{PCADSC}}
 #'
 #' @export
 doChroma <- function(x) {

@@ -9,37 +9,59 @@ PCADSC(data, splitBy, vars = NULL, doCE = TRUE, doAngle = TRUE,
 }
 \arguments{
 \item{data}{A dataset, either a \code{data.frame} or a \code{matrix} with variables
-in columns and observations in rows. WHAT TO DO ABOUT DATA.TABLES AND ALSO TIBBLES. BOTH WILL BE
-PROBLEMATIC AS OF NOW.}
+in columns and observations in rows. Note that \code{\link[tibble]{tibble}}s and
+\code{\link[data.table]{data.table}}s are accepted as input, but they are instantly
+converted to \code{\link{data.frame}}s. Future releases might include specific implementation
+for these data representations.}
 
-\item{splitBy}{A grouping variable with two levels defining the two groups within the
-dataset whose data structures we wish to compare. If \code{splitBy} has more than
-two levels, only the first two levels are used.}
+\item{splitBy}{The name of a grouping variable with two levels defining the two groups within the
+dataset whose data structures we wish to compare.}
 
 \item{vars}{The variable names in \code{data} to include in the PCADSC. If \code{NULL}
 (the default), all variables except for \code{splitBy} are used.}
 
-\item{doCE}{...}
+\item{doCE}{Logical. Should the cumulative eigenvalue plot information be computed?}
 
-\item{doAngle}{...}
+\item{doAngle}{Logical. Should the angle plot information be computed?}
 
-\item{doChroma}{...}
+\item{doChroma}{Logical. Should the chroma plot information be computed?}
 
-\item{B}{...}
+\item{B}{A positive integer. The number of resampling steps performed in the cumulative
+eigenvalue step, if relevant.}
 }
 \value{
-A list including the following objects: ...
+An object of class \code{PCADSC}, which is a named list with the following entries:
+\describe{
+  \item{pcaRes}{The results of the PCAs performed on the first subset, the second subset and
+  the full subset and also information about the data splitting.}
+  \item{CEInfo}{The information needed for making a cumulative eigenvalue plot
+  (see \code{\link{CEPlot}}).}
+  \item{angleInfo}{The information needed for making an angle plot
+  (see \code{\link{anglePlot}}).}
+  \item{chromaInfo}{The information needed for making a chroma plot
+  (see \code{\link{chromaPlot}}).}
+  \item{data}{The original (full) dataset.}
+  \item{splitBy}{The name of the variable that splits the dataset in two.}
+  \item{vars}{The names of the variables in the dataset that should be used for PCA.}
+  \item{B}{The number of resamplings performed for the \code{CEInfo}.}
+  }
 }
 \description{
-Calculate standardized PCA loadings and accumulated variance contributions
-separately on two parts of a dataset in order to perform non-parametric data structure
-comparisons.
+Principal Component Analysis-based Data Structure Comparison tools that
+prepare a dataset for various diagnostic plots for comparing data structures. More
+specifically, \code{PCADSC} performs PCA on two subsets of a dataset in order to
+compare the structures of these datasets, e.g. to assess whether they can be analyzed pooled
+or not. The results of the PCAs are then manipulated in various
+ways and stored for easy plotting using the three PCADSC plotting tools, the \code{\link{CEPlot}},
+the \code{\link{anglePlot}} and the \code{\link{chromaPlot}}.
 }
 \details{
-Blablabla.
-Note that \code{\link[tibble]{tibble}}s and \code{\link[data.table]{data.table}}s are
-accepted as input, but they are instantly converted to \code{\link{data.frame}}s. Future
-releases might include specific implementation for these data representations.
+PCADSC presents a suite of non-parametric, visual tools for comparing the strucutures of
+two subsets of a dataset. These tools are all based on PCA (principal component analysis) and
+thus they can be interpreted as comparisons of the covariance matrices of the two (sub)datasets.
+\code{PCADSC} performs PCA using singular value decomposition for increased numerical precision.
+Before performing PCA on the full dataset and the two subsets, all variables within each such
+dataset are standardized.
 }
 \examples{
 
@@ -51,12 +73,24 @@ data(iris)
 iris$group <- "setosa"
 iris$group[iris$Species != "setosa"] <- "non-setosa"
 
-#make a PCADSC object, splitting the data by "group"
+#Make a full PCADSC object, splitting the data by "group"
 irisPCADSC <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")))
+
+#The three plotting functions can now be called on irisPCADSC:
+CEPlot(irisPCADSC)
+anglePlot(irisPCADSC)
+chromaPlot(irisPCADSC)
+
+#Make a partial PCADSC object with no angle plot information and add
+#angle plot information afterwards:
+irisPCADSC2 <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")),
+   doAngle = FALSE)
+irisPCADSC2 <- doAngle(irisPCADSC)
 
 
 }
 \seealso{
-\code{\link{doCE}}, \code{\link{doAngle}}, \code{\link{doChroma}}
+\code{\link{doCE}}, \code{\link{doAngle}}, \code{\link{doChroma}},
+\code{\link{CEPlot}}, \code{\link{anglePlot}}, \code{\link{chromaPlot}}
 }
 

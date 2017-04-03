@@ -1,8 +1,13 @@
 #' @title Angle plot
 #'
-#' @description Compares eigenvalues and eigenvectors form two datasets. Kolmogorov-Smirnov and Cramer-von Mises tests evaluated by permutation tests might be implemented later.
+#' @description Produce an angle plot from a full or partial \code{PCADSC} object, as obtained
+#' from a call to \code{\link{PCADSC}}. In either case, this \code{PCADSC} object must have a
+#' non-\code{NULL} \code{anleInfo} slot (see examples). The angle plot compares the eigenvalue-
+#' and loading patterns from PCA performed on two datasets that consist of different observations
+#' of the same variables.
 #'
-#' @param x ...
+#' @param x A \code{PCADSC} or \code{angleInfo} object, as produced by \code{\link{PCADSC}} or
+#' \code{\link{doAngle}}, respectively.
 #'
 #' @examples
 #' #load iris data
@@ -13,11 +18,19 @@
 #' iris$group <- "setosa"
 #' iris$group[iris$Species != "setosa"] <- "non-setosa"
 #'
-#' #make a PCADSC object, splitting the data by "group"
+#' #make a full PCADSC object, splitting the data by "group"
 #' irisPCADSC <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")))
+#'
+#' #make a partial PCADSC object from iris and fill out angleInfo in the next call
+#' irisPCADSC2 <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")),
+#'    doAngle = FALSE)
+#' irisPCADSC2 <- doAngle(irisPCADSC2)
 #'
 #' #make an angle plot
 #' anglePlot(irisPCADSC)
+#' anglePlot(irisPCADSC2)
+#'
+#' @seealso \code{\link{PCADSC}}, \code{\link{doAngle}}
 #'
 #' @importFrom ggplot2 ggplot aes_string scale_x_continuous scale_y_continuous
 #' theme_bw theme element_blank xlab ylab geom_segment unit scale_color_manual
