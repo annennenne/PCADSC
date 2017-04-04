@@ -37,9 +37,11 @@
 #'    doCE = FALSE)
 #' irisPCADSC2 <- doCE(irisPCADSC2)
 #'
+#' \dontrun{
 #' #make a CE plot
 #' CEPlot(irisPCADSC)
 #' CEPlot(irisPCADSC2)
+#' }
 #'
 #' @seealso \code{\link{PCADSC}}, \code{\link{doCE}}
 #'

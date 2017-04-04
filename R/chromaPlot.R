@@ -57,10 +57,6 @@
 #'    doChroma = FALSE)
 #' irisPCADSC2 <- doChroma(irisPCADSC2)
 #'
-#' #make a CE plot
-#' CEPlot(irisPCADSC)
-#' CEPlot(irisPCADSC2)
-#'
 #' \dontrun{
 #' #make a chroma plot
 #' chromaPlot(irisPCADSC)
