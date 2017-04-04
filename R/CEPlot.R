@@ -6,8 +6,8 @@
 #' from PCA performed separately and jointly on two datasets that consist of different observations
 #' of the same variables.
 #'
-#' @details In the x-coordinates, cummulative differences in eigenvalues are shown,
-#' while the y-coordinates are the cummulative sum of the joint eigenvalues. The plot is annotated
+#' @details In the x-coordinates, cumulative differences in eigenvalues are shown,
+#' while the y-coordinates are the cumulative sum of the joint eigenvalues. The plot is annotated
 #' with Kolmogorov-Smirnov and Cramer-von Mises tests evaluated by permutation tests, testing
 #' the null hypothesis of no difference in eigenvalues. The plot also features a number of cumulative
 #' simulated cumulative eigenvalue curves as dashed lines. Moreover, a shaded
