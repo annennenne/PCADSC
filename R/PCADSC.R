@@ -53,7 +53,7 @@
 #' eigenvalue step, if relevant.
 #'
 #' @examples
-#'
+#' \dontrun{
 #' #load iris data
 #' data(iris)
 #'
@@ -75,7 +75,7 @@
 #' irisPCADSC2 <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")),
 #'    doAngle = FALSE)
 #' irisPCADSC2 <- doAngle(irisPCADSC)
-#'
+#' }
 #'
 #' @seealso \code{\link{doCE}}, \code{\link{doAngle}}, \code{\link{doChroma}},
 #' \code{\link{CEPlot}}, \code{\link{anglePlot}}, \code{\link{chromaPlot}}

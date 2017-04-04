@@ -41,6 +41,7 @@
 #' that should be included in the plot.
 #'
 #' @examples
+#' \dontrun{
 #' #load iris data
 #' data(iris)
 #'
@@ -57,7 +58,6 @@
 #'    doChroma = FALSE)
 #' irisPCADSC2 <- doChroma(irisPCADSC2)
 #'
-#' \dontrun{
 #' #make a chroma plot
 #' chromaPlot(irisPCADSC)
 #' chromaPlot(irisPCADSC)

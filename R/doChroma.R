@@ -7,6 +7,7 @@
 #' @param x Either a \code{PCADSC} or a \code{pcaRes} object.
 #'
 #' @examples
+#' \dontrun{
 #' #load iris data
 #' data(iris)
 #'
@@ -25,6 +26,7 @@
 #' #Add and show chromaInfo
 #' irisPCADSC <- doChroma(irisPCADSC)
 #' irisPCADSC$chromaInfo
+#' }
 #'
 #' @seealso \code{\link{chromaPlot}}, \code{\link{PCADSC}}
 #'

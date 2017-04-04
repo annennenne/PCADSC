@@ -18,6 +18,7 @@ and loading patterns from PCA performed on two datasets that consist of differen
 of the same variables.
 }
 \examples{
+\dontrun{
 #load iris data
 data(iris)
 
@@ -37,6 +38,7 @@ irisPCADSC2 <- doAngle(irisPCADSC2)
 #make an angle plot
 anglePlot(irisPCADSC)
 anglePlot(irisPCADSC2)
+}
 
 }
 \seealso{

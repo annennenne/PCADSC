@@ -10,6 +10,7 @@
 #' be supplied (as \code{data}), as well as the number of resampling steps (\code{B}).
 #'
 #' @examples
+#' \dontrun{
 #' #load iris data
 #' data(iris)
 #'
@@ -28,6 +29,7 @@
 #' #Add and show CEInfo
 #' irisPCADSC <- doCE(irisPCADSC)
 #' irisPCADSC$CEInfo
+#' }
 #'
 #' @seealso \code{\link{CEPlot}}, \code{\link{PCADSC}}
 #'

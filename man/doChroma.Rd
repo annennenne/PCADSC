@@ -15,6 +15,7 @@ from a \code{PCADSC} or \code{pcaRes} object. Typically, this function is called
 \code{PCADSC} object in order to add \code{chromaInfo} (see examples).
 }
 \examples{
+\dontrun{
 #load iris data
 data(iris)
 
@@ -33,6 +34,7 @@ irisPCADSC$chromaInfo
 #Add and show chromaInfo
 irisPCADSC <- doChroma(irisPCADSC)
 irisPCADSC$chromaInfo
+}
 
 }
 \seealso{

@@ -21,6 +21,7 @@
 #' be added to the plot.
 #'
 #' @examples
+#' \dontrun{
 #' #load iris data
 #' data(iris)
 #'
@@ -37,7 +38,6 @@
 #'    doCE = FALSE)
 #' irisPCADSC2 <- doCE(irisPCADSC2)
 #'
-#' \dontrun{
 #' #make a CE plot
 #' CEPlot(irisPCADSC)
 #' CEPlot(irisPCADSC2)

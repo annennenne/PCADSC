@@ -18,6 +18,7 @@ from a \code{PCADSC} or \code{pcaRes} object. Typically, this function is called
 \code{PCADSC} object in order to add \code{CEInfo} (see examples).
 }
 \examples{
+\dontrun{
 #load iris data
 data(iris)
 
@@ -36,6 +37,7 @@ irisPCADSC$CEInfo
 #Add and show CEInfo
 irisPCADSC <- doCE(irisPCADSC)
 irisPCADSC$CEInfo
+}
 
 }
 \seealso{

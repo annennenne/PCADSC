@@ -7,6 +7,7 @@
 #' @param x Either a \code{PCADSC} or a \code{pcaRes} object.
 #'
 #' @examples
+#' \dontrun{
 #' #load iris data
 #' data(iris)
 #'
@@ -25,6 +26,7 @@
 #' #Add and show angleInfo
 #' irisPCADSC <- doAngle(irisPCADSC)
 #' irisPCADSC$angleInfo
+#' }
 #'
 #' @seealso \code{\link{anglePlot}}, \code{\link{PCADSC}}
 #'

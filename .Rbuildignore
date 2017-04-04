@@ -8,3 +8,4 @@ ESS/
 PISA/
 ^.*\.Rmd
 ^.*\.pdf
+cran-comments.md

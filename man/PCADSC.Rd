@@ -64,7 +64,7 @@ Before performing PCA on the full dataset and the two subsets, all variables wit
 dataset are standardized.
 }
 \examples{
-
+\dontrun{
 #load iris data
 data(iris)
 
@@ -86,7 +86,7 @@ chromaPlot(irisPCADSC)
 irisPCADSC2 <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")),
    doAngle = FALSE)
 irisPCADSC2 <- doAngle(irisPCADSC)
-
+}
 
 }
 \seealso{

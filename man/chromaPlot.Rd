@@ -51,6 +51,7 @@ consist of a number of vertical bars. Each vertical bar represents a principal c
  of the components (see \code{varAnnotation}).
 }
 \examples{
+\dontrun{
 #load iris data
 data(iris)
 
@@ -66,10 +67,6 @@ irisPCADSC <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")))
 irisPCADSC2 <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")),
    doChroma = FALSE)
 irisPCADSC2 <- doChroma(irisPCADSC2)
-
-#make a CE plot
-CEPlot(irisPCADSC)
-CEPlot(irisPCADSC2)
 
 #make a chroma plot
 chromaPlot(irisPCADSC)
@@ -89,6 +86,7 @@ chromaPlot(irisPCADSC, cvCO = 0.8)
 #Change variable labels
 chromaPlot(irisPCADSC, varLabels = c("Sepal length", "Sepal width", "Petal length",
    "Petal width"))
+}
 
 }
 \seealso{

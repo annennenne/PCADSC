@@ -10,6 +10,7 @@
 #' \code{\link{doAngle}}, respectively.
 #'
 #' @examples
+#' \dontrun{
 #' #load iris data
 #' data(iris)
 #'
@@ -29,6 +30,7 @@
 #' #make an angle plot
 #' anglePlot(irisPCADSC)
 #' anglePlot(irisPCADSC2)
+#' }
 #'
 #' @seealso \code{\link{PCADSC}}, \code{\link{doAngle}}
 #'

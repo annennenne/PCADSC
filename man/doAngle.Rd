@@ -15,6 +15,7 @@ from a \code{PCADSC} or \code{pcaRes} object. Typically, this function is called
 \code{PCADSC} object in order to add \code{angleInfo} (see examples).
 }
 \examples{
+\dontrun{
 #load iris data
 data(iris)
 
@@ -33,6 +34,7 @@ irisPCADSC$angleInfo
 #Add and show angleInfo
 irisPCADSC <- doAngle(irisPCADSC)
 irisPCADSC$angleInfo
+}
 
 }
 \seealso{

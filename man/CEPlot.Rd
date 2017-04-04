@@ -21,8 +21,8 @@ from PCA performed separately and jointly on two datasets that consist of differ
 of the same variables.
 }
 \details{
-In the x-coordinates, cummulative differences in eigenvalues are shown,
-while the y-coordinates are the cummulative sum of the joint eigenvalues. The plot is annotated
+In the x-coordinates, cumulative differences in eigenvalues are shown,
+while the y-coordinates are the cumulative sum of the joint eigenvalues. The plot is annotated
 with Kolmogorov-Smirnov and Cramer-von Mises tests evaluated by permutation tests, testing
 the null hypothesis of no difference in eigenvalues. The plot also features a number of cumulative
 simulated cumulative eigenvalue curves as dashed lines. Moreover, a shaded
@@ -30,6 +30,7 @@ area presents pointwise 95 \% confidence bands for the cumulative difference, al
 the permutation test.
 }
 \examples{
+\dontrun{
 #load iris data
 data(iris)
 
@@ -49,6 +50,7 @@ irisPCADSC2 <- doCE(irisPCADSC2)
 #make a CE plot
 CEPlot(irisPCADSC)
 CEPlot(irisPCADSC2)
+}
 
 }
 \seealso{
