@@ -83,7 +83,7 @@ Abstract\vskip3pt
 \begin{abstract}
 abstract...
 \begin{keywords}
-Principal component analysis, multi-center studies, data structure comparisons \hl{Is this how you do keywords? Karl? Bo?}
+multi-center studies, data heterogeneity, data structure comparisons, principal component analysis (PCA), goodness of fit, European Social Survey.
 \end{keywords}
 \end{abstract}
 
@@ -95,24 +95,22 @@ Principal component analysis, multi-center studies, data structure comparisons \
 Classical statistical methodology is aimed at analyzing data from designed experiments and historically, statistical analyses have been done by researchers who knew the design and origin story of the data set well. However, the origin stories of data sets have changed over time and today a lot of data is accumulated without a specific purpose in mind. This is due to vast amounts of data being registered online and to a trend towards more open source research. The latter phenomenon in particular poses new challenges wrt.\ data quality assessment. When data are collected and made public without a specific end-point in mind, how do we ensure that differences in, say, choice measurement instruments, mode of administration, or sampling frame do not cause the data to be effectively divided into subsets that are simply not comparable? Three examples of this are
 
 \begin{itemize}
-\item Surveys often use mixed modes of administration, e.g. mail and telephone, and while this can improve response rates, the mode of administration can affect results \cite{Brambilla1987,McHorney1994} and differences in response behavior can lead to biased results. Powers, Mishra and Young \citeyearpar{Powers2005} report effects of mode of administration on changes in mental health scores that are of a magnitude that is considered to be clinically meaningful.
-\item The rapid growth of web surveys, due to low cost, timeliness, and other factors, generate large data sources that lack a sampling frame of the general population. However, it can be problematic to combine online panels (pre-recruited profiled pools of respondents) with intercept samples (a pool of respondents obtained through banners, ads, or promotions) \cite{Liu2016}.
+\item Surveys often use mixed modes of administration, e.g. mail and telephone, and while this can improve response rates, the mode of administration can affect results \citep{Brambilla1987,McHorney1994}, and differences in response behaviour can lead to biased results. Powers, Mishra and Young \citeyearpar{Powers2005} report effects of mode of administration on changes in mental health scores that are of a magnitude that is considered to be clinically meaningful.
+\item The rapid growth of web surveys, due to low cost, timeliness, and other factors, generate large data sources that lack a sampling frame of the general population. However, it can be problematic to combine online panels (pre-recruited profiled pools of respondents) with intercept samples (a pool of respondents obtained through banners, ads, or promotions), see \cite{Liu2016}.
 \item Large scale open source data sets such as the PISA data and ESS (European Social Survey) data. In these data sets, data analysts are far away from the data producers and problem-specific recommendations about potential instrument-induced challenges in the data sets are not available for the data analysts.
 \end{itemize}
 
-\hl{Maybe something here about what PCA is usually used for, e.g. dimension reduction, exploratory data analysis, ...}
-
-
 \hl{Maybe broaden the raison d'etre of PCADSC a bit: It is also a useful tool for doing initial, exploratory data analysis and it helps us to identify potential problems or challenges early in the study design development, before concrete model choices have been made, thereby aiding a more economic use of resources and a less ad-hoc approach to the types of problems that PCADSC can find.}
 
-Assume that we have two data sets with the same variables, but different observations represented as a data set with
-a subset-inducing variable. Assume next that we wish to compare structures without specifying a model, or even a variable of interest. The central question is whether the two data sets can readily be combined for the purpose of later data analysis, or if the subset-inducing variable implies heterogeneity that must be taken into account.
+Assume that we have two data sets with the same variables, but different observations represented as a data set with a subset-inducing variable. Assume next that we wish to compare structures without specifying a model, or even a variable of interest. The central question is whether the two data sets can readily be combined for the purpose of later data analysis, or if the subset-inducing variable implies heterogeneity that must be taken into account.
 
-Sophisticated methods for addressing this question are available when we are willing to assume a statistical model, but when these models are taken away, a remarkable void of methods is left behind. What is needed is a procedure that compares differences in overall data structures in two (or more) subsets of a data set without assuming neither directional nor hierarchical relationships between the variables. The use of parametric models does not constitute general data structure comparison method, but rather a fitted-model comparison method. It addresses the interplay between the model and the data, not the data alone. Simple methods like variable-by-variable tests in distributional differences suffer from the drawback that they only address marginal differences and not to the interplay between variables. Entry-by-entry comparison of the two empirical correlation matrices quickly becomes unmanageable as the number of variables increase. For these methods significant $p$-values are likely to abound as the sample size increases. Parametric models using, e.g., latent variable models moves beyond the marginal approach, but need a pre-specified model.
+Sophisticated methods for addressing this question are available when we are willing to assume a statistical model \hl{Skal der referencer her? Nogen forslag?}, but when these models are taken away, a remarkable void of methods is left behind. What is needed is a procedure that compares differences in overall data structures in two (or more) subsets of a data set without assuming neither directional nor hierarchical relationships between the variables. The use of parametric models does not constitute general data structure comparison method, but rather a fitted-model comparison method. It addresses the interplay between the model and the data, not the data alone. Simple methods like variable-by-variable tests in distributional differences suffer from the drawback that they only address marginal differences and not to the interplay between variables. Entry-by-entry comparison of the two empirical correlation matrices quickly becomes unmanageable as the number of variables increase. Parametric models using, e.g., latent variable models moves beyond the marginal approach, but need a pre-specified model.
+
+%For these methods significant $p$-values are likely to abound as the sample size increases. Bo: Jeg tror denne sætning bare kan udelades.
 
 We propose a suite of three new tools for this task, which we will refer to collectively as Principal Component Analysis-based Data Structure Comparisons (PCADSC). These methods employ the principal component decomposition of the empirical covariance matrix performed on two subsets of a dataset in order to create intuitive visualizations of data structure differences. This yields a solution that is largely independent of the sizes of the two subsets of data. The proposed tools are implemented in the statistical software \texttt{R} (\cite{R}) statistical software in our package, \texttt{PCADSC}, which is available at \hl{? How to refer to a package on Github?}.
 
-This manuscript is describes the procedures, including a brief introduction to principal component analysis (PCA) in general and presents a worked data example using open source, online available data on psychological well-being in three European countries. More specifically, we compare data from Denmark with data from Bulgaria and Sweden, respectively, to investigate whether or not data on psychological well-being can be combined across countries.
+This manuscript describes the procedures, including a brief introduction to principal component analysis (PCA) in general and presents a worked data example using open source, online available data on psychological well-being in three European countries. More specifically, we compare data from Denmark with data from Bulgaria and Sweden, respectively, to investigate whether or not data on psychological well-being can be combined across countries.
 
 
 
@@ -130,7 +128,7 @@ Consider $n$ observations $x_1,\dotsc,x_n \in \RR^d$ of $d$ variables, let $\bar
 \min_{K_q} \sum_{i=1}^n \min_{z \in K_q} \lVert x_i - \bar{x} - z \rVert^2 =
 \min_{K_q} \sum_{i=1}^n \lVert x_i - \bar{x} - \text{proj}_{K_q}(x_i - \bar{x}) \rVert^2.
 \end{equation*}
-and the theory of \emph{Principal component analysis} (PCA) not only ensures the existence of a subspace $\hat{K}_q \subset \RR^d$ that attains this minimum, it also provides an explicit description of $\hat{K}_q$ and the rank-q-reconstruction error.  \hl{Reference here? Maybe to like original Pearson article?}
+and the theory of \emph{Principal component analysis} (PCA) not only ensures the existence of a subspace $\hat{K}_q \subset \RR^d$ that attains this minimum, it also provides an explicit description of $\hat{K}_q$ and the rank-q-reconstruction error \citep{HastieEtAl2009}.
 
 More specifically, the rank-q-reconstruction error is attained when we choose
 \begin{equation*}
