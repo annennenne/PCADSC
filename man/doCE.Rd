@@ -39,11 +39,11 @@ irisPCADSC <- doCE(irisPCADSC)
 irisPCADSC$CEInfo
 }
 
-#Make a partial PCADSC object and only add CE information with lower
-#resampling number (B) for a faster runtime
+#Make a partial PCADSC object and only add CE information with no
+#bootstrapping (and thus no test)
 irisPCADSC_fast <- PCADSC(iris, "group", doAngle = FALSE,
   doChroma = FALSE, doCE = FALSE)
-irisPCADSC_fast <- doCE(irisPCADSC_fast, B = 1000)
+irisPCADSC_fast <- doCE(irisPCADSC_fast, B = 100)
 irisPCADSC_fast$CEInfo
 
 }
