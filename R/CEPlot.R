@@ -21,7 +21,6 @@
 #' be added to the plot.
 #'
 #' @examples
-#' \dontrun{
 #' #load iris data
 #' data(iris)
 #'
@@ -29,19 +28,25 @@
 #' #Setosa or not
 #' iris$group <- "setosa"
 #' iris$group[iris$Species != "setosa"] <- "non-setosa"
+#' iris$Species <- NULL
 #'
+#' \dontrun{
 #' #make a PCADSC object, splitting the data by "group"
-#' irisPCADSC <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")))
+#' irisPCADSC <- PCADSC(iris, "group")
 #'
 #' #make a partial PCADSC object from iris and fill out CEInfo in the next call
-#' irisPCADSC2 <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")),
-#'    doCE = FALSE)
+#' irisPCADSC2 <- PCADSC(iris, "group", doCE = FALSE)
 #' irisPCADSC2 <- doCE(irisPCADSC2)
 #'
 #' #make a CE plot
 #' CEPlot(irisPCADSC)
 #' CEPlot(irisPCADSC2)
 #' }
+#'
+#' #Only do CE information and use less resamplings for a faster runtime
+#' irisPCADSC_fast <- PCADSC(iris, "group", doAngle = FALSE, doChroma = FALSE,
+#'   B = 1000)
+#' CEPlot(irisPCADSC_fast)
 #'
 #' @seealso \code{\link{PCADSC}}, \code{\link{doCE}}
 #'

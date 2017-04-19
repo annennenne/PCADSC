@@ -5,7 +5,7 @@
 \title{Compute the elements used for PCADSC}
 \usage{
 PCADSC(data, splitBy, vars = NULL, doCE = TRUE, doAngle = TRUE,
-  doChroma = TRUE, B = 1000)
+  doChroma = TRUE, B = 10000)
 }
 \arguments{
 \item{data}{A dataset, either a \code{data.frame} or a \code{matrix} with variables
@@ -64,7 +64,6 @@ Before performing PCA on the full dataset and the two subsets, all variables wit
 dataset are standardized.
 }
 \examples{
-\dontrun{
 #load iris data
 data(iris)
 
@@ -72,9 +71,11 @@ data(iris)
 #Setosa or not
 iris$group <- "setosa"
 iris$group[iris$Species != "setosa"] <- "non-setosa"
+iris$Species <- NULL
 
+\dontrun{
 #Make a full PCADSC object, splitting the data by "group"
-irisPCADSC <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")))
+irisPCADSC <- PCADSC(iris, "group")
 
 #The three plotting functions can now be called on irisPCADSC:
 CEPlot(irisPCADSC)
@@ -83,10 +84,14 @@ chromaPlot(irisPCADSC)
 
 #Make a partial PCADSC object with no angle plot information and add
 #angle plot information afterwards:
-irisPCADSC2 <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")),
-   doAngle = FALSE)
+irisPCADSC2 <- PCADSC(iris, "group", doAngle = FALSE)
 irisPCADSC2 <- doAngle(irisPCADSC)
 }
+
+#Make a partial PCADSC obejct with no plotting (angle/CE/chroma)
+#information:
+irisPCADSC_minimal <- PCADSC(iris, "group", doAngle = FALSE,
+  doCE = FALSE, doChroma = FALSE)
 
 }
 \seealso{

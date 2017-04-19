@@ -53,7 +53,6 @@
 #' eigenvalue step, if relevant.
 #'
 #' @examples
-#' \dontrun{
 #' #load iris data
 #' data(iris)
 #'
@@ -61,9 +60,11 @@
 #' #Setosa or not
 #' iris$group <- "setosa"
 #' iris$group[iris$Species != "setosa"] <- "non-setosa"
+#' iris$Species <- NULL
 #'
+#' \dontrun{
 #' #Make a full PCADSC object, splitting the data by "group"
-#' irisPCADSC <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")))
+#' irisPCADSC <- PCADSC(iris, "group")
 #'
 #' #The three plotting functions can now be called on irisPCADSC:
 #' CEPlot(irisPCADSC)
@@ -72,10 +73,14 @@
 #'
 #' #Make a partial PCADSC object with no angle plot information and add
 #' #angle plot information afterwards:
-#' irisPCADSC2 <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")),
-#'    doAngle = FALSE)
+#' irisPCADSC2 <- PCADSC(iris, "group", doAngle = FALSE)
 #' irisPCADSC2 <- doAngle(irisPCADSC)
 #' }
+#'
+#' #Make a partial PCADSC obejct with no plotting (angle/CE/chroma)
+#' #information:
+#' irisPCADSC_minimal <- PCADSC(iris, "group", doAngle = FALSE,
+#'   doCE = FALSE, doChroma = FALSE)
 #'
 #' @seealso \code{\link{doCE}}, \code{\link{doAngle}}, \code{\link{doChroma}},
 #' \code{\link{CEPlot}}, \code{\link{anglePlot}}, \code{\link{chromaPlot}}
@@ -83,7 +88,7 @@
 #' @export
 PCADSC <- function(data, splitBy, vars=NULL, doCE = TRUE,
                    doAngle = TRUE, doChroma = TRUE,
-                   B = 1000) {
+                   B = 10000) {
   #define var
   if (is.null(vars)) vars <- setdiff(names(data), splitBy)
 

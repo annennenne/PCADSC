@@ -51,7 +51,6 @@ consist of a number of vertical bars. Each vertical bar represents a principal c
  of the components (see \code{varAnnotation}).
 }
 \examples{
-\dontrun{
 #load iris data
 data(iris)
 
@@ -59,13 +58,14 @@ data(iris)
 #Setosa or not
 iris$group <- "setosa"
 iris$group[iris$Species != "setosa"] <- "non-setosa"
+iris$Species <- NULL
 
+\dontrun{
 #make a PCADSC object, splitting the data by "group"
-irisPCADSC <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")))
+irisPCADSC <- PCADSC(iris, "group")
 
 #make a partial PCADSC object from iris and fill out chromaInfo in the next call
-irisPCADSC2 <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")),
-   doChroma = FALSE)
+irisPCADSC2 <- PCADSC(iris, "group", doChroma = FALSE)
 irisPCADSC2 <- doChroma(irisPCADSC2)
 
 #make a chroma plot
@@ -75,7 +75,6 @@ chromaPlot(irisPCADSC)
 #Change the labels of the splitting variable
 chromaPlot(irisPCADSC, splitLabels = list("non-setosa" = "Not Setosa",
     "setosa" = "Setosa"))
-
 
 #Only plot components 1 and 4 and remove annotated variances
 chromaPlot(irisPCADSC, useComps = c(1,4), varAnnotation = "no")
@@ -87,6 +86,11 @@ chromaPlot(irisPCADSC, cvCO = 0.8)
 chromaPlot(irisPCADSC, varLabels = c("Sepal length", "Sepal width", "Petal length",
    "Petal width"))
 }
+
+#Only do chroma information in order to get a faster runtime:
+irisPCADSC_fast <- PCADSC(iris, "group", doCE = FALSE,
+  doAngle = FALSE)
+chromaPlot(irisPCADSC_fast)
 
 }
 \seealso{

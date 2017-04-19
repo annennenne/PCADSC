@@ -7,7 +7,6 @@
 #' @param x Either a \code{PCADSC} or a \code{pcaRes} object.
 #'
 #' @examples
-#' \dontrun{
 #' #load iris data
 #' data(iris)
 #'
@@ -15,10 +14,11 @@
 #' #Setosa or not
 #' iris$group <- "setosa"
 #' iris$group[iris$Species != "setosa"] <- "non-setosa"
+#' iris$Species <- NULL
 #'
+#' \dontrun{
 #' #make a partial PCADSC object, splitting the data by "group"
-#' irisPCADSC <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")),
-#'    doChroma = FALSE)
+#' irisPCADSC <- PCADSC(iris, "group", doChroma = FALSE)
 #'
 #' #No chromaInfo available
 #' irisPCADSC$chromaInfo
@@ -27,6 +27,13 @@
 #' irisPCADSC <- doChroma(irisPCADSC)
 #' irisPCADSC$chromaInfo
 #' }
+#'
+#' #Make a partial PCADSC object and only add chroma information for a
+#' #faster runtime
+#' irisPCADSC_fast <- PCADSC(iris, "group", doAngle = FALSE,
+#'   doChroma = FALSE, doCE = FALSE)
+#' irisPCADSC_fast <- doChroma(irisPCADSC_fast)
+#' irisPCADSC_fast$chromaInfo
 #'
 #' @seealso \code{\link{chromaPlot}}, \code{\link{PCADSC}}
 #'

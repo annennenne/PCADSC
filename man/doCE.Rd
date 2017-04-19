@@ -18,7 +18,6 @@ from a \code{PCADSC} or \code{pcaRes} object. Typically, this function is called
 \code{PCADSC} object in order to add \code{CEInfo} (see examples).
 }
 \examples{
-\dontrun{
 #load iris data
 data(iris)
 
@@ -26,10 +25,11 @@ data(iris)
 #Setosa or not
 iris$group <- "setosa"
 iris$group[iris$Species != "setosa"] <- "non-setosa"
+iris$Species <- NULL
 
+\dontrun{
 #make a partial PCADSC object, splitting the data by "group"
-irisPCADSC <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")),
-   doCE = FALSE)
+irisPCADSC <- PCADSC(iris, "group", doCE = FALSE)
 
 #No CEInfo available
 irisPCADSC$CEInfo
@@ -38,6 +38,13 @@ irisPCADSC$CEInfo
 irisPCADSC <- doCE(irisPCADSC)
 irisPCADSC$CEInfo
 }
+
+#Make a partial PCADSC object and only add CE information with lower
+#resampling number (B) for a faster runtime
+irisPCADSC_fast <- PCADSC(iris, "group", doAngle = FALSE,
+  doChroma = FALSE, doCE = FALSE)
+irisPCADSC_fast <- doCE(irisPCADSC_fast, B = 1000)
+irisPCADSC_fast$CEInfo
 
 }
 \seealso{

@@ -15,7 +15,6 @@ from a \code{PCADSC} or \code{pcaRes} object. Typically, this function is called
 \code{PCADSC} object in order to add \code{angleInfo} (see examples).
 }
 \examples{
-\dontrun{
 #load iris data
 data(iris)
 
@@ -23,10 +22,11 @@ data(iris)
 #Setosa or not
 iris$group <- "setosa"
 iris$group[iris$Species != "setosa"] <- "non-setosa"
+iris$Species <- NULL
 
+\dontrun{
 #make a partial PCADSC object, splitting the data by "group"
-irisPCADSC <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")),
-   doAngle = FALSE)
+irisPCADSC <- PCADSC(iris, "group", doAngle = FALSE)
 
 #No angleInfo available
 irisPCADSC$angleInfo
@@ -35,6 +35,13 @@ irisPCADSC$angleInfo
 irisPCADSC <- doAngle(irisPCADSC)
 irisPCADSC$angleInfo
 }
+
+#Make a partial PCADSC object and only add angle information for a
+#faster runtime
+irisPCADSC_fast <- PCADSC(iris, "group", doAngle = FALSE,
+  doChroma = FALSE, doCE = FALSE)
+irisPCADSC_fast <- doAngle(irisPCADSC_fast)
+irisPCADSC_fast$angleInfo
 
 }
 \seealso{

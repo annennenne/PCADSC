@@ -10,7 +10,6 @@
 #' \code{\link{doAngle}}, respectively.
 #'
 #' @examples
-#' \dontrun{
 #' #load iris data
 #' data(iris)
 #'
@@ -18,19 +17,24 @@
 #' #Setosa or not
 #' iris$group <- "setosa"
 #' iris$group[iris$Species != "setosa"] <- "non-setosa"
+#' iris$Species <- NULL
 #'
+#' \dontrun{
 #' #make a full PCADSC object, splitting the data by "group"
-#' irisPCADSC <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")))
+#' irisPCADSC <- PCADSC(iris, "group")
 #'
 #' #make a partial PCADSC object from iris and fill out angleInfo in the next call
-#' irisPCADSC2 <- PCADSC(iris, "group", setdiff(names(iris), c("group", "Species")),
-#'    doAngle = FALSE)
+#' irisPCADSC2 <- PCADSC(iris, "group", doAngle = FALSE)
 #' irisPCADSC2 <- doAngle(irisPCADSC2)
 #'
 #' #make an angle plot
 #' anglePlot(irisPCADSC)
 #' anglePlot(irisPCADSC2)
 #' }
+#'
+#' #Only do angle information for a faster run-time
+#' irisPCADSC_fast <- PCADSC(iris, "group", doCE = FALSE, doChroma = FALSE)
+#' anglePlot(irisPCADSC_fast)
 #'
 #' @seealso \code{\link{PCADSC}}, \code{\link{doAngle}}
 #'
