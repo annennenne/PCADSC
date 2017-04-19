@@ -1,15 +1,54 @@
 \begin{thebibliography}{}
 
+\bibitem[\protect\astroncite{Asil and Brown}{2016}]{Asil2016}
+Asil, M. and Brown, G. T.~L. (2016).
+\newblock {Comparing OECD PISA Reading in English to Other Languages:
+  Identifying Potential Sources of NonInvariance}.
+\newblock {\em International Journal of Testing}, 16(1):71--93.
+
 \bibitem[\protect\astroncite{Brambilla and McKinlay}{1987}]{Brambilla1987}
 Brambilla, D.~J. and McKinlay, S.~M. (1987).
 \newblock {A comparison of responses to mailed questionnaires and telephone
   interviews in a mixed mode health survey.}
 \newblock {\em American journal of epidemiology}, 126(5):962--71.
 
+\bibitem[\protect\astroncite{Hastie et~al.}{2009}]{HastieEtAl2009}
+Hastie, T., Tibshirani, R., and Friedman, J. (2009).
+\newblock {\em The Elements of Statistical Learning}, chapter 14.5.1.
+\newblock Springer, second edition.
+
+\bibitem[\protect\astroncite{Helliwell et~al.}{2016}]{WHR2016}
+Helliwell, J., Layard, R., and Sachs, J. (2016).
+\newblock World happiness report 2016 update.
+\newblock {\em New York: Sustainable Development Solutions Network}.
+
+\bibitem[\protect\astroncite{Jeffrey et~al.}{2015}]{ESStopline5}
+Jeffrey, K., Abdallah, S., and Quick, A. (2015).
+\newblock Europeans' personal and social wellbeing: Topline results from round
+  6 of the european social survey.
+\newblock {\em ESS Topline Results (Series 5)}.
+
+\bibitem[\protect\astroncite{Kankaraš and Moors}{2014}]{Kankaras2014}
+Kankaraš, M. and Moors, G. (2014).
+\newblock {Analysis of Cross-Cultural Comparability of PISA 2009 Scores}.
+\newblock {\em Journal of Croos-Cultural Psychology}, 45(3):381--399.
+
+\bibitem[\protect\astroncite{Kreiner and Christensen}{2014}]{Kreiner2014}
+Kreiner, S. and Christensen, K.~B. (2014).
+\newblock {Analyses of Model Fit and Robustness. A New Look at the PISA Scaling
+  Model Underlying Ranking of Countries According to Reading Literacy}.
+\newblock {\em Psychometrika}, 79(2):210--231.
+
 \bibitem[\protect\astroncite{Liu}{2016}]{Liu2016}
 Liu, M. (2016).
 \newblock Comparing data quality between online panel and intercept samples.
 \newblock {\em Methodological Innovations}, 9:2059799116672877.
+
+\bibitem[\protect\astroncite{Lolle and Andersen}{2016}]{Lolle2016}
+Lolle, H.~L. and Andersen, J.~G. (2016).
+\newblock Measuring happiness and overall life satisfaction: A danish survey
+  experiment on the impact of language and translation problems.
+\newblock {\em Journal of Happiness Studies}, 17(4):1337--1350.
 
 \bibitem[\protect\astroncite{McHorney et~al.}{1994}]{McHorney1994}
 McHorney, C.~A., Kosinski, M., and Ware, J.~E. (1994).
@@ -24,5 +63,22 @@ Powers, J.~R., Mishra, G., and Young, A.~F. (2005).
   use of multiple imputation in correcting for response bias.}
 \newblock {\em Australian and New Zealand journal of public health},
   29(2):149--54.
+
+\bibitem[\protect\astroncite{{R Core Team}}{}]{R}
+{R Core Team}.
+\newblock {\em R: A Language and Environment for Statistical Computing}.
+\newblock R Foundation for Statistical Computing, Vienna, Austria.
+
+\bibitem[\protect\astroncite{Rodr\'iguez-Pose and von
+  Berlepsch}{2014}]{Rodriguez2014}
+Rodr\'iguez-Pose, A. and von Berlepsch, V. (2014).
+\newblock Social capital and individual happiness in europe.
+\newblock {\em Journal of Happiness Studies}, 15(2):357--386.
+
+\bibitem[\protect\astroncite{Veenhoven}{2012}]{Veenhoven2012}
+Veenhoven, R. (2012).
+\newblock {Cross-national differences in happiness: Cultural measurement bias
+  or effect of culture?}
+\newblock {\em International Journal of Wellbeing}, 2(4):333--353.
 
 \end{thebibliography}
