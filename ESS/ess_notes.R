@@ -178,7 +178,9 @@ xtable(m, digits = 2)
 library(PCADSC)
 library(ggplot2)
 library(gridExtra)
-a1 <- makePCADSC(data_SEDK, "cntry",  c("EvaluativeWellbeing",
+
+set.seed(1234)
+a1 <- PCADSC(data_SEDK, "cntry",  c("EvaluativeWellbeing",
                                "EmotionalWellbeing",
                                "Functioning",
                                "Vitality",
@@ -186,12 +188,13 @@ a1 <- makePCADSC(data_SEDK, "cntry",  c("EvaluativeWellbeing",
                                "SupportiveRelationships"))
 
 
-p1 <- pancakePlot(a1)
+p1 <- chromaPlot(a1)
 
 ggsave(plot = p1, file = "./article/essDKSEpancake.pdf",
        width = 8, height = 5)
 
-a2 <- makePCADSC(data_BGDK, "cntry",  c("EvaluativeWellbeing",
+set.seed(123424)
+a2 <- PCADSC(data_BGDK, "cntry",  c("EvaluativeWellbeing",
                                        "EmotionalWellbeing",
                                        "Functioning",
                                        "Vitality",
@@ -199,50 +202,24 @@ a2 <- makePCADSC(data_BGDK, "cntry",  c("EvaluativeWellbeing",
                                        "SupportiveRelationships"))
 
 
-p2 <- pancakePlot(a2)
+p2 <- chromaPlot(a2)
 
 ggsave(plot = p2, file = "./article/essDKBGpancake.pdf",
        width = 8, height = 5)
 
-p2c <- pancakePlot(a2, useComps = 2:4)
+p2c <- chromaPlot(a2, useComps = 2:4)
 
 ggsave(plot = p2c, file = "./article/essDKBGpancake234.pdf",
        width = 8, height = 5)
 
 
-set.seed(1234)
-p3a <- wallyPancake(a1, data_SEDK, nrow = 3, ncol = 3, varAnnotation = NULL)
-p3b <- wallyPancake(a2, data_BGDK, nrow = 3, ncol = 3, varAnnotation = NULL)
-set.seed(12324)
-p3c <- wallyPancake(a2, data_BGDK, nrow = 3, ncol = 3,
-                    useComps = 2:4, varAnnotation = NULL)
-
-ggsave(plot = p3a, file = "./article/essDKSEWallyPCADSC.pdf",
-       width = 8, height = 10)
-ggsave(plot = p3b, file = "./article/essDKBGWallyPCADSC.pdf",
-       width = 8, height = 10)
-ggsave(plot = p3c, file = "./article/essDKBGWallyPCADSC234.pdf",
-       width = 8, height = 10)
-
-
 #Do cumeigen stuff:
-set.seed(14345)
-cumeigen(data_SEDK, "cntry",  c("EvaluativeWellbeing",
-                                     "EmotionalWellbeing",
-                                     "Functioning",
-                                     "Vitality",
-                                     "CommunityWellbeing",
-                                     "SupportiveRelationships"), make.plot = T) +
+CEPlot(a1) +
   scale_y_continuous(breaks = round(seq(-0.6, 0.6, 0.1),1), limits = c(-0.3, 0.3))
+
 ggsave(file = "./article/essDKSEce.pdf", width = 8, height = 5)
 
-set.seed(12234)
-cumeigen(data_BGDK, "cntry",  c("EvaluativeWellbeing",
-                                "EmotionalWellbeing",
-                                "Functioning",
-                                "Vitality",
-                                "CommunityWellbeing",
-                                "SupportiveRelationships"), make.plot = T) +
+CEPlot(a2) +
   scale_y_continuous(breaks = round(seq(-0.3, 0.5, 0.1),1), limits = c(-0.2, 0.5))
 
 ggsave(file = "./article/essDKBGce.pdf", width = 8, height = 5)
@@ -250,22 +227,11 @@ ggsave(file = "./article/essDKBGce.pdf", width = 8, height = 5)
 
 
 #Do hairplot:
-set.seed(123)
-hairplot(data_SEDK, "cntry",  c("EvaluativeWellbeing",
-                             "EmotionalWellbeing",
-                             "Functioning",
-                             "Vitality",
-                             "CommunityWellbeing",
-                             "SupportiveRelationships"))
+
+anglePlot(a1)
 ggsave(file = "./article/essDKSEhair.pdf", width = 8, height = 5)
 
-set.seed(23434)
-hairplot(data_BGDK, "cntry",  c("EvaluativeWellbeing",
-                                "EmotionalWellbeing",
-                                "Functioning",
-                                "Vitality",
-                                "CommunityWellbeing",
-                                "SupportiveRelationships"))
+anglePlot(a2)
 ggsave(file = "./article/essDKBGhair.pdf", width = 8, height = 5)
 
 
