@@ -1,3 +1,64 @@
+@Manual{PCADSC,
+    title = {PCADSC: Tools for Principal Component Analysis-Based Data Structure
+Comparisons},
+    author = {Anne H. Petersen and Bo Markussen},
+    year = {2017},
+    note = {R package version 0.8.0},
+    url = {https://CRAN.R-project.org/package=PCADSC},
+}
+  
+@article {Abdi2010,
+author = {Abdi, Hervé and Williams, Lynne J.},
+title = {Principal component analysis},
+journal = {Wiley Interdisciplinary Reviews: Computational Statistics},
+volume = {2},
+number = {4},
+publisher = {John Wiley & Sons, Inc.},
+issn = {1939-0068},
+url = {http://dx.doi.org/10.1002/wics.101},
+doi = {10.1002/wics.101},
+pages = {433--459},
+keywords = {singular and eigen value decomposition, bilinear decomposition, factor scores and loadings, RESS PRESS, multiple factor analysis},
+year = {2010},
+}
+ 
+@inbook{HastieEtAl2009,
+author = {Hastie, T and Tibshirani, R and Friedman, J},
+title = {The Elements of Statistical Learning},
+chapter = {14.5.1},
+publisher = {Springer},
+year = {2009},
+edition = {Second}
+}
+
+@article{AltmanBland83,
+author = {Altman, D G and Bland, J M},
+title = {Measurement in medicine: the analysis of method comparison studies},
+journal = {The Statistician},
+volume = {32},
+year = {1983},
+pages = {307-317}
+}
+
+@article{LinEtAl2002,
+author = {Lin, D Y and Wei, L J and Ying, Z},
+title = {Model-Checking Techniques Based on Cumulative Residuals},
+journal = {Biometrics},
+year = {2002},
+volume = {58},
+pages = {1-12}
+}
+
+@article{ZwitserEtAl2017,
+author = {Zwitser, R J and Glaser, S S F and Maris, G},
+title = {Monitoring Countries in a Changing World: A New Look at DIF in International Surveys},
+journal = {Psychometrika},
+year = {2017},
+volume = {82},
+number = {1},
+pages = {210-232}
+}
+
 @article{Liu2016,
 author = {Mingnan Liu},
 title = {Comparing data quality between online panel and intercept samples},
@@ -9,7 +70,7 @@ year = {2016},
 doi = {10.1177/2059799116672877},
 URL = {http://dx.doi.org/10.1177/2059799116672877},
 eprint = {http://dx.doi.org/10.1177/2059799116672877},
-    abstract = { Although some research effort has been devoted to the comparison of probability- and nonprobability-based
+abstract = { Although some research effort has been devoted to the comparison of probability- and nonprobability-based
     Web surveys, different types of nonprobability-based samples have not been thoroughly examined. This exploratory study
     compares the data quality between online panel and intercept samples. Online panel refers to a pre-recruited and
     profiled pool of respondents. An intercept sample is a pool of respondents that are obtained through banners, ads, or
@@ -45,8 +106,6 @@ epidemiological studies, the method effect may be as large as the effects under 
 comparing prevalences across surveys or when studying time trends.},
 author = {Feveile, Helene and Olsen, Ole and Hogh, Annie},
 doi = {10.1186/1471-2288-7-27},
-file = {:C$\backslash$:/Dropbox/pdf/litt/Feveile et al, BMC Medical Research Methodology, 7, 27, 2007
-(doi10.11861471-2288-7-27).pdf:pdf},
 issn = {1471-2288},
 journal = {BMC medical research methodology},
 keywords = {Adult,Attitude to Health,Consumer Participation,Denmark,Female,Health Behavior,Health Surveys,Humans,Interviews
@@ -146,7 +205,7 @@ volume = {29},
 year = {2005}
 }
 @article{Kankaras2014,
-author = {Kankaraš, Miloš and Moors, Guy},
+author = {Kankara{\v{s}}, Milo{\v{s}} and Moors, Guy},
 doi = {10.1177/0022022113511297},
 journal = {Journal of Croos-Cultural Psychology},
 year = {2014},
@@ -186,11 +245,12 @@ pages = {333-353},
 doi = {10.5502/ijw.v2.i4.4}
 }
 @article{ESStopline5,
-title={Europeans' Personal and Social Wellbeing: Topline Results from Round 6 of the European Social Survey},
-author={Jeffrey, K and Abdallah, S and Quick, A},
-journal={ESS Topline Results (Series 5)},
-year={2015}
+title = {Europeans' Personal and Social Wellbeing: Topline Results from Round 6 of the European Social Survey},
+author = {Jeffrey, K and Abdallah, S and Quick, A},
+journal = {ESS Topline Results (Series 5)},
+year = {2015}
 }
+
 @article{Rodriguez2014,
 author = {Rodr\'iguez-Pose, Andr\'es and von Berlepsch, Viola},
 title = {Social Capital and Individual Happiness in Europe},
@@ -207,17 +267,47 @@ author={Helliwell, J. and Layard, R. and Sachs, J.},
 journal={New York: Sustainable Development Solutions Network},
 year={2016}
 }
+
+
 @article{Lolle2016,
-author="Lolle, Henrik Lauridsen
-and Andersen, J{\o}rgen Goul",
-title="Measuring Happiness and Overall Life Satisfaction: A Danish Survey Experiment on the Impact of Language and Translation Problems",
-journal="Journal of Happiness Studies",
-year="2016",
-volume="17",
-number="4",
-pages="1337--1350",
-abstract="The paper addresses language and translation problems in the most typical measures of happiness and overall life satisfaction in international surveys using an experimental design. In the experiment, randomly selected groups of Danish university students answered questionnaires in English and Danish, respectively. We found significant differences in the answers on both indices. As such, it was confirmed that the term ``happy'' is not the same in English and Danish. In Danish the word is similar to the German word ``gl{\"u}cklich'' which seems to refer to something stronger than just being ``happy''. Perhaps more surprisingly, we also found a significant difference between the answers on ``overall life satisfaction'', indicating that the answers given in Danish are too high as compared to the English ones. The differences are large enough to argue that such simple tests should be conducted before ranking countries in terms of these two well-established indices of subjective well-being.",
-issn="1573-7780",
-doi="10.1007/s10902-015-9646-4",
-url="http://dx.doi.org/10.1007/s10902-015-9646-4"
+author= {Lolle, Henrik Lauridsen and Andersen, J{\o}rgen Goul},
+title={Measuring Happiness and Overall Life Satisfaction: A Danish Survey Experiment on the Impact of Language and Translation Problems},
+journal={Journal of Happiness Studies},
+year={2016},
+volume={17},
+number={4},
+pages={1337-1350},
+abstract={The paper addresses language and translation problems in the most typical measures of happiness and overall life satisfaction in international surveys using an experimental design. In the experiment, randomly selected groups of Danish university students answered questionnaires in English and Danish, respectively. We found significant differences in the answers on both indices. As such, it was confirmed that the term ``happy'' is not the same in English and Danish. In Danish the word is similar to the German word ``gl{\"u}cklich'' which seems to refer to something stronger than just being ``happy''. Perhaps more surprisingly, we also found a significant difference between the answers on ``overall life satisfaction'', indicating that the answers given in Danish are too high as compared to the English ones. The differences are large enough to argue that such simple tests should be conducted before ranking countries in terms of these two well-established indices of subjective well-being.},
+issn={1573-7780},
+doi={10.1007/s10902-015-9646-4},
+url={http://dx.doi.org/10.1007/s10902-015-9646-4}
+}
+
+@article{Cattell1966,
+author = {Cattell, Raymond B.},
+doi = {10.1207/s15327906mbr0102_10},
+issn = {0027-3171},
+journal = {Multivariate Behavioral Research},
+month = {apr},
+number = {2},
+pages = {245--276},
+title = {{The Scree Test For The Number Of Factors}},
+url = {http://www.tandfonline.com/doi/abs/10.1207/s15327906mbr0102{\_}10},
+volume = {1},
+year = {1966}
+}
+
+@article{Ekstrøm2014,
+author = {Ekstr{\o}m, Claus Thorn},
+doi = {10.1111/test.12027},
+file = {:C$\backslash$:/Dropbox/pdf/litt/test12027.pdf:pdf},
+issn = {0141982X},
+journal = {Teaching Statistics},
+month = {mar},
+number = {1},
+pages = {23--26},
+title = {{Teaching 'Instant Experience' with Graphical Model Validation Techniques}},
+url = {http://doi.wiley.com/10.1111/test.12027},
+volume = {36},
+year = {2014}
 }
