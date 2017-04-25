@@ -94,7 +94,7 @@ multi-center studies, data heterogeneity, data structure comparisons, principal 
 \section{Introduction}
 \label{sec:introduction}
 
-Data comparability is a classical topic in psychometrics and, more generally, in statistics. Often, psychometric data will be collected in such a way that it is essentially divided into several subsets whose comparability (and thus collapsibility) needs to be assessed empirically. This happens e.g. when data are collected across several centers (or even countries) or when different versions of an instrument, the mode of administration or the order of survey questionnaire items are applied. All of these practices are essential parts of the psychometric methodology, as it allows us to simultaneously build on existing methods and answer new, empirical questions. However, if we do not address the question of collapsibility among the data subsets arriving from e.g. different countries, we risk conducting analyses whose most fundamental assumptions are not satisfied. 
+Data comparability is a classical topic in statistics and a recurring one in psychometrics. Often, psychometric data will be collected in such a way that it is essentially divided into several subsets whose comparability (and thus collapsibility) needs to be assessed empirically. This happens e.g. when data are collected across several centers (or countries) or when different versions of an instrument, the mode of administration or the order of survey questionnaire items are applied. All of these practices are essential parts of the psychometric methodology, as it allows us to simultaneously build on existing methods and answer new, empirical questions. However, if we do not address the question of collapsibility among the data subsets arriving from e.g. different countries, we risk conducting analyses whose most fundamental assumptions are not satisfied. 
 
 Sophisticated methods for addressing this question are available when we are willing to assume a statistical model. But this places the effort of assessing data comparability very late in the data analysis process and it makes the comparability assessment %very 
 ad-hoc, as it essentially relies on the appropriateness of the modeling choices, which again depends on the structure of the data. The use of (parametric) models does thus not constitute a %valid 
@@ -253,11 +253,11 @@ Especially when $d$ is large, we recommend plotting only a select set of interes
 The plots resulting from this procedure should be inspected focusing on two properties: Similarities in loading patterns, which will correspond to similar visual impressions, and similarities in variance contributions. For each component, the loadings describe how influential the different variables are on that component. Therefore, the chroma plot allows us to make qualitative statements about the original datasets, such as \textit{"variable $x$ is generally more influential in subset 1 than it is in subset 2"}, thereby helping us to understand where and why potential data structure differences are found.
 
 
-\section{European differences in psychological well-being: A data example}
+\section{Comparing psychological well-being: A data example}
 \label{sec:dataexample}
-We will now turn to a concrete data example in order to illustrate the capabilities of the tools presented above. We use data from the 2012 version of the European Social Survey (ESS) project to investigate inter-country differences in psychological well-being and happiness. The topic of our investigation is motivated by an increasingly popular tendency to publish rankings of countries in fields as different as educational quality (e.g. the PISA tests) and citizen happiness (e.g. the UN \textit{World Happiness Report} project). From a methodological point of view, such international rankings are very problematic, as they rely on the fundamental assumption that the measured concepts are inherently the same across countries. The PCADSC tools qualify as a suite of methods for exploring the validity of this assumption empirically. 
+We will now turn to a concrete data example in order to illustrate the capabilities of the tools presented above. We use data from the 2012 version of the European Social Survey (ESS) project to investigate inter-country differences in psychological well-being and happiness. The topic of our investigation is motivated by an increasingly popular tendency to publish rankings of countries in fields as different as educational quality (e.g. the PISA project) and citizen happiness (e.g. the UN \textit{World Happiness Report} project). From a methodological point of view, such international rankings are very problematic, as they rely on the fundamental assumption that the measured concepts are inherently the same across countries. The PCADSC tools qualify as a suite of methods for exploring the validity of this assumption empirically. 
 
-In the rankings of happiness, not much work has yet been devoted to evaluating the assumption of international comparabiltity, though \cite{Veenhoven2012} presents a theoretically thorough, but empirically simplistic, summary of possible reasons for lack of comparability, while \cite{Lolle2016} shows highly potent translation issues for the term \textit{happiness}. But the problem is beyond translation efforts: The main question really is whether or not there exist such a thing as a universal, internationally valid concept of happiness. If not, the very idea of translation is meaningless, since different aspects of psychological well-being or happiness simply do not have the same relative meaning in different cultural and socio-economic settings. This is in fact a question concerning comparability of data structures. If two countries differ e.g. in terms of how social networks are typically build and structured, with one emphasizing family relations and the other mostly focusing on other social relations, having a weak family connection does not have the same implications in the first country as it does in the second one. More specifically, whereas in the first country, lack of familial network might be related to loneliness, lack of general social capital and isolation, in the second country, the quality of the family network might not be informative at all about other aspects of a person's social or psychological well-being. The two countries thus differ in how different aspects or measures of psychological well-being are interrelated, which is essentially a difference in data structures. And therefore, comparing the two countries in these measures is not a meaningful endeavor. 
+In the rankings of happiness, not much work has yet been devoted to evaluating the assumption of international comparabiltity, though \cite{Veenhoven2012} presents a theoretically thorough, but empirically simplistic, summary of possible reasons for lack of comparability, while \cite{Lolle2016} shows highly potent translation issues for the term \textit{happiness}. But the problem is beyond translation efforts: The main question really is whether or not there exist such a thing as a universal, internationally valid concept of happiness. If not, the very idea of translation is meaningless, since different aspects of psychological well-being or happiness simply do not have the same relative meaning in different cultural and socio-economic settings. This is in fact a question concerning comparability of data structures. If two countries differ e.g. in terms of how social networks are typically built and structured, with one emphasizing family relations and the other mostly focusing on other social relations, then having a weak family connection does not have the same implications in the first country as it does in the second one. More specifically, whereas in the first country, lack of familial network might be related to loneliness, lack of general social capital and isolation, in the second country, the quality of the family network might not be informative at all about other aspects of a person's social or psychological well-being. The two countries thus differ in how different aspects or measures of psychological well-being are interrelated, which is essentially a difference in data structures. And therefore, comparing the two countries in these measures is not a meaningful endeavor. 
 
 In this section, we use the PCADSC tools to unveil international differences in one aspect of happiness, namely psychological well-being. Our starting point is Denmark, a small, northern European country that has repeatedly been awarded with the title of ``happiest country in the world''  by the \textit{World Happiness Report}, most recently in 2016 \citep{WHR2016}, and we wish to investigate if this title is really meaningful at all. In order to do this, we compare the Danish ESS psychological well-being data with that of Bulgaria. Though both countries are European and thus not geographically nor culturally as far apart as some other countries might be, these two countries have previously been highlighted to be very different in terms of what defines happiness \citep{ESStopline5}. Moreover, intra-European, regional differences in the relationship between social capital and happiness have also been demonstrated \citep{Rodriguez2014}, with a much less pronounced relationship between the two in Northern European countries, compared to other European countries. In particular, interpersonal relations should play a less important role in Denmark, compared to Bulgaria. Therefore, a successful method for data comparisons should be able to detect these differences by looking at data on psychological well-being from these two countries.
 
@@ -269,20 +269,33 @@ All computations and figures presented in this section were created using our \R
 
 \begin{table}[t]
 \centering
-\begin{tabular}{lccccccccc}
+%\begin{tabular}{lccccccccc}
+%  \hline
+%  & \multicolumn{3}{c}{Denmark} & \multicolumn{3}{c}{Bulgaria} & \multicolumn{3}{c}{Sweden} \\
+% & $Q_1$ & $M$ & $Q_3$ \quad & $Q_1$ & $M$ & $Q_3$ \quad & $Q_1$ & $M$ & $Q_3$ \\
+%  \hline
+% Evaluative wellbeing & 8.00 & 8.75 & 9.50 & 3.50 & 5.00 & 7.00 & 7.00 & 8.00 & 9.00 \\
+% Emotional wellbeing & 7.22 & 8.33 & 8.89 & 5.00 & 6.67 & 7.78 & 6.67 & 7.78 & 8.89 \\
+%Functioning & 6.93 & 7.57 & 8.21 & 5.50 & 6.68 & 7.68 & 6.39 & 7.04 & 7.68 \\
+%Vitality & 6.67 & 7.50 & 8.33 & 5.83 & 7.50 & 8.33 & 6.67 & 7.50 & 9.17 \\
+% Community wellbeing & 5.83 & 6.77 & 7.57 & 3.70 & 4.67 & 5.70 & 5.66 & 6.57 & 7.37 \\
+%Supportive relationships & 7.42 & 8.25 & 8.92 & 6.17 & 7.25 & 8.08 & 7.42 & 8.25 & 8.75 \\
+%   \hline
+%\end{tabular}
+\begin{tabular}{lccc}
   \hline
-  & \multicolumn{3}{c}{Denmark} & \multicolumn{3}{c}{Bulgaria} & \multicolumn{3}{c}{Sweden} \\
- & $Q_1$ & $M$ & $Q_3$ \quad & $Q_1$ & $M$ & $Q_3$ \quad & $Q_1$ & $M$ & $Q_3$ \\
+  & Denmark & Bulgaria & Sweden \\
   \hline
- Evaluative wellbeing & 8.00 & 8.75 & 9.50 & 3.50 & 5.00 & 7.00 & 7.00 & 8.00 & 9.00 \\
- Emotional wellbeing & 7.22 & 8.33 & 8.89 & 5.00 & 6.67 & 7.78 & 6.67 & 7.78 & 8.89 \\
-Functioning & 6.93 & 7.57 & 8.21 & 5.50 & 6.68 & 7.68 & 6.39 & 7.04 & 7.68 \\
-Vitality & 6.67 & 7.50 & 8.33 & 5.83 & 7.50 & 8.33 & 6.67 & 7.50 & 9.17 \\
- Community wellbeing & 5.83 & 6.77 & 7.57 & 3.70 & 4.67 & 5.70 & 5.66 & 6.57 & 7.37 \\
-Supportive relationships & 7.42 & 8.25 & 8.92 & 6.17 & 7.25 & 8.08 & 7.42 & 8.25 & 8.75 \\
+ Evaluative wellbeing & 8.75 (8.00, 9.50) & 5.00 (3.50, 7.00) & 8.00 (7.00, 9.00) \\
+ Emotional wellbeing & 8.33 (7.22, 8.89) & 6.67 (5.00, 7.78) & 7.78 (6.67, 8.89) \\
+Functioning & 7.57 (6.93, 8.21) & 6.68 (5.50, 7.68) & 7.04 (6.39, 7.68) \\
+Vitality & 7.50 (6.67, 8.33) & 7.50 (5.83, 8.33) & 7.50 (6.67, 9.17) \\
+ Community wellbeing & 6.77 (5.83 ,7.57) & 4.67 (3.70, 5.70) & 6.57 (5.66, 7.37) \\
+Supportive relationships & 8.25 (7.42, 8.92) & 7.25 (6.17, 8.08) & 8.25 (7.42, 8.75) \\
    \hline
 \end{tabular}
-\caption{The 1st quartile, the median and the third quartile of the distrubutions of each of the six dimensions of psychological well-being, stratified by country. Note that the scales are constructed such that they all run from 0-10.}
+
+\caption{Median values of each of the six dimensions of psychological well-being, stratified by country. 25 and 75 percentiles are listed in parentheses. Note that the scales are constructed such that they all run from 0-10.}
 \label{tableDistr}
 \end{table}
 
