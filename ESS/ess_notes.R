@@ -8,7 +8,10 @@ useVars <- c("cntry", "stflife", "happy", "fltsd", "fltdpr", "enjlf", "wrhpp", "
              "wrbknrm", "deaimpp", "flteeff", "slprl", "cldgng", "enrglot", "ppltrst",
              "pplfair", "pplhlp", "pplahlp", "flclpla", "inprdsc", "flapppl", "rehlppl",
              "fltlnl")
-#
+
+nAllDK <- nrow(data[data$cntry == "DK", ])
+nAllBG <- nrow(data[data$cntry == "BG", ])
+nAllSE <- nrow(data[data$cntry == "SE", ])
 #anData <- na.omit(data[data$cntry %in% c("DK", "BG"), useVars])
 anData <- na.omit(data[data$cntry %in% c("DK", "SE"), useVars])
 
@@ -140,6 +143,15 @@ anData$SupportiveRelationships <- rowMeans(anData[, sMat$var[sMat$scale ==
                                                                "Supportive relationships"]])
 
 data_BGDK <- anData
+
+#Amount of missing information
+nMissDK <- nAllDK - sum(data_BGDK$cntry == "DK")
+nMissSE <- nAllSE - sum(data_SEDK$cntry == "SE")
+nMissBG <- nAllBG - sum(data_BGDK$cntry == "BG")
+pctMissDK <- nMissDK/nAllDK
+pctMissSE <- nMissSE/nAllSE
+pctMissBG <- nMissBG/nAllBG
+
 
 #Summarize data
 uVs <- c("EvaluativeWellbeing",
