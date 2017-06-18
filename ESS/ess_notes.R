@@ -191,6 +191,30 @@ library(PCADSC)
 library(ggplot2)
 library(gridExtra)
 
+#DK/BG
+set.seed(123424)
+a2 <- PCADSC(data_BGDK, "cntry",  c("EvaluativeWellbeing",
+                                    "EmotionalWellbeing",
+                                    "Functioning",
+                                    "Vitality",
+                                    "CommunityWellbeing",
+                                    "SupportiveRelationships"))
+
+fig5_CE <- CEPlot(a2) +
+  scale_y_continuous(breaks = round(seq(-0.3, 0.5, 0.1),1), limits = c(-0.2, 0.5))
+fig5_angle <- anglePlot(a2)
+
+fig6_chroma <- chromaPlot(a2, useComps = 2:4) #figure 6
+
+
+ggsave(plot = grid.arrange(fig5_CE, fig5_angle, nrow = 2), file = "./article/PlosOne/Fig5.eps",
+       device = "eps", dpi = 400, width = 7, height = 8)
+
+ggsave(plot = fig6_chroma, file = "./article/PlosOne/Fig6.eps",
+       device = "eps", dpi = 400, width = 7, height = 4)
+
+
+#DK/SE
 set.seed(1234)
 a1 <- PCADSC(data_SEDK, "cntry",  c("EvaluativeWellbeing",
                                "EmotionalWellbeing",
@@ -198,60 +222,16 @@ a1 <- PCADSC(data_SEDK, "cntry",  c("EvaluativeWellbeing",
                                "Vitality",
                                "CommunityWellbeing",
                                "SupportiveRelationships"))
-
-
-p1 <- chromaPlot(a1)
-
-ggsave(plot = p1, file = "./article/essDKSEpancake.pdf",
-       width = 8, height = 5)
-
-set.seed(123424)
-a2 <- PCADSC(data_BGDK, "cntry",  c("EvaluativeWellbeing",
-                                       "EmotionalWellbeing",
-                                       "Functioning",
-                                       "Vitality",
-                                       "CommunityWellbeing",
-                                       "SupportiveRelationships"))
-
-
-p2 <- chromaPlot(a2)
-
-ggsave(plot = p2, file = "./article/essDKBGpancake.pdf",
-       width = 8, height = 5)
-
-p2c <- chromaPlot(a2, useComps = 2:4)
-
-ggsave(plot = p2c, file = "./article/essDKBGpancake234.pdf",
-       width = 8, height = 5)
-
-
-#Do cumeigen stuff:
-CEPlot(a1) +
+fig7_CE <- CEPlot(a1) +
   scale_y_continuous(breaks = round(seq(-0.6, 0.6, 0.1),1), limits = c(-0.3, 0.3))
 
-ggsave(file = "./article/essDKSEce.pdf", width = 8, height = 5)
+fig7_angle <- anglePlot(a1)
 
-CEPlot(a2) +
-  scale_y_continuous(breaks = round(seq(-0.3, 0.5, 0.1),1), limits = c(-0.2, 0.5))
-
-ggsave(file = "./article/essDKBGce.pdf", width = 8, height = 5)
+fig8_chroma <- chromaPlot(a1)
 
 
+ggsave(plot = grid.arrange(fig7_CE, fig7_angle, nrow = 2), file = "./article/PlosOne/Fig7.eps",
+       device = "eps", dpi = 400, width = 7, height = 8)
 
-#Do hairplot:
-
-anglePlot(a1)
-ggsave(file = "./article/essDKSEhair.pdf", width = 8, height = 5)
-
-anglePlot(a2)
-ggsave(file = "./article/essDKBGhair.pdf", width = 8, height = 5)
-
-
-#Data overview
-#library(dataMaid)
-#clean(anData, useVars = c("cntry", "EvaluativeWellbeing",
-#                                     "EmotionalWellbeing",
-#                                     "Functioning",
-#                                     "Vitality",
-#                                     "CommunityWellbeing",
-#                                     "SupportiveRelationships"), replace = TRUE)
+ggsave(plot = fig8_chroma, file = "./article/PlosOne/Fig8.eps",
+       device = "eps", dpi = 400, width = 7, height = 4)

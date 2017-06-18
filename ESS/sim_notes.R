@@ -37,29 +37,46 @@ po1 <- PCADSC(dF1, "group")
 po2 <- PCADSC(dF2, "group")
 
 CE1 <- CEPlot(po1) +
-  scale_y_continuous(breaks = round(seq(-0.6, 0.6, 0.1),1), limits = c(-0.5, 0.3))
+  scale_y_continuous(breaks = round(seq(-0.6, 0.6, 0.1),1), limits = c(-0.5, 0.3)) +
+  ggtitle("Dataset B") +  theme(plot.title = element_text(hjust = 0.5))
 
 CE2 <- CEPlot(po2) +
-  scale_y_continuous(breaks = round(seq(-0.6, 0.6, 0.1),1), limits = c(-0.3, 0.3))
+  scale_y_continuous(breaks = round(seq(-0.6, 0.6, 0.1),1), limits = c(-0.3, 0.3)) +
+  ggtitle("Dataset A") +  theme(plot.title = element_text(hjust = 0.5))
+
+angle1 <- anglePlot(po1) +
+  ggtitle("Dataset B") +  theme(plot.title = element_text(hjust = 0.5))
+angle2 <- anglePlot(po2) +
+  ggtitle("Dataset A") +  theme(plot.title = element_text(hjust = 0.5))
+
+chroma1 <- chromaPlot(po1) +
+  ggtitle("Dataset B") +  theme(plot.title = element_text(hjust = 0.5))
+chroma2 <- chromaPlot(po2) +
+  ggtitle("Dataset A") +  theme(plot.title = element_text(hjust = 0.5))
+
+#ggsave(plot = CE1, file = "./article/simCE1.pdf",
+ #      width = 8, height = 5)
+#ggsave(plot = CE2, file = "./article/simCE2.pdf",
+#       width = 8, height = 5)
+
+ggsave(plot = grid.arrange(CE2, CE1, nrow = 2), file = "./article/PlosOne/Fig2.eps",
+       device = "eps", dpi = 400, width = 7, height = 8)
 
 
-angle1 <- anglePlot(po1)
-angle2 <- anglePlot(po2)
+ggsave(plot = grid.arrange(angle2, angle1, nrow = 2), file = "./article/PlosOne/Fig3.eps",
+       device = "eps", dpi = 400, width = 7, height = 8)
 
-chroma1 <- chromaPlot(po1)
-chroma2 <- chromaPlot(po2)
+ggsave(plot = grid.arrange(chroma2, chroma1, nrow = 2), file = "./article/PlosOne/Fig4.eps",
+       device = "eps", dpi = 400, width = 7, height = 8)
 
-ggsave(plot = CE1, file = "./article/simCE1.pdf",
-       width = 8, height = 5)
-ggsave(plot = CE2, file = "./article/simCE2.pdf",
-       width = 8, height = 5)
 
-ggsave(plot = angle1, file = "./article/simAngle1.pdf",
-       width = 8, height = 5)
-ggsave(plot = angle2, file = "./article/simAngle2.pdf",
-       width = 8, height = 5)
+#ggsave(plot = angle1, file = "./article/simAngle1.pdf",
+#       width = 8, height = 5)
 
-ggsave(plot = chroma1, file = "./article/simChroma1.pdf",
-       width = 8, height = 5)
-ggsave(plot = chroma2, file = "./article/simChroma2.pdf",
-       width = 8, height = 5)
+#ggsave(plot = angle2, file = "./article/simAngle2.pdf",
+#       width = 8, height = 5)
+
+#ggsave(plot = chroma1, file = "./article/simChroma1.pdf",
+ #      width = 8, height = 5)
+#ggsave(plot = chroma2, file = "./article/simChroma2.pdf",
+#       width = 8, height = 5)
