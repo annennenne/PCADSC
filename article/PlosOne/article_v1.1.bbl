@@ -1,0 +1,120 @@
+\begin{thebibliography}{10}
+
+\bibitem{Brambilla1987}
+Brambilla DJ, McKinlay SM.
+\newblock {A comparison of responses to mailed questionnaires and telephone
+  interviews in a mixed mode health survey.}
+\newblock American journal of epidemiology. 1987;126(5):962--71.
+
+\bibitem{McHorney1994}
+McHorney CA, Kosinski M, Ware JE.
+\newblock {Comparisons of the costs and quality of norms for the SF-36 health
+  survey collected by mail versus telephone interview: results from a national
+  survey.}
+\newblock Medical care. 1994;32(6):551--67.
+
+\bibitem{Powers2005}
+Powers JR, Mishra G, Young AF.
+\newblock {Differences in mail and telephone responses to self-rated health:
+  use of multiple imputation in correcting for response bias.}
+\newblock Australian and New Zealand journal of public health.
+  2005;29(2):149--54.
+
+\bibitem{Liu2016}
+Liu M.
+\newblock {Comparing data quality between online panel and intercept samples}.
+\newblock Methodological Innovations. 2016;9:2059799116672877.
+\newblock doi:{10.1177/2059799116672877}.
+
+\bibitem{PCADSC}
+Petersen AH, Markussen B. PCADSC: Tools for Principal Component Analysis-Based
+  Data Structure Comparisons; 2017.
+\newblock Available from: \url{https://CRAN.R-project.org/package=PCADSC}.
+
+\bibitem{WHR2016}
+Helliwell J, Layard R, Sachs J.
+\newblock {World Happiness Report 2016 Update}.
+\newblock New York: Sustainable Development Solutions Network. 2016;.
+
+\bibitem{HastieEtAl2009}
+Hastie T, Tibshirani R, Friedman J.
+\newblock 14.5.1.
+\newblock In: The Elements of Statistical Learning. 2nd ed. Springer; 2009.
+
+\bibitem{Veenhoven2012}
+Veenhoven R.
+\newblock {Cross-national differences in happiness: Cultural measurement bias
+  or effect of culture?}
+\newblock International Journal of Wellbeing. 2012;2(4):333--353.
+\newblock doi:{10.5502/ijw.v2.i4.4}.
+
+\bibitem{Lolle2016}
+Lolle HL, Andersen JG.
+\newblock {Measuring Happiness and Overall Life Satisfaction: A Danish Survey
+  Experiment on the Impact of Language and Translation Problems}.
+\newblock Journal of Happiness Studies. 2016;17(4):1337--1350.
+\newblock doi:{10.1007/s10902-015-9646-4}.
+
+\bibitem{ESStopline5}
+Jeffrey K, Abdallah S, Quick A.
+\newblock {Europeans' Personal and Social Wellbeing: Topline Results from Round
+  6 of the European Social Survey}.
+\newblock ESS Topline Results (Series 5). 2015;.
+
+\bibitem{Rodriguez2014}
+Rodr\'iguez-Pose A, von Berlepsch V.
+\newblock {Social Capital and Individual Happiness in Europe}.
+\newblock Journal of Happiness Studies. 2014;15(2):357--386.
+\newblock doi:{10.1007/s10902-013-9426-y}.
+
+\bibitem{Kankaras2014}
+Kankara{\v{s}} M, Moors G.
+\newblock {Analysis of Cross-Cultural Comparability of PISA 2009 Scores}.
+\newblock Journal of Cross-Cultural Psychology. 2014;45(3):381--399.
+\newblock doi:{10.1177/0022022113511297}.
+
+\bibitem{Kreiner2014}
+Kreiner S, Christensen KB.
+\newblock {Analyses of Model Fit and Robustness. A New Look at the PISA Scaling
+  Model Underlying Ranking of Countries According to Reading Literacy}.
+\newblock Psychometrika. 2014;79(2):210--231.
+\newblock doi:{10.1007/s11336-013-9347-z}.
+
+\bibitem{ZwitserEtAl2017}
+Zwitser RJ, Glaser SSF, Maris G.
+\newblock {Monitoring Countries in a Changing World: A New Look at DIF in
+  International Surveys}.
+\newblock Psychometrika. 2017;82(1):210--232.
+
+\bibitem{Asil2016}
+Asil M, Brown GTL.
+\newblock {Comparing OECD PISA Reading in English to Other Languages:
+  Identifying Potential Sources of NonInvariance}.
+\newblock International Journal of Testing. 2016;16(1):71--93.
+\newblock doi:{10.1080/15305058.2015.1064431}.
+
+\bibitem{Cattell1966}
+Cattell RB.
+\newblock {The Scree Test For The Number Of Factors}.
+\newblock Multivariate Behavioral Research. 1966;1(2):245--276.
+
+\bibitem{LinEtAl2002}
+Lin DY, Wei LJ, Ying Z.
+\newblock {Model-Checking Techniques Based on Cumulative Residuals}.
+\newblock Biometrics. 2002;58:1--12.
+
+\bibitem{Abdi2010}
+Abdi H, Williams LJ.
+\newblock Principal component analysis.
+\newblock Wiley Interdisciplinary Reviews: Computational Statistics.
+  2010;2(4):433--459.
+\newblock doi:{10.1002/wics.101}.
+
+\bibitem{Ekstrom2014}
+Ekstr{\o}m CT.
+\newblock {Teaching 'Instant Experience' with Graphical Model Validation
+  Techniques}.
+\newblock Teaching Statistics. 2014;36(1):23--26.
+\newblock doi:{10.1111/test.12027}.
+
+\end{thebibliography}
