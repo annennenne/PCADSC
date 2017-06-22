@@ -1,95 +1,68 @@
-\documentclass[titlepage,11pt,twoside]{article}
-\usepackage[dvips]{graphicx}
+\documentclass[12pt,a4paper]{article}
 
-\usepackage{color}
-\usepackage{mathtools}
-\usepackage{amssymb}
-\usepackage{hyperref}
-\usepackage{natbib}
-\usepackage{multirow}
-%\usepackage{colortbl}
-\usepackage[table]{xcolor}
-\definecolor{lightgray}{gray}{0.9}
-\usepackage[T1]{fontenc}
+%\usepackage[dvips]{graphicx}
 
-\usepackage{caption,setspace}
-\captionsetup{font={footnotesize,stretch=1.5}}
-\renewcommand{\baselinestretch}{2} 
+%\usepackage{color}
+%\usepackage{mathtools}
+%\usepackage{amssymb}
+%\usepackage{hyperref}
+%\usepackage{natbib}
+%\usepackage{multirow}
+%\usepackage[table]{xcolor}
+%\definecolor{lightgray}{gray}{0.9}
+%\usepackage[T1]{fontenc}
+%
+%\usepackage{caption,setspace}
+%\captionsetup{font={footnotesize,stretch=1.5}}
+\renewcommand{\baselinestretch}{1.1}
 
-\usepackage{tikz}
-\usetikzlibrary{arrows}
-\usetikzlibrary{shapes, positioning, calc} 
+%\usepackage{arev}
 
-
-\newcommand{\bfU}{\mbox{\boldmath$\mathsf{U}$}}
-\newcommand{\bfu}{\mbox{\boldmath$\mathsf{u}$}}
-\newcommand{\hl}[1]{\textcolor{magenta}{#1}}
-\newcommand{\RR}{\mathbb{R}}
-\DeclareMathOperator*{\V}{V}
-\DeclareMathOperator*{\argmax}{argmax}
-\newcommand{\R}[1]{\texttt{#1}}
-\newcommand{\acos}{\text{arccos}}
-
-%\usepackage{helvet}
-%\renewcommand{\familydefault}{\sfdefault}
-%\renewcommand{\rmdefault}{\sfdefault} % Aria
-
-\usepackage{arev}
-
-%\begin{figure}[h]
-%\centerline{\includegraphics{figure03.eps}}
-%\caption{Projection of item discrimination vectors onto $V_{\theta_T}$ hyperplance for a six item three-dimensional approximate sample structure.}
-%\end{figure}
-
-%\raggedbottom
-\flushbottom
-
-
-%\firstpage{1}
-%\setcounter{lastpage}{999}
-\setcounter{secnumdepth}{3}
+\pagestyle{empty}
 
 \begin{document}
-\center
-Model 1: \medskip \\
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto, node distance=2.5cm,
-  thick,main node/.style={rectangle, rounded corners,draw,font=\sffamily\small\normalfont},
-  sq node/.style={rectangle,draw,font=\sffamily\small\normalfont}]
-  \node[sq node] (1) {$v_1$};
-  \node[sq node, right of = 1] (2) {$v_2$};
-  \node[sq node, right of = 2] (3) {$v_3$};
-  \node[sq node, right of = 3] (4) {$v_4$};
-  \node[sq node, right of = 4] (5) {$v_5$};
-  \node[sq node, right of = 5] (6) {$v_6$};
-  \node[main node, above right=1cm of 3] (7) {$X_1$};
-  \node[main node, above right=1cm of 5] (8) {$X_2$};
-  \path[every node/.style={font=\sffamily\small}]
-    (7) edge node  {} (3)
-    (7) edge node {} (4)
-    (8) edge node {} (5)
-    (8) edge node {} (6);
- \end{tikzpicture}
-\\
+
+Dear Editor,
+
+\medskip
+
+Please consider the attached research paper \emph{``Exploratory data structure comparisons: Three new visual tools based on Principal Component Analysis''} for publication in PLoS One. As Academic Editor to handle the manuscript we suggest Ulrich S.\ Tran, Jakob Pietschnig, or Christopher M.\ Danforth.
+
+\medskip
+
+Data comparability is a recurring topic in statistics, in particular in psychometrics and social sciences. An example of this is the \emph{PISA global education rankings}, where  it a priori is not clear whether it makes sense to compare children's reading capabilities across different cultures and languages. There exist methods to investigate data comparability within the framework of statistical models, e.g.\ \emph{differential item functioning} within \emph{item response theory}. However, without assuming a statistical model, practitioners often report simple data summaries in the absense of a systematic framework for understanding and describing data structure differences. In the submitted paper, we propose three graphical tool that can be used in an initial exploratory comparison of the data structure of two multivariate datasets prior to the formulation of a statistical model. The tools are implemented in an R package publicly available on CRAN. The methodology is exemplified on 6 psychological well-being scores (derived from the \emph{European Social Survey}) believed to be measuring the concept of \emph{happiness}. Using the graphical tools we are able to visualize a difference between the measured conception of happiness in Denmark and Bulgaria, hence verifying the difficulty in transferring the concept of happiness across countries, as also found by other authors. On the other hand, the graphical tools also find that Denmark and Sweden have comparable data structures in accordance with the understanding of similarity within the Nordic countries. 
+
+\medskip
+
+We look forward to your reply.
+
 \bigskip
-Model 2: \medskip \\
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto, node distance=2.5cm,
-  thick,main node/.style={rectangle, rounded corners,draw,font=\sffamily\small\normalfont},
-  sq node/.style={rectangle,draw,font=\sffamily\small\normalfont}]
-  \node[sq node] (1) {$v_1$};
-  \node[sq node, right of = 1] (2) {$v_2$};
-  \node[sq node, right of = 2] (3) {$v_3$};
-  \node[sq node, right of = 3] (4) {$v_4$};
-  \node[sq node, right of = 4] (5) {$v_5$};
-  \node[sq node, right of = 5] (6) {$v_6$};
-  \node[main node, above=1cm of 2] (7) {$Y_1$};
-  \node[main node, above=1cm of 5] (8) {$Y_2$};
-  \path[every node/.style={font=\sffamily\small}]
-    (7) edge node  {} (1)
-    (7) edge node {} (2)
-    (7) edge node {} (3)
-    (8) edge node {} (4)
-    (8) edge node {} (5)
-    (8) edge node {} (6);
- \end{tikzpicture}
+
+Yours Sincerely,
+
+\bigskip\bigskip
+
+Anne Helby Petersen
+
+Research Assistant
+
+Section of Biostatistics
+
+Faculty of Health and Medical Sciences
+
+University of Copenhagen
 
 \end{document}
+
+Summarize the study’s contribution to the scientific literature.
+
+Relate the study to previously published work.
+
+Specify the type of article (for example, research article, systematic review, meta-analysis, clinical trial).
+
+Describe any prior interactions with PLOS regarding the submitted manuscript.
+
+Suggest appropriate Academic Editors to handle your manuscript (see the full list of Academic Editors).
+
+List any opposed reviewers.
+\end{itemize}
