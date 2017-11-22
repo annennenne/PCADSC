@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage[dvips]{graphicx}
+\usepackage{fullpage}
+
+\usepackage{float}
+\restylefloat{table}
+\usepackage{color}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\definecolor{lightgray}{HTML}{e6e6e6}
+\usepackage[T1]{fontenc}
+
+\usepackage{caption,setspace}
+\captionsetup{font={footnotesize,stretch=1.5}}
+%\renewcommand{\baselinestretch}{2} 
+
+% Use the PLoS provided BiBTeX style
+\bibliographystyle{plos2015}
+
+% Remove brackets from numbering in List of References
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+
+
+\newcommand{\bfU}{\mbox{\boldmath$\mathsf{U}$}}
+\newcommand{\bfu}{\mbox{\boldmath$\mathsf{u}$}}
+\newcommand{\hl}[1]{\textcolor{magenta}{#1}}
+\newcommand{\RR}{\mathbb{R}}
+\DeclareMathOperator*{\V}{V}
+\DeclareMathOperator*{\argmax}{argmax}
+\newcommand{\R}[1]{\texttt{#1}}
+\newcommand{\acos}{\text{arccos}}
+
+\begin{document}
+
+\section*{S2 Table: ESS psychological wellbeing scale definitions}
+\begin{table}[H]
+\centering
+\scriptsize
+\rowcolors{1}{}{lightgray}
+\bgroup
+\def\arraystretch{1.5}
+\begin{tabular}{ll}
+\hline
+Scale & Items \\
+\hline
+\rowcolor{lightgray} & How satisfied with life as a whole \\
+\rowcolor{lightgray}\multirow{-2}{*}{Evaluative wellbeing }& How happy are you\\
+
+\rowcolor{white} & Felt sad, how often in the past week\\
+\rowcolor{white} & Felt depressed, how often in the past week\\
+\rowcolor{white} & Enjoyed life, how often in the past week\\
+\rowcolor{white} & Were happy, how often in the past week\\
+\rowcolor{white} & Felt anxious, how often in the past week\\
+\rowcolor{white}\multirow{-6}{*}{Emotional wellbeing} & Felt calm and peaceful, how often in the past week\\
+
+\rowcolor{lightgray} & Free to decide how to live my life\\
+\rowcolor{lightgray} & Little chance to show how capable I am\\
+\rowcolor{lightgray} & Feel accomplishment from what I do\\
+\rowcolor{lightgray} & Interested in what you are doing\\
+\rowcolor{lightgray} & Absorbed in what you are doing\\
+\rowcolor{lightgray} & Enthusiastic about what you are doing\\
+\rowcolor{lightgray} & Feel what I do in life is valuable and worthwhile\\
+\rowcolor{lightgray} & Have a sense of direction\\
+\rowcolor{lightgray} & Always optimistic about my future\\
+\rowcolor{lightgray} & There are lots of things I feel I am good at\\
+\rowcolor{lightgray} & In general feel very positive about myself\\
+\rowcolor{lightgray} & At times feel as if I am a failure\\
+\rowcolor{lightgray} & When things go wrong in my life it takes a long time to get back to normal\\
+\rowcolor{lightgray}\multirow{-14}{*}{Functioning} & Deal with important problems\\
+
+\rowcolor{white} & Felt everything did as effort, how often in the past week\\
+\rowcolor{white} & Sleep was restless, how often in the past week\\
+\rowcolor{white} & Could not get going, how often in the past week\\
+\rowcolor{white}\multirow{-4}{*}{Vitality} & Had a lot of energy, how often in the past week\\
+
+\rowcolor{lightgray} &  Most people can be trusted\\
+\rowcolor{lightgray} &  People try to take advantage\\
+\rowcolor{lightgray} &  Most of the time people are helpful\\
+\rowcolor{lightgray} &  Feel people in local area help one another\\
+\rowcolor{lightgray}\multirow{-5}{*}{Community wellbeing}& Feel close to the people in local area\\
+
+\rowcolor{white} & How many with whom you can discuss intimate matters\\
+\rowcolor{white} & Feel appreciated by those you are close to\\
+\rowcolor{white} & Receive help and support\\
+\rowcolor{white}\multirow{-4}{*}{Supportive relationships} & Felt lonely, how often in the past week\\
+\hline
+\end{tabular}
+\egroup
+\caption{Relationship between questionnaire items and scales, as defined in \cite{ESStopline5}. Note that before we construct the scale scores as item means, we transform the individual item scores such that they are all on a scale from 0 to 10 and such that 10 always corresponds being the most happy.}
+\label{table:items}
+\end{table}
+
+
+
+\begin{thebibliography}{10}
+
+\bibitem{ESStopline5}
+Jeffrey K, Abdallah S, Quick A.
+\newblock {Europeans' Personal and Social Wellbeing: Topline Results from Round
+  6 of the European Social Survey}.
+\newblock ESS Topline Results (Series 5). 2015;.
+
+\end{thebibliography}
+
+
+\end{document}
