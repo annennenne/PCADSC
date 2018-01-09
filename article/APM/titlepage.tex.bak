@@ -1,13 +1,3 @@
-	Institute for Statistics and Mathematics
-Wirtschaftsuniversität Wien
-Building D4, Level 4
-Welthandelsplatz 1
-1020 Wien
-Austria
-
-
-
-
 
 \documentclass[a4paper,14pt]{article}
 \usepackage[danish]{babel}
@@ -77,6 +67,7 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
 \renewcommand{\abstractname}{Abstract}
 \renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
 
 \begin{abstract}
 Researchers often encounter data that is divided into distinct subsets. This might be due to multi-center sampling frames, or to variations in instruments, questionnaire item ordering or mode of administration. Often, one wishes to combine such data into one and conduct only a single analysis, but this is only meaningful if the subsets are similar in structure. Common procedures for assessing whether such a data collapsing is allowed are ad hoc and require making full model assumptions. We present visual diagnostic tools for investigating differences in structure for two datasets containing different observations of the same variables. This approach, referred to as \textit{Principal Component Analysis-based Data Structure Comparisons} (PCADSC), requires no directional nor hierarchical assumptions on the data and consists of three plots based on Principal Component Analysis (PCA), that address differences in the structures of the covariance matrices of the two datasets to yield an  understanding of where differences occur and why so. The functionality of the PCADSC tools is presented by use of data from the European Social Survey on psychological well-being in three European countries, namely Denmark, Sweden and Bulgaria. Here, we find that the concepts of psychological well-being are not the same when comparing Denmark and Bulgaria, and thus a comparison of e.g. mean scores in different well-being aspects is not meaningful. However, when comparing the two Scandinavian countries, Denmark and Sweden, we find very similar data structures and thus very similar concepts of well-being. Therefore, inter-country comparisons are warranted for these two countries.
