@@ -11,6 +11,7 @@ from within R:
 library(devtools)
 install_github('annepetersen1/PCADSC')
 ```
+The PCADSC methods are described in our [article manuscript](https://github.com/AnnePetersen1/PCADSC/blob/master/article/PCADSC_manuscript_withFigures.pdf). 
 
 The basic functionality of the package can be inspected using the following lines of code:
 ```{r}
