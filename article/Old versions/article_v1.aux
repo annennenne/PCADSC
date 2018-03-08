@@ -1,0 +1,100 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{3}{section.1}}
+\newlabel{sec:introduction}{{1}{3}{Introduction}{section.1}{}}
+\citation{Brambilla1987,McHorney1994}
+\citation{Powers2005}
+\citation{Liu2016}
+\citation{PCADSC}
+\citation{WHR2016}
+\@writefile{toc}{\contentsline {section}{\numberline {2}PCA-based tools for data structure comparisons}{6}{section.2}}
+\newlabel{sec:pcadscintro}{{2}{6}{PCA-based tools for data structure comparisons}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}A brief introduction to principal component analysis}{7}{subsection.2.1}}
+\citation{HastieEtAl2009}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Graphical representations of the two models that are used for simulating example data for the PCADSC plots. Square nodes represent observed variables, while rounded nodes represent latent variables. Arrows are used to illustrate causal links, and thus we e.g. find in \textit  {Model 1} that the observed variables $v_3$ and $v_4$ are caused by a common, unobserved variable, namely $X_1$. Further details on the models and the simulated data are available in Appendix \ref  {appendix.simData}, including covariance matrices for the two models.\relax }}{10}{figure.caption.1}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig.simGraphs}{{1}{10}{Graphical representations of the two models that are used for simulating example data for the PCADSC plots. Square nodes represent observed variables, while rounded nodes represent latent variables. Arrows are used to illustrate causal links, and thus we e.g. find in \textit {Model 1} that the observed variables $v_3$ and $v_4$ are caused by a common, unobserved variable, namely $X_1$. Further details on the models and the simulated data are available in Appendix \ref {appendix.simData}, including covariance matrices for the two models.\relax }{figure.caption.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Using PCA for data structure comparisons}{10}{subsection.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}The cumulative eigenvalue plot}{13}{subsubsection.2.2.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces CE plots for the two simulated datasets. Dataset A, which includes no differences in data structures, is found in the top panel, and dataset B, where the observations stem from two different underlying models, is presented in the bottom panel. Both plots are annotated with the $p$-values of the Kolmogorov-Smirnov and the Cram\'er-von Mises tests of the hypothesis of no difference in data structures. The bold, black lines illustrate the observed cumulative eigenvalue differences, while the shaded areas are 95 \% confidence bands under the null hypothesis of no difference in data structures. In the top panel, we see a cumulative eigenvalue curve that falls well within the confidence region, thereby suggesting no difference in eigenvalues (as expected). This also agrees with the large $p$-values and the fact that only a single underlying model was used for generating this data. In the bottom panel, the conclusion is reversed, which is also in accordance with the nature of the simulated data, which contains two distinct groups.\relax }}{14}{figure.caption.2}}
+\newlabel{plot.simCE}{{2}{14}{CE plots for the two simulated datasets. Dataset A, which includes no differences in data structures, is found in the top panel, and dataset B, where the observations stem from two different underlying models, is presented in the bottom panel. Both plots are annotated with the $p$-values of the Kolmogorov-Smirnov and the Cram\'er-von Mises tests of the hypothesis of no difference in data structures. The bold, black lines illustrate the observed cumulative eigenvalue differences, while the shaded areas are 95 \% confidence bands under the null hypothesis of no difference in data structures. In the top panel, we see a cumulative eigenvalue curve that falls well within the confidence region, thereby suggesting no difference in eigenvalues (as expected). This also agrees with the large $p$-values and the fact that only a single underlying model was used for generating this data. In the bottom panel, the conclusion is reversed, which is also in accordance with the nature of the simulated data, which contains two distinct groups.\relax }{figure.caption.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}The angle plot}{16}{subsubsection.2.2.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Angle plots for the two simulated datasets, with dataset A in the top panel and dataset B in the bottom panel. The blue show the principal components of the observations in group 1 decomposed in the coordinate system of the principal components of group 2, while the red arrows illustrate the reverse. For dataset A, we find very short off-diagonal arrows, suggesting that the two PCA decompositions agree on the relative placement of the information in the data among the 6 PCs. For dataset B, on the other hand, we find very little agreement in all components, which should be expected, as the two groups in the dataset correspond to different data structures.\relax }}{17}{figure.caption.3}}
+\newlabel{plot.simAngle}{{3}{17}{Angle plots for the two simulated datasets, with dataset A in the top panel and dataset B in the bottom panel. The blue show the principal components of the observations in group 1 decomposed in the coordinate system of the principal components of group 2, while the red arrows illustrate the reverse. For dataset A, we find very short off-diagonal arrows, suggesting that the two PCA decompositions agree on the relative placement of the information in the data among the 6 PCs. For dataset B, on the other hand, we find very little agreement in all components, which should be expected, as the two groups in the dataset correspond to different data structures.\relax }{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Chroma plots for the two simulated datasets, with dataset A in the top and dataset B in the bottom. Each bar represents a principal component and the bars are annotated with their cumulative percentages of explained variance ($\mathaccentV {tilde}07E\sigma _{ij}^c$). For dataset A, we see very similar visual patterns across the two panels, corresponding well with the fact that both groups are drawn from the same underlying model. For dataset B, we see different color compositions for the bars in the left- and the right panel, illustrating that the data structures are not identical for the two groups.\relax }}{19}{figure.caption.4}}
+\newlabel{plot.simChroma}{{4}{19}{Chroma plots for the two simulated datasets, with dataset A in the top and dataset B in the bottom. Each bar represents a principal component and the bars are annotated with their cumulative percentages of explained variance ($\tilde \sigma _{ij}^c$). For dataset A, we see very similar visual patterns across the two panels, corresponding well with the fact that both groups are drawn from the same underlying model. For dataset B, we see different color compositions for the bars in the left- and the right panel, illustrating that the data structures are not identical for the two groups.\relax }{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}The chroma plot}{20}{subsubsection.2.2.3}}
+\citation{Veenhoven2012}
+\citation{Lolle2016}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Comparing psychological well-being: A data example}{21}{section.3}}
+\newlabel{sec:dataexample}{{3}{21}{Comparing psychological well-being: A data example}{section.3}{}}
+\citation{WHR2016}
+\citation{ESStopline5}
+\citation{Rodriguez2014}
+\citation{PCADSC}
+\citation{ESStopline5}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Median values of each of the six dimensions of psychological well-being, stratified by country. 25 and 75 percentiles are listed in parentheses. Note that the scales are constructed such that they all run from 0-10.\relax }}{23}{table.caption.5}}
+\newlabel{tableDistr}{{1}{23}{Median values of each of the six dimensions of psychological well-being, stratified by country. 25 and 75 percentiles are listed in parentheses. Note that the scales are constructed such that they all run from 0-10.\relax }{table.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Data}{23}{subsection.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Comparing Denmark and Bulgaria}{24}{subsection.3.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The CE plot (top) and the angle plot (bottom) resulting from comparing Bulgarian and Danish data on psychosocial well-being. The CE plot is annotated with the $p$-values of the Kolmogorov-Smirnov and the Cram\'er-von Mises tests of the hypothesis of no difference in data structures. In the angle plot, the blue arrows show the principal components of the Bulgarian dataset decomposed in the coordinate system of the principal components of the Danish dataset, while the red arrows illustrate the reverse.\relax }}{25}{figure.caption.6}}
+\newlabel{plotBG.cehair}{{5}{25}{The CE plot (top) and the angle plot (bottom) resulting from comparing Bulgarian and Danish data on psychosocial well-being. The CE plot is annotated with the $p$-values of the Kolmogorov-Smirnov and the Cram\'er-von Mises tests of the hypothesis of no difference in data structures. In the angle plot, the blue arrows show the principal components of the Bulgarian dataset decomposed in the coordinate system of the principal components of the Danish dataset, while the red arrows illustrate the reverse.\relax }{figure.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces A chroma plot comparing the 2nd, 3rd and 4th principal components of the Bulgiarian- and Danish psychological well-being data. The component-bars are annotated with their relative variance contributions (denoted $\mathaccentV {tilde}07E\sigma $ in the previous section).\relax }}{26}{figure.caption.7}}
+\newlabel{plotBG.pancake}{{6}{26}{A chroma plot comparing the 2nd, 3rd and 4th principal components of the Bulgiarian- and Danish psychological well-being data. The component-bars are annotated with their relative variance contributions (denoted $\tilde \sigma $ in the previous section).\relax }{figure.caption.7}{}}
+\citation{ESStopline5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Comparing Denmark and Sweden}{28}{subsection.3.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces A CE (top) and a angle (bottom) plot for comparing the Danish and the Swedish psychological well-being data. The blue arrows show the principal components of the Danish dataset decomposed in the coordinate system of the principal components of the Swedish dataset, and the red arrows illustrate the reverse.\relax }}{29}{figure.caption.8}}
+\newlabel{plotSE.cehair}{{7}{29}{A CE (top) and a angle (bottom) plot for comparing the Danish and the Swedish psychological well-being data. The blue arrows show the principal components of the Danish dataset decomposed in the coordinate system of the principal components of the Swedish dataset, and the red arrows illustrate the reverse.\relax }{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces A chroma plot for comparing the loading patterns of the Danish and the Swedish subsamples. Note that for each component, the bar is annotated with its cumulative variance contribution (denoted $\mathaccentV {tilde}07E\sigma ^c$ in the previous section), that is, how much variance can be explained by having information of this and the preceding components.\relax }}{30}{figure.caption.9}}
+\newlabel{plotSE.pancake}{{8}{30}{A chroma plot for comparing the loading patterns of the Danish and the Swedish subsamples. Note that for each component, the bar is annotated with its cumulative variance contribution (denoted $\tilde \sigma ^c$ in the previous section), that is, how much variance can be explained by having information of this and the preceding components.\relax }{figure.caption.9}{}}
+\citation{Kankaras2014,Kreiner2014,ZwitserEtAl2017}
+\citation{Asil2016}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{31}{section.4}}
+\newlabel{sec.Discussion}{{4}{31}{Discussion}{section.4}{}}
+\citation{Cattell1966}
+\citation{LinEtAl2002}
+\citation{Abdi2010}
+\citation{Ekstrøm2014}
+\bibstyle{apa}
+\bibdata{bib}
+\bibcite{Abdi2010}{{1}{2010}{{Abdi and Williams}}{{}}}
+\bibcite{Asil2016}{{2}{2016}{{Asil and Brown}}{{}}}
+\bibcite{Brambilla1987}{{3}{1987}{{Brambilla and McKinlay}}{{}}}
+\bibcite{Cattell1966}{{4}{1966}{{Cattell}}{{}}}
+\bibcite{Ekstrøm2014}{{5}{2014}{{Ekstr{\o }m}}{{}}}
+\bibcite{HastieEtAl2009}{{6}{2009}{{Hastie et~al.}}{{}}}
+\bibcite{WHR2016}{{7}{2016}{{Helliwell et~al.}}{{}}}
+\bibcite{ESStopline5}{{8}{2015}{{Jeffrey et~al.}}{{}}}
+\bibcite{Kankaras2014}{{9}{2014}{{Kankara{\v {s}} and Moors}}{{}}}
+\bibcite{Kreiner2014}{{10}{2014}{{Kreiner and Christensen}}{{}}}
+\bibcite{LinEtAl2002}{{11}{2002}{{Lin et~al.}}{{}}}
+\bibcite{Liu2016}{{12}{2016}{{Liu}}{{}}}
+\bibcite{Lolle2016}{{13}{2016}{{Lolle and Andersen}}{{}}}
+\bibcite{McHorney1994}{{14}{1994}{{McHorney et~al.}}{{}}}
+\bibcite{PCADSC}{{15}{2017}{{Petersen and Markussen}}{{}}}
+\bibcite{Powers2005}{{16}{2005}{{Powers et~al.}}{{}}}
+\bibcite{Rodriguez2014}{{17}{2014}{{Rodr\'iguez-Pose and von Berlepsch}}{{}}}
+\bibcite{Veenhoven2012}{{18}{2012}{{Veenhoven}}{{}}}
+\bibcite{ZwitserEtAl2017}{{19}{2017}{{Zwitser et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Details about the simulated data}{36}{appendix.A}}
+\newlabel{appendix.simData}{{A}{36}{Details about the simulated data}{appendix.A}{}}
+\citation{ESStopline5}
+\citation{ESStopline5}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Relationship between questionnaire items and scales, as defined in \cite  {ESStopline5}. Note that before we construct the scale scores as item means, we transform the individual item scores such that they are all on a scale from 0 to 10 and such that 10 always corresponds being the most happy.\relax }}{38}{table.caption.11}}
+\newlabel{table:items}{{2}{38}{Relationship between questionnaire items and scales, as defined in \cite {ESStopline5}. Note that before we construct the scale scores as item means, we transform the individual item scores such that they are all on a scale from 0 to 10 and such that 10 always corresponds being the most happy.\relax }{table.caption.11}{}}

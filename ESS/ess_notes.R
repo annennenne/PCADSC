@@ -214,6 +214,10 @@ ggsave(plot = fig6_chroma, file = "./article/PlosOne/Fig6.eps",
        device = "eps", dpi = 400, width = 7, height = 4)
 
 
+ggsave(plot = fig5_CE, file = "P:/PCADSC/CSP/CEBGDK.pdf", width = 7, height = 5)
+ggsave(plot = fig5_angle, file = "P:/PCADSC/CSP/angleBGDK.pdf", width = 7, height = 5)
+ggsave(plot = fig6_chroma, file = "P:/PCADSC/CSP/chromaBGDK.pdf", width = 7, height = 5)
+
 #DK/SE
 set.seed(1234)
 a1 <- PCADSC(data_SEDK, "cntry",  c("EvaluativeWellbeing",
@@ -235,3 +239,7 @@ ggsave(plot = grid.arrange(fig7_CE, fig7_angle, nrow = 2), file = "./article/Plo
 
 ggsave(plot = fig8_chroma, file = "./article/PlosOne/Fig8.eps",
        device = "eps", dpi = 400, width = 7, height = 4)
+
+ggsave(plot = fig7_CE, file = "P:/PCADSC/CSP/CESEDK.pdf", width = 7, height = 5)
+ggsave(plot = fig7_angle, file = "P:/PCADSC/CSP/angleSEDK.pdf", width = 7, height = 5)
+ggsave(plot = fig8_chroma, file = "P:/PCADSC/CSP/chromaSEDK.pdf", width = 7, height = 5)

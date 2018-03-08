@@ -63,11 +63,26 @@ ggsave(plot = grid.arrange(CE2, CE1, nrow = 2), file = "./article/PlosOne/Fig2.e
        device = "eps", dpi = 400, width = 7, height = 8)
 
 
+
 ggsave(plot = grid.arrange(angle2, angle1, nrow = 2), file = "./article/PlosOne/Fig3.eps",
        device = "eps", dpi = 400, width = 7, height = 8)
 
 ggsave(plot = grid.arrange(chroma2, chroma1, nrow = 2), file = "./article/PlosOne/Fig4.eps",
        device = "eps", dpi = 400, width = 7, height = 8)
+
+
+CE2b <- CE2 + ggtitle("Simulated data A")
+ggsave(plot = CE2b, file = "P:/PCADSC/CSP/CEsim.pdf",
+       width = 8, height = 6)
+
+
+angle1b <- angle1 + ggtitle("Simulated data B")
+ggsave(plot = angle1b, file = "P:/PCADSC/CSP/anglesim.pdf",
+       width = 8, height = 6)
+
+chroma1b <- chroma1 + ggtitle("Simulated data B")
+ggsave(plot = chroma1b, file = "P:/PCADSC/CSP/chromasim.pdf",
+       width = 8, height = 6)
 
 
 #ggsave(plot = angle1, file = "./article/simAngle1.pdf",
