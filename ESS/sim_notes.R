@@ -38,51 +38,82 @@ po2 <- PCADSC(dF2, "group")
 
 CE1 <- CEPlot(po1) +
   scale_y_continuous(breaks = round(seq(-0.6, 0.6, 0.1),1), limits = c(-0.5, 0.3)) +
-  ggtitle("Dataset B") +  theme(plot.title = element_text(hjust = 0.5))
+  ggtitle("Dataset B", subtitle = "Cumulative difference in eigenvalues: Group 1 - Group 2") +
+  theme(panel.border = element_blank(),
+        axis.line=element_line(),
+        plot.subtitle = element_text(size = 11, hjust = -0.11),
+        plot.title = element_text(hjust = 0.5)) +
+  ylab("")
 
 CE2 <- CEPlot(po2) +
   scale_y_continuous(breaks = round(seq(-0.6, 0.6, 0.1),1), limits = c(-0.3, 0.3)) +
-  ggtitle("Dataset A") +  theme(plot.title = element_text(hjust = 0.5))
+  ggtitle("Dataset A", subtitle = "Cumulative difference in eigenvalues: Group 1 - Group 2") +
+  theme(panel.border = element_blank(),
+        axis.line=element_line(),
+        plot.subtitle = element_text(size = 11, hjust = -0.11),
+        plot.title = element_text(hjust = 0.5)) +
+  ylab("")
 
 angle1 <- anglePlot(po1) +
-  ggtitle("Dataset B") +  theme(plot.title = element_text(hjust = 0.5))
+  theme(panel.border = element_blank(),
+        axis.line=element_line(),
+        plot.subtitle = element_text(size = 11, hjust = -0.03),
+        plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Dataset B", subtitle = "PCs for Group 2") +
+  ylab("")
+
 angle2 <- anglePlot(po2) +
-  ggtitle("Dataset A") +  theme(plot.title = element_text(hjust = 0.5))
+  theme(panel.border = element_blank(),
+        axis.line=element_line(),
+        plot.subtitle = element_text(size = 11, hjust = -0.03),
+        plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Dataset A", subtitle = "PCs for Group 2") +
+  ylab("")
 
 chroma1 <- chromaPlot(po1) +
-  ggtitle("Dataset B") +  theme(plot.title = element_text(hjust = 0.5))
+  theme(axis.line=element_line(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Dataset B")
+
 chroma2 <- chromaPlot(po2) +
-  ggtitle("Dataset A") +  theme(plot.title = element_text(hjust = 0.5))
+  theme(axis.line=element_line(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Dataset A")
+
 
 #ggsave(plot = CE1, file = "./article/simCE1.pdf",
  #      width = 8, height = 5)
 #ggsave(plot = CE2, file = "./article/simCE2.pdf",
 #       width = 8, height = 5)
 
-ggsave(plot = grid.arrange(CE2, CE1, nrow = 2), file = "./article/PlosOne/Fig2.eps",
-       device = "eps", dpi = 400, width = 7, height = 8)
+#ggsave(plot = grid.arrange(CE2, CE1, nrow = 2), file = "./article/PlosOne/Fig2.eps",
+#       device = "eps", dpi = 400, width = 7, height = 8)
 
 
 
-ggsave(plot = grid.arrange(angle2, angle1, nrow = 2), file = "./article/PlosOne/Fig3.eps",
-       device = "eps", dpi = 400, width = 7, height = 8)
+#ggsave(plot = grid.arrange(angle2, angle1, nrow = 2), file = "./article/PlosOne/Fig3.eps",
+#       device = "eps", dpi = 400, width = 7, height = 8)
 
-ggsave(plot = grid.arrange(chroma2, chroma1, nrow = 2), file = "./article/PlosOne/Fig4.eps",
-       device = "eps", dpi = 400, width = 7, height = 8)
-
-
-CE2b <- CE2 + ggtitle("Simulated data A")
-ggsave(plot = CE2b, file = "P:/PCADSC/CSP/CEsim.pdf",
-       width = 8, height = 6)
+#ggsave(plot = grid.arrange(chroma2, chroma1, nrow = 2), file = "./article/PlosOne/Fig4.eps",
+#       device = "eps", dpi = 400, width = 7, height = 8)
 
 
-angle1b <- angle1 + ggtitle("Simulated data B")
-ggsave(plot = angle1b, file = "P:/PCADSC/CSP/anglesim.pdf",
-       width = 8, height = 6)
+#CE2b <- CE2 + ggtitle("Simulated data A")
+#ggsave(plot = CE2b, file = "P:/PCADSC/CSP/CEsim.pdf",
+#       width = 8, height = 6)
 
-chroma1b <- chroma1 + ggtitle("Simulated data B")
-ggsave(plot = chroma1b, file = "P:/PCADSC/CSP/chromasim.pdf",
-       width = 8, height = 6)
+
+#angle1b <- angle1 + ggtitle("Simulated data B")
+#ggsave(plot = angle1b, file = "P:/PCADSC/CSP/anglesim.pdf",
+#       width = 8, height = 6)
+
+#chroma1b <- chroma1 + ggtitle("Simulated data B")
+#ggsave(plot = chroma1b, file = "P:/PCADSC/CSP/chromasim.pdf",
+#       width = 8, height = 6)
 
 
 #ggsave(plot = angle1, file = "./article/simAngle1.pdf",
@@ -95,3 +126,18 @@ ggsave(plot = chroma1b, file = "P:/PCADSC/CSP/chromasim.pdf",
  #      width = 8, height = 5)
 #ggsave(plot = chroma2, file = "./article/simChroma2.pdf",
 #       width = 8, height = 5)
+
+
+ggsave(plot = grid.arrange(CE2, CE1, nrow = 2),
+        file = "P:/PCADSC/R/article/Old versions/MPS/Figure2_v2.pdf",
+       dpi = 400, width = 7, height = 8)
+
+
+ggsave(plot = grid.arrange(angle2, angle1, nrow = 2),
+       file = "P:/PCADSC/R/article/Old versions/MPS/Figure3_v2.pdf",
+       dpi = 400, width = 7, height = 8)
+
+ggsave(plot = grid.arrange(chroma2, chroma1, nrow = 2),
+       file = "P:/PCADSC/R/article/Old versions/MPS/Figure4_v2.pdf",
+       dpi = 400, width = 7, height = 8)
+
