@@ -190,6 +190,7 @@ xtable(m, digits = 2)
 library(PCADSC)
 library(ggplot2)
 library(gridExtra)
+#library(grid)
 
 #DK/BG
 set.seed(123424)
@@ -200,23 +201,49 @@ a2 <- PCADSC(data_BGDK, "cntry",  c("EvaluativeWellbeing",
                                     "CommunityWellbeing",
                                     "SupportiveRelationships"))
 
-fig5_CE <- CEPlot(a2) +
-  scale_y_continuous(breaks = round(seq(-0.3, 0.5, 0.1),1), limits = c(-0.2, 0.5))
-fig5_angle <- anglePlot(a2)
+fig6_CE <- CEPlot(a2) +
+  scale_y_continuous(breaks = round(seq(-0.3, 0.5, 0.1),1), limits = c(-0.2, 0.5)) +
+  theme(panel.border = element_blank(),
+        axis.line=element_line(),
+        plot.title = element_text(size = 11, hjust = -0.09)) +
+  ggtitle("Cumulative difference in eigenvalues: BG - DK") +
+  ylab("")
+fig6_angle <- anglePlot(a2) +
+  theme(panel.border = element_blank(),
+        axis.line=element_line(),
+        plot.title = element_text(size = 11, hjust = -0.03)) +
+  ggtitle("PCs for DK") +
+  ylab("")
 
-fig6_chroma <- chromaPlot(a2, useComps = 2:4) #figure 6
+fig7_chroma <- chromaPlot(a2, useComps = 2:4) +
+  theme(#panel.border = element_blank(),
+        axis.line=element_line(),
+       # plot.title = element_text(size = 11, hjust = -0.02),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()) #+
+ # ggtitle("PCs for DK") +
+#  ylab("")
 
 
-ggsave(plot = grid.arrange(fig5_CE, fig5_angle, nrow = 2), file = "./article/PlosOne/Fig5.eps",
-       device = "eps", dpi = 400, width = 7, height = 8)
+#ggsave(plot = grid.arrange(fig5_CE, fig5_angle, nrow = 2), file = "./article/PlosOne/Fig5.eps",
+#       device = "eps", dpi = 400, width = 7, height = 8)
 
-ggsave(plot = fig6_chroma, file = "./article/PlosOne/Fig6.eps",
-       device = "eps", dpi = 400, width = 7, height = 4)
+#ggsave(plot = fig6_chroma, file = "./article/PlosOne/Fig6.eps",
+#       device = "eps", dpi = 400, width = 7, height = 4)
 
 
-ggsave(plot = fig5_CE, file = "P:/PCADSC/CSP/CEBGDK.pdf", width = 7, height = 5)
-ggsave(plot = fig5_angle, file = "P:/PCADSC/CSP/angleBGDK.pdf", width = 7, height = 5)
-ggsave(plot = fig6_chroma, file = "P:/PCADSC/CSP/chromaBGDK.pdf", width = 7, height = 5)
+#ggsave(plot = fig5_CE, file = "P:/PCADSC/CSP/CEBGDK.pdf", width = 7, height = 5)
+#ggsave(plot = fig5_angle, file = "P:/PCADSC/CSP/angleBGDK.pdf", width = 7, height = 5)
+#ggsave(plot = fig6_chroma, file = "P:/PCADSC/CSP/chromaBGDK.pdf", width = 7, height = 5)
+
+ggsave(plot = grid.arrange(fig6_CE, fig6_angle, nrow = 2),
+       file = "P:/PCADSC/R/article/Old versions/MPS/Figure6_v2.pdf",
+             dpi = 400, width = 7, height = 8)
+
+ggsave(plot = fig7_chroma,
+       file = "P:/PCADSC/R/article/Old versions/MPS/Figure7_v2.pdf",
+       dpi = 400, width = 7, height = 4)
+
 
 #DK/SE
 set.seed(1234)
@@ -226,20 +253,47 @@ a1 <- PCADSC(data_SEDK, "cntry",  c("EvaluativeWellbeing",
                                "Vitality",
                                "CommunityWellbeing",
                                "SupportiveRelationships"))
-fig7_CE <- CEPlot(a1) +
-  scale_y_continuous(breaks = round(seq(-0.6, 0.6, 0.1),1), limits = c(-0.3, 0.3))
+fig8_CE <- CEPlot(a1) +
+  scale_y_continuous(breaks = round(seq(-0.6, 0.6, 0.1),1), limits = c(-0.3, 0.3)) +
+  theme(panel.border = element_blank(),
+        axis.line=element_line(),
+        plot.title = element_text(size = 11, hjust = -0.09)) +
+  ggtitle("Cumulative difference in eigenvalues: DK - SE") +
+  ylab("")
 
-fig7_angle <- anglePlot(a1)
+fig8_angle <- anglePlot(a1) +
+  theme(panel.border = element_blank(),
+        axis.line=element_line(),
+        plot.title = element_text(size = 11, hjust = -0.03)) +
+  ggtitle("PCs for SE") +
+  ylab("")
 
-fig8_chroma <- chromaPlot(a1)
+fig9_chroma <- chromaPlot(a1) +
+  theme(#panel.border = element_blank(),
+    axis.line=element_line(),
+    # plot.title = element_text(size = 11, hjust = -0.02),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()) #+
+# ggtitle("PCs for DK") +
+#  ylab("")
 
 
-ggsave(plot = grid.arrange(fig7_CE, fig7_angle, nrow = 2), file = "./article/PlosOne/Fig7.eps",
-       device = "eps", dpi = 400, width = 7, height = 8)
 
-ggsave(plot = fig8_chroma, file = "./article/PlosOne/Fig8.eps",
-       device = "eps", dpi = 400, width = 7, height = 4)
+#ggsave(plot = grid.arrange(fig7_CE, fig7_angle, nrow = 2), file = "./article/PlosOne/Fig7.eps",
+#       device = "eps", dpi = 400, width = 7, height = 8)
 
-ggsave(plot = fig7_CE, file = "P:/PCADSC/CSP/CESEDK.pdf", width = 7, height = 5)
-ggsave(plot = fig7_angle, file = "P:/PCADSC/CSP/angleSEDK.pdf", width = 7, height = 5)
-ggsave(plot = fig8_chroma, file = "P:/PCADSC/CSP/chromaSEDK.pdf", width = 7, height = 5)
+#ggsave(plot = fig8_chroma, file = "./article/PlosOne/Fig8.eps",
+#       device = "eps", dpi = 400, width = 7, height = 4)
+
+#ggsave(plot = fig7_CE, file = "P:/PCADSC/CSP/CESEDK.pdf", width = 7, height = 5)
+#ggsave(plot = fig7_angle, file = "P:/PCADSC/CSP/angleSEDK.pdf", width = 7, height = 5)
+#ggsave(plot = fig8_chroma, file = "P:/PCADSC/CSP/chromaSEDK.pdf", width = 7, height = 5)
+
+ggsave(plot = grid.arrange(fig8_CE, fig8_angle, nrow = 2),
+       file = "P:/PCADSC/R/article/Old versions/MPS/Figure8_v2.pdf",
+       dpi = 400, width = 7, height = 8)
+
+ggsave(plot = fig9_chroma,
+       file = "P:/PCADSC/R/article/Old versions/MPS/Figure9_v2.pdf",
+       dpi = 400, width = 7, height = 4)
+

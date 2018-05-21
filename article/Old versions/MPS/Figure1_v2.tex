@@ -1,0 +1,98 @@
+\documentclass[titlepage,11pt,twoside]{article}
+\usepackage[dvips]{graphicx}
+
+\usepackage{color}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{multirow}
+%\usepackage{colortbl}
+\usepackage[table]{xcolor}
+\definecolor{lightgray}{gray}{0.9}
+\usepackage[T1]{fontenc}
+
+\usepackage{caption,setspace}
+\captionsetup{font={footnotesize,stretch=1.5}}
+\renewcommand{\baselinestretch}{2}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes, positioning, calc}
+
+
+\newcommand{\bfU}{\mbox{\boldmath$\mathsf{U}$}}
+\newcommand{\bfu}{\mbox{\boldmath$\mathsf{u}$}}
+\newcommand{\hl}[1]{\textcolor{magenta}{#1}}
+\newcommand{\RR}{\mathbb{R}}
+\DeclareMathOperator*{\V}{V}
+\DeclareMathOperator*{\argmax}{argmax}
+\newcommand{\R}[1]{\texttt{#1}}
+\newcommand{\acos}{\text{arccos}}
+
+%\usepackage{helvet}
+%\renewcommand{\familydefault}{\sfdefault}
+%\renewcommand{\rmdefault}{\sfdefault} % Aria
+
+%\usepackage{arev}
+
+%\begin{figure}[h]
+%\centerline{\includegraphics{figure03.eps}}
+%\caption{Projection of item discrimination vectors onto $V_{\theta_T}$ hyperplance for a six item three-dimensional approximate sample structure.}
+%\end{figure}
+
+%\raggedbottom
+\flushbottom
+
+
+%\firstpage{1}
+%\setcounter{lastpage}{999}
+\setcounter{secnumdepth}{3}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\center
+Model 1: \medskip \\
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto, node distance=2.5cm,
+  thick,main node/.style={rectangle, rounded corners,draw,font=\small\normalfont},
+  sq node/.style={rectangle,draw,font=\small\normalfont}]
+  \node[sq node] (1) {$V_1$};
+  \node[sq node, right of = 1] (2) {$V_2$};
+  \node[sq node, right of = 2] (3) {$V_3$};
+  \node[sq node, right of = 3] (4) {$V_4$};
+  \node[sq node, right of = 4] (5) {$V_5$};
+  \node[sq node, right of = 5] (6) {$V_6$};
+  \node[main node, above right=1cm of 3] (7) {$L_1$};
+  \node[main node, above right=1cm of 5] (8) {$L_2$};
+  \path[every node/.style={font=\sffamily\small}]
+    (7) edge node  {} (3)
+    (7) edge node {} (4)
+    (8) edge node {} (5)
+    (8) edge node {} (6);
+ \end{tikzpicture}
+\\
+\bigskip
+Model 2: \medskip \\
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto, node distance=2.5cm,
+  thick,main node/.style={rectangle, rounded corners,draw,font=\small\normalfont},
+  sq node/.style={rectangle,draw,font=\small\normalfont}]
+  \node[sq node] (1) {$V_1$};
+  \node[sq node, right of = 1] (2) {$V_2$};
+  \node[sq node, right of = 2] (3) {$V_3$};
+  \node[sq node, right of = 3] (4) {$V_4$};
+  \node[sq node, right of = 4] (5) {$V_5$};
+  \node[sq node, right of = 5] (6) {$V_6$};
+  \node[main node, above=1cm of 2] (7) {$K_1$};
+  \node[main node, above=1cm of 5] (8) {$K_2$};
+  \path[every node/.style={font=\small}]
+    (7) edge node  {} (1)
+    (7) edge node {} (2)
+    (7) edge node {} (3)
+    (8) edge node {} (4)
+    (8) edge node {} (5)
+    (8) edge node {} (6);
+ \end{tikzpicture}
+
+\end{document}

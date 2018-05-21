@@ -67,6 +67,25 @@ anglePlot <- function(x) {
   d <- obj$d
   splitLevels <- obj$splitLevels
 
+  # -------------------------------------------------------
+  # -------------------------------------------------------
+  # Make data frame for adding 95pct confidence intervals
+  mydata <- data.frame(g=NULL,x=NULL,y=NULL)
+  for (i in 1:d) for (j in 1:d) {
+    theta <- quantile(obj$angles.sim[i,j,],c(0.025,0.975))
+    theta <- seq(theta[1],theta[2],length.out = 100)
+    mydata <- rbind(mydata,
+                    data.frame(g=paste(c(i,j,"1st"),collapse="."),
+                               x=c(i,i+cos(theta)*cos(pi/4+theta/2)),
+                               y=c(j,j+cos(theta)*sin(pi/4+theta/2))),
+                    data.frame(g=paste(c(i,j,"2nd"),collapse="."),
+                               x=c(i,i+cos(theta)*cos(pi/4-theta/2)),
+                               y=c(j,j+cos(theta)*sin(pi/4-theta/2))))
+  }
+  # -------------------------------------------------------
+  # -------------------------------------------------------
+
+
   #Make anglePlot
   ggplot(aF, aes_string(x = "x", y = "y", col = "type",
                         xend = "xend", yend = "yend")) +
@@ -77,5 +96,6 @@ anglePlot <- function(x) {
     xlab(paste("PCs for", splitLevels[1])) +
     ylab(paste("PCs for", splitLevels[2])) +
     geom_segment(arrow = arrow(length = unit(arrow.len, "inch"))) +
-    scale_color_manual(values = c("blue", "red"), guide = FALSE)
+    scale_color_manual(values = c("blue", "red"), guide = FALSE) +
+    geom_polygon(aes(group=g,x=x,y=y),data=mydata,inherit.aes = FALSE,fill="gray85",alpha=1)   # Add confidence intervals
 }

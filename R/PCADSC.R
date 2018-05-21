@@ -146,7 +146,7 @@ PCADSC <- function(data, splitBy, vars=NULL, doCE = TRUE,
   chromaInfo <- NULL
 
   if (doCE) CEInfo <- doCE(pcaRes, data, B)
-  if (doAngle) angleInfo <- doAngle(pcaRes)
+  if (doAngle) angleInfo <- doAngle(pcaRes, data, B)                  # CHANGED to include simulations
   if (doChroma) chromaInfo <- doChroma(pcaRes)
 
   out <- list(pcaRes = pcaRes, CEInfo = CEInfo, angleInfo = angleInfo,
