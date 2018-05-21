@@ -82,6 +82,7 @@ CEPlot <- function(x, nDraw = NULL) {
   CvM.pvalue <- obj$CvM.pvalue
   B <- obj$B
   d <- obj$d
+  splitLevels <- obj$splitLevels
 
   #Make CE plot
   if(is.null(nDraw)) nDraw <- min(B, 20)
@@ -115,7 +116,9 @@ CEPlot <- function(x, nDraw = NULL) {
                x = -Inf, y = Inf, hjust = "left", vjust = "top",
                label.r = unit(0, "lines"),
                label.padding = unit(1, "lines")) +
-      annotate(geom = "line", x = xVals, y = y.obs, size = 1)
+      annotate(geom = "line", x = xVals, y = y.obs, size = 1) +
+      ggtitle(paste("Cumulative eigenvalue difference:", splitLevels[1],
+                    "-", splitLevels[2]))
 }
 
 

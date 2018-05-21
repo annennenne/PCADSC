@@ -48,6 +48,7 @@ doCE <- function(x, ...) {
 #x: pcaRes
 #' @export
 doCE.pcaRes <- function(x, data, B, ...) {
+  splitLevels <- x$splitLevels
 
   #check whether B is positive
   if (B < 1) {
@@ -91,7 +92,8 @@ doCE.pcaRes <- function(x, data, B, ...) {
   #Pack and return output
   out <- list(d = d, B = B, xVals = xVals, y.obs = y.obs, y.sim = y.sim,
               KS.obs = KS.obs, KS.pvalue = KS.pvalue,
-              CvM.obs = CvM.obs, CvM.pvalue = CvM.pvalue)
+              CvM.obs = CvM.obs, CvM.pvalue = CvM.pvalue,
+              splitLevels = splitLevels)
   class(out) <- "CEInfo"
   out
 }
