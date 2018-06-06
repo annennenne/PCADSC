@@ -53,7 +53,7 @@
 #' @importFrom stats quantile
 #' @importFrom ggplot2 ggplot aes_string geom_polygon geom_line scale_x_continuous
 #' scale_y_continuous theme_bw theme element_blank xlab ylab geom_line
-#' scale_linetype_manual annotate unit
+#' scale_linetype_manual annotate unit ggtitle
 #' @export
 CEPlot <- function(x, nDraw = NULL) {
 

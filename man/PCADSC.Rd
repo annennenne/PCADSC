@@ -98,4 +98,3 @@ irisPCADSC_minimal <- PCADSC(iris, "group", doAngle = FALSE,
 \code{\link{doCE}}, \code{\link{doAngle}}, \code{\link{doChroma}},
 \code{\link{CEPlot}}, \code{\link{anglePlot}}, \code{\link{chromaPlot}}
 }
-

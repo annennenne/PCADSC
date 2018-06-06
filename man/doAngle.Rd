@@ -4,7 +4,7 @@
 \alias{doAngle}
 \title{Compute angle information}
 \usage{
-doAngle(x)
+doAngle(x, ...)
 }
 \arguments{
 \item{x}{Either a \code{PCADSC} or a \code{pcaRes} object.}
@@ -40,11 +40,10 @@ irisPCADSC$angleInfo
 #faster runtime
 irisPCADSC_fast <- PCADSC(iris, "group", doAngle = FALSE,
   doChroma = FALSE, doCE = FALSE)
-irisPCADSC_fast <- doAngle(irisPCADSC_fast)
+irisPCADSC_fast <- doAngle(irisPCADSC_fast, B = 100)
 irisPCADSC_fast$angleInfo
 
 }
 \seealso{
 \code{\link{anglePlot}}, \code{\link{PCADSC}}
 }
-

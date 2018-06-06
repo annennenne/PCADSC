@@ -40,6 +40,7 @@
 #'
 #' @importFrom ggplot2 ggplot aes_string scale_x_continuous scale_y_continuous
 #' theme_bw theme element_blank xlab ylab geom_segment unit scale_color_manual
+#' geom_polygon
 #' @importFrom grid arrow
 #' @export
 anglePlot <- function(x) {
@@ -97,5 +98,6 @@ anglePlot <- function(x) {
     ylab(paste("PCs for", splitLevels[2])) +
     geom_segment(arrow = arrow(length = unit(arrow.len, "inch"))) +
     scale_color_manual(values = c("blue", "red"), guide = FALSE) +
-    geom_polygon(aes(group=g,x=x,y=y),data=mydata,inherit.aes = FALSE,fill="gray85",alpha=1)   # Add confidence intervals
+    geom_polygon(aes_string(group = "g", x = "x", y = "y"),
+                 data = mydata, inherit.aes = FALSE, fill = "gray85", alpha = 1)   # Add confidence intervals
 }

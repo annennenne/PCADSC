@@ -61,4 +61,3 @@ CEPlot(irisPCADSC_fast)
 \seealso{
 \code{\link{PCADSC}}, \code{\link{doCE}}
 }
-
