@@ -6,6 +6,9 @@
 #'
 #' @param x Either a \code{PCADSC} or a \code{pcaRes} object.
 #'
+#' @param ... If \code{doCE} is called on a \code{pcaRes} object, the full dataset must also
+#' be supplied (as \code{data}), as well as the number of resampling steps (\code{B}).
+#'
 #' @examples
 #' #load iris data
 #' data(iris)
@@ -32,19 +35,19 @@
 #' #faster runtime
 #' irisPCADSC_fast <- PCADSC(iris, "group", doAngle = FALSE,
 #'   doChroma = FALSE, doCE = FALSE)
-#' irisPCADSC_fast <- doAngle(irisPCADSC_fast)
+#' irisPCADSC_fast <- doAngle(irisPCADSC_fast, B = 100)
 #' irisPCADSC_fast$angleInfo
 #'
 #' @seealso \code{\link{anglePlot}}, \code{\link{PCADSC}}
 #'
 #' @export
-doAngle <- function(x) {
+doAngle <- function(x, ...) {
   UseMethod("doAngle")
 }
 
 #x: pcaRes
 #' @export
-doAngle.pcaRes <- function(x) {
+doAngle.pcaRes <- function(x, data, B, ...) {
   load1 <- x$load1
   load2 <- x$load2
   eigen1 <- x$eigen1
@@ -80,14 +83,47 @@ doAngle.pcaRes <- function(x) {
                             rep(1:d, each = d) + c(len2)*sin(c(angles)/2)),
                    type = rep(c("1st", "2nd"), each = d*d))
 
+  # -------------------------------------------------------------------
+  # -------------------------------------------------------------------
+  # The following is change from corresponding simulation part of doCE
+  splitLevels <- x$splitLevels
+
+  #check whether B is positive
+  if (B < 1) {
+    stop("B must be positive.")
+  }
+
+  #Unpack x
+  n1 <- x$n1
+  nBoth <- x$nBoth
+  d <- x$d
+  vars <- x$vars
+
+  #Calculate cumulative sums for the randomly partitioned data
+  angles.sim   <- array(0, dim=c(d,d,B))
+
+  for (i in 1:B) {
+    splitVar <- rep("2", nBoth)
+    ii <- sample(1:nBoth, n1)
+    splitVar[ii] <- "1"
+    data$splitVar <- factor(splitVar)
+    myPCA <- doPCA(data, "splitVar", c("1", "2"), vars, doBoth = FALSE)
+    angles.sim[,,i] <- acos(abs(t(myPCA$load1)%*%myPCA$load2))
+  }
+  # -------------------------------------------------------------------
+  # -------------------------------------------------------------------
+
   #pack and return output
-  out <- list(aF = aF, splitLevels = splitLevels, d = d)
+  out <- list(aF = aF, splitLevels = splitLevels, angles.sim = angles.sim, d = d)
   class(out) <- "angleInfo"
   out
 }
 
 #' @export
-doAngle.PCADSC <- function(x) {
-  x$angleInfo <- doAngle(x$pcaRes)
+doAngle.PCADSC <- function(x, ...) {
+  if ("B" %in% names(list(...))) b <- list(...)$B
+  else b <- x$B
+
+  x$angleInfo <- doAngle(x$pcaRes, x$data, b)
   x
 }
