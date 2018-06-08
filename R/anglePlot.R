@@ -68,26 +68,28 @@ anglePlot <- function(x) {
   d <- obj$d
   splitLevels <- obj$splitLevels
 
-  # -------------------------------------------------------
-  # -------------------------------------------------------
   # Make data frame for adding 95pct confidence intervals
-  mydata <- data.frame(g=NULL,x=NULL,y=NULL)
+  cR <- data.frame(g=NULL,x=NULL,y=NULL)
   for (i in 1:d) for (j in 1:d) {
-    theta <- quantile(obj$angles.sim[i,j,],c(0.025,0.975))
-    theta <- seq(theta[1],theta[2],length.out = 100)
-    mydata <- rbind(mydata,
-                    data.frame(g=paste(c(i,j,"1st"),collapse="."),
-                               x=c(i,i+cos(theta)*cos(pi/4+theta/2)),
-                               y=c(j,j+cos(theta)*sin(pi/4+theta/2))),
-                    data.frame(g=paste(c(i,j,"2nd"),collapse="."),
-                               x=c(i,i+cos(theta)*cos(pi/4-theta/2)),
-                               y=c(j,j+cos(theta)*sin(pi/4-theta/2))))
+    if (i==j) {
+      theta <- seq(0,quantile(obj$angles.sim[i,j,],0.95),length.out = 100)
+    } else {
+      theta <- seq(quantile(obj$angles.sim[i,j,],0.05),pi/2,length.out = 100)
+    }
+    cR <- rbind(cR,
+                data.frame(g=paste(c(i,j,"1st"),collapse="."),
+                           x=c(i,i+cos(theta)*cos(pi/4+theta/2)),
+                           y=c(j,j+cos(theta)*sin(pi/4+theta/2))),
+                data.frame(g=paste(c(i,j,"2nd"),collapse="."),
+                           x=c(i,i+cos(theta)*cos(pi/4-theta/2)),
+                           y=c(j,j+cos(theta)*sin(pi/4-theta/2))))
   }
-  # -------------------------------------------------------
-  # -------------------------------------------------------
-
 
   #Make anglePlot
+<<<<<<< HEAD
+  ggplot(cR,aes_string(group = "g", x = "x", y = "y")) +
+    geom_polygon(fill = "gray85") +
+=======
 #  ggplot(aF, aes_string(x = "x", y = "y", col = "type",
 #                        xend = "xend", yend = "yend")) +
 #    scale_x_continuous(limits = c(0.5,d+0.5), breaks = 1:d) +
@@ -104,6 +106,7 @@ anglePlot <- function(x) {
 
   ggplot(mydata,aes(group=g,x=x,y=y)) +
     geom_polygon(aes_string(group = "g", x = "x", y = "y"), fill = "gray85") + # Add confidence interval
+>>>>>>> 33641116a20053dae2456e681224b2489a690f1e
     geom_segment(aes_string(x = "x", y = "y", col = "type",
                             xend = "xend", yend = "yend"),
                  aF,arrow = arrow(length = unit(arrow.len, "inch")),inherit.aes = FALSE) +
