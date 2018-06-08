@@ -62,8 +62,7 @@ doAngle.pcaRes <- function(x, data, B, ...) {
   #make angleFrame for plotting
 
   # find angles
-  angles <- matrix(0, d, d)
-  for (i in 1:d) for (j in 1:d) angles[i,j] <- asin(max(0,min(1,abs(sum(load1[,i]*load2[,j])))))
+  angles <- acos(abs(t(load1)%*%load2))
 
   #Calculate vector lengths
   max.eigen <- max(c(eigen1[1],eigen2[1]))
@@ -77,10 +76,10 @@ doAngle.pcaRes <- function(x, data, B, ...) {
   #Store in data.frame ready for plotting
   aF <- data.frame(x = rep(1:d, 2*d),
                    y = rep(rep(1:d, each = d),2),
-                   xend = c(rep(1:d, d) + c(len1)*cos((pi-c(angles))/2),
-                            rep(1:d, d) + c(len2)*cos(c(angles)/2)),
-                   yend = c(rep(1:d, each = d) + c(len1)*sin((pi-c(angles))/2),
-                            rep(1:d, each = d) + c(len2)*sin(c(angles)/2)),
+                   xend = c(rep(1:d, d) + c(len1)*cos(pi/4+c(angles)/2),
+                            rep(1:d, d) + c(len2)*cos(pi/4-c(angles)/2)),
+                   yend = c(rep(1:d, each = d) + c(len1)*sin(pi/4+c(angles)/2),
+                            rep(1:d, each = d) + c(len2)*sin(pi/4-c(angles)/2)),
                    type = rep(c("1st", "2nd"), each = d*d))
 
   # -------------------------------------------------------------------
@@ -101,11 +100,9 @@ doAngle.pcaRes <- function(x, data, B, ...) {
 
   #Calculate cumulative sums for the randomly partitioned data
   angles.sim   <- array(0, dim=c(d,d,B))
-
   for (i in 1:B) {
     splitVar <- rep("2", nBoth)
-    ii <- sample(1:nBoth, n1)
-    splitVar[ii] <- "1"
+    splitVar[sample(1:nBoth, n1)] <- "1"
     data$splitVar <- factor(splitVar)
     myPCA <- doPCA(data, "splitVar", c("1", "2"), vars, doBoth = FALSE)
     angles.sim[,,i] <- acos(abs(t(myPCA$load1)%*%myPCA$load2))
