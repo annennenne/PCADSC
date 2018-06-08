@@ -6,6 +6,9 @@
 #'
 #' @param x Either a \code{PCADSC} or a \code{pcaRes} object.
 #'
+#' @param ... If \code{doCE} is called on a \code{pcaRes} object, the full dataset must also
+#' be supplied (as \code{data}), as well as the number of resampling steps (\code{B}).
+#'
 #' @examples
 #' #load iris data
 #' data(iris)
@@ -32,7 +35,7 @@
 #' #faster runtime
 #' irisPCADSC_fast <- PCADSC(iris, "group", doAngle = FALSE,
 #'   doChroma = FALSE, doCE = FALSE)
-#' irisPCADSC_fast <- doAngle(irisPCADSC_fast)
+#' irisPCADSC_fast <- doAngle(irisPCADSC_fast, B = 100)
 #' irisPCADSC_fast$angleInfo
 #'
 #' @seealso \code{\link{anglePlot}}, \code{\link{PCADSC}}
@@ -119,5 +122,9 @@ doAngle.pcaRes <- function(x, data, B, ...) {
 #' @export
 doAngle.PCADSC <- function(x, ...) {
   x$angleInfo <- doAngle(x$pcaRes)
+  if ("B" %in% names(list(...))) b <- list(...)$B
+  else b <- x$B
+
+  x$angleInfo <- doAngle(x$pcaRes, x$data, b)
   x
 }

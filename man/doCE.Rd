@@ -50,4 +50,3 @@ irisPCADSC_fast$CEInfo
 \seealso{
 \code{\link{CEPlot}}, \code{\link{PCADSC}}
 }
-

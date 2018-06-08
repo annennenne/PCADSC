@@ -96,4 +96,3 @@ chromaPlot(irisPCADSC_fast)
 \seealso{
 \code{\link{PCADSC}}, \code{\link{doChroma}}
 }
-

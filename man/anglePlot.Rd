@@ -48,4 +48,3 @@ anglePlot(irisPCADSC_fast)
 \seealso{
 \code{\link{PCADSC}}, \code{\link{doAngle}}
 }
-

@@ -40,6 +40,7 @@
 #'
 #' @importFrom ggplot2 ggplot aes_string scale_x_continuous scale_y_continuous
 #' theme_bw theme element_blank xlab ylab geom_segment unit scale_color_manual
+#' geom_polygon
 #' @importFrom grid arrow
 #' @export
 anglePlot <- function(x) {
@@ -87,15 +88,30 @@ anglePlot <- function(x) {
 
 
   #Make anglePlot
-  ggplot(aF, aes_string(x = "x", y = "y", col = "type",
-                        xend = "xend", yend = "yend")) +
+#  ggplot(aF, aes_string(x = "x", y = "y", col = "type",
+#                        xend = "xend", yend = "yend")) +
+#    scale_x_continuous(limits = c(0.5,d+0.5), breaks = 1:d) +
+#    scale_y_continuous(limits = c(0.5,d+0.5), breaks = 1:d) +
+#    theme_bw() +
+#    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+#    xlab(paste("PCs for", splitLevels[1])) +
+#    ylab(paste("PCs for", splitLevels[2])) +
+#    geom_segment(arrow = arrow(length = unit(arrow.len, "inch"))) +
+#    scale_color_manual(values = c("blue", "red"), guide = FALSE) +
+#    geom_polygon(aes(group=g,x=x,y=y),data=mydata,inherit.aes = FALSE,fill="gray85",alpha=1) +   # Add confidence intervals
+#    geom_polygon(aes_string(group = "g", x = "x", y = "y"),
+#                 data = mydata, inherit.aes = FALSE, fill = "gray85", alpha = 1)   # Add confidence interval
+
+  ggplot(mydata,aes(group=g,x=x,y=y)) +
+    geom_polygon(aes_string(group = "g", x = "x", y = "y"), fill = "gray85") + # Add confidence interval
+    geom_segment(aes_string(x = "x", y = "y", col = "type",
+                            xend = "xend", yend = "yend"),
+                 aF,arrow = arrow(length = unit(arrow.len, "inch")),inherit.aes = FALSE) +
     scale_x_continuous(limits = c(0.5,d+0.5), breaks = 1:d) +
     scale_y_continuous(limits = c(0.5,d+0.5), breaks = 1:d) +
+    scale_color_manual(values = c("blue", "red"), guide = FALSE) +
     theme_bw() +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
     xlab(paste("PCs for", splitLevels[1])) +
-    ylab(paste("PCs for", splitLevels[2])) +
-    geom_segment(arrow = arrow(length = unit(arrow.len, "inch"))) +
-    scale_color_manual(values = c("blue", "red"), guide = FALSE) +
-    geom_polygon(aes(group=g,x=x,y=y),data=mydata,inherit.aes = FALSE,fill="gray85",alpha=1)   # Add confidence intervals
-}
+    ylab(paste("PCs for", splitLevels[2]))
+  }

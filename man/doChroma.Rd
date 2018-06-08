@@ -47,4 +47,3 @@ irisPCADSC_fast$chromaInfo
 \seealso{
 \code{\link{chromaPlot}}, \code{\link{PCADSC}}
 }
-
