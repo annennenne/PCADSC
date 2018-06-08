@@ -114,7 +114,7 @@ doAngle.pcaRes <- function(x, data, B, ...) {
   # -------------------------------------------------------------------
 
   #pack and return output
-  out <- list(aF = aF, splitLevels = splitLevels, angles.sim = angles.sim, d = d)
+  out <- list(aF = aF, splitLevels = splitLevels, angles.sim = angles.sim, eigenBoth = x$eigenBoth, d = d)
   class(out) <- "angleInfo"
   out
 }

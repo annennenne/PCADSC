@@ -68,21 +68,25 @@ anglePlot <- function(x) {
   d <- obj$d
   splitLevels <- obj$splitLevels
 
+  # length in confidence regions
+  len <- sqrt(obj$eigenBoth / obj$eigenBoth[1])
+
   # Make data frame for adding 95pct confidence intervals
   cR <- data.frame(g=NULL,x=NULL,y=NULL)
   for (i in 1:d) for (j in 1:d) {
     if (i==j) {
       theta <- seq(0,quantile(obj$angles.sim[i,j,],0.95),length.out = 100)
     } else {
-      theta <- seq(quantile(obj$angles.sim[i,j,],0.05),pi/2,length.out = 100)
+      theta <- seq(quantile(obj$angles.sim[i,j,],0.025),
+                   quantile(obj$angles.sim[i,j,],0.975),length.out = 100)
     }
     cR <- rbind(cR,
                 data.frame(g=paste(c(i,j,"1st"),collapse="."),
-                           x=c(i,i+cos(theta)*cos(pi/4+theta/2)),
-                           y=c(j,j+cos(theta)*sin(pi/4+theta/2))),
+                           x=c(i,i+len[i]*cos(theta)*cos(pi/4+theta/2)),
+                           y=c(j,j+len[i]*cos(theta)*sin(pi/4+theta/2))),
                 data.frame(g=paste(c(i,j,"2nd"),collapse="."),
-                           x=c(i,i+cos(theta)*cos(pi/4-theta/2)),
-                           y=c(j,j+cos(theta)*sin(pi/4-theta/2))))
+                           x=c(i,i+len[j]*cos(theta)*cos(pi/4-theta/2)),
+                           y=c(j,j+len[j]*cos(theta)*sin(pi/4-theta/2))))
   }
 
   #Make anglePlot
