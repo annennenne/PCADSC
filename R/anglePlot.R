@@ -65,35 +65,14 @@ anglePlot <- function(x) {
 
   #Unpack angleInfo object
   aF <- obj$aF
+  cR <- obj$cR
   d <- obj$d
   splitLevels <- obj$splitLevels
 
-  # length in confidence regions
-  len <- sqrt(obj$eigenBoth / obj$eigenBoth[1])
-
-  # Make data frame for adding 95pct confidence intervals
-  cR <- data.frame(g=NULL,x=NULL,y=NULL)
-  for (i in 1:d) for (j in 1:d) {
-    if (i==j) {
-      theta <- seq(0,quantile(obj$angles.sim[i,j,],0.95),length.out = 100)
-    } else {
-      theta <- seq(quantile(obj$angles.sim[i,j,],0.025),
-                   quantile(obj$angles.sim[i,j,],0.975),length.out = 100)
-    }
-    cR <- rbind(cR,
-                data.frame(g=paste(c(i,j,"1st"),collapse="."),
-                           x=c(i,i+len[i]*cos(theta)*cos(pi/4+theta/2)),
-                           y=c(j,j+len[i]*cos(theta)*sin(pi/4+theta/2))),
-                data.frame(g=paste(c(i,j,"2nd"),collapse="."),
-                           x=c(i,i+len[j]*cos(theta)*cos(pi/4-theta/2)),
-                           y=c(j,j+len[j]*cos(theta)*sin(pi/4-theta/2))))
-  }
-
   #Make anglePlot
-  ggplot(cR,aes_string(group = "g", x = "x", y = "y")) +
-    geom_polygon(fill = "gray85") +
-    geom_segment(aes_string(x = "x", y = "y", col = "type",
-                            xend = "xend", yend = "yend"),
+  ggplot(cR,aes_string(group = "g:quantile", x = "x", y = "y", fill="quantile")) +
+    geom_polygon() + scale_fill_grey(start=0.7,end=1,guide=FALSE) +
+    geom_segment(aes_string(x = "x", y = "y", col = "type", xend = "xend", yend = "yend"),
                  aF,arrow = arrow(length = unit(arrow.len, "inch")),inherit.aes = FALSE) +
     scale_x_continuous(limits = c(0.5,d+0.5), breaks = 1:d) +
     scale_y_continuous(limits = c(0.5,d+0.5), breaks = 1:d) +

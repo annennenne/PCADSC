@@ -74,13 +74,15 @@ doAngle.pcaRes <- function(x, data, B, ...) {
   }
 
   #Store in data.frame ready for plotting
-  aF <- data.frame(x = rep(1:d, 2*d),
-                   y = rep(rep(1:d, each = d),2),
-                   xend = c(rep(1:d, d) + c(len1)*cos(pi/4+c(angles)/2),
-                            rep(1:d, d) + c(len2)*cos(pi/4-c(angles)/2)),
-                   yend = c(rep(1:d, each = d) + c(len1)*sin(pi/4+c(angles)/2),
-                            rep(1:d, each = d) + c(len2)*sin(pi/4-c(angles)/2)),
-                   type = rep(c("1st", "2nd"), each = d*d))
+  aF <- data.frame(x=NULL,y=NULL,xend=NULL,yend=NULL,type=NULL)
+  for (i in 1:d) for (j in 1:d) {
+    aF <- rbind(aF,
+                data.frame(x=c(i,i),y=c(j,j),
+                           xend=c(i+len1[i,j]*cos(pi/4+angles[i,j]/2),i+len2[i,j]*cos(pi/4-angles[i,j]/2)),
+                           yend=c(j+len1[i,j]*sin(pi/4+angles[i,j]/2),j+len2[i,j]*sin(pi/4-angles[i,j]/2)),
+                           type=c("1st","2nd"))
+                )
+  }
 
   # -------------------------------------------------------------------
   # -------------------------------------------------------------------
@@ -107,11 +109,39 @@ doAngle.pcaRes <- function(x, data, B, ...) {
     myPCA <- doPCA(data, "splitVar", c("1", "2"), vars, doBoth = FALSE)
     angles.sim[,,i] <- acos(abs(t(myPCA$load1)%*%myPCA$load2))
   }
+
+  # length in confidence regions
+  len <- sqrt(x$eigenBoth / x$eigenBoth[1])
+
+  # Make data frame for visualizing confidence region
+  pval <- matrix(0,d,d); colnames(pval) <- colnames(angles); rownames(pval) <- rownames(angles)
+  cR <- data.frame(g=NULL,quantile=NULL,x=NULL,y=NULL)
+  for (i in 1:d) for (j in 1:d) {
+    if (i==j) {
+      pval[i,j] <- mean(angles[i,j]<=angles.sim[i,j,])
+    } else {
+      pval[i,j] <- mean(angles[i,j]>=angles.sim[i,j,])
+    }
+    my.q <- quantile(angles.sim[i,j,],seq(0,1,0.05))
+    for (k in 1:20) {
+      cR <- rbind(cR,
+                  data.frame(g=paste(c(i,j,"1st"),collapse="."),
+                             quantile=ifelse(i==j,k,21-k),
+                             x=c(i,i+len[i]*cos(my.q[k+0:1])*cos(pi/4+my.q[k+0:1]/2)),
+                             y=c(j,j+len[i]*cos(my.q[k+0:1])*sin(pi/4+my.q[k+0:1]/2))),
+                  data.frame(g=paste(c(i,j,"2nd"),collapse="."),
+                             quantile=ifelse(i==j,k,21-k),
+                             x=c(i,i+len[j]*cos(my.q[k+0:1])*cos(pi/4-my.q[k+0:1]/2)),
+                             y=c(j,j+len[j]*cos(my.q[k+0:1])*sin(pi/4-my.q[k+0:1]/2))))
+    }
+  }
+  cR$quantile <- factor(cR$quantile)
+
   # -------------------------------------------------------------------
   # -------------------------------------------------------------------
 
   #pack and return output
-  out <- list(aF = aF, splitLevels = splitLevels, angles.sim = angles.sim, eigenBoth = x$eigenBoth, d = d)
+  out <- list(aF = aF, splitLevels = splitLevels, cR = cR, pvalue=pval, d = d)
   class(out) <- "angleInfo"
   out
 }
