@@ -8,6 +8,9 @@ doAngle(x, ...)
 }
 \arguments{
 \item{x}{Either a \code{PCADSC} or a \code{pcaRes} object.}
+
+\item{...}{If \code{doCE} is called on a \code{pcaRes} object, the full dataset must also
+be supplied (as \code{data}), as well as the number of resampling steps (\code{B}).}
 }
 \description{
 Computes the information that is needed in order to make an \code{\link{anglePlot}}

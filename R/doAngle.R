@@ -148,7 +148,6 @@ doAngle.pcaRes <- function(x, data, B, ...) {
 
 #' @export
 doAngle.PCADSC <- function(x, ...) {
-  x$angleInfo <- doAngle(x$pcaRes)
   if ("B" %in% names(list(...))) b <- list(...)$B
   else b <- x$B
 

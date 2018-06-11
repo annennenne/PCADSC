@@ -40,7 +40,7 @@
 #'
 #' @importFrom ggplot2 ggplot aes_string scale_x_continuous scale_y_continuous
 #' theme_bw theme element_blank xlab ylab geom_segment unit scale_color_manual
-#' geom_polygon
+#' geom_polygon scale_fill_grey
 #' @importFrom grid arrow
 #' @export
 anglePlot <- function(x) {
