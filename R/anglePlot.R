@@ -71,7 +71,7 @@ anglePlot <- function(x) {
 
   #Make anglePlot
   ggplot(cR,aes_string(group = "g:quantile", x = "x", y = "y", fill="quantile")) +
-    geom_polygon() + scale_fill_grey(start=0.7,end=1,guide=FALSE) +
+    geom_polygon() + scale_fill_grey(start=0.7,end=0.9,guide=FALSE) +
     geom_segment(aes_string(x = "x", y = "y", col = "type", xend = "xend", yend = "yend"),
                  aF,arrow = arrow(length = unit(arrow.len, "inch")),inherit.aes = FALSE) +
     scale_x_continuous(limits = c(0.5,d+0.5), breaks = 1:d) +

@@ -119,20 +119,26 @@ doAngle.pcaRes <- function(x, data, B, ...) {
   for (i in 1:d) for (j in 1:d) {
     if (i==j) {
       pval[i,j] <- mean(angles[i,j]<=angles.sim[i,j,])
+      my.q <- c(0,quantile(angles.sim[i,j,],seq(0.05,1,0.05)))
     } else {
       pval[i,j] <- mean(angles[i,j]>=angles.sim[i,j,])
+      my.q <- c(quantile(angles.sim[i,j,],seq(0,0.95,0.05)),pi/2)
     }
-    my.q <- quantile(angles.sim[i,j,],seq(0,1,0.05))
     for (k in 1:20) {
       cR <- rbind(cR,
                   data.frame(g=paste(c(i,j,"1st"),collapse="."),
                              quantile=ifelse(i==j,k,21-k),
-                             x=c(i,i+len[i]*cos(my.q[k+0:1])*cos(pi/4+my.q[k+0:1]/2)),
-                             y=c(j,j+len[i]*cos(my.q[k+0:1])*sin(pi/4+my.q[k+0:1]/2))),
-                  data.frame(g=paste(c(i,j,"2nd"),collapse="."),
+                             x=c(i,i+len1[i,j]*cos(pi/4+my.q[k+0:1]/2)),
+                             y=c(j,j+len1[i,j]*sin(pi/4+my.q[k+0:1]/2))),
+      #            x=c(i,i+sqrt(eigen1[i]/max.eigen)*cos(pi/4+my.q[k+0:1]/2)),
+      #            y=c(j,j+sqrt(eigen1[j]/max.eigen)*sin(pi/4+my.q[k+0:1]/2))),
+      data.frame(g=paste(c(i,j,"2nd"),collapse="."),
                              quantile=ifelse(i==j,k,21-k),
-                             x=c(i,i+len[j]*cos(my.q[k+0:1])*cos(pi/4-my.q[k+0:1]/2)),
-                             y=c(j,j+len[j]*cos(my.q[k+0:1])*sin(pi/4-my.q[k+0:1]/2))))
+                             x=c(i,i+len2[i,j]*cos(pi/4-my.q[k+0:1]/2)),
+                             y=c(j,j+len2[i,j]*sin(pi/4-my.q[k+0:1]/2))))
+#      x=c(i,i+sqrt(eigen2[i]/max.eigen)*cos(pi/4-my.q[k+0:1]/2)),
+#      y=c(j,j+sqrt(eigen2[j]/max.eigen)*sin(pi/4-my.q[k+0:1]/2))))
+#*sqrt(cos(my.q[k+0:1]))
     }
   }
   cR$quantile <- factor(cR$quantile)
