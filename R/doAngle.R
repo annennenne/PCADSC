@@ -115,7 +115,7 @@ doAngle.pcaRes <- function(x, data, B, ...) {
 
   # Make data frame for visualizing confidence region
   pval <- matrix(0,d,d); colnames(pval) <- colnames(angles); rownames(pval) <- rownames(angles)
-  cR <- data.frame(g=NULL,quantile=NULL,x=NULL,y=NULL)
+  cR <- data.frame(g=NULL,percent=NULL,x=NULL,y=NULL)
   for (i in 1:d) for (j in 1:d) {
     if (i==j) {
       pval[i,j] <- mean(angles[i,j]<=angles.sim[i,j,])
