@@ -119,35 +119,43 @@ doAngle.pcaRes <- function(x, data, B, ...) {
   for (i in 1:d) for (j in 1:d) {
     if (i==j) {
       pval[i,j] <- mean(angles[i,j]<=angles.sim[i,j,])
-      my.q <- c(0,quantile(angles.sim[i,j,],seq(0.05,1,0.05)))
+      my.angles <- seq(0,max(angles.sim[i,j,]),length.out = max(2,1+ceiling(max(angles.sim[i,j,])/0.05)))
+      percent <- my.angles[-1]
+      for (k in 2:length(my.angles)) {
+        percent[k-1] <- max(1,ceiling(mean(angles.sim[i,j,]<=mean(my.angles[(k-1):k]))*100))
+      }
     } else {
       pval[i,j] <- mean(angles[i,j]>=angles.sim[i,j,])
-      my.q <- c(quantile(angles.sim[i,j,],seq(0,0.95,0.05)),pi/2)
+      my.angles <- seq(min(angles.sim[i,j,]),pi/2,length.out = max(2,1+ceiling((pi/2-min(angles.sim[i,j,]))/0.05)))
+      percent <- my.angles[-1]
+      for (k in 2:length(my.angles)) {
+        percent[k-1] <- max(1,ceiling(mean(angles.sim[i,j,]>=mean(my.angles[(k-1):k]))*100))
+      }
     }
-    for (k in 1:20) {
+    for (k in 2:length(my.angles)) {
       cR <- rbind(cR,
-                  data.frame(g=paste(c(i,j,"1st"),collapse="."),
-                             quantile=ifelse(i==j,k,21-k),
-                             x=c(i,i+len1[i,j]*cos(pi/4+my.q[k+0:1]/2)),
-                             y=c(j,j+len1[i,j]*sin(pi/4+my.q[k+0:1]/2))),
-      #            x=c(i,i+sqrt(eigen1[i]/max.eigen)*cos(pi/4+my.q[k+0:1]/2)),
-      #            y=c(j,j+sqrt(eigen1[j]/max.eigen)*sin(pi/4+my.q[k+0:1]/2))),
-      data.frame(g=paste(c(i,j,"2nd"),collapse="."),
-                             quantile=ifelse(i==j,k,21-k),
-                             x=c(i,i+len2[i,j]*cos(pi/4-my.q[k+0:1]/2)),
-                             y=c(j,j+len2[i,j]*sin(pi/4-my.q[k+0:1]/2))))
-#      x=c(i,i+sqrt(eigen2[i]/max.eigen)*cos(pi/4-my.q[k+0:1]/2)),
-#      y=c(j,j+sqrt(eigen2[j]/max.eigen)*sin(pi/4-my.q[k+0:1]/2))))
-#*sqrt(cos(my.q[k+0:1]))
+                  data.frame(g=paste(c(i,j,k-1,"1st"),collapse="."),
+                             percent=percent[k-1],
+                             #x=c(i,i+len[i]*cos(my.angles[(k-1):k])*cos(pi/4+my.angles[(k-1):k]/2)),
+                             #y=c(j,j+len[i]*cos(my.angles[(k-1):k])*sin(pi/4+my.angles[(k-1):k]/2))),
+                             x=c(i,i+len1[i,j]*cos(pi/4+my.angles[(k-1):k]/2)),
+                             y=c(j,j+len1[i,j]*sin(pi/4+my.angles[(k-1):k]/2))),
+                  data.frame(g=paste(c(i,j,k-1,"2nd"),collapse="."),
+                             percent=percent[k-1],
+                             #x=c(i,i+len[j]*cos(my.angles[(k-1):k])*cos(pi/4-my.angles[(k-1):k]/2)),
+                             #y=c(j,j+len[j]*cos(my.angles[(k-1):k])*sin(pi/4-my.angles[(k-1):k]/2)))
+                             x=c(i,i+len2[i,j]*cos(pi/4-my.angles[(k-1):k]/2)),
+                             y=c(j,j+len2[i,j]*sin(pi/4-my.angles[(k-1):k]/2)))
+      )
     }
   }
-  cR$quantile <- factor(cR$quantile)
+  cR$percent <- factor(cR$percent,levels=1:100)
 
   # -------------------------------------------------------------------
   # -------------------------------------------------------------------
 
   #pack and return output
-  out <- list(aF = aF, splitLevels = splitLevels, cR = cR, pvalue=pval, d = d)
+  out <- list(aF = aF, splitLevels = splitLevels, cR = cR, pvalue=pval, d = d, angles=angles, angles.sim=angles.sim)
   class(out) <- "angleInfo"
   out
 }

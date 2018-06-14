@@ -70,13 +70,13 @@ anglePlot <- function(x) {
   splitLevels <- obj$splitLevels
 
   #Make anglePlot
-  ggplot(cR,aes_string(group = "g:quantile", x = "x", y = "y", fill="quantile")) +
+  ggplot(cR,aes_string(group = "g", x = "x", y = "y", fill = "percent")) +
+    scale_color_manual(values = c("blue", "red"), guide = FALSE) +
     geom_polygon() + scale_fill_grey(start=0.7,end=0.9,guide=FALSE) +
     geom_segment(aes_string(x = "x", y = "y", col = "type", xend = "xend", yend = "yend"),
                  aF,arrow = arrow(length = unit(arrow.len, "inch")),inherit.aes = FALSE) +
-    scale_x_continuous(limits = c(0.5,d+0.5), breaks = 1:d) +
-    scale_y_continuous(limits = c(0.5,d+0.5), breaks = 1:d) +
-    scale_color_manual(values = c("blue", "red"), guide = FALSE) +
+    scale_x_continuous(limits = c(0.5,d+0.71), breaks = 1:d) +
+    scale_y_continuous(limits = c(0.5,d+0.71), breaks = 1:d) +
     theme_bw() +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
     xlab(paste("PCs for", splitLevels[1])) +
