@@ -1,6 +1,7 @@
 library(MASS)
 library(PCADSC)
 library(ggplot2)
+library(gridExtra)
 
 #Simulate data from covariance matrices
 #Note: Names (S1 and S2) are opposite of that in the article.
@@ -129,15 +130,15 @@ chroma2 <- chromaPlot(po2) +
 
 
 ggsave(plot = grid.arrange(CE2, CE1, nrow = 2),
-        file = "P:/PCADSC/R/article/Old versions/MPS/Figure2_v2.pdf",
+        file = "P:/PCADSC/R/article/Old versions/MPS/Figure2_v3.pdf",
        dpi = 400, width = 7, height = 8)
 
 
 ggsave(plot = grid.arrange(angle2, angle1, nrow = 2),
-       file = "P:/PCADSC/R/article/Old versions/MPS/Figure3_v2.pdf",
+       file = "P:/PCADSC/R/article/Old versions/MPS/Figure3_v3.pdf",
        dpi = 400, width = 7, height = 8)
 
 ggsave(plot = grid.arrange(chroma2, chroma1, nrow = 2),
-       file = "P:/PCADSC/R/article/Old versions/MPS/Figure4_v2.pdf",
+       file = "P:/PCADSC/R/article/Old versions/MPS/Figure4_v3.pdf",
        dpi = 400, width = 7, height = 8)
 

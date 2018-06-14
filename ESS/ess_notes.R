@@ -213,7 +213,8 @@ fig6_angle <- anglePlot(a2) +
         axis.line=element_line(),
         plot.title = element_text(size = 11, hjust = -0.03)) +
   ggtitle("PCs for DK") +
-  ylab("")
+  ylab("") +
+  scale_fill_manual(values = c("lightgreen", rep("grey", 18), "lightgreen"), guide = FALSE)
 
 fig7_chroma <- chromaPlot(a2, useComps = 2:4) +
   theme(#panel.border = element_blank(),
@@ -237,11 +238,11 @@ fig7_chroma <- chromaPlot(a2, useComps = 2:4) +
 #ggsave(plot = fig6_chroma, file = "P:/PCADSC/CSP/chromaBGDK.pdf", width = 7, height = 5)
 
 ggsave(plot = grid.arrange(fig6_CE, fig6_angle, nrow = 2),
-       file = "P:/PCADSC/R/article/Old versions/MPS/Figure6_v2.pdf",
+       file = "P:/PCADSC/R/article/Old versions/MPS/Figure6_v3.pdf",
              dpi = 400, width = 7, height = 8)
 
 ggsave(plot = fig7_chroma,
-       file = "P:/PCADSC/R/article/Old versions/MPS/Figure7_v2.pdf",
+       file = "P:/PCADSC/R/article/Old versions/MPS/Figure7_v3.pdf",
        dpi = 400, width = 7, height = 4)
 
 
@@ -266,7 +267,8 @@ fig8_angle <- anglePlot(a1) +
         axis.line=element_line(),
         plot.title = element_text(size = 11, hjust = -0.03)) +
   ggtitle("PCs for SE") +
-  ylab("")
+  ylab("")  +
+  scale_fill_manual(values = c("lightgreen", rep("grey", 18), "lightgreen"), guide = FALSE)
 
 fig9_chroma <- chromaPlot(a1) +
   theme(#panel.border = element_blank(),
@@ -290,10 +292,10 @@ fig9_chroma <- chromaPlot(a1) +
 #ggsave(plot = fig8_chroma, file = "P:/PCADSC/CSP/chromaSEDK.pdf", width = 7, height = 5)
 
 ggsave(plot = grid.arrange(fig8_CE, fig8_angle, nrow = 2),
-       file = "P:/PCADSC/R/article/Old versions/MPS/Figure8_v2.pdf",
+       file = "P:/PCADSC/R/article/Old versions/MPS/Figure8_v3.pdf",
        dpi = 400, width = 7, height = 8)
 
 ggsave(plot = fig9_chroma,
-       file = "P:/PCADSC/R/article/Old versions/MPS/Figure9_v2.pdf",
+       file = "P:/PCADSC/R/article/Old versions/MPS/Figure9_v3.pdf",
        dpi = 400, width = 7, height = 4)
 
