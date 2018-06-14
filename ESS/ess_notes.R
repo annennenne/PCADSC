@@ -213,8 +213,7 @@ fig6_angle <- anglePlot(a2) +
         axis.line=element_line(),
         plot.title = element_text(size = 11, hjust = -0.03)) +
   ggtitle("PCs for DK") +
-  ylab("") +
-  scale_fill_manual(values = c("lightgreen", rep("grey", 18), "lightgreen"), guide = FALSE)
+  ylab("")
 
 fig7_chroma <- chromaPlot(a2, useComps = 2:4) +
   theme(#panel.border = element_blank(),
@@ -267,8 +266,7 @@ fig8_angle <- anglePlot(a1) +
         axis.line=element_line(),
         plot.title = element_text(size = 11, hjust = -0.03)) +
   ggtitle("PCs for SE") +
-  ylab("")  +
-  scale_fill_manual(values = c("lightgreen", rep("grey", 18), "lightgreen"), guide = FALSE)
+  ylab("")
 
 fig9_chroma <- chromaPlot(a1) +
   theme(#panel.border = element_blank(),
