@@ -220,7 +220,8 @@ fig7_chroma <- chromaPlot(a2, useComps = 2:4) +
         axis.line=element_line(),
        # plot.title = element_text(size = 11, hjust = -0.02),
         panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank()) #+
+        panel.grid.minor = element_blank()) +
+  scale_x_discrete("", limits = rev(c("", "PC2", "PC3", "PC4", "")))
  # ggtitle("PCs for DK") +
 #  ylab("")
 
@@ -268,12 +269,16 @@ fig8_angle <- anglePlot(a1) +
   ggtitle("PCs for SE") +
   ylab("")
 
-fig9_chroma <- chromaPlot(a1) +
+fig9_chroma <-
+  chromaPlot(a1) +
   theme(#panel.border = element_blank(),
     axis.line=element_line(),
     # plot.title = element_text(size = 11, hjust = -0.02),
     panel.grid.major = element_blank(),
-    panel.grid.minor = element_blank()) #+
+    panel.grid.minor = element_blank()) +
+  scale_x_reverse("", breaks = 1:6, labels = paste("PC", 1:6, sep = ""))
+
+#+
 # ggtitle("PCs for DK") +
 #  ylab("")
 
