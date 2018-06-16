@@ -69,8 +69,8 @@ doAngle.pcaRes <- function(x, data, B, ...) {
   len1 <- len2 <- matrix(NA, d, d)
 
   for (i in 1:d) for (j in 1:d) {
-    len1[i,j] <- sqrt(eigen1[i]/max.eigen*abs(sum(load1[,i]*load2[,j])))
-    len2[i,j] <- sqrt(eigen2[j]/max.eigen*abs(sum(load1[,i]*load2[,j])))
+    len1[i,j] <- sqrt(eigen1[i]/max.eigen)*abs(sum(load1[,i]*load2[,j]))
+    len2[i,j] <- sqrt(eigen2[j]/max.eigen)*abs(sum(load1[,i]*load2[,j]))
   }
 
   #Store in data.frame ready for plotting
