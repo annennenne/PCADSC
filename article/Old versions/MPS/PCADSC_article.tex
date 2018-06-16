@@ -13,7 +13,8 @@
 \usepackage{mathrsfs}
 %\usepackage[colorlinks,bookmarksopen,bookmarksnumbered,citecolor=red,urlcolor=red]{hyperref}
 \usepackage{apalike}
-\usepackage[utf8x]{inputenc}
+%\usepackage[utf8x]{inputenc}
+\usepackage[utf8]{inputenc}
 %\usepackage{nameref,hyperref}
 % line numbers
 %\usepackage[right]{lineno}
@@ -202,7 +203,7 @@ and we have a similar decomposition of $S_y$ in the coordinate system of the $\m
 \nu_{jk} &= \sqrt{\frac{\lambda_{j}^y}{\lambda_{\max}}} \lvert {\eta_{j}^y}^\top \eta_{k}^x \rvert, &
 \theta_{jk} &= \acos(\lvert {\eta_{k}^x}^\top \eta_{j}^y \rvert).
 \end{align*}
-For two $d$-dimensional, unit length vectors $a$ and $b$, it holds that $ a^\top b = \langle a, b \rangle = \tilde{c}(a,b)$, where $\tilde{c}$ denotes the empirical correlation function. Thus, in the angle plot, we are essentially looking at the absolute values of correlations between loadings that have been scaled according to their variance contributions. The absolute value of the projection $\eta_{k}^x {\eta_{j}^y}^\top$ is inserted due to the indeterminacy of the direction of loading vectors. This indeterminacy implies that the angle between loadings from the two datasets always can be chosen to be in the interval $[0,\pi/2]$, and hence the decomposition of $S_x$ and $S_y$ can be visualized in a joint plot by dividing the angles by two and using counterclockwise and clockwise shifts from the diagonal. Furthermore, the scaling of the lengths by $\lambda_{\max}$ is made so that the longest arrow has at most unit length. Figure \ref{plot.simAngle} presents two examples of angle plots based on simulated data.
+For two $d$-dimensional, unit length vectors $a$ and $b$, it holds that $ a^\top b = \langle a, b \rangle = \tilde{c}(a,b)$, where $\tilde{c}$ denotes the empirical correlation function. Thus, in the angle plot, we are essentially looking at the absolute values of correlations between loadings that have been scaled according to their variance contributions. The absolute value of the projection ${\eta_{k}^x}^\top \eta_{j}^y$ is inserted due to the indeterminacy of the direction of loading vectors. This indeterminacy implies that the angle between loadings from the two datasets always can be chosen to be in the interval $[0,\pi/2]$, and hence the decomposition of $S_x$ and $S_y$ can be visualized in a joint plot by dividing the angles by two and using counterclockwise and clockwise shifts from the diagonal. Furthermore, the scaling of the lengths by $\lambda_{\max}$ is made so that the longest arrow has at most unit length. Figure \ref{plot.simAngle} presents two examples of angle plots based on simulated data.
 
 %\begin{figure}[h]
 %\caption{[FIGURE 3 ABOUT HERE] Angle plots for the simulated datasets. Dataset A in top panel and dataset B in bottom panel. Blue arrows show the principal components of the observations in group 1 decomposed in the coordinate system of the principal components of group 2, while the red arrows illustrate the reverse.}
