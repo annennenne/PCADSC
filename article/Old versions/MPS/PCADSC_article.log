@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.1)  16 JUN 2018 23:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.1)  17 JUN 2018 18:18
 entering extended mode
 **PCADSC_article.tex
 (PCADSC_article.tex
@@ -940,43 +940,43 @@ Package microtype Info: Loading generic settings for font family
 <Figure2_v3.pdf, id=99, 505.89pt x 578.16pt>
 File: Figure2_v3.pdf Graphic file (type pdf)
  <use Figure2_v3.pdf>
-Package pdftex.def Info: Figure2_v3.pdf used on input line 433.
+Package pdftex.def Info: Figure2_v3.pdf used on input line 434.
 (pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
  [26]
 <Figure3_v3.pdf, id=104, 505.89pt x 578.16pt>
 File: Figure3_v3.pdf Graphic file (type pdf)
  <use Figure3_v3.pdf>
-Package pdftex.def Info: Figure3_v3.pdf used on input line 440.
+Package pdftex.def Info: Figure3_v3.pdf used on input line 441.
 (pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
  [27 <./Figure2_v3.pdf>] <Figure4_v3.pdf, id=113, 505.89pt x 578.16pt>
 File: Figure4_v3.pdf Graphic file (type pdf)
  <use Figure4_v3.pdf>
-Package pdftex.def Info: Figure4_v3.pdf used on input line 448.
+Package pdftex.def Info: Figure4_v3.pdf used on input line 449.
 (pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
 
 [28 <./Figure3_v3.pdf>] [29 <./Figure4_v3.pdf>]
 <Figure6_v3.pdf, id=130, 505.89pt x 578.16pt>
 File: Figure6_v3.pdf Graphic file (type pdf)
  <use Figure6_v3.pdf>
-Package pdftex.def Info: Figure6_v3.pdf used on input line 478.
+Package pdftex.def Info: Figure6_v3.pdf used on input line 479.
 (pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
  [30]
 <Figure7_v3.pdf, id=135, 505.89pt x 289.08pt>
 File: Figure7_v3.pdf Graphic file (type pdf)
  <use Figure7_v3.pdf>
-Package pdftex.def Info: Figure7_v3.pdf used on input line 485.
+Package pdftex.def Info: Figure7_v3.pdf used on input line 486.
 (pdftex.def)             Requested size: 404.71254pt x 231.2643pt.
  [31 <./Figure6_v3.pdf>] <Figure8_v3.pdf, id=145, 505.89pt x 578.16pt>
 File: Figure8_v3.pdf Graphic file (type pdf)
  <use Figure8_v3.pdf>
-Package pdftex.def Info: Figure8_v3.pdf used on input line 492.
+Package pdftex.def Info: Figure8_v3.pdf used on input line 493.
 (pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
 
 [32 <./Figure7_v3.pdf>] <Figure9_v3.pdf, id=154, 505.89pt x 289.08pt>
 File: Figure9_v3.pdf Graphic file (type pdf)
 
 <use Figure9_v3.pdf>
-Package pdftex.def Info: Figure9_v3.pdf used on input line 499.
+Package pdftex.def Info: Figure9_v3.pdf used on input line 500.
 (pdftex.def)             Requested size: 404.71254pt x 231.2643pt.
  [33 <./Figure8_v3.pdf>] [34 <./Figure9_v3.pdf>] [35]
 [36] [37]
@@ -985,11 +985,11 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [38] [39] (PCADSC_article.aux) ) 
 Here is how much of TeX's memory you used:
- 17687 strings out of 493673
- 356483 string characters out of 3143958
+ 17689 strings out of 493673
+ 356501 string characters out of 3143958
  467341 words of memory out of 3000000
  20507 multiletter control sequences out of 15000+200000
- 20687 words of font info for 134 fonts, out of 3000000 for 9000
+ 20796 words of font info for 135 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  55i,13n,67p,1698b,905s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public
@@ -1010,7 +1010,7 @@ KTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
 ype1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
 lic/amsfonts/symbols/msbm10.pfb>
-Output written on PCADSC_article.pdf (39 pages, 431919 bytes).
+Output written on PCADSC_article.pdf (39 pages, 432154 bytes).
 PDF statistics:
  250 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

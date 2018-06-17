@@ -126,7 +126,7 @@ $\mathbf{X} \in \RR^{n_x \times d} $ and $\mathbf{Y} \in \RR^{n_y \times d} $ ar
 %PCA qualifies as an appealing first step in structural comparisons of two datasets containing the same variables, and especially the loadings and eigenvalues are meaningful and interesting objects to compare across such different datasets. 
 
 The tools presented here are all based on comparing the PCA results across two different datasets that contain the same variables, $\mathbf{X}$ and $\mathbf{Y}$. Let 
-$$\mathbf{Z} = \begin{pmatrix} \mathbf{X} \\ \mathbf{Y} \end{pmatrix} \in \RR^{n_x + n_y \times d}$$
+$$\mathbf{Z} = \begin{pmatrix} \mathbf{X} \\ \mathbf{Y} \end{pmatrix} \in \RR^{(n_x + n_y) \times d}$$
  be the combined dataset. For each of these three datasets, we complete the following steps (here described for $\mathbf{X}$ only):
 \begin{enumerate}
 \item Standardize each of the variables to have mean zero and unit standard deviation. Let $\tilde{\mathbf{X}}_{j} \in \RR^{n_x \times d}$ be the standardized dataset.
@@ -140,7 +140,7 @@ The hereby obtained PCA decompositions of the correlation matrices can then be c
 \begin{equation*}
 \sum_{j=1}^d \lambda_j^x = \sum_{j=1}^d \lambda_{j}^y = \sum_{j=1}^d \lambda_{j}^z =  d.
 \end{equation*}
-This identity will simplify some expressions below. Using a greedy interpretation of PCA, which is often overlooked in the literature, we can note that the sequence of loadings $\eta_j$ and their associated eigenvalues $\lambda_j$ yield a simultaneous description of the structure of the dataset for all approximating dimensions $q$. This implies that the loadings and the eigenvalues can be used to investigate the structure of the dataset without the need to decide on an approximating dimension, $q$, a priori. 
+This identity will simplify some expressions below. We note that the sequence of loadings $\eta_j$ and their associated eigenvalues $\lambda_j$ yield a simultaneous description of the structure of the dataset for all approximating dimensions $q$. This implies that the loadings and the eigenvalues can be used to investigate the structure of the dataset without the need to decide on an approximating dimension, $q$, a priori. 
 
 We present three diagnostic plots that are designed to shine a light on different types and levels of data structure differences, namely the \textit{cumulative eigenvalue (CE) plot}, the \textit{angle plot}, and the \textit{chroma plot}. These plots are dsecribed in turn below. For the deepest understanding of the data structure differences in two datasets, we suggest using all of the three plots in the same order as they are presented. While we describe the three plot types from a purely theoretical point of view below, we also provide example illustrations as a supplement to the somewhat technical definitions. These plots are available in Figures \ref{plot.simCE}, \ref{plot.simAngle}, and \ref{plot.simChroma} for the CE-, angle-, and chroma plots, respectively, and they are based on two simulated datasets:
 \begin{description}
@@ -148,7 +148,7 @@ We present three diagnostic plots that are designed to shine a light on differen
 \item[Dataset B:] This dataset contains 500 independent simulations from \textit{model 1} from Figure~\ref{fig:simGraphs} and 500 independent simulations from \textit{model 2} in the same figure. The observations are naturally divided into groups corresponding to which model they were simulated from.
 \end{description}
 
-In \textit{Model 1} the observed variables $V_3$ and $V_4$ are caused by a common, unobserved variable $L_1$. Further details on the models and the simulated data are available in the supplementary material, including covariance matrices for the two models, in Appendix S2. In dataset $\mathbf{A}$, all observations stem from the same, underlying data structure and thus, the PCADSC plots should point towards no notable differences in data structures. In dataset $\mathbf{B}$, on the other hand, there are two fundamentally different, underlying data structures and therefore, the PCADSC plots should illustrate this lack of homogeneity in data structures.
+In \textit{model 1} the observed variables $V_3$ and $V_4$ are caused by a common, unobserved variable $L_1$. Further details on the models and the simulated data are available in the supplementary material, including covariance matrices for the two models, in Appendix S2. In dataset $\mathbf{A}$, all observations stem from the same, underlying data structure and thus, the PCADSC plots should point towards no notable differences in data structures. In dataset $\mathbf{B}$, on the other hand, there are two fundamentally different, underlying data structures and therefore, the PCADSC plots should illustrate this lack of homogeneity in data structures.
 
 
 %\begin{figure}[h]
@@ -170,14 +170,14 @@ The cumulative eigenvalue (CE) plot compares the eigenvalues of the correlation 
 \ldots, \\
 &\bigg( \sum_{j=1}^d \lambda_j^z, \sum_{j=1}^d \lambda_{j}^x - \sum_{j=1}^d \lambda_{j}^y \bigg)
 \end{align*}
-Due to the standardization, the last point will always be equal to $(d,0)$. Thus, this curve will begin and end at the x-axis. And the larger excursions it makes away from the  first axis, the less alike the cumulative eigenvalue sums for the two datasets are. Moreover, a positive cumulative difference implies that dataset $\mathbf{X}$ holds more information in the first components than dataset $\mathbf{Y}$ does. By using the cumulative eigenvalues of $\mathbf{Z}$ as the first coordinate, we obtain a visualization where a component take up an amount of horizontal space that corresponds to the variance explained by the component (that is, its eigenvalue), thereby letting the more infuential components drive the visual impression. 
+Due to the standardization, the last point will always be equal to $(d,0)$. Thus, this curve will begin and end at the x-axis. And the larger excursions it makes away from the  first axis, the less alike the cumulative eigenvalue sums for the two datasets are. Moreover, a positive cumulative difference implies that dataset $\mathbf{X}$ holds more information in the first components than dataset $\mathbf{Y}$ does. By using the cumulative eigenvalues of $\mathbf{Z}$ as the first coordinate, we obtain a visualization where a component take up an amount of horizontal space that corresponds to the variance explained by the component (that is, its eigenvalue), thereby letting the more influential components drive the visual impression. 
 
 %\begin{figure}[h]
 %\caption{[FIGURE 2 ABOUT HERE] CE plots for the simulated datasets. Dataset A (with no differences in data structure) in top panel, and dataset B %(where observations stem from different models) in bottom panel. Plots are annotated with the $p$-values of the Kolmogorov-Smirnov (KS) and the Cram\'er-von Mises (CvM) tests of the null hypothesis of no difference in data structures. The bold, black lines illustrate the observed cumulative eigenvalue differences, while the shaded areas are 95 \% confidence bands under the null hypothesis of no difference in data structures.}
 %\label{plot.simCE} 
 %\end{figure}
 
-Two examples of cumulative eigenvalue plots are available in Figure \ref{plot.simCE}. In the top panel, we see a cumulative eigenvalue curve that falls well within the confidence region, thereby suggesting no difference in eigenvalues (as expected). This also agrees with the large $p$-values and the fact that only a single underlying model was used for generating this data. In the bottom panel, the conclusion is reversed, which is also in accordance with the nature of the simulated data, which contains two distinct groups. In order to test whether these cumulative differences are statistical artefacts or if they represent something real, we have implemented both the \emph{Kolmogorov-Smirnov} and the \emph{Cram\'er-von Mises} test statistics, which are given by
+In order to test whether these cumulative differences are statistical artefacts or if they represent something real, we have implemented both the \emph{Kolmogorov-Smirnov} and the \emph{Cram\'er-von Mises} test statistics, which are given by
 \begin{align*}
 \text{KS} &= \max_{k=1,\dotsc,d} \bigg\lvert \sum_{j=1}^k \lambda_{j}^x - \sum_{j=1}^k \lambda_{j}^y \bigg\rvert, &
 \text{CvM} &= \sum_{k=1}^{d-1} \frac{\lambda_k^z + \lambda_{k+1}^z}{2} {\bigg( \sum_{j=1}^k \lambda_{j}^x - \sum_{j=1}^k \lambda_{j}^y \bigg)}^2.
@@ -188,6 +188,7 @@ the one we found for the original datasets.
 
 The permutation test results are also used to visualize the uncertainty of the CE curve in the plots. In the CE plots shown in the following section, we plot the observed curve together with 20 of the resampled curves, as well as a shaded region visualizing pointwise 95 \% coverage intervals. If the observed curve is very different from the resampled curves or if it is substantially outside the shaded region, then this also indicates differences between the two datasets.
 
+Two examples of cumulative eigenvalue plots are available in Figure \ref{plot.simCE}. In the top panel, we see a cumulative eigenvalue curve that falls well within the confidence region, thereby suggesting no difference in eigenvalues (as expected). This also agrees with the large $p$-values and the fact that only a single underlying model was used for generating this data. In the bottom panel, the conclusion is reversed, which is also in accordance with the nature of the simulated data, which contains two distinct groups.
 
 \subsection*{The angle plot}
 The angle plot compares both loadings and eigenvalues at once and it can be used to understand the information loss if the data structure of one dataset is superimposed on the other, thereby revealing which principal components (i.e. loading and eigenvalue pairs) are most similar and most different across the two datasets. Let $\lambda_{\max} = \max\{ \lambda_{1}^x, \lambda_{1}^y \}$ be the largest eigenvalue for the two datasets. Then the empirical correlation matrix for the $\mathbf{X}$ dataset, $S_x$, has the following orthogonal decomposition in the coordinate system of the $\mathbf{Y}$ dataset
