@@ -6,7 +6,8 @@ library(gridExtra)
 #Simulate data from covariance matrices
 #Note: Names (S1 and S2) are opposite of that in the article.
 
-set.seed(11234)
+#set.seed(11234)
+set.seed(170618)
 
 S1 <- diag(6)
 S1[c(1, 2, 3), 1] <- S1[1, c(1, 2, 3)] <- c(1, 0.2, 0.1)
@@ -31,7 +32,6 @@ dF1$group <- rep(c("Group 1", "Group 2"), each = 500)
 
 dF2 <- as.data.frame(mvrnorm(1000, rep(0,6), S2))
 dF2$group <- rep(c("Group 1", "Group 2"), each = 500)
-
 
 #Do PCADSC
 po1 <- PCADSC(dF1, "group")
@@ -128,17 +128,16 @@ chroma2 <- chromaPlot(po2) +
 #ggsave(plot = chroma2, file = "./article/simChroma2.pdf",
 #       width = 8, height = 5)
 
-
+#P:/PCADSC/R/
 ggsave(plot = grid.arrange(CE2, CE1, nrow = 2),
-        file = "P:/PCADSC/R/article/Old versions/MPS/Figure2_v3.pdf",
+       file = "article/Old versions/MPS/Figure2_v3.pdf",
        dpi = 400, width = 7, height = 8)
 
-
 ggsave(plot = grid.arrange(angle2, angle1, nrow = 2),
-       file = "P:/PCADSC/R/article/Old versions/MPS/Figure3_v3.pdf",
+       file = "article/Old versions/MPS/Figure3_v3.pdf",
        dpi = 400, width = 7, height = 8)
 
 ggsave(plot = grid.arrange(chroma2, chroma1, nrow = 2),
-       file = "P:/PCADSC/R/article/Old versions/MPS/Figure4_v3.pdf",
+       file = "article/Old versions/MPS/Figure4_v3.pdf",
        dpi = 400, width = 7, height = 8)
 
