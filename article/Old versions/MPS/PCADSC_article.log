@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.1)  18 JUN 2018 04:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.9.1)  18 JUN 2018 08:59
 entering extended mode
 **PCADSC_article.tex
 (PCADSC_article.tex
@@ -987,7 +987,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 Here is how much of TeX's memory you used:
  17689 strings out of 493673
  356501 string characters out of 3143958
- 467340 words of memory out of 3000000
+ 467341 words of memory out of 3000000
  20507 multiletter control sequences out of 15000+200000
  20796 words of font info for 135 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
