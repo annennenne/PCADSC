@@ -38,7 +38,7 @@ po1 <- PCADSC(dF1, "group")
 po2 <- PCADSC(dF2, "group")
 
 CE1 <- CEPlot(po1) +
-  scale_y_continuous(breaks = round(seq(-0.6, 0.6, 0.1),1), limits = c(-0.5, 0.3)) +
+  scale_y_continuous(breaks = round(seq(-0.6, 0.6, 0.1),1), limits = c(-0.6, 0.3)) +
   ggtitle("Dataset B", subtitle = "Cumulative difference in eigenvalues: Group 1 - Group 2") +
   theme(panel.border = element_blank(),
         axis.line=element_line(),
@@ -47,7 +47,7 @@ CE1 <- CEPlot(po1) +
   ylab("")
 
 CE2 <- CEPlot(po2) +
-  scale_y_continuous(breaks = round(seq(-0.6, 0.6, 0.1),1), limits = c(-0.3, 0.3)) +
+  scale_y_continuous(breaks = round(seq(-0.6, 0.6, 0.1),1), limits = c(-0.2, 0.2)) +
   ggtitle("Dataset A", subtitle = "Cumulative difference in eigenvalues: Group 1 - Group 2") +
   theme(panel.border = element_blank(),
         axis.line=element_line(),

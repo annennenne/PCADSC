@@ -13,7 +13,8 @@
 \usepackage{mathrsfs}
 %\usepackage[colorlinks,bookmarksopen,bookmarksnumbered,citecolor=red,urlcolor=red]{hyperref}
 \usepackage{apalike}
-\usepackage[utf8x]{inputenc}
+%\usepackage[utf8x]{inputenc}
+\usepackage[utf8]{inputenc}
 %\usepackage{nameref,hyperref}
 % line numbers
 %\usepackage[right]{lineno}
@@ -117,7 +118,7 @@ We propose three visual tools for data structure comparisons, which we will refe
 PCADSC compares the covariance matrices of two subsets of a dataset. If all variables in the subsets are jointly normal with known means, the covariance matrices are sufficient statistics describing the joint distribution of all the variables, but even without the normality assumption, pairwise correlations and marginal variable variances are still interesting quantities describing linear interrelations between variables. This makes the empirical covariance matrix a reasonable place to start looking for differences in data structures. Computing empirical covariance matrices for the two subsets and comparing them entry-by-entry becomes increasingly difficult as the number of variables increases and for this reason we decompose and recompose the covariance matrices using \textit{principal component analysis} (PCA) to get an overview of differences between the two subsets. We refer to Appendix S1 for a brief introduction to PCA. 
 
 We assume that the variables have been standardized before PCA is conducted, which is equivalent to working with the empirical correlation matrices rather than the empirical covariance matrices. We also assume that all considered variables have a numerical interpretation, for example by being continuous or ordinally categorical. Moreover, we use the following notation: 
-$\mathbf{X} \in \RR^{n_x \times d} $ and $\mathbf{Y} \in \RR^{n_y \times d} $ are datasets containing the same number of variables, $d$, but possibly different numbers of observations, $n_x$ and $n_y$. We use $X_j$ to refer to the $j$th variables of $\mathbf{X}$ and $x_{ij}$ to refer to the $i$th observation  within that variable, while $x_{i \cdot}$ is the full $i$th observation row. Note that $X_j \in \RR^{n_x}$, $x_{ij} \in \RR$, and $x_{i \cdot} \in \RR^d$. We let $\bar{X} = (\bar{X}_1, ... , \bar{X}_d)^T = \frac{1}{n_x} \sum_{i = 1} x_{i \cdot}$ denote the variable averages and use $S_x =  \frac{1}{n_x - 1} \sum_{i = i}^n (x_{i \cdot} - \bar{X}) - (x_{i \cdot} - \bar{X})^T \in \RR^{d \times d}$ to denote the empirical covariance matrix of $\mathbf{X}$. 
+$\mathbf{X} \in \RR^{n_x \times d} $ and $\mathbf{Y} \in \RR^{n_y \times d} $ are datasets containing the same number of variables, $d$, but possibly different numbers of observations, $n_x$ and $n_y$. We use $X_j$ to refer to the $j$th variables of $\mathbf{X}$ and $x_{ij}$ to refer to the $i$th observation  within that variable, while $x_{i \cdot}$ is the full $i$th observation row. Note that $X_j \in \RR^{n_x}$, $x_{ij} \in \RR$, and $x_{i \cdot} \in \RR^d$. We let $\bar{X} = (\bar{X}_1, ... , \bar{X}_d)^T = \frac{1}{n_x} \sum_{i = 1} x_{i \cdot}$ denote the variable averages and use $S_x =  \frac{1}{n_x - 1} \sum_{i = i}^n (x_{i \cdot} - \bar{X})(x_{i \cdot} - \bar{X})^T \in \RR^{d \times d}$ to denote the empirical covariance matrix of $\mathbf{X}$. 
 
 
 
@@ -125,7 +126,7 @@ $\mathbf{X} \in \RR^{n_x \times d} $ and $\mathbf{Y} \in \RR^{n_y \times d} $ ar
 %PCA qualifies as an appealing first step in structural comparisons of two datasets containing the same variables, and especially the loadings and eigenvalues are meaningful and interesting objects to compare across such different datasets. 
 
 The tools presented here are all based on comparing the PCA results across two different datasets that contain the same variables, $\mathbf{X}$ and $\mathbf{Y}$. Let 
-$$\mathbf{Z} = \begin{pmatrix} \mathbf{X} \\ \mathbf{Y} \end{pmatrix} \in \RR^{n_x + n_y \times d}$$
+$$\mathbf{Z} = \begin{pmatrix} \mathbf{X} \\ \mathbf{Y} \end{pmatrix} \in \RR^{(n_x + n_y) \times d}$$
  be the combined dataset. For each of these three datasets, we complete the following steps (here described for $\mathbf{X}$ only):
 \begin{enumerate}
 \item Standardize each of the variables to have mean zero and unit standard deviation. Let $\tilde{\mathbf{X}}_{j} \in \RR^{n_x \times d}$ be the standardized dataset.
@@ -139,7 +140,7 @@ The hereby obtained PCA decompositions of the correlation matrices can then be c
 \begin{equation*}
 \sum_{j=1}^d \lambda_j^x = \sum_{j=1}^d \lambda_{j}^y = \sum_{j=1}^d \lambda_{j}^z =  d.
 \end{equation*}
-This identity will simplify some expressions below. Using a greedy interpretation of PCA, which is often overlooked in the literature, we can note that the sequence of loadings $\eta_j$ and their associated eigenvalues $\lambda_j$ yield a simultaneous description of the structure of the dataset for all approximating dimensions $q$. This implies that the loadings and the eigenvalues can be used to investigate the structure of the dataset without the need to decide on an approximating dimension, $q$, a priori. 
+This identity will simplify some expressions below. We note that the sequence of loadings $\eta_j$ and their associated eigenvalues $\lambda_j$ yield a simultaneous description of the structure of the dataset for all approximating dimensions $q$. This implies that the loadings and the eigenvalues can be used to investigate the structure of the dataset without the need to decide on an approximating dimension, $q$, a priori. 
 
 We present three diagnostic plots that are designed to shine a light on different types and levels of data structure differences, namely the \textit{cumulative eigenvalue (CE) plot}, the \textit{angle plot}, and the \textit{chroma plot}. These plots are dsecribed in turn below. For the deepest understanding of the data structure differences in two datasets, we suggest using all of the three plots in the same order as they are presented. While we describe the three plot types from a purely theoretical point of view below, we also provide example illustrations as a supplement to the somewhat technical definitions. These plots are available in Figures \ref{plot.simCE}, \ref{plot.simAngle}, and \ref{plot.simChroma} for the CE-, angle-, and chroma plots, respectively, and they are based on two simulated datasets:
 \begin{description}
@@ -147,7 +148,7 @@ We present three diagnostic plots that are designed to shine a light on differen
 \item[Dataset B:] This dataset contains 500 independent simulations from \textit{model 1} from Figure~\ref{fig:simGraphs} and 500 independent simulations from \textit{model 2} in the same figure. The observations are naturally divided into groups corresponding to which model they were simulated from.
 \end{description}
 
-In \textit{Model 1} the observed variables $V_3$ and $V_4$ are caused by a common, unobserved variable $L_1$. Further details on the models and the simulated data are available in the supplementary material, including covariance matrices for the two models, in Appendix S2. In dataset $\mathbf{A}$, all observations stem from the same, underlying data structure and thus, the PCADSC plots should point towards no notable differences in data structures. In dataset $\mathbf{B}$, on the other hand, there are two fundamentally different, underlying data structures and therefore, the PCADSC plots should illustrate this lack of homogeneity in data structures.
+In \textit{model 1} the observed variables $V_3$ and $V_4$ are caused by a common, unobserved variable $L_1$. Further details on the models and the simulated data are available in the supplementary material, including covariance matrices for the two models, in Appendix S2. In dataset $\mathbf{A}$, all observations stem from the same, underlying data structure and thus, the PCADSC plots should point towards no notable differences in data structures. In dataset $\mathbf{B}$, on the other hand, there are two fundamentally different, underlying data structures and therefore, the PCADSC plots should illustrate this lack of homogeneity in data structures.
 
 
 %\begin{figure}[h]
@@ -169,14 +170,14 @@ The cumulative eigenvalue (CE) plot compares the eigenvalues of the correlation 
 \ldots, \\
 &\bigg( \sum_{j=1}^d \lambda_j^z, \sum_{j=1}^d \lambda_{j}^x - \sum_{j=1}^d \lambda_{j}^y \bigg)
 \end{align*}
-Due to the standardization, the last point will always be equal to $(d,0)$. Thus, this curve will begin and end at the x-axis. And the larger excursions it makes away from the  first axis, the less alike the cumulative eigenvalue sums for the two datasets are. Moreover, a positive cumulative difference implies that dataset $\mathbf{X}$ holds more information in the first components than dataset $\mathbf{Y}$ does. By using the cumulative eigenvalues of $\mathbf{Z}$ as the first coordinate, we obtain a visualization where a component take up an amount of horizontal space that corresponds to the variance explained by the component (that is, its eigenvalue), thereby letting the more infuential components drive the visual impression. 
+Due to the standardization, the last point will always be equal to $(d,0)$. Thus, this curve will begin and end at the x-axis. And the larger excursions it makes away from the  first axis, the less alike the cumulative eigenvalue sums for the two datasets are. Moreover, a positive cumulative difference implies that dataset $\mathbf{X}$ holds more information in the first components than dataset $\mathbf{Y}$ does. By using the cumulative eigenvalues of $\mathbf{Z}$ as the first coordinate, we obtain a visualization where a component take up an amount of horizontal space that corresponds to the variance explained by the component (that is, its eigenvalue), thereby letting the more influential components drive the visual impression. 
 
 %\begin{figure}[h]
 %\caption{[FIGURE 2 ABOUT HERE] CE plots for the simulated datasets. Dataset A (with no differences in data structure) in top panel, and dataset B %(where observations stem from different models) in bottom panel. Plots are annotated with the $p$-values of the Kolmogorov-Smirnov (KS) and the Cram\'er-von Mises (CvM) tests of the null hypothesis of no difference in data structures. The bold, black lines illustrate the observed cumulative eigenvalue differences, while the shaded areas are 95 \% confidence bands under the null hypothesis of no difference in data structures.}
 %\label{plot.simCE} 
 %\end{figure}
 
-Two examples of cumulative eigenvalue plots are available in Figure \ref{plot.simCE}. In the top panel, we see a cumulative eigenvalue curve that falls well within the confidence region, thereby suggesting no difference in eigenvalues (as expected). This also agrees with the large $p$-values and the fact that only a single underlying model was used for generating this data. In the bottom panel, the conclusion is reversed, which is also in accordance with the nature of the simulated data, which contains two distinct groups. In order to test whether these cumulative differences are statistical artefacts or if they represent something real, we have implemented both the \emph{Kolmogorov-Smirnov} and the \emph{Cram\'er-von Mises} test statistics, which are given by
+In order to test whether these cumulative differences are statistical artefacts or if they represent something real, we have implemented both the \emph{Kolmogorov-Smirnov} and the \emph{Cram\'er-von Mises} test statistics, which are given by
 \begin{align*}
 \text{KS} &= \max_{k=1,\dotsc,d} \bigg\lvert \sum_{j=1}^k \lambda_{j}^x - \sum_{j=1}^k \lambda_{j}^y \bigg\rvert, &
 \text{CvM} &= \sum_{k=1}^{d-1} \frac{\lambda_k^z + \lambda_{k+1}^z}{2} {\bigg( \sum_{j=1}^k \lambda_{j}^x - \sum_{j=1}^k \lambda_{j}^y \bigg)}^2.
@@ -187,6 +188,7 @@ the one we found for the original datasets.
 
 The permutation test results are also used to visualize the uncertainty of the CE curve in the plots. In the CE plots shown in the following section, we plot the observed curve together with 20 of the resampled curves, as well as a shaded region visualizing pointwise 95 \% coverage intervals. If the observed curve is very different from the resampled curves or if it is substantially outside the shaded region, then this also indicates differences between the two datasets.
 
+Two examples of cumulative eigenvalue plots are available in Figure \ref{plot.simCE}. In the top panel, we see a cumulative eigenvalue curve that falls well within the confidence region, thereby suggesting no difference in eigenvalues (as expected). This also agrees with the large $p$-values and the fact that only a single underlying model was used for generating this data. In the bottom panel, the conclusion is reversed, which is also in accordance with the nature of the simulated data, which contains two distinct groups.
 
 \subsection*{The angle plot}
 The angle plot compares both loadings and eigenvalues at once and it can be used to understand the information loss if the data structure of one dataset is superimposed on the other, thereby revealing which principal components (i.e. loading and eigenvalue pairs) are most similar and most different across the two datasets. Let $\lambda_{\max} = \max\{ \lambda_{1}^x, \lambda_{1}^y \}$ be the largest eigenvalue for the two datasets. Then the empirical correlation matrix for the $\mathbf{X}$ dataset, $S_x$, has the following orthogonal decomposition in the coordinate system of the $\mathbf{Y}$ dataset
@@ -202,16 +204,18 @@ and we have a similar decomposition of $S_y$ in the coordinate system of the $\m
 \nu_{jk} &= \sqrt{\frac{\lambda_{j}^y}{\lambda_{\max}}} \lvert {\eta_{j}^y}^\top \eta_{k}^x \rvert, &
 \theta_{jk} &= \acos(\lvert {\eta_{k}^x}^\top \eta_{j}^y \rvert).
 \end{align*}
-For two $d$-dimensional, unit length vectors $a$ and $b$, it holds that $ a^\top b = \langle a, b \rangle = \tilde{c}(a,b)$, where $\tilde{c}$ denotes the empirical correlation function. Thus, in the angle plot, we are essentially looking at the absolute values of correlations between loadings that have been scaled according to their variance contributions. The absolute value of the projection $\eta_{k}^x {\eta_{j}^y}^\top$ is inserted due to the indeterminacy of the direction of loading vectors. This indeterminacy implies that the angle between loadings from the two datasets always can be chosen to be in the interval $[0,\pi/2]$, and hence the decomposition of $S_x$ and $S_y$ can be visualized in a joint plot by dividing the angles by two and using counterclockwise and clockwise shifts from the diagonal. Furthermore, the scaling of the lengths by $\lambda_{\max}$ is made so that the longest arrow has at most unit length. Figure \ref{plot.simAngle} presents two examples of angle plots based on simulated data.
+For two $d$-dimensional, unit length vectors $a$ and $b$, it holds that $ a^\top b = \langle a, b \rangle = \tilde{c}(a,b)$, where $\tilde{c}$ denotes the empirical correlation function. Thus, in the angle plot, we are essentially looking at the absolute values of correlations between loadings that have been scaled according to their variance contributions. The absolute value of the projection ${\eta_{k}^x}^\top \eta_{j}^y$ is inserted due to the indeterminacy of the direction of loading vectors. This indeterminacy implies that the angle between loadings from the two datasets can always be chosen to be in the interval $[0,\pi/2]$, and hence the decomposition of $S_x$ and $S_y$ can be visualized in a joint plot by dividing the angles by two and using counterclockwise and clockwise shifts from the diagonal. Furthermore, the scaling of the lengths by $\lambda_{\max}$ is made so that the longest arrow has at most unit length. 
+
+In the \emph{angle plot}, the blue arrows in the $k$th column of the grid display visualize the decomposition of the $k$th principal component of the $\mathbf{A}$ dataset in the coordinate system of the $\mathbf{B}$ dataset. Similarly, the red arrows in the $j$th row visualize the decomposition of the $j$th principal components of the $\mathbf{B}$ dataset in the coordinate system of the $\mathbf{A}$ dataset. If we have coinciding blue and red arrows along the diagonal in the grid display, and arrows of vanishing lengths in the off-diagonal cells, then the structures of the two datasets are identical. In contrast, differences in the eigenvalues are visualized as differences in the lengths of the blue and the red arrows, also in the diagonal. And loadings in other directions than the corresponding loading from the other dataset are visualized as angle separation of the blue and the red arrows in the diagonal cells, as well as arrows of non vanishing length in the off-diagonal cells.
+
+However, there is a generic situation where the angles between the arrows lack discriminative power, namely when two or more neighboring eigenvalues are identical or close. We refer to this situation as \textit{eigenvalue indeterminancy}. For instance, multiple eigenvalues close to 1 arise if more than one of the variables are uncorrelated, or close to uncorrelated, of all the other variables. In this situation only the corresponding eigenspace is well estimated, but the rotation of the associated eigenvectors will be subject to sampling variability. To investigate if we are in such a situation of identical data structures with neighbouring eigenvalues being close, where comparably long arrows may occur in the corresponding blocks of off-diagonal cells, we have implemented a permutation test similar as done for the CE-plot. For each random reallocation we recompute the angles $\theta_{jk}$. The resampled angles may both be used for quantitative tests, where large angles are critical for the diagonal cells and small angles are critical for the off-diagonal cells, as well as for the visualisation of the sampled angle regions. In the visualization we propose to present the entire sampled region of angles for each cell, but gray shaded according to percentiles such that more critical angles are lighter gray. %In our implementation, we do not present the $p$-values for the quantitative tests, but the $p$-values are available in the R-object to support the visualization if necessary. It is important to remember that there are $d \times d$ $p$-values, which means that attention should be given to a possible multiple testing issue.
 
 %\begin{figure}[h]
 %\caption{[FIGURE 3 ABOUT HERE] Angle plots for the simulated datasets. Dataset A in top panel and dataset B in bottom panel. Blue arrows show the principal components of the observations in group 1 decomposed in the coordinate system of the principal components of group 2, while the red arrows illustrate the reverse.}
 %\label{plot.simAngle}
 %\end{figure}
 
-\hl{For dataset $\mathbf{A}$, we find very short off-diagonal arrows, suggesting that the two PCA decompositions agree on the relative placement of the information in  the data among the 6 PCs.  For dataset $\mathbf{B}$, on the other hand, we find very little agreement in all components, which should be expected, as the two groups in the dataset correspond to different data structures.}
-
-In the \emph{angle plot}, the blue arrows in the $k$th column of the grid display visualize the decomposition of the $k$th principal component of the $\mathbf{A}$ dataset in the coordinate system of the $\mathbf{B}$ dataset. Similarly, the red arrows in the $j$th row visualize the decomposition of the $j$th principal components of the $\mathbf{B}$ dataset in the coordinate system of the $\mathbf{A}$ dataset. \hl{If the structures of the two datasets are identical, then we will have coinciding blue and red arrows along the diagonal in the grid display, and nothing else as arrows in the off-diagonal cells would have zero length. Differences in the eigenvalues are visualized as differences in the lengths of the blue and the red arrows, also in the diagonal. And loadings in other directions than the corresponding loading from the other dataset are visualized as angle separation of the blue and the red arrows in the diagonal cells, as well as arrows of non vanishing length in the off-diagonal cells.}
+Figure \ref{plot.simAngle} presents two examples of angle plots based on simulated data. For dataset $\mathbf{A}$, we find very short off-diagonal arrows except for the off-diagonal cells corresponding to the 3rd and 4th eigenvalues. But since the arrows in cells (3,4) and (4,3) lie well within the shaded angle regions (supported by p-values 0.9119 and 0.9103) this is in agreement with identical data structures, where the 3rd and 4th eigenvalues suffer from indeterminancy (in this situation due to the two independent variables in \emph{model 1}). For dataset $\mathbf{B}$, on the other hand, we find very little agreement in all components, which should be expected, as the two groups in the dataset correspond to different data structures.
 
 
 \subsection*{The chroma plot}
@@ -225,14 +229,15 @@ where $\eta_{ij}^x$ and $\eta_{ij}^y$ denotes the $j$th entry of $\eta_{i}^x$ an
 \tilde\Sigma^x_{i} &= \frac{\sum_{j=1}^i \lambda_{j}^x}{\sum_{k=1}^d \lambda_{k}^x} = \frac{\sum_{j=1}^i \lambda_{j}^x}{d}, &
 \tilde\Sigma^y_{i} &= \frac{\sum_{j=1}^i \lambda_{j}^y}{\sum_{k=1}^d \lambda_{k}^y} = \frac{\sum_{j=1}^i \lambda_{j}^y}{d}.
 \end{align*}
-Especially when $d$ is large, we recommend plotting only a select set of interesting principal components (for instance identified by use of the angle plot). In this scenario, the annotations should rather be the non-cumulative variance contributions, $\tilde\sigma_{i}^x = \frac{\lambda_{i}^x}{d}$ and $\tilde\sigma_{i}^y = \frac{\lambda_{i}^y}{d}$.
+Especially when $d$ is large, we recommend plotting only a select set of interesting principal components (for instance identified by use of the angle plot). In this scenario, the annotations should rather be the non-cumulative variance contributions, $\tilde\sigma_{i}^x = \frac{\lambda_{i}^x}{d}$ and $\tilde\sigma_{i}^y = \frac{\lambda_{i}^y}{d}$. 
+If there is eigenvalue indeterminancy for neighboring components, as discussed above, the loading patterns for these components will not have a meaningful interpretation. Therefore, one should not compare the chroma bars for component that were identified to suffer from eigenvalue indeterminancy by the angle plot. 
 
 %\begin{figure}[h]
 %\caption{[FIGURE 4 ABOUT HERE] Chroma plots for the simulated datasets. Dataset $\mathbf{A}$ in top panel and dataset $\mathbf{B}$ in bottom panel. Each bar represents a principal component and the bars are annotated with their cumulative percentages of explained variance.}
 %\label{plot.simChroma}
 %\end{figure}
 
-In Figure  \ref{plot.simChroma}, two examples of chroma plots are available. For dataset $\mathbf{A}$, we see very similar visual patterns across the two panels, corresponding well with the fact that both groups are drawn from the same underlying model. For dataset $\mathbf{B}$, we see different color compositions for the bars in the left- and the right panel, illustrating that the data structures are not identical for the two groups. The plots resulting from this procedure should be inspected focusing on two properties: Similarities in loading patterns, which will correspond to similar visual impressions, and similarities in variance contributions. For each component, the loadings describe how influential the different variables are on that component. Therefore, the chroma plot allows us to make qualitative statements about the original datasets, such as \textit{"variable 1 is generally more influential in subset A than it is in subset B"}, thereby helping us to understand where and why potential data structure differences are found.
+In Figure  \ref{plot.simChroma}, two examples of chroma plots are available. For dataset $\mathbf{A}$, we see very similar visual patterns across the two panels for components 1, 2, 5 and 6, corresponding well with the fact that both groups are drawn from the same underlying model. Components 3 and 4 do not have similar loading patterns across the two subsets of the data, but this is expected since we identified these components to suffer from eigenvalue indeterminancy in the angle plot. For dataset $\mathbf{B}$, we see different color compositions for the bars in the left- and the right panel, illustrating that the data structures are not identical for the two groups. The plots resulting from this procedure should be inspected focusing on two properties: Similarities in loading patterns, which will correspond to similar visual impressions, and similarities in variance contributions. For each component, the loadings describe how influential the different variables are on that component. Therefore, the chroma plot allows us to make qualitative statements about the original datasets, such as \textit{"variable 1 is generally more influential in subset A than it is in subset B"}, thereby helping us to understand where and why potential data structure differences are found.
 
 \subsection*{A data structure comparison workflow}
 %\begin{figure}
@@ -262,7 +267,7 @@ Finally, we turn to a few comments about how the three plots presented thus far 
 \begin{enumerate}
 \item Make a CE plot. If this plots suggests similarity in eigenvalues then it is appropriate to move on to the angle plot to assess similarity in loadings. Otherwise, it can be concluded that the structures of the two datasets are not similar. 
 \item Make an angle plot. If this plots suggests similarities in both eigenvalues and loadings, then the data structure comparison exploration is concluded. If the angle plots suggests differences in data structures, identify which components are responsible for the differences. 
-\item Make a chroma plot of the components selected to be different by the angle plot. Use this information to discuss \textit{how} and \textit{why} the data structures might be different. 
+\item Make a chroma plot of the components selected to be different by the angle plot, but whose differences are not due to eigenvalue indeterminancy among neighboring components. Use this information to discuss \textit{how} and \textit{why} the data structures might be different. 
 \end{enumerate}
 We will now turn to a data example, showing how the PCADSC tools can be used in practice.
 
@@ -272,9 +277,9 @@ We will now turn to a data example, showing how the PCADSC tools can be used in 
 
 We illustrate the three tools using data from the 2012 version of the European Social Survey (ESS) project to investigate inter-country differences in psychological well-being and happiness. The topic of our investigation is motivated by an increasingly popular tendency to publish rankings of countries in fields as different as educational quality (e.g. the PISA project) and citizen happiness (e.g. the UN \textit{World Happiness Report} project). From a methodological point of view, such international rankings are problematic, as they rely on the fundamental assumption that the measured concepts are inherently the same across countries. The PCADSC tools qualify as a suite of methods for exploring the validity of this assumption empirically.
 
-In the rankings of happiness, not much work has yet been devoted to evaluating the assumption of international comparabiltity, though Veenhoven presents a theoretically thorough, but empirically simplistic, summary of possible reasons for lack of comparability \cite{Veenhoven2012}, while Lolle \& Andersen show highly potent translation issues for the term \textit{happiness} \cite{Lolle2016}.
+In the rankings of happiness, not much work has yet been devoted to evaluating the assumption of international comparability, though Veenhoven presents a theoretically thorough, but empirically simplistic, summary of possible reasons for lack of comparability \cite{Veenhoven2012}, while Lolle \& Andersen show highly potent translation issues for the term \textit{happiness} \cite{Lolle2016}.
 
-If for instance two countries differ in terms of how social networks are typically built and structured, with one emphasizing family relations and the other mostly focusing on other social relations, then having a weak family connection does not have the same implications in the first country as it does in the second one. More specifically, whereas in the first country, lack of familial network might be related to loneliness, lack of general social capital, and isolation, in the second country, the quality of the family network might not be informative at all about other aspects of a person's social or psychological well-being. The two countries thus differ in how different aspects or measures of psychological well-being are interrelated, which is essentially a difference in data structures. And therefore, comparing the two countries in these measures is not a meaningful endeavor.
+If for instance two countries differ in terms of how social networks are typically built and structured, with one emphasizing family relations and the other mostly focusing on other social relations, then having a weak family connection does not have the same implications in the first country as it does in the second one. More specifically, whereas in the first country, lack of familial network might be related to loneliness, lack of general social capital, and isolation, in the second country, the quality of the family network might not be informative at all about other aspects of a person's social or psychological well-being. The two countries thus differ in how different aspects or measures of psychological well-being are interrelated, which is essentially a difference in data structures. And therefore, comparing the two countries in these measures is not a meaningful endeavour.
 
 In this section, we use the PCADSC tools to examine international differences in one aspect of happiness, namely psychological well-being. Our starting point is Denmark, a small, Northern European country that has repeatedly been awarded with the title of ``happiest country in the world''  by the \textit{World Happiness Report}, most recently in 2016 \cite{WHR2016}, and we wish to investigate if this title is really meaningful at all. In order to do this, we compare the Danish ESS psychological well-being data with that of Bulgaria. Though both countries are European and thus neither very far apart geographically nor culturally, these two countries have previously been highlighted to be very different in terms of what defines happiness \cite{ESStopline5}. Moreover, intra-European, regional differences in the relationship between social capital and happiness have also been demonstrated \cite{Rodriguez2014}. When comparing Northern European countries to other European countries, a much less pronounced relationship between the two concepts is found. In particular, interpersonal relations play a less important role in Denmark, compared to Bulgaria. Therefore, a successful method for data comparisons should be able to detect these differences by looking at data on psychological well-being from these two countries.
 
@@ -316,7 +321,9 @@ Figure \ref{plotBG.cehair} presents the CE plot and the angle plot obtained from
 %\label{plotBG.cehair}
 %\end{figure}
 
-Moving on to the angle plot, we find that the differences are primarily to be found in the second, third, and fourth principal components (PCs). The blue arrows visualize the decomposition of the principal components for the Bulgarian dataset in the coordinate system of the Danish dataset. We see that PC2 also loads on PC3, that PC3 also loads on PC4, and that PC4 also loads on PC2 and PC3. The red arrows visualize the decomposition of the principal components for the Danish dataset in the coordinate system of the Bulgarian dataset. Here, we see that PC2 also loads on PC4, that PC3 also loads on PC2 and PC4, and that PC4 also loads on PC3. Thus, if we wish to understand why differences in the data structures occur, an inspection of the loadings of components 2, 3 and 4 might be informative.
+Moving on to the angle plot, we find that the differences are primarily to be found in the second, third, and fourth principal components (PCs). The blue arrows visualize the decomposition of the principal components for the Bulgarian dataset in the coordinate system of the Danish dataset. We see that PC2 also loads on PC3, that PC3 also loads on PC4, and that PC4 also loads on PC2 and PC3. The red arrows visualize the decomposition of the principal components for the Danish dataset in the coordinate system of the Bulgarian dataset. Here, we see that PC2 also loads on PC4, that PC3 also loads on PC2 and PC4, and that PC4 also loads on PC3. 
+%\hl{These statements are supported by p-values for the hypotheses of no loading that all are less than $0.002$.} 
+Thus, if we wish to understand why differences in the data structures occur, an inspection of the loadings of components 2, 3 and 4 might be informative.
 
 The chroma plot in Figure \ref{plotBG.pancake} allows us to look closer into these components. Here, we find that the relative importance of the \textit{Community wellbeing} and \textit{Supportive relationships} scales is much larger in the Bulgarian sample than in the Danish. In the Danish data, on the other hand, we find that \textit{Vitality} and \textit{Emotional well-being} seem to play bigger roles, as they appear with larger loadings in more high-ranking components in this sample, relative to the Bulgarian.
 
@@ -354,7 +361,9 @@ In an analysis of data from the 2012 version of the European Social Survey (ESS)
 
 Usually, when using PCA, the main interest lies in the \textit{scores}, i.e. the coordinates $\eta_j^\top (x_i - \bar{x})$ of the projections observations onto the loadings, but the eigenvalues and the accompanying loadings are in fact more suitable objects for assessing data structure similarity. If two dataset subsets have similar loadings, then they can be argued to measure the same underlying quantities. Similar loadings can occur in situations where the two sets of scores are different, for example if the two datasets come from two different populations of subjects. On the other hand, if the loading patterns are different in the two subsets, then this indicates that their respective variable interplays differ, and hence it would be criticizable to use these variables for comparisons across the two subsets. The PCADSC tools are novel in their emphasis on the information held in the loadings rather than the scores. 
 
-Though the PCADSC toolbox comprises three diagnostic plots as of now, the PCA decomposition can of course be utilized further to bring about new PCADSC plots that illustrate more aspects of data structure differences. For instance, the scree plot (as introduced by Cattell \cite{Cattell1966}), which plots the ordered eigenvalues against their component numbers, could easily be recreated as a PCADSC tool by creating scree plots for both data subsets in the same coordinate system, yielding a simple graphical comparison. The resampling approach used in the CE plot could then be adopted, thus annotating the scree plots with resampled curves. This general approach to model-fit evaluation is very helpful in combination with permutation tests, as inspired by Lin and colleagues \cite{LinEtAl2002}. Similarly, the angle plot could also be annotated with $p$-values from a permutation test based on appropriate test statistics.
+Though the PCADSC toolbox comprises three diagnostic plots as of now, the PCA decomposition can of course be utilized further to bring about new PCADSC plots that illustrate more aspects of data structure differences. For instance, the scree plot (as introduced by Cattell \cite{Cattell1966}), which plots the ordered eigenvalues against their component numbers, could easily be recreated as a PCADSC tool by creating scree plots for both data subsets in the same coordinate system, yielding a simple graphical comparison. The resampling approach used in the CE plot could then be adopted, thus annotating the scree plots with resampled curves. This general approach to model-fit evaluation is very helpful in combination with permutation tests, as inspired by Lin and colleagues \cite{LinEtAl2002}. 
+
+%Similarly, the angle plot could also be annotated with $p$-values from a permutation test based on appropriate test statistics.
 
 The proposed methods also have limitations. First of all, as PCA is performed after standardization of the variables, the PCADSC methods cannot detect differences in neither mean values nor in marginal variances - this information is thrown away as the very first step. However, such differences are of a fundamentally different nature than those we have discussed so far. Differences in mean values are often the main interest of the analysis and should of course not be regarded as a data comparability issue. Differences in marginal variances, on the other hand, can pose some modeling challenges, but none that are not generally solvable by use of random effects models. We therefore do not consider this property of PCADSC to be a major drawback.
 
@@ -381,23 +390,70 @@ We have presented three new tools for visual, exploratory data structure compari
 \section*{Figures}
 
 \begin{figure}[H]
-\caption{Graphical representations of models used for simulating example data. Square nodes represent observed variables, while rounded nodes represent latent variables. Arrows are used to illustrate causal links.}
+\center
+Model 1: \medskip \\
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto, node distance=2.5cm,
+  thick,main node/.style={rectangle, rounded corners,draw,font=\small\normalfont},
+  sq node/.style={rectangle,draw,font=\small\normalfont}]
+  \node[sq node] (1) {$V_1$};
+  \node[sq node, right of = 1] (2) {$V_2$};
+  \node[sq node, right of = 2] (3) {$V_3$};
+  \node[sq node, right of = 3] (4) {$V_4$};
+  \node[sq node, right of = 4] (5) {$V_5$};
+  \node[sq node, right of = 5] (6) {$V_6$};
+  \node[main node, above right=1cm of 3] (7) {$L_1$};
+  \node[main node, above right=1cm of 5] (8) {$L_2$};
+  \path[every node/.style={font=\sffamily\small}]
+    (7) edge node  {} (3)
+    (7) edge node {} (4)
+    (8) edge node {} (5)
+    (8) edge node {} (6);
+ \end{tikzpicture}
+\\
+\bigskip
+Model 2: \medskip \\
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto, node distance=2.5cm,
+  thick,main node/.style={rectangle, rounded corners,draw,font=\small\normalfont},
+  sq node/.style={rectangle,draw,font=\small\normalfont}]
+  \node[sq node] (1) {$V_1$};
+  \node[sq node, right of = 1] (2) {$V_2$};
+  \node[sq node, right of = 2] (3) {$V_3$};
+  \node[sq node, right of = 3] (4) {$V_4$};
+  \node[sq node, right of = 4] (5) {$V_5$};
+  \node[sq node, right of = 5] (6) {$V_6$};
+  \node[main node, above=1cm of 2] (7) {$K_1$};
+  \node[main node, above=1cm of 5] (8) {$K_2$};
+  \path[every node/.style={font=\small}]
+    (7) edge node  {} (1)
+    (7) edge node {} (2)
+    (7) edge node {} (3)
+    (8) edge node {} (4)
+    (8) edge node {} (5)
+    (8) edge node {} (6);
+ \end{tikzpicture}
+ \caption{Graphical representations of models used for simulating example data. Square nodes represent observed variables, while rounded nodes represent latent variables. Arrows are used to illustrate causal links.}
 \label{fig:simGraphs}
 \end{figure}
 
 
 \begin{figure}[H]
+\center
+\includegraphics[scale=0.8]{Figure2_v3.pdf}
 \caption{CE plots for the simulated datasets. Dataset A (with no differences in data structure) in top panel, and dataset B (where observations stem from different models) in bottom panel. Plots are annotated with the $p$-values of the Kolmogorov-Smirnov (KS) and the Cram\'er-von Mises (CvM) tests of the null hypothesis of no difference in data structures. The bold, black lines illustrate the observed cumulative eigenvalue differences, while the shaded areas are 95 \% confidence bands under the null hypothesis of no difference in data structures.}
 \label{plot.simCE} 
 \end{figure}
 
 \begin{figure}[H]
+\center
+\includegraphics[scale=0.8]{Figure3_v3.pdf}
 \caption{Angle plots for the simulated datasets. Dataset A in top panel and dataset B in bottom panel. Blue arrows show the principal components of the observations in group 1 decomposed in the coordinate system of the principal components of group 2, while the red arrows illustrate the reverse.}
 \label{plot.simAngle}
 \end{figure}
 
 
 \begin{figure}[H]
+\center
+\includegraphics[scale=0.8]{Figure4_v3.pdf}
 \caption{Chroma plots for the simulated datasets. Dataset $\mathbf{A}$ in top panel and dataset $\mathbf{B}$ in bottom panel. Each bar represents a principal component and the bars are annotated with their cumulative percentages of explained variance.}
 \label{plot.simChroma}
 \end{figure}
@@ -426,21 +482,29 @@ We have presented three new tools for visual, exploratory data structure compari
  \end{figure}
 
 \begin{figure}[H]
+\center
+\includegraphics[scale=0.8]{Figure6_v3.pdf}
 \caption{CE plots (top panel) and angle plots (bottom panel) comparing Danish and Bulgarian data on psychological well-being. The CE plot is annotated with the $p$-values of the Kolmogorov-Smirnov and the Cram\'er-von Mises tests of the hypothesis of no difference in data structures. In the angle plot, the blue arrows show the principal components of the Bulgarian dataset decomposed in the coordinate system of the principal components of the Danish dataset, while the red arrows illustrate the reverse.}
 \label{plotBG.cehair}
 \end{figure}
 
 \begin{figure}[H]
+\center
+\includegraphics[scale=0.8]{Figure7_v3.pdf}
 \caption{Chroma plot for comparing Danish and Bulgarian data on psychological well-being. A chroma plot comparing the 2nd, 3rd, and 4th principal components of the Bulgarian- and Danish psychological well-being data. The component-bars are annotated with their relative variance contributions. }
 \label{plotBG.pancake}
 \end{figure}
 
 \begin{figure}[H]
+\center
+\includegraphics[scale=0.8]{Figure8_v3.pdf}
 \caption{A CE plot (top panel) and an angle plot (bottom panel) comparing Danish and Swedish data on psychological well-being. The blue arrows show the principal components of the Danish dataset decomposed in the coordinate system of the principal components of the Swedish dataset, and the red arrows illustrate the reverse.}
 \label{plotSE.cehair}
 \end{figure}
 
 \begin{figure}[H]
+\center
+\includegraphics[scale=0.8]{Figure9_v3.pdf}
 \caption{Chroma plot comparing the loading patterns of the Danish and the Swedish subsamples. For each component, the bar is annotated with its cumulative variance contribution, that is, how much variance can be explained by having information of this and the preceding components.}
 \label{plotSE.pancake}
 \end{figure}
