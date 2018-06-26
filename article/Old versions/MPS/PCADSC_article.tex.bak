@@ -24,6 +24,9 @@
 \usepackage[table]{xcolor}
 \definecolor{lightgray}{HTML}{e6e6e6}
 
+\usepackage{caption}
+\captionsetup{font={stretch=2}}
+
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 \usetikzlibrary{shapes, positioning, calc}
@@ -126,20 +129,22 @@ $\mathbf{X} \in \RR^{n_x \times d} $ and $\mathbf{Y} \in \RR^{n_y \times d} $ ar
 %PCA qualifies as an appealing first step in structural comparisons of two datasets containing the same variables, and especially the loadings and eigenvalues are meaningful and interesting objects to compare across such different datasets. 
 
 The tools presented here are all based on comparing the PCA results across two different datasets that contain the same variables, $\mathbf{X}$ and $\mathbf{Y}$. Let 
-$$\mathbf{Z} = \begin{pmatrix} \mathbf{X} \\ \mathbf{Y} \end{pmatrix} \in \RR^{(n_x + n_y) \times d}$$
+\begin{equation}
+\mathbf{Z} = \begin{pmatrix} \mathbf{X} \\ \mathbf{Y} \end{pmatrix} \in \RR^{(n_x + n_y) \times d}
+\end{equation}
  be the combined dataset. For each of these three datasets, we complete the following steps (here described for $\mathbf{X}$ only):
 \begin{enumerate}
 \item Standardize each of the variables to have mean zero and unit standard deviation. Let $\tilde{\mathbf{X}}_{j} \in \RR^{n_x \times d}$ be the standardized dataset.
 \item Form the principal component analyses
-\begin{align*}
+\begin{align}
 S_x &= \frac{1}{n_x-1} \sum_{i=1}^{n_x} \tilde{x}_{i \cdot} \tilde{x}_{i \cdot}^\top = \sum_{j=1}^d \lambda_{j}^x \eta_{j}^x ({\eta_{j}^x})^\top 
-\end{align*}
+\end{align}
 thereby obtaining loadings $\eta_{j}^x$ and eigenvalues $\lambda^x_j$ for $j=1,\dotsc,d$.
 \end{enumerate}
 The hereby obtained PCA decompositions of the correlation matrices can then be compared. The standardization implies that the diagonal elements of $S_x$, $S_y$, and $S_z$ all equal 1, and thus also that
-\begin{equation*}
+\begin{equation}
 \sum_{j=1}^d \lambda_j^x = \sum_{j=1}^d \lambda_{j}^y = \sum_{j=1}^d \lambda_{j}^z =  d.
-\end{equation*}
+\end{equation}
 This identity will simplify some expressions below. We note that the sequence of loadings $\eta_j$ and their associated eigenvalues $\lambda_j$ yield a simultaneous description of the structure of the dataset for all approximating dimensions $q$. This implies that the loadings and the eigenvalues can be used to investigate the structure of the dataset without the need to decide on an approximating dimension, $q$, a priori. 
 
 We present three diagnostic plots that are designed to shine a light on different types and levels of data structure differences, namely the \textit{cumulative eigenvalue (CE) plot}, the \textit{angle plot}, and the \textit{chroma plot}. These plots are dsecribed in turn below. For the deepest understanding of the data structure differences in two datasets, we suggest using all of the three plots in the same order as they are presented. While we describe the three plot types from a purely theoretical point of view below, we also provide example illustrations as a supplement to the somewhat technical definitions. These plots are available in Figures \ref{plot.simCE}, \ref{plot.simAngle}, and \ref{plot.simChroma} for the CE-, angle-, and chroma plots, respectively, and they are based on two simulated datasets:
@@ -163,13 +168,13 @@ In \textit{model 1} the observed variables $V_3$ and $V_4$ are caused by a commo
 
 \subsection*{The cumulative eigenvalue plot}
 The cumulative eigenvalue (CE) plot compares the eigenvalues of the correlation matrices. These eigenvalues represent how much information is withheld in each component in terms of explained variance. Thus, by comparing cumulative sums of eigenvalues, it is possible to obtain a detailed picture of how the two datasets differ in terms of what components are the most informative. In order to investigate whether the same proportion of the total variation can be described by the same number of principal components in the two datasets, we plot a piecewise linear curve connecting the points
-\begin{align*}
+\begin{align}
 &(0,0), \;
 (\lambda_1^z,\lambda_{1}^x-\lambda_{1}^y), \;
 (\lambda_1^z + \lambda_2^z,\lambda_{1}^x+\lambda_{2}^x-\lambda_{1}^y-\lambda_{2}^y), \;
 \ldots, \\
 &\bigg( \sum_{j=1}^d \lambda_j^z, \sum_{j=1}^d \lambda_{j}^x - \sum_{j=1}^d \lambda_{j}^y \bigg)
-\end{align*}
+\end{align}
 Due to the standardization, the last point will always be equal to $(d,0)$. Thus, this curve will begin and end at the x-axis. And the larger excursions it makes away from the  first axis, the less alike the cumulative eigenvalue sums for the two datasets are. Moreover, a positive cumulative difference implies that dataset $\mathbf{X}$ holds more information in the first components than dataset $\mathbf{Y}$ does. By using the cumulative eigenvalues of $\mathbf{Z}$ as the first coordinate, we obtain a visualization where a component take up an amount of horizontal space that corresponds to the variance explained by the component (that is, its eigenvalue), thereby letting the more influential components drive the visual impression. 
 
 %\begin{figure}[h]
@@ -178,10 +183,10 @@ Due to the standardization, the last point will always be equal to $(d,0)$. Thus
 %\end{figure}
 
 In order to test whether these cumulative differences are statistical artefacts or if they represent something real, we have implemented both the \emph{Kolmogorov-Smirnov} and the \emph{Cram\'er-von Mises} test statistics, which are given by
-\begin{align*}
+\begin{align}
 \text{KS} &= \max_{k=1,\dotsc,d} \bigg\lvert \sum_{j=1}^k \lambda_{j}^x - \sum_{j=1}^k \lambda_{j}^y \bigg\rvert, &
 \text{CvM} &= \sum_{k=1}^{d-1} \frac{\lambda_k^z + \lambda_{k+1}^z}{2} {\bigg( \sum_{j=1}^k \lambda_{j}^x - \sum_{j=1}^k \lambda_{j}^y \bigg)}^2.
-\end{align*}
+\end{align}
 We conduct the tests as \textit{permutation tests}, that is, by randomly reallocating the combined and separately standardized datasets into two new datasets of $n_x$ and $n_y$ observations, respectively, and then redoing the CE plot steps and recalculating the test statistics. This should be done a large (e.g. 10000) number of times. Then, a $p$-value is obtained by computing the proportion of reallocated datasets that lead to %even larger
 test statistics at least as large as %than
 the one we found for the original datasets.
@@ -192,18 +197,18 @@ Two examples of cumulative eigenvalue plots are available in Figure \ref{plot.si
 
 \subsection*{The angle plot}
 The angle plot compares both loadings and eigenvalues at once and it can be used to understand the information loss if the data structure of one dataset is superimposed on the other, thereby revealing which principal components (i.e. loading and eigenvalue pairs) are most similar and most different across the two datasets. Let $\lambda_{\max} = \max\{ \lambda_{1}^x, \lambda_{1}^y \}$ be the largest eigenvalue for the two datasets. Then the empirical correlation matrix for the $\mathbf{X}$ dataset, $S_x$, has the following orthogonal decomposition in the coordinate system of the $\mathbf{Y}$ dataset
-\begin{equation*}
+\begin{equation}
 S_x = \sum_{j=1}^d \lambda_{j}^x \eta_{j}^x ({\eta_{j}^x})^\top
 = \lambda_{\max} \sum_{k=1}^d
 \Bigg( \sum_{j=1}^d \sqrt{\frac{\lambda_{k}^x}{\lambda_{\max}}} \eta_{j}^y ({\eta_{j}^y}^\top \eta_{k}^x) \Bigg)
 {\Bigg( \sum_{j=1}^d \sqrt{\frac{\lambda_{k}^x}{\lambda_{\max}}} \eta_{j}^y ({\eta_{j}^y}^\top \eta_{k}^x) \Bigg)}^\top,
-\end{equation*}
+\end{equation}
 and we have a similar decomposition of $S_y$ in the coordinate system of the $\mathbf{X}$ dataset. We propose to visualize these two decompositions in a $d \times d$ grid display. In the $j$th row and $k$th column of this display we plot two arrows based at the lower left corner of the grid cell. The first arrow has length $\mu_{jk}$ and angle $\theta_{jk}/2$ counterclockwise from the diagonal, and the second arrow has length $\nu_{jk}$ and angle $\theta_{jk}/2$ clockwise from the diagonal. To facilitate the following description we will refer to the arrows drawn counterclockwise as the blue arrows, and the arrows drawn clockwise as the red arrows. The lengths $\mu_{jk}$ and $\nu_{jk}$, and the angle $\theta_{jk}$, are given by
-\begin{align*}
+\begin{align}
 \mu_{jk} &= \sqrt{\frac{\lambda_{k}^x}{\lambda_{\max}}} \lvert {\eta_{k}^x}^\top \eta_{j}^y \rvert, &
 \nu_{jk} &= \sqrt{\frac{\lambda_{j}^y}{\lambda_{\max}}} \lvert {\eta_{j}^y}^\top \eta_{k}^x \rvert, &
 \theta_{jk} &= \acos(\lvert {\eta_{k}^x}^\top \eta_{j}^y \rvert).
-\end{align*}
+\end{align}
 For two $d$-dimensional, unit length vectors $a$ and $b$, it holds that $ a^\top b = \langle a, b \rangle = \tilde{c}(a,b)$, where $\tilde{c}$ denotes the empirical correlation function. Thus, in the angle plot, we are essentially looking at the absolute values of correlations between loadings that have been scaled according to their variance contributions. The absolute value of the projection ${\eta_{k}^x}^\top \eta_{j}^y$ is inserted due to the indeterminacy of the direction of loading vectors. This indeterminacy implies that the angle between loadings from the two datasets can always be chosen to be in the interval $[0,\pi/2]$, and hence the decomposition of $S_x$ and $S_y$ can be visualized in a joint plot by dividing the angles by two and using counterclockwise and clockwise shifts from the diagonal. Furthermore, the scaling of the lengths by $\lambda_{\max}$ is made so that the longest arrow has at most unit length. 
 
 In the \emph{angle plot}, the blue arrows in the $k$th column of the grid display visualize the decomposition of the $k$th principal component of the $\mathbf{A}$ dataset in the coordinate system of the $\mathbf{B}$ dataset. Similarly, the red arrows in the $j$th row visualize the decomposition of the $j$th principal components of the $\mathbf{B}$ dataset in the coordinate system of the $\mathbf{A}$ dataset. If we have coinciding blue and red arrows along the diagonal in the grid display, and arrows of vanishing lengths in the off-diagonal cells, then the structures of the two datasets are identical. In contrast, differences in the eigenvalues are visualized as differences in the lengths of the blue and the red arrows, also in the diagonal. And loadings in other directions than the corresponding loading from the other dataset are visualized as angle separation of the blue and the red arrows in the diagonal cells, as well as arrows of non vanishing length in the off-diagonal cells.
@@ -220,15 +225,15 @@ Figure \ref{plot.simAngle} presents two examples of angle plots based on simulat
 
 \subsection*{The chroma plot}
 The chroma plot is primarily an illustration of differences in loading patterns and it targets the question of how the roles of the original variables are different between the two datasets, thus leading the data structure comparison question back to its original, empirical context. The chroma plot consists of two panels, one for each dataset, made up of colored bars. These bars each represent a principal component and their coloring illustrates the relative weights of the $d$ original variables, that is, their absolute, normalized loading contributions. More specifically, when illustrating the $i$th principal component in the two data subsets, we plot vertical bars of length one that has been divided into $d$ segments of different colors. The width of the $j$th colored segment is given by
-\begin{align*}
+\begin{align}
 \omega_{ij}^x &= \frac{\lvert\eta_{ij}^x \rvert}{\sum_{k=1}^d \lvert\eta_{ik}^x\rvert}, &
 \omega_{ij}^y &= \frac{\lvert\eta_{ij}^y\rvert}{\sum_{k=1}^d \lvert\eta_{ik}^y\rvert},
-\end{align*}
+\end{align}
 where $\eta_{ij}^x$ and $\eta_{ij}^y$ denotes the $j$th entry of $\eta_{i}^x$ and $\eta_{i}^y$, respectively. Due to the indeterminacy of the loading signs, all the signs are removed from the coefficients in the loadings. The bars are ordered according to the eigenvalues and they are annotated with the cumulative percentage explained variance of that component, that is, the scaled and summed variance contributions,
-\begin{align*}
+\begin{align}
 \tilde\Sigma^x_{i} &= \frac{\sum_{j=1}^i \lambda_{j}^x}{\sum_{k=1}^d \lambda_{k}^x} = \frac{\sum_{j=1}^i \lambda_{j}^x}{d}, &
 \tilde\Sigma^y_{i} &= \frac{\sum_{j=1}^i \lambda_{j}^y}{\sum_{k=1}^d \lambda_{k}^y} = \frac{\sum_{j=1}^i \lambda_{j}^y}{d}.
-\end{align*}
+\end{align}
 Especially when $d$ is large, we recommend plotting only a select set of interesting principal components (for instance identified by use of the angle plot). In this scenario, the annotations should rather be the non-cumulative variance contributions, $\tilde\sigma_{i}^x = \frac{\lambda_{i}^x}{d}$ and $\tilde\sigma_{i}^y = \frac{\lambda_{i}^y}{d}$. 
 If there is eigenvalue indeterminancy for neighboring components, as discussed above, the loading patterns for these components will not have a meaningful interpretation. Therefore, one should not compare the chroma bars for component that were identified to suffer from eigenvalue indeterminancy by the angle plot. 
 
@@ -291,26 +296,26 @@ All computations and figures presented in this section were created using the \R
 \subsection*{Data}
 
 
-The ESS 2012 data contain a total of 626 variables collected from 54673 citizens of 29 countries. Here, we will only work with a subset of 35 questionnaire items that are all related to psychological well-being. These 35 items can be divided into 6 distinct scales, namely \textit{Evaluative wellbeing}, \textit{Emotional wellbeing}, \textit{Functioning}, \textit{Vitality}, \textit{Community wellbeing}, and \textit{Supportive relationships}. More details on these scales can be found in \cite{ESStopline5} and the relationship between questionnaire items and scales is summarized in Appendix S3. We represent each of the scales by a single variable, which is calculated as the average score within the items related to that variable and scaled such that it takes a value between 0 and 10. For simplicity, we use only complete cases for this construction and thus exclude all participants that did not answer all the 35 questionnaire items used below. This corresponds to approximately 9\% of the observations in the Danish sample, 20\% in the Bulgarian sample and only 6\% in the Swedish sample. All in all, we have $n_{DK} = 1498$ complete case observations in the Danish sample, $n_{BG} = 1798$ observations in the Bulgarian sample and $n_{SE} = 1736$ Swedish observations. Table~\ref{tableDistr} summarizes the marginal distributions of the six dimensions of psychological well-being, stratified by country.
+The ESS 2012 data contain a total of 626 variables collected from 54673 citizens of 29 countries. Here, we will only work with a subset of 35 questionnaire items that are all related to psychological well-being. These 35 items can be divided into 6 distinct scales, namely \textit{Evaluative well-being}, \textit{Emotional well-being}, \textit{Functioning}, \textit{Vitality}, \textit{Community well-being}, and \textit{Supportive relationships}. More details on these scales can be found in \cite{ESStopline5} and the relationship between questionnaire items and scales is summarized in Appendix S3. We represent each of the scales by a single variable, which is calculated as the average score within the items related to that variable and scaled such that it takes a value between 0 and 10. For simplicity, we use only complete cases for this construction and thus exclude all participants that did not answer all the 35 questionnaire items used below. This corresponds to approximately 9\% of the observations in the Danish sample, 20\% in the Bulgarian sample and only 6\% in the Swedish sample. All in all, we have $n_{DK} = 1498$ complete case observations in the Danish sample, $n_{BG} = 1798$ observations in the Bulgarian sample and $n_{SE} = 1736$ Swedish observations. Figure~\ref{tableDistr} summarizes the marginal distributions of the six dimensions of psychological well-being, stratified by country.
 
-\begin{table}[ht]
-\centering
-\caption{\textbf{Median values of each of the six dimensions of psychological well-being, stratified by country.} 25 and 75 percentiles are listed in parentheses. The scales are constructed such that they all run from 0-10.} 
-\label{tableDistr}
-
-\begin{tabular}{lccc}
-\hline
-  & Denmark & Bulgaria & Sweden \\
-\hline
-Evaluative wellbeing    & 8.75 (8.00, 9.50) & 5.00 (3.50, 7.00) & 8.00 (7.00, 9.00) \\
-Emotional wellbeing     & 8.33 (7.22, 8.89) & 6.67 (5.00, 7.78) & 7.78 (6.67, 8.89) \\
-Functioning             & 7.57 (6.93, 8.21) & 6.68 (5.50, 7.68) & 7.04 (6.39, 7.68) \\
-Vitality                & 7.50 (6.67, 8.33) & 7.50 (5.83, 8.33) & 7.50 (6.67, 9.17) \\
-Community wellbeing     & 6.77 (5.83 ,7.57) & 4.67 (3.70, 5.70) & 6.57 (5.66, 7.37) \\
-Supportive relationships& 8.25 (7.42, 8.92) & 7.25 (6.17, 8.08) & 8.25 (7.42, 8.75) \\
-\hline
-\end{tabular} 
-\end{table}
+%\begin{figure}[ht]
+%\centering
+%\caption{\textbf{Median values of each of the six dimensions of psychological well-being, stratified by country.} 25 and %75 percentiles are listed in parentheses. The scales are constructed such that they all run from 0-10.} 
+%\label{tableDistr}
+%
+%\begin{tabular}{lccc}
+%\hline
+%  & Denmark & Bulgaria & Sweden \\
+%\hline
+%Evaluative well-being    & 8.75 (8.00, 9.50) & 5.00 (3.50, 7.00) & 8.00 (7.00, 9.00) \\
+%Emotional well-being     & 8.33 (7.22, 8.89) & 6.67 (5.00, 7.78) & 7.78 (6.67, 8.89) \\
+%Functioning             & 7.57 (6.93, 8.21) & 6.68 (5.50, 7.68) & 7.04 (6.39, 7.68) \\
+%Vitality                & 7.50 (6.67, 8.33) & 7.50 (5.83, 8.33) & 7.50 (6.67, 9.17) \\
+%Community well-being     & 6.77 (5.83 ,7.57) & 4.67 (3.70, 5.70) & 6.57 (5.66, 7.37) \\
+%Supportive relationships& 8.25 (7.42, 8.92) & 7.25 (6.17, 8.08) & 8.25 (7.42, 8.75) \\
+%\hline
+%\end{tabular} 
+%\end{figure}
 
 
 \subsection*{Comparing Denmark and Bulgaria}
@@ -325,7 +330,7 @@ Moving on to the angle plot, we find that the differences are primarily to be fo
 %\hl{These statements are supported by p-values for the hypotheses of no loading that all are less than $0.002$.} 
 Thus, if we wish to understand why differences in the data structures occur, an inspection of the loadings of components 2, 3 and 4 might be informative.
 
-The chroma plot in Figure \ref{plotBG.pancake} allows us to look closer into these components. Here, we find that the relative importance of the \textit{Community wellbeing} and \textit{Supportive relationships} scales is much larger in the Bulgarian sample than in the Danish. In the Danish data, on the other hand, we find that \textit{Vitality} and \textit{Emotional well-being} seem to play bigger roles, as they appear with larger loadings in more high-ranking components in this sample, relative to the Bulgarian.
+The chroma plot in Figure \ref{plotBG.pancake} allows us to look closer into these components. Here, we find that the relative importance of the \textit{Community well-being} and \textit{Supportive relationships} scales is much larger in the Bulgarian sample than in the Danish. In the Danish data, on the other hand, we find that \textit{Vitality} and \textit{Emotional well-being} seem to play bigger roles, as they appear with larger loadings in more high-ranking components in this sample, relative to the Bulgarian.
 
 %\begin{figure}[h]
 %\caption{[FIGURE 7 ABOUT HERE] Chroma plot for comparing Danish and Bulgarian data on psychological well-being. A chroma plot comparing the 2nd, 3rd, and 4th principal components of the Bulgarian- and Danish psychological well-being data. The component-bars are annotated with their relative variance contributions. }
@@ -344,7 +349,7 @@ We now turn to the comparison of Denmark and Sweden in terms of psychological we
 
 The angle plot in Figure \ref{plotSE.cehair} shows that the two datasets agree very strongly about the relative importance of the six scales in the six PCs, as almost all off-diagonal arrows are practically non-existent. This implies that if one already has the information held in the first PC from the Danish data, this information is in itself mostly sufficient to describe the first PC of the Swedish data.
 
-Looking at the chroma plot in Figure \ref{plotSE.pancake}, the same tale is told once again: Here, we find remarkably similar loading patterns in the first three components (which are responsible for almost 80\% of the variance in both datasets), and slight, but increasing, differences in the remaining three components. We therefore conclude that any differences in the data structures of the Danish and the Swedish samples are related to the least important dimensions of the datasets and that these dimensions are only responsible for less than 25\% of the variance in both datasets. In particular, this means that we can combine and compare the Danish and Swedish datasets in a meaningful way and for instance conclude using Table~\ref{tableDistr} that in general, Danes seem to be somewhat more happy than Swedes, and in particular that the least happy people in Denmark (represented by the 1st quartiles) are generally happier than the least happy people in Sweden. A more thorough, statistical investigation could now be put to work on answering \textit{why} this seems to be the case.
+Looking at the chroma plot in Figure \ref{plotSE.pancake}, the same tale is told once again: Here, we find remarkably similar loading patterns in the first three components (which are responsible for almost 80\% of the variance in both datasets), and slight, but increasing, differences in the remaining three components. We therefore conclude that any differences in the data structures of the Danish and the Swedish samples are related to the least important dimensions of the datasets and that these dimensions are only responsible for less than 25\% of the variance in both datasets. In particular, this means that we can combine and compare the Danish and Swedish datasets in a meaningful way and for instance conclude using Figure~\ref{tableDistr} that in general, Danes seem to be somewhat more happy than Swedes, and in particular that the least happy people in Denmark (represented by the 1st quartiles) are generally happier than the least happy people in Sweden. A more thorough, statistical investigation could now be put to work on answering \textit{why} this seems to be the case.
 
 %\begin{figure}[h]
 %\caption{[FIGURE 9 ABOUT HERE] Chroma plot comparing the loading patterns of the Danish and the Swedish subsamples. For each component, the bar is annotated with its cumulative variance contribution, that is, how much variance can be explained by having information of this and the preceding components.}
@@ -458,6 +463,8 @@ Model 2: \medskip \\
 \label{plot.simChroma}
 \end{figure}
 
+
+
 \begin{figure}[H]
 \center
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto, node distance=5cm, align=center,
@@ -480,6 +487,27 @@ Model 2: \medskip \\
  \caption{The PCADSC workflow, starting with two datasets and then successively applying the three visual tools for obtaining a deeper and deeper understanding of similarities and dissimilarities in the data structures.}
  \label{fig:flowchart}
  \end{figure}
+
+\newpage 
+
+\begin{figure}[H]
+\centering
+\caption{Median values of each of the six dimensions of psychological well-being, stratified by country. 25 and 75 percentiles are listed in parentheses. The scales are constructed such that they all run from 0-10.} 
+\label{tableDistr}
+
+\begin{tabular}{lccc}
+\hline
+  & Denmark & Bulgaria & Sweden \\
+\hline
+Evaluative well-being    & 8.75 (8.00, 9.50) & 5.00 (3.50, 7.00) & 8.00 (7.00, 9.00) \\
+Emotional well-being     & 8.33 (7.22, 8.89) & 6.67 (5.00, 7.78) & 7.78 (6.67, 8.89) \\
+Functioning             & 7.57 (6.93, 8.21) & 6.68 (5.50, 7.68) & 7.04 (6.39, 7.68) \\
+Vitality                & 7.50 (6.67, 8.33) & 7.50 (5.83, 8.33) & 7.50 (6.67, 9.17) \\
+Community well-being     & 6.77 (5.83 ,7.57) & 4.67 (3.70, 5.70) & 6.57 (5.66, 7.37) \\
+Supportive relationships& 8.25 (7.42, 8.92) & 7.25 (6.17, 8.08) & 8.25 (7.42, 8.75) \\
+\hline
+\end{tabular} 
+\end{figure}
 
 \begin{figure}[H]
 \center
@@ -528,20 +556,20 @@ For a given $q \leq d$, principal component analysis (PCA) is a tool for finding
 
 The theory of \emph{Principal component analysis} (PCA) not only ensures the existence of a subspace $\hat{K}_q \subset \RR^d$ that attains this minimum, it also provides an explicit description of $\hat{K}_q$ and the rank-q-reconstruction error \cite{HastieEtAl2009}. More specifically, the rank-q-reconstruction error is attained when we choose
 
-\begin{equation*}
+\begin{equation}
 \hat{K}_q = \text{span}\{\eta_1,\dotsc,\eta_q\},
-\end{equation*}
+\end{equation}
 where $\eta_1, ..., \eta_q$ are the first $q$ eigenvectors of the empirical covariance matrix, $S$, as ordered by the size of their associated eigenvalues, $\lambda_1, \dotsc, \lambda_d$. In the PCA framework, we refer to the eigenvectors as \textit{loadings}. The eigenvalues may be understood as \textit{variance components}, as the sum of the marginal empirical variances is preserved under eigenvalue decomposition, that is,
-\begin{equation*}
+\begin{equation}
 \text{trace}(S) = \sum_{j=1}^d \hat{V}(X_j) = \sum_{j=1}^d \hat{V}(\eta_j^\top \mathbf{X}^\top) = \sum_{j=1}^d \lambda_j,
-\end{equation*}
+\end{equation}
 where $X_j \in \RR^n$ denotes the $j$th variable of $\mathbf{X}$ and $\hat{V}$ is the empirical variance function. This again emphasizes that we do not change the covariance structure of a dataset when performing PCA; we merely use linear algebra to make it easier to describe. And as eigenvalues are uniquely defined, and eigenvectors are uniquely defined up to a change of sign whenever the eigenvalues are distinct, the representation hereby obtained is a valid object of inference. 
 
 The $j$th loading can also be found iteratively as the unit vector $u \in \RR^d$ orthogonal to $\hat{K}_{j-1}$ that maximizes the variation of the associated scores:
-\begin{align*}
+\begin{align}
 \eta_j &= \argmax_{u \in \RR^d\colon u \perp \hat{K}_{j-1}} \sum_{i=1}^n \lVert u^\top (x_{i \cdot} - \bar{X}) \rVert^2, &
 \lambda_j &= \frac{1}{n-1} \sum_{i=1}^n \lVert \eta_j^\top (x_{i \cdot} - \bar{X}) \rVert^2,
-\end{align*}
+\end{align}
 where the initial subspace is defined as $\hat{K}_0 = \{0\}$. It is worth emphasizing that this greedy approach of successively adding the next direction $\eta_j$ explaining most of the remaining variation also gives the sequence $\hat{K}_q = \hat{K}_{q-1} \oplus \text{span} \{\eta_q\}$ of subspaces minimizing the rank-q-reconstruction error.
 
 At this point a general remark about standardization is in place. PCA deconstructs the covariance matrix in components according to the most explained variance. This implies that if a variable has a very large sample variance (possibly because of its scale), this variable will always be deemed highly influential, no matter the structure of the data. Therefore, the variables are typically standardized prior to performing PCA. The covariance matrix of the standardized variables is the same as the correlation matrix of the original variables, so post-standardization PCA simply corresponds to performing data structure comparisons of the correlation matrices rather than the covariance matrices. The standardization makes the variables comparable on the same scale, namely units of standard deviation. We have adopted this standardization policy. 
@@ -552,16 +580,18 @@ At this point a general remark about standardization is in place. PCA deconstruc
 \label{appendix.simData}
 This supplementary appendix describes the origin of the simulated data used for presenting the PCADSC plots. Dataset $\mathbf{A}$ consisted of 1000 independent simulated realizations from the $N(0, \Sigma_1)$-distribution, while dataset $\mathbf{B}$ consisted of 500 independent realizations from $N(0, \Sigma_1)$ and 500 independent realizations from $N(0, \Sigma_2)$. Dataset $\mathbf{A}$ was furthermore appended with a grouping variable, randomly dividing the observations into two groups. Dataset $\mathbf{B}$ also included a grouping variable, and this variable contained information about which of the two normal distributions each observation was simulated from. The covariance matrices, $\Sigma_A$ and $\Sigma_B$, were defined by
 
-$$\Sigma_A = \begin{pmatrix}
+\begin{equation}
+\Sigma_A = \begin{pmatrix}
     1.0  &  0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
  0.0  &  1.0 & 0.0 & 0.0&  0.0 & 0.0 \\
  0.0   & 0.0 &  1.0 & 0.7 & 0.0 & 0.0 \\
  0.0 &  0.0 & 0.7 & 1.0 & 0.0 & 0.0 \\
 0.0 &    0.0 &  0.0 & 0.0 & 1.0 & 0.4 \\
  0.0 & 0.0 &  0.0 & 0.0 & 0.4 & 1.0
-\end{pmatrix}$$
+\end{pmatrix}
+\end{equation}
 and
-$$
+\begin{equation}
 \Sigma_B = \begin{pmatrix}
  1.0 & 0.2 & 0.1 & 0.0 & 0.0 & 0.0 \\
  0.2 & 1.0 & 0.1 & 0.0 & 0.0 & 0.0 \\
@@ -570,14 +600,14 @@ $$
  0.0 & 0.0 & 0.0 & 0.3 & 1.0 & 0.2 \\
  0.0 & 0.0 & 0.0 & 0.1 & 0.2 & 1.0
 \end{pmatrix},
-$$
+\end{equation}
 respectively.
 
 
-\subsection*{S3 Table: ESS psychological wellbeing scale definitions}
-\begin{table}[h]
+\subsection*{S3 Figure: ESS psychological well-being scale definitions}
+\begin{figure}[h]
 \centering
-\caption{{\bf ESS psychological wellbeing scale definitions.} Relationship between questionnaire items and scales, as defined in \cite{ESStopline5}. Before we construct the scale scores as item means, we transform the individual item scores such that they are all on a scale from 0 to 10 and such that 10 always corresponds being the most happy.}
+\caption{{\bf ESS psychological well-being scale definitions.} Relationship between questionnaire items and scales, as defined in \cite{ESStopline5}. Before we construct the scale scores as item means, we transform the individual item scores such that they are all on a scale from 0 to 10 and such that 10 always corresponds being the most happy.}
 \label{table:items}
 
 \scriptsize
@@ -589,14 +619,14 @@ respectively.
 Scale & Items \\
 \hline
 \rowcolor{lightgray} & How satisfied with life as a whole \\
-\rowcolor{lightgray}\multirow{-2}{*}{Evaluative wellbeing }& How happy are you\\
+\rowcolor{lightgray}\multirow{-2}{*}{Evaluative well-being }& How happy are you\\
 
 \rowcolor{white} & Felt sad, how often in the past week\\
 \rowcolor{white} & Felt depressed, how often in the past week\\
 \rowcolor{white} & Enjoyed life, how often in the past week\\
 \rowcolor{white} & Were happy, how often in the past week\\
 \rowcolor{white} & Felt anxious, how often in the past week\\
-\rowcolor{white}\multirow{-6}{*}{Emotional wellbeing} & Felt calm and peaceful, how often in the past week\\
+\rowcolor{white}\multirow{-6}{*}{Emotional well-being} & Felt calm and peaceful, how often in the past week\\
 
 \rowcolor{lightgray} & Free to decide how to live my life\\
 \rowcolor{lightgray} & Little chance to show how capable I am\\
@@ -622,7 +652,7 @@ Scale & Items \\
 \rowcolor{lightgray} &  People try to take advantage\\
 \rowcolor{lightgray} &  Most of the time people are helpful\\
 \rowcolor{lightgray} &  Feel people in local area help one another\\
-\rowcolor{lightgray}\multirow{-5}{*}{Community wellbeing}& Feel close to the people in local area\\
+\rowcolor{lightgray}\multirow{-5}{*}{Community well-being}& Feel close to the people in local area\\
 
 \rowcolor{white} & How many with whom you can discuss intimate matters\\
 \rowcolor{white} & Feel appreciated by those you are close to\\
@@ -631,7 +661,7 @@ Scale & Items \\
 \hline
 \end{tabular}
 \egroup
-\end{table}
+\end{figure}
 \end{document}
 
 

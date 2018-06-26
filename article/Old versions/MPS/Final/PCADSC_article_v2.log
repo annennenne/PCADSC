@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.8)  24 JUN 2018 17:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.8)  25 JUN 2018 20:05
 entering extended mode
-**./PCADSC_article.tex
-(PCADSC_article.tex
+**./PCADSC_article_v2.tex
+(PCADSC_article_v2.tex
 LaTeX2e <2016/03/31> patch level 3
 Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -975,8 +975,8 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 (C:\Users\zms499\AppData\Roaming\MiKTeX\2.9\tex\latex\setspace\setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
 )
-(PCADSC_article.aux)
-\openout1 = `PCADSC_article.aux'.
+(PCADSC_article_v2.aux)
+\openout1 = `PCADSC_article_v2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
 LaTeX Font Info:    ... okay on input line 67.
@@ -1129,86 +1129,105 @@ LaTeX Font Info:    Try loading font information for U+rsfs on input line 124.
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ) [4] [5] [6]
 [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21]
-[22] (PCADSC_article.bbl [23] [24] [25]) [26]
+[22] (PCADSC_article_v2.bbl [23] [24] [25]) [26]
 Package microtype Info: Loading generic settings for font family
 (microtype)             `cmss' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-<Figure2_v3.pdf, id=102, 505.89pt x 578.16pt>
-File: Figure2_v3.pdf Graphic file (type pdf)
- <use Figure2_v3.pdf>
-Package pdftex.def Info: Figure2_v3.pdf used on input line 446.
+<Figure2_AnneHelbyPetersen_v3.pdf, id=102, 505.89pt x 578.16pt>
+File: Figure2_AnneHelbyPetersen_v3.pdf Graphic file (type pdf)
+
+<use Figure2_AnneHelbyPetersen_v3.pdf>
+Package pdftex.def Info: Figure2_AnneHelbyPetersen_v3.pdf used on input line 44
+6.
 (pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
  [27]
-<Figure3_v3.pdf, id=107, 505.89pt x 578.16pt>
-File: Figure3_v3.pdf Graphic file (type pdf)
- <use Figure3_v3.pdf>
-Package pdftex.def Info: Figure3_v3.pdf used on input line 453.
-(pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
- [28 <./Figure2_v3.pdf>] <Figure4_v3.pdf, id=116, 505.89pt x 578.16pt>
-File: Figure4_v3.pdf Graphic file (type pdf)
- <use Figure4_v3.pdf>
-Package pdftex.def Info: Figure4_v3.pdf used on input line 461.
-(pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
+<Figure3_AnneHelbyPetersen_v3.pdf, id=107, 505.89pt x 578.16pt>
+File: Figure3_AnneHelbyPetersen_v3.pdf Graphic file (type pdf)
 
-[29 <./Figure3_v3.pdf>] [30 <./Figure4_v3.pdf>] [31]
-<Figure6_v3.pdf, id=138, 505.89pt x 578.16pt>
-File: Figure6_v3.pdf Graphic file (type pdf)
- <use Figure6_v3.pdf>
-Package pdftex.def Info: Figure6_v3.pdf used on input line 514.
+<use Figure3_AnneHelbyPetersen_v3.pdf>
+Package pdftex.def Info: Figure3_AnneHelbyPetersen_v3.pdf used on input line 45
+3.
+(pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
+ [28 <./Figure2_AnneHelbyPetersen_v3.pdf>] <Figure4_AnneHelbyPetersen_v3.pdf, i
+d=116, 505.89pt x 578.16pt>
+File: Figure4_AnneHelbyPetersen_v3.pdf Graphic file (type pdf)
+
+<use Figure4_AnneHelbyPetersen_v3.pdf>
+Package pdftex.def Info: Figure4_AnneHelbyPetersen_v3.pdf used on input line 46
+1.
+(pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
+ [29 <./Figure3_AnneHelbyPetersen_v3.pdf>] [30 <./Figure4_AnneHelbyPetersen_v3.
+pdf>] [31]
+<Figure7_AnneHelbyPetersen_v3.pdf, id=138, 505.89pt x 578.16pt>
+File: Figure7_AnneHelbyPetersen_v3.pdf Graphic file (type pdf)
+
+<use Figure7_AnneHelbyPetersen_v3.pdf>
+Package pdftex.def Info: Figure7_AnneHelbyPetersen_v3.pdf used on input line 51
+4.
 (pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
  [32]
-<Figure7_v3.pdf, id=142, 505.89pt x 289.08pt>
-File: Figure7_v3.pdf Graphic file (type pdf)
- <use Figure7_v3.pdf>
-Package pdftex.def Info: Figure7_v3.pdf used on input line 521.
+<Figure8_AnneHelbyPetersen_v3.pdf, id=142, 505.89pt x 289.08pt>
+File: Figure8_AnneHelbyPetersen_v3.pdf Graphic file (type pdf)
+
+<use Figure8_AnneHelbyPetersen_v3.pdf>
+Package pdftex.def Info: Figure8_AnneHelbyPetersen_v3.pdf used on input line 52
+1.
 (pdftex.def)             Requested size: 404.71254pt x 231.2643pt.
- [33 <./Figure6_v3.pdf>] <Figure8_v3.pdf, id=151, 505.89pt x 578.16pt>
-File: Figure8_v3.pdf Graphic file (type pdf)
- <use Figure8_v3.pdf>
-Package pdftex.def Info: Figure8_v3.pdf used on input line 528.
+ [33 <./Figure7_AnneHelbyPetersen_v3.pdf>] <Figure9_AnneHelbyPetersen_v3.pdf, i
+d=151, 505.89pt x 578.16pt>
+File: Figure9_AnneHelbyPetersen_v3.pdf Graphic file (type pdf)
+
+<use Figure9_AnneHelbyPetersen_v3.pdf>
+Package pdftex.def Info: Figure9_AnneHelbyPetersen_v3.pdf used on input line 52
+8.
 (pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
+ [34 <./Figure8_AnneHelbyPetersen_v3.pdf>] <Figure10_AnneHelbyPetersen_v3.pdf, 
+id=160, 505.89pt x 289.08pt>
+File: Figure10_AnneHelbyPetersen_v3.pdf Graphic file (type pdf)
 
-[34 <./Figure7_v3.pdf>] <Figure9_v3.pdf, id=160, 505.89pt x 289.08pt>
-File: Figure9_v3.pdf Graphic file (type pdf)
-
-<use Figure9_v3.pdf>
-Package pdftex.def Info: Figure9_v3.pdf used on input line 535.
+<use Figure10_AnneHelbyPetersen_v3.pdf>
+Package pdftex.def Info: Figure10_AnneHelbyPetersen_v3.pdf used on input line 5
+35.
 (pdftex.def)             Requested size: 404.71254pt x 231.2643pt.
- [35 <./Figure8_v3.pdf>] [36 <./Figure9_v3.pdf>] [37]
-[38] [39]
+ [35 <./Figure9_AnneHelbyPetersen_v3.pdf>] [36 <./Figure10_AnneHelbyPetersen_v3
+.pdf>] [37] [38] [39]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[40] [41] (PCADSC_article.aux) ) 
+[40] [41] (PCADSC_article_v2.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
  19227 strings out of 493334
- 386700 string characters out of 3139249
- 498868 words of memory out of 3000000
+ 387371 string characters out of 3139249
+ 498871 words of memory out of 3000000
  22197 multiletter control sequences out of 15000+200000
  20578 words of font info for 133 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,13n,67p,1700b,920s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public
-/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cme
-x10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Prog
-ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
-8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C
-:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program
- Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/symbols/msbm10.pfb>
-Output written on PCADSC_article.pdf (41 pages, 436218 bytes).
+ 55i,13n,67p,1703b,920s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmti12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pf
+b>
+Output written on PCADSC_article_v2.pdf (41 pages, 436345 bytes).
 PDF statistics:
  256 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
