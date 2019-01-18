@@ -9,3 +9,11 @@ PISA/
 ^.*\.Rmd
 ^.*\.pdf
 cran-comments.md
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+CSP/
+ISSP/
+worldHappiness/
+PCADSC_ess_results_13-06-18.rdata
