@@ -8,7 +8,7 @@
 #' ways and stored for easy plotting using the three PCADSC plotting tools, the \code{\link{CEPlot}},
 #' the \code{\link{anglePlot}} and the \code{\link{chromaPlot}}.
 #'
-#' @details PCADSC presents a suite of non-parametric, visual tools for comparing the strucutures of
+#' @details PCADSC presents a suite of non-parametric, visual tools for comparing the structures of
 #' two subsets of a dataset. These tools are all based on PCA (principal component analysis) and
 #' thus they can be interpreted as comparisons of the covariance matrices of the two (sub)datasets.
 #' \code{PCADSC} performs PCA using singular value decomposition for increased numerical precision.

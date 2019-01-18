@@ -31,7 +31,7 @@
 #' If \code{NULL} (the default), the original levels of the splitting variable
 #' are used.
 #'
-#' @param varAnnotation If \code{"cum"} (the default), cummulated explained variance
+#' @param varAnnotation If \code{"cum"} (the default), cumulated explained variance
 #' percentages are annotated to the right of the bars for each component. If \code{"raw"},
 #' the non-cummulated percentages of explained variance are added instead. If \code{NULL},
 #' no annotation is added. Note that \code{"cum"} is only allowed if \code{useComps} is
