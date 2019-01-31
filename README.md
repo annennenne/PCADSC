@@ -9,7 +9,7 @@ To install the development version of PCADSC, run the following commands
 from within R:
 ```{r}
 library(devtools)
-install_github('annepetersen1/PCADSC')
+install_github('annennenne/PCADSC')
 ```
 The PCADSC methods are described in our [article manuscript](https://github.com/AnnePetersen1/PCADSC/blob/master/article/PCADSC_manuscript_withFigures.pdf). 
 
