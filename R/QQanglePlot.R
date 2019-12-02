@@ -6,8 +6,6 @@
 #'
 #' @param x A \code{PCADSC} object with angle information simulated under the null.
 #'
-#' @note Should we make this into a method instead?
-#'
 #' @seealso \code{\link{anglePlot}}, \code{\link{PCADSC}}
 #'
 #' @export
@@ -15,6 +13,11 @@ QQanglePlot <- function(x) {
   # grab parameter values from object
   d <- x$pcaRes$d
   B <- dim(x$angleInfo$angles.sim)[3]
+
+  # find arrow lengths
+  len <- apply(matrix(sqrt((x$angleInfo$aF$xend-x$angleInfo$aF$x)^2+
+                           (x$angleInfo$aF$yend-x$angleInfo$aF$y)^2),
+                      2,d*d),2,max)
 
   # find ranks, changed them along the diagonal, and recode as matrix
   pvalues <- apply(x$angleInfo$angles.sim,c(1,2),rank)
@@ -37,8 +40,9 @@ QQanglePlot <- function(x) {
                  fill = "aliceblue") +
     geom_line(aes(x=rep(1/pvalues.sim[2,],min(B,20)),y=1/pvalue,group=group),data=pvalues.random,
               col="gray") +
-    geom_point(aes(x=1/pvalues.sim[2,],y=1/pvalues.obs,size=)) +
+    geom_point(aes(x=1/pvalues.sim[2,],y=1/pvalues.obs,size=len[order(c(x$angleInfo$pvalue))])) +
     scale_x_log10() + scale_y_log10() +
-    labs(x="median of p-values under the null",y="observed p-values") +
+    labs(x="median of inverse p-values under the null",y="observed inverse p-values",
+         size="importance") +
     theme_light()
 }
