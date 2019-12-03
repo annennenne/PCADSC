@@ -10,8 +10,9 @@
 #'
 #' @seealso \code{\link{anglePlot}}, \code{\link{PCADSC}}
 #'
-#' @importFrom ggplot2 ggplot geom_polygon geom_line geom_point
-#' scale_x_log10 scale_y_log10 labs ggtitle theme_light
+#' @importFrom ggplot2 ggplot geom_polygon geom_line geom_point aes
+#' scale_x_log10 scale_y_log10 scale_shape_manual labs
+#' guides ggtitle theme_light
 #' @export
 QQanglePlot <- function(x) {
   # grab parameter values from object
@@ -46,13 +47,14 @@ QQanglePlot <- function(x) {
 
   # plot observed p-values against median of simulated p-values
   ggplot() +
-    geom_polygon(aes(x=c(1/pvalues.quantile[2,],rev(1/pvalues.quantile[2,])),
+    geom_polygon(ggplot2::aes(x=c(1/pvalues.quantile[2,],rev(1/pvalues.quantile[2,])),
                      y=c(1/pvalues.quantile[1,],rev(1/pvalues.quantile[3,]))),
                  fill = "aliceblue") +
-    geom_line(aes(x=1/median,y=1/pvalue,group=group),data=pvalues.random,
+    geom_line(ggplot2::aes(x=1/median,y=1/pvalue,group=group),data=pvalues.random,
               col="gray") +
-    geom_point(aes(x=1/median,y=1/pvalue,size=importance,col=type),data=point.df,alpha=1,shape=16) +
-    scale_x_log10() + scale_y_log10() +
+    geom_point(ggplot2::aes(x=1/median,y=1/pvalue,size=importance),data=point.df) + #,alpha=0.8,col="gray") +
+    scale_x_log10() + scale_y_log10() + #scale_shape_manual(values=c(24,25)) type=shape +
+    guides(size=FALSE) +
     labs(x="median of inverse p-values under the null",y="observed inverse p-values") +
     ggtitle(paste0("One-sided Kolmogorov-Smirnov test: p=",ks.pvalue)) +
     theme_light()
