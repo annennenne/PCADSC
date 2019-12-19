@@ -2,6 +2,7 @@
 
 Development version of the R package PCADSC. The last stable version of the package can 
 be installed from CRAN using:
+
 ```{r}
 install.packages('PCADSC')
 ```
@@ -9,7 +10,7 @@ To install the development version of PCADSC, run the following commands
 from within R:
 ```{r}
 library(devtools)
-install_github('annepetersen1/PCADSC')
+install_github('annennenne/PCADSC')
 ```
 The PCADSC methods are described in our [article manuscript](https://github.com/AnnePetersen1/PCADSC/blob/master/article/PCADSC_manuscript_withFigures.pdf). 
 

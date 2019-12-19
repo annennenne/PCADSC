@@ -161,8 +161,8 @@ chromaPlot <- function(x, varLabels = NULL, cvCO = 1, splitLabels = NULL,
 
 
 
-  facetLabels <- c(paste(splitLabels[1], ", n = ", nCat1, sep=""),
-                   paste(splitLabels[2], ", n = ", nCat2, sep=""))
+  facetLabels <- splitLevels#c(paste(splitLabels[1], ", n = ", nCat1, sep=""),
+                  # paste(splitLabels[2], ", n = ", nCat2, sep=""))
   names(facetLabels) <- splitLevels
 
   #browser()

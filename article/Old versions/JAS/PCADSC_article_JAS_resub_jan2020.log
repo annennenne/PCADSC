@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.9.27)  18 DEC 2019 15:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.9.27)  19 DEC 2019 18:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -715,18 +715,18 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
  (./PCADSC_article_JAS_resub_jan2020.aux)
 \openout1 = `PCADSC_article_JAS_resub_jan2020.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -779,7 +779,7 @@ LaTeX Font Info:    ... okay on input line 84.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \microtypecontext on input line 84.
+LaTeX Info: Redefining \microtypecontext on input line 85.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -796,33 +796,33 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 ABD: EveryShipout initializing macros
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <13> not available
-(Font)              size <12> substituted on input line 95.
+(Font)              size <12> substituted on input line 96.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <13> not available
-(Font)              size <12> substituted on input line 95.
+(Font)              size <12> substituted on input line 96.
 
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 95.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 96.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 95.
+(Font)              size <5> substituted on input line 96.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <5.5> not available
-(Font)              size <5> substituted on input line 95.
+(Font)              size <5> substituted on input line 96.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 95.
+(Font)              size <5> substituted on input line 96.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 95.
+LaTeX Font Info:    Try loading font information for U+msa on input line 96.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 95.
+LaTeX Font Info:    Try loading font information for U+msb on input line 96.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -834,20 +834,8 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 LaTeX Warning: No \author given.
 
 
-Package natbib Warning: Citation `Brambilla1987' on page 1 undefined on input l
-ine 109.
+Overfull \vbox (4.68748pt too high) has occurred while \output is active []
 
-
-Package natbib Warning: Citation `McHorney1994' on page 1 undefined on input li
-ne 109.
-
-
-Package natbib Warning: Citation `Powers2005' on page 1 undefined on input line
- 109.
-
-
-Package natbib Warning: Citation `Liu2016' on page 1 undefined on input line 10
-9.
 
 [1
 
@@ -858,161 +846,147 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-
-Package natbib Warning: Citation `PCADSC' on page 2 undefined on input line 118
-.
-
-
-Package natbib Warning: Citation `Veenhoven2012' on page 2 undefined on input l
-ine 124.
-
-
-Package natbib Warning: Citation `Lolle2016' on page 2 undefined on input line 
-124.
-
-[2]
-
-Package natbib Warning: Citation `WHR2016' on page 3 undefined on input line 12
-6.
-
-
-Package natbib Warning: Citation `ESStopline5' on page 3 undefined on input lin
-e 126.
-
-
-Package natbib Warning: Citation `Rodriguez2014' on page 3 undefined on input l
-ine 126.
-
+ [2]
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 137.
+(Font)              size <5> substituted on input line 140.
 
-[3] [4] [5] [6] [7] [8]
-
-Package natbib Warning: Citation `PCADSC' on page 9 undefined on input line 295
-.
-
-
-Package natbib Warning: Citation `ESStopline5' on page 9 undefined on input lin
-e 301.
-
-[9]
-
-Package natbib Warning: Citation `ESStopline5' on page 10 undefined on input li
-ne 342.
-
-[10]
-
-Package natbib Warning: Citation `Kankaras2014' on page 11 undefined on input l
-ine 367.
+[3] [4] [5] [6] [7] [8] [9] [10] [11] (./PCADSC_article_JAS_resub_jan2020.bbl
+Underfull \hbox (badness 4647) in paragraph at lines 7--10
+[]\OT1/cmr/m/n/10 (+20) H. Abdi and L.J. Williams, \OT1/cmr/m/it/10 (+20) Prin-
+ci-pal com-po-nent anal-y-sis\OT1/cmr/m/n/10 (+20) , Wi-ley In-ter-dis-ci-
+ []
 
 
-Package natbib Warning: Citation `Kreiner2014' on page 11 undefined on input li
-ne 367.
+Underfull \hbox (badness 1824) in paragraph at lines 7--10
+\OT1/cmr/m/n/10 (+20) plinary Re-views: Com-pu-ta-tional Statis-tics 2 (2010), 
+pp. 433--459. Avail-able at
+ []
 
-
-Package natbib Warning: Citation `ZwitserEtAl2017' on page 11 undefined on inpu
-t line 367.
-
-
-Package natbib Warning: Citation `Asil2016' on page 11 undefined on input line 
-367.
-
-
-Package natbib Warning: Citation `Cattell1966' on page 11 undefined on input li
-ne 371.
-
-
-Package natbib Warning: Citation `LinEtAl2002' on page 11 undefined on input li
-ne 371.
-
-[11]
-
-Package natbib Warning: Citation `Abdi2010' on page 12 undefined on input line 
-377.
-
-
-Package natbib Warning: Citation `Ekstrom2014' on page 12 undefined on input li
-ne 380.
-
-No file PCADSC_article_JAS_resub_jan2020.bbl.
 [12]
+Underfull \hbox (badness 10000) in paragraph at lines 27--30
+[]\OT1/cmr/m/n/10 (+20) C.T. Ek-str^^\m, \OT1/cmr/m/it/10 (+20) Teach-ing 'In-s
+tant Ex-pe-ri-ence' with Graph-i-cal Model Val-i-
+ []
 
-Package natbib Warning: Citation `ESStopline5' on page 13 undefined on input li
-ne 434.
 
-[13] [14] [15]
+Underfull \hbox (badness 7814) in paragraph at lines 27--30
+\OT1/cmr/m/it/10 (+20) da-tion Tech-niques\OT1/cmr/m/n/10 (+20) , Teach-ing Sta
+tis-tics 36 (2014), pp. 23--26. Avail-able at
+ []
+
+
+Underfull \hbox (badness 7667) in paragraph at lines 55--58
+[]\OT1/cmr/m/n/10 (+20) M. Liu, \OT1/cmr/m/it/10 (+20) Com-par-ing data qual-it
+y be-tween on-line panel and in-ter-cept sam-
+ []
+
+
+Underfull \hbox (badness 3128) in paragraph at lines 55--58
+\OT1/cmr/m/it/10 (+20) ples\OT1/cmr/m/n/10 (+20) , Method-olog-i-cal In-no-va-t
+ions 9 (2016), p. 2059799116672877. Avail-able at
+ []
+
+
+Underfull \hbox (badness 3579) in paragraph at lines 73--77
+[]\OT1/cmr/m/n/10 (+20) A.H. Pe-tersen and B. Markussen, \OT1/cmr/m/it/10 (+20)
+ PCADSC: Tools for Prin-ci-pal Com-po-nent
+ []
+
+) [13] [14] [15]
+<Figure7_PCADSC_v3_partialcomplete.pdf, id=72, 505.89pt x 578.16pt>
+File: Figure7_PCADSC_v3_partialcomplete.pdf Graphic file (type pdf)
+<use Figure7_PCADSC_v3_partialcomplete.pdf>
+Package pdftex.def Info: Figure7_PCADSC_v3_partialcomplete.pdf  used on input l
+ine 568.
+(pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
+ [16]
+<Figure8_PCADSC_v3_partialcomplete.pdf, id=77, 505.89pt x 289.08pt>
+File: Figure8_PCADSC_v3_partialcomplete.pdf Graphic file (type pdf)
+<use Figure8_PCADSC_v3_partialcomplete.pdf>
+Package pdftex.def Info: Figure8_PCADSC_v3_partialcomplete.pdf  used on input l
+ine 576.
+(pdftex.def)             Requested size: 404.71254pt x 231.2643pt.
+ [17 <./Figure7_PCADSC_v3_partialcomplete.pdf>]
+<Figure9_PCADSC_v3_partialcomplete.pdf, id=86, 505.89pt x 578.16pt>
+File: Figure9_PCADSC_v3_partialcomplete.pdf Graphic file (type pdf)
+<use Figure9_PCADSC_v3_partialcomplete.pdf>
+Package pdftex.def Info: Figure9_PCADSC_v3_partialcomplete.pdf  used on input l
+ine 584.
+(pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
+ [18 <./Figure8_PCADSC_v3_partialcomplete.pdf>]
+<Figure10_PCADSC_v3_partialcomplete.pdf, id=95, 505.89pt x 289.08pt>
+File: Figure10_PCADSC_v3_partialcomplete.pdf Graphic file (type pdf)
+<use Figure10_PCADSC_v3_partialcomplete.pdf>
+Package pdftex.def Info: Figure10_PCADSC_v3_partialcomplete.pdf  used on input 
+line 592.
+(pdftex.def)             Requested size: 404.71254pt x 231.2643pt.
+ [19 <./Figure9_PCADSC_v3_partialcomplete.pdf>] [20 <./Figure10_PCADSC_v3_parti
+alcomplete.pdf>] [21]
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmss' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<Figure2_PCADSC_v3.pdf, id=71, 505.89pt x 578.16pt>
+<Figure2_PCADSC_v3.pdf, id=116, 505.89pt x 578.16pt>
 File: Figure2_PCADSC_v3.pdf Graphic file (type pdf)
 <use Figure2_PCADSC_v3.pdf>
-Package pdftex.def Info: Figure2_PCADSC_v3.pdf  used on input line 567.
+Package pdftex.def Info: Figure2_PCADSC_v3.pdf  used on input line 675.
 (pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
- [16]
-<Figure3_PCADSC_v3.pdf, id=76, 505.89pt x 578.16pt>
+ [22]
+<Figure3_PCADSC_v3.pdf, id=121, 505.89pt x 578.16pt>
 File: Figure3_PCADSC_v3.pdf Graphic file (type pdf)
 <use Figure3_PCADSC_v3.pdf>
-Package pdftex.def Info: Figure3_PCADSC_v3.pdf  used on input line 574.
+Package pdftex.def Info: Figure3_PCADSC_v3.pdf  used on input line 682.
 (pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
- [17 <./Figure2_PCADSC_v3.pdf>]
-<Figure4_PCADSC_v3.pdf, id=85, 505.89pt x 578.16pt>
+ [23 <./Figure2_PCADSC_v3.pdf>]
+<Figure4_PCADSC_v3.pdf, id=130, 505.89pt x 578.16pt>
 File: Figure4_PCADSC_v3.pdf Graphic file (type pdf)
 <use Figure4_PCADSC_v3.pdf>
-Package pdftex.def Info: Figure4_PCADSC_v3.pdf  used on input line 582.
+Package pdftex.def Info: Figure4_PCADSC_v3.pdf  used on input line 690.
 (pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
- [18 <./Figure3_PCADSC_v3.pdf>]
-Overfull \hbox (4.109pt too wide) in paragraph at lines 607--608
+ [24 <./Figure3_PCADSC_v3.pdf>]
+Overfull \hbox (4.109pt too wide) in paragraph at lines 715--716
  [] 
  []
 
-[19 <./Figure4_PCADSC_v3.pdf>] [20]
-<Figure7_PCADSC_v3.pdf, id=108, 505.89pt x 578.16pt>
+[25 <./Figure4_PCADSC_v3.pdf>] [26]
+<Figure7_PCADSC_v3.pdf, id=153, 505.89pt x 578.16pt>
 File: Figure7_PCADSC_v3.pdf Graphic file (type pdf)
 <use Figure7_PCADSC_v3.pdf>
-Package pdftex.def Info: Figure7_PCADSC_v3.pdf  used on input line 618.
+Package pdftex.def Info: Figure7_PCADSC_v3.pdf  used on input line 726.
 (pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
-<Figure8_PCADSC_v3.pdf, id=109, 505.89pt x 289.08pt>
+<Figure8_PCADSC_v3.pdf, id=154, 505.89pt x 289.08pt>
 File: Figure8_PCADSC_v3.pdf Graphic file (type pdf)
 <use Figure8_PCADSC_v3.pdf>
-Package pdftex.def Info: Figure8_PCADSC_v3.pdf  used on input line 625.
+Package pdftex.def Info: Figure8_PCADSC_v3.pdf  used on input line 733.
 (pdftex.def)             Requested size: 404.71254pt x 231.2643pt.
- [21 <./Figure7_PCADSC_v3.pdf>]
-<Figure9_PCADSC_v3.pdf, id=118, 505.89pt x 578.16pt>
+ [27 <./Figure7_PCADSC_v3.pdf>]
+<Figure9_PCADSC_v3.pdf, id=163, 505.89pt x 578.16pt>
 File: Figure9_PCADSC_v3.pdf Graphic file (type pdf)
 <use Figure9_PCADSC_v3.pdf>
-Package pdftex.def Info: Figure9_PCADSC_v3.pdf  used on input line 632.
+Package pdftex.def Info: Figure9_PCADSC_v3.pdf  used on input line 740.
 (pdftex.def)             Requested size: 404.71254pt x 462.52863pt.
- [22 <./Figure8_PCADSC_v3.pdf>]
-<Figure10_PCADSC_v3.pdf, id=127, 505.89pt x 289.08pt>
+ [28 <./Figure8_PCADSC_v3.pdf>]
+<Figure10_PCADSC_v3.pdf, id=172, 505.89pt x 289.08pt>
 File: Figure10_PCADSC_v3.pdf Graphic file (type pdf)
 <use Figure10_PCADSC_v3.pdf>
-Package pdftex.def Info: Figure10_PCADSC_v3.pdf  used on input line 639.
+Package pdftex.def Info: Figure10_PCADSC_v3.pdf  used on input line 747.
 (pdftex.def)             Requested size: 404.71254pt x 231.2643pt.
- [23 <./Figure9_PCADSC_v3.pdf>] [24 <./Figure10_PCADSC_v3.pdf>]
-
-Package natbib Warning: There were undefined citations.
-
-[25] (./PCADSC_article_JAS_resub_jan2020.aux)
+ [29 <./Figure9_PCADSC_v3.pdf>] [30 <./Figure10_PCADSC_v3.pdf>] [31] (./PCADSC_
+article_JAS_resub_jan2020.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 18823 strings out of 492982
- 378075 string characters out of 6134896
- 487984 words of memory out of 5000000
- 21903 multiletter control sequences out of 15000+600000
- 19205 words of font info for 114 fonts, out of 8000000 for 9000
+ 18934 strings out of 492982
+ 380351 string characters out of 6134896
+ 489350 words of memory out of 5000000
+ 21969 multiletter control sequences out of 15000+600000
+ 21053 words of font info for 134 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,13n,67p,1743b,928s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,13n,67p,1734b,928s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texli
@@ -1024,20 +998,22 @@ e1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/symbols/msbm10.pfb>
-Output written on PCADSC_article_JAS_resub_jan2020.pdf (25 pages, 419341 bytes)
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/
+msbm10.pfb>
+Output written on PCADSC_article_JAS_resub_jan2020.pdf (31 pages, 510302 bytes)
 .
 PDF statistics:
- 215 PDF objects out of 1000 (max. 8388607)
- 151 compressed objects within 2 object streams
+ 266 PDF objects out of 1000 (max. 8388607)
+ 186 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 20528 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 22596 words of extra memory for PDF output out of 24883 (max. 10000000)
 
