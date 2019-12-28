@@ -52,6 +52,11 @@
 #' @param B A positive integer. The number of resampling steps performed in the cumulative
 #' eigenvalue step, if relevant.
 #'
+#' @param use A character string specifying what observations should be used in the presence
+#' of missing information. Defaults to \code{"complete.obs"}, where \code{NA} observations are
+#' omitted. Other options include \code{"pairwise.complete.obs"} in which case pairwise complete
+#' observations are used. For more details, see \code{\link[stats]{cor}}.
+#'
 #' @examples
 #' #load iris data
 #' data(iris)
@@ -88,7 +93,7 @@
 #' @export
 PCADSC <- function(data, splitBy, vars=NULL, doCE = TRUE,
                    doAngle = TRUE, doChroma = TRUE,
-                   B = 10000) {
+                   B = 10000, use = "complete.obs") {
   #define var
   if (is.null(vars)) vars <- setdiff(names(data), splitBy)
 
@@ -109,13 +114,15 @@ PCADSC <- function(data, splitBy, vars=NULL, doCE = TRUE,
                "to be meaningful. The following non-numeric variables",
                "were found:", paste(names(isNum[!isNum]), collapse = ", ")))
   }
+
   #check if all variables are non-missing
-  isNA <- sapply(data[, c(vars, splitBy)], "is.na")
-  if (any(isNA)) {
-    stop(paste("All variables must be non-missing for PCA decomposition",
-               "to be meaningful. The following variables contained missing",
-               "information:", paste(names(isNA), collapse = ", ")))
-  }
+  #isNA <- sapply(data[, c(vars, splitBy)], "is.na")
+  #if (any(isNA)) {
+  #  stop(paste("All variables must be non-missing for PCA decomposition",
+  #             "to be meaningful. The following variables contained missing",
+  #             "information:", paste(names(isNA), collapse = ", ")))
+  #}
+
   #check if all variables are non-empty
   isEmpty <- sapply(data[, vars], function(x) length(unique(x)) <= 1)
   if (any(isEmpty)) {
@@ -138,20 +145,20 @@ PCADSC <- function(data, splitBy, vars=NULL, doCE = TRUE,
   }
 
   #split data, standardize, perform PCA
-  pcaRes <- doPCA(data, splitBy, splitLevels, vars)
+  pcaRes <- doPCA(data, splitBy, splitLevels, vars, use = use)
 
   #Do CE, angle and chroma preperation steps
   CEInfo <- NULL
   angleInfo <- NULL
   chromaInfo <- NULL
 
-  if (doCE) CEInfo <- doCE(pcaRes, data, B)
-  if (doAngle) angleInfo <- doAngle(pcaRes, data, B)                  # CHANGED to include simulations
+  if (doCE) CEInfo <- doCE(pcaRes, data, B, use = use)
+  if (doAngle) angleInfo <- doAngle(pcaRes, data, B, use = use)                  # CHANGED to include simulations
   if (doChroma) chromaInfo <- doChroma(pcaRes)
 
   out <- list(pcaRes = pcaRes, CEInfo = CEInfo, angleInfo = angleInfo,
               chromaInfo = chromaInfo, data = data, splitBy = splitBy,
-              vars = vars, B = B)
+              vars = vars, B = B, use = use)
   class(out) <- "PCADSC"
   out
 }
@@ -170,26 +177,32 @@ stdData <- function(data) {
 
 #split data, standardize, perform PCA
 #' @importFrom stats prcomp
-doPCA <- function(data, splitBy, splitLevels, vars, doBoth = TRUE) {
+doPCA <- function(data, splitBy, splitLevels, vars, use,
+                  doBoth = TRUE, ...) {
   #Initialize "both" values at NULL
   dataBoth <- loadBoth <- eigenBoth <- NULL
 
-  #split and standardize data
-  data1 <- stdData(data[data[, splitBy]==splitLevels[1], vars])
-  data2 <- stdData(data[data[, splitBy]==splitLevels[2], vars])
-  if (doBoth) dataBoth <- stdData(data[, vars])
+  #split data
+    #no longer standardize as we work with correlation matrices below
+    #data1 <- stdData(data[data[, splitBy]==splitLevels[1], vars])
+    #data2 <- stdData(data[data[, splitBy]==splitLevels[2], vars])
+  data1 <- data[data[, splitBy]==splitLevels[1], vars]
+  data2 <- data[data[, splitBy]==splitLevels[2], vars]
+  if (doBoth) dataBoth <- data[, vars]
+    #dataBoth <- stdData(data[, vars])
 
   #do PCA
-  #Note: No centering as we already did that when standardizing
-  pca1 <- prcomp(data1, center = FALSE)
-  pca2 <- prcomp(data2, center = FALSE)
-  if (doBoth) pcaBoth <- prcomp(dataBoth, center = FALSE)
-  load1 <- pca1$rotation
-  load2 <- pca2$rotation
-  if (doBoth) loadBoth <- pcaBoth$rotation
-  eigen1 <- pca1$sdev^2
-  eigen2 <- pca2$sdev^2
-  if (doBoth) eigenBoth <- pcaBoth$sdev^2
+  #pca1 <- prcomp(data1, center = FALSE)
+  #pca2 <- prcomp(data2, center = FALSE)
+  pca1 <- eigen(stats::cor(data1, use = use))
+  pca2 <- eigen(stats::cor(data2, use = use))
+  if (doBoth) pcaBoth <- eigen(stats::cor(dataBoth, use = use)) #prcomp(dataBoth, center = FALSE)
+  load1 <- pca1$vectors
+  load2 <- pca2$vectors
+  if (doBoth) loadBoth <- pcaBoth$vectors
+  eigen1 <- pca1$values
+  eigen2 <- pca2$values
+  if (doBoth) eigenBoth <- pcaBoth$values
 
   out <- list(load1 = load1, load2 = load2, loadBoth = loadBoth,
               eigen1 = eigen1, eigen2 = eigen2, eigenBoth = eigenBoth,

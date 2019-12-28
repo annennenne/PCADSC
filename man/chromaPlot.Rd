@@ -4,8 +4,14 @@
 \alias{chromaPlot}
 \title{Chroma plot}
 \usage{
-chromaPlot(x, varLabels = NULL, cvCO = 1, splitLabels = NULL,
-  varAnnotation = "cum", useComps = NULL)
+chromaPlot(
+  x,
+  varLabels = NULL,
+  cvCO = 1,
+  splitLabels = NULL,
+  varAnnotation = "cum",
+  useComps = NULL
+)
 }
 \arguments{
 \item{x}{Either a \code{PCADSC} object or a \code{chromaInfo} object, as produced

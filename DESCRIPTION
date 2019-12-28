@@ -21,6 +21,6 @@ Imports:
     reshape2,
     methods,
     ggplot2
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 URL: https://github.com/annennenne/PCADSC
 BugReports: https://github.com/annennenne/PCADSC/issues
