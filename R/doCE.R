@@ -78,7 +78,7 @@ doCE.pcaRes <- function(x, data, B, ...) {
     ii <- sample(1:nBoth, n1)
     splitVar[ii] <- "1"
     data$splitVar <- factor(splitVar)
-    thisCEres <- calcCum(doPCA(data, "splitVar", c("1", "2"), vars, doBoth = FALSE),
+    thisCEres <- calcCum(doPCA(data, "splitVar", c("1", "2"), vars, doBoth = FALSE, ...),
                          x = xVals)
     y.sim[,i]  <- thisCEres$y
     KS.sim[i]  <- thisCEres$KS
@@ -102,7 +102,8 @@ doCE.pcaRes <- function(x, data, B, ...) {
 doCE.PCADSC <- function(x, ...) {
   if ("B" %in% names(list(...))) b <- list(...)$B
   else b <- x$B
-  x$CEInfo <- doCE(x$pcaRes, x$data, b)
+  use <- x$use
+  x$CEInfo <- doCE(x$pcaRes, x$data, b, use = use)
   x
 }
 

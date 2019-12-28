@@ -106,7 +106,7 @@ doAngle.pcaRes <- function(x, data, B, ...) {
     splitVar <- rep("2", nBoth)
     splitVar[sample(1:nBoth, n1)] <- "1"
     data$splitVar <- factor(splitVar)
-    myPCA <- doPCA(data, "splitVar", c("1", "2"), vars, doBoth = FALSE)
+    myPCA <- doPCA(data, "splitVar", c("1", "2"), vars, doBoth = FALSE, ...)
     angles.sim[,,i] <- acos(abs(t(myPCA$load1)%*%myPCA$load2))
   }
 
@@ -164,7 +164,8 @@ doAngle.pcaRes <- function(x, data, B, ...) {
 doAngle.PCADSC <- function(x, ...) {
   if ("B" %in% names(list(...))) b <- list(...)$B
   else b <- x$B
+  use <- x$use
 
-  x$angleInfo <- doAngle(x$pcaRes, x$data, b)
+  x$angleInfo <- doAngle(x$pcaRes, x$data, b, use = use)
   x
 }

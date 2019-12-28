@@ -5,7 +5,7 @@
 \title{Compute the elements used for PCADSC}
 \usage{
 PCADSC(data, splitBy, vars = NULL, doCE = TRUE, doAngle = TRUE,
-  doChroma = TRUE, B = 10000)
+  doChroma = TRUE, B = 10000, use = "complete.obs")
 }
 \arguments{
 \item{data}{A dataset, either a \code{data.frame} or a \code{matrix} with variables
@@ -28,6 +28,11 @@ dataset whose data structures we wish to compare.}
 
 \item{B}{A positive integer. The number of resampling steps performed in the cumulative
 eigenvalue step, if relevant.}
+
+\item{use}{A character string specifying what observations should be used in the presence
+of missing information. Defaults to \code{"complete.obs"}, where \code{NA} observations are
+omitted. Other options include \code{"pairwise.complete.obs"} in which case pairwise complete
+observations are used. For more details, see \code{\link[stats]{cor}}.}
 }
 \value{
 An object of class \code{PCADSC}, which is a named list with the following entries:

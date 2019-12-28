@@ -1,0 +1,99 @@
+\begin{thebibliography}{10}
+\providecommand{\MR}{\relax\unskip\space MR }
+\providecommand{\url}[1]{\normalfont{#1}}
+\providecommand{\urlprefix}{Available at }
+
+\bibitem{Abdi2010}
+H. Abdi and L.J. Williams, \emph{Principal component analysis}, Wiley
+  Interdisciplinary Reviews: Computational Statistics 2 (2010), pp. 433--459.
+  \urlprefix\url{http://dx.doi.org/10.1002/wics.101}.
+
+\bibitem{Asil2016}
+M. Asil and G.T.L. Brown, \emph{{Comparing OECD PISA Reading in English to
+  Other Languages: Identifying Potential Sources of NonInvariance}},
+  International Journal of Testing 16 (2016), pp. 71--93.
+
+\bibitem{Brambilla1987}
+D.J. Brambilla and S.M. McKinlay, \emph{{A comparison of responses to mailed
+  questionnaires and telephone interviews in a mixed mode health survey.}},
+  American journal of epidemiology 126 (1987), pp. 962--71.
+  \urlprefix\url{http://www.ncbi.nlm.nih.gov/pubmed/3661543}.
+
+\bibitem{Cattell1966}
+R.B. Cattell, \emph{{The Scree Test For The Number Of Factors}}, Multivariate
+  Behavioral Research 1 (1966), pp. 245--276.
+
+\bibitem{Ekstrom2014}
+C.T. Ekstr{\o}m, \emph{{Teaching 'Instant Experience' with Graphical Model
+  Validation Techniques}}, Teaching Statistics 36 (2014), pp. 23--26.
+  \urlprefix\url{http://doi.wiley.com/10.1111/test.12027}.
+
+\bibitem{WHR2016}
+J. Helliwell, R. Layard, and J. Sachs, \emph{{World Happiness Report 2016
+  Update}}, New York: Sustainable Development Solutions Network  (2016).
+
+\bibitem{ESStopline5}
+K. Jeffrey, S. Abdallah, and A. Quick, \emph{{Europeans' Personal and Social
+  Wellbeing: Topline Results from Round 6 of the European Social Survey}}, ESS
+  Topline Results (Series 5)  (2015).
+
+\bibitem{Kankaras2014}
+M. Kankara{\v{s}} and G. Moors, \emph{{Analysis of Cross-Cultural Comparability
+  of PISA 2009 Scores}}, Journal of Cross-Cultural Psychology 45 (2014), pp.
+  381--399.
+
+\bibitem{Kreiner2014}
+S. Kreiner and K.B. Christensen, \emph{{Analyses of Model Fit and Robustness. A
+  New Look at the PISA Scaling Model Underlying Ranking of Countries According
+  to Reading Literacy}}, Psychometrika 79 (2014), pp. 210--231.
+
+\bibitem{LinEtAl2002}
+D.Y. Lin, L.J. Wei, and Z. Ying, \emph{{Model-Checking Techniques Based on
+  Cumulative Residuals}}, Biometrics 58 (2002), pp. 1--12.
+
+\bibitem{Liu2016}
+M. Liu, \emph{{Comparing data quality between online panel and intercept
+  samples}}, Methodological Innovations 9 (2016), p. 2059799116672877.
+  \urlprefix\url{http://dx.doi.org/10.1177/2059799116672877}.
+
+\bibitem{Lolle2016}
+H.L. Lolle and J.G. Andersen, \emph{{Measuring Happiness and Overall Life
+  Satisfaction: A Danish Survey Experiment on the Impact of Language and
+  Translation Problems}}, Journal of Happiness Studies 17 (2016), pp.
+  1337--1350. \urlprefix\url{http://dx.doi.org/10.1007/s10902-015-9646-4}.
+
+\bibitem{McHorney1994}
+C.A. McHorney, M. Kosinski, and J.E. Ware, \emph{{Comparisons of the costs and
+  quality of norms for the SF-36 health survey collected by mail versus
+  telephone interview: results from a national survey.}}, Medical care 32
+  (1994), pp. 551--67.
+  \urlprefix\url{http://www.ncbi.nlm.nih.gov/pubmed/8189774}.
+
+\bibitem{PCADSC}
+A.H. Petersen and B. Markussen, \emph{PCADSC: Tools for Principal Component
+  Analysis-Based Data Structure Comparisons} (2017).
+  \urlprefix\url{https://CRAN.R-project.org/package=PCADSC}, R package version
+  0.8.0.
+
+\bibitem{Powers2005}
+J.R. Powers, G. Mishra, and A.F. Young, \emph{{Differences in mail and
+  telephone responses to self-rated health: use of multiple imputation in
+  correcting for response bias.}}, Australian and New Zealand journal of public
+  health 29 (2005), pp. 149--54.
+  \urlprefix\url{http://www.ncbi.nlm.nih.gov/pubmed/15915619}.
+
+\bibitem{Rodriguez2014}
+A. Rodr\'iguez-Pose and V. von  Berlepsch, \emph{{Social Capital and Individual
+  Happiness in Europe}}, Journal of Happiness Studies 15 (2014), pp. 357--386.
+
+\bibitem{Veenhoven2012}
+R. Veenhoven, \emph{{Cross-national differences in happiness: Cultural
+  measurement bias or effect of culture?}}, International Journal of Wellbeing
+  2 (2012), pp. 333--353.
+
+\bibitem{ZwitserEtAl2017}
+R.J. Zwitser, S.S.F. Glaser, and G. Maris, \emph{{Monitoring Countries in a
+  Changing World: A New Look at DIF in International Surveys}}, Psychometrika
+  82 (2017), pp. 210--232.
+
+\end{thebibliography}

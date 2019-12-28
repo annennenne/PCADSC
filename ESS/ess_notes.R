@@ -1,5 +1,5 @@
 #Load data
-data <- read.csv("P:/PCADSC/data/ESS/ESS6.csv",
+data <- read.csv("../data/ESS/ESS6.csv",
                  na.strings = c(".", ".c", ".d", ".b"))
 
 useVars <- c("cntry", "stflife", "happy", "fltsd", "fltdpr", "enjlf", "wrhpp", "fltanx",
@@ -12,9 +12,10 @@ useVars <- c("cntry", "stflife", "happy", "fltsd", "fltdpr", "enjlf", "wrhpp", "
 nAllDK <- nrow(data[data$cntry == "DK", ])
 nAllBG <- nrow(data[data$cntry == "BG", ])
 nAllSE <- nrow(data[data$cntry == "SE", ])
+
 #anData <- na.omit(data[data$cntry %in% c("DK", "BG"), useVars])
 anData <- na.omit(data[data$cntry %in% c("DK", "SE"), useVars])
-
+allData <- data[data$cntry %in% c("DK", "SE"), useVars]
 
 anData$cntry <- as.character(anData$cntry)
 
@@ -301,4 +302,5 @@ ggsave(plot = grid.arrange(fig8_CE, fig8_angle, nrow = 2),
 ggsave(plot = fig9_chroma,
        file = "P:/PCADSC/R/article/Old versions/MPS/Figure9_v3.pdf",
        dpi = 400, width = 7, height = 4)
+
 
