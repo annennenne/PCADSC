@@ -101,7 +101,7 @@ CEPlot <- function(x, nDraw = NULL) {
     ggplot(ceF, aes_string(x = "x", y = "y")) +
       annotate(geom = "polygon", x = c(xVals, rev(xVals)), y = c(y.min, rev(y.max)),
                fill = "aliceblue") +
-     geom_line(aes_string(group = "run", linetype = factor("run")), col = "grey", size = 0) +
+     geom_line(aes_string(group = "run", linetype = factor("run")), col = "grey", size = 0.1) +
       scale_x_continuous(limits = c(xVals[1],xVals[d+1]), breaks = 0:length(xVals)) +
       scale_y_continuous(limits = c(yMinVal, yMaxVal),
                          breaks = yBreaks) +
