@@ -4,8 +4,16 @@
 \alias{PCADSC}
 \title{Compute the elements used for PCADSC}
 \usage{
-PCADSC(data, splitBy, vars = NULL, doCE = TRUE, doAngle = TRUE,
-  doChroma = TRUE, B = 10000, use = "complete.obs")
+PCADSC(
+  data,
+  splitBy,
+  vars = NULL,
+  doCE = TRUE,
+  doAngle = TRUE,
+  doChroma = TRUE,
+  B = 10000,
+  use = "complete.obs"
+)
 }
 \arguments{
 \item{data}{A dataset, either a \code{data.frame} or a \code{matrix} with variables
