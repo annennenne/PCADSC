@@ -1,5 +1,6 @@
 # PCADSC
-[![](https://cranlogs.r-pkg.org/badges/PCADSC)](https://cran.r-project.org/package=PCADSC)
+[![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/PCADSC)](https://CRAN.R-project.org/package=PCADSC)
+![Download counter](http://cranlogs.r-pkg.org/badges/grand-total/PCADSC)
 
 Development version of the R package PCADSC. The last stable version of the package can 
 be installed from CRAN using:
