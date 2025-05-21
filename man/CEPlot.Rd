@@ -4,7 +4,7 @@
 \alias{CEPlot}
 \title{Cumulative eigenvalue plot}
 \usage{
-CEPlot(x, nDraw = NULL)
+CEPlot(x, nDraw = NULL, addTestResults = TRUE)
 }
 \arguments{
 \item{x}{x A \code{PCADSC} or \code{angleInfo} object, as produced by \code{\link{PCADSC}} or
@@ -12,6 +12,9 @@ CEPlot(x, nDraw = NULL)
 
 \item{nDraw}{A positive integer. The number of simulated cumulative eigenvalue curves that should
 be added to the plot.}
+
+\item{addTestResults}{A boolean. If \code{TRUE} (default) the plot is annotated with p-values
+from Kolmogorov-Smirnov and Cramer-von Mises tests (see details).}
 }
 \description{
 Produce a cumulative eigenvalue (CE) plot from a full or partial \code{PCADSC} object,
@@ -22,7 +25,7 @@ of the same variables.
 }
 \details{
 In the x-coordinates, cumulative differences in eigenvalues are shown,
-while the y-coordinates are the cumulative sum of the joint eigenvalues. The plot is annotated
+while the y-coordinates are the cumulative sum of the joint eigenvalues. The plot may be annotated
 with Kolmogorov-Smirnov and Cramer-von Mises tests evaluated by permutation tests, testing
 the null hypothesis of no difference in eigenvalues. The plot also features a number of cumulative
 simulated cumulative eigenvalue curves as dashed lines. Moreover, a shaded

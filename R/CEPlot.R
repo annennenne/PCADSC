@@ -7,7 +7,7 @@
 #' of the same variables.
 #'
 #' @details In the x-coordinates, cumulative differences in eigenvalues are shown,
-#' while the y-coordinates are the cumulative sum of the joint eigenvalues. The plot is annotated
+#' while the y-coordinates are the cumulative sum of the joint eigenvalues. The plot may be annotated
 #' with Kolmogorov-Smirnov and Cramer-von Mises tests evaluated by permutation tests, testing
 #' the null hypothesis of no difference in eigenvalues. The plot also features a number of cumulative
 #' simulated cumulative eigenvalue curves as dashed lines. Moreover, a shaded
@@ -19,6 +19,9 @@
 #'
 #' @param nDraw A positive integer. The number of simulated cumulative eigenvalue curves that should
 #' be added to the plot.
+#'
+#' @param addTestResults A boolean. If \code{TRUE} (default) the plot is annotated with p-values
+#' from Kolmogorov-Smirnov and Cramer-von Mises tests (see details).
 #'
 #' @examples
 #' #load iris data
@@ -55,7 +58,7 @@
 #' scale_y_continuous theme_bw theme element_blank xlab ylab geom_line
 #' scale_linetype_manual annotate unit ggtitle
 #' @export
-CEPlot <- function(x, nDraw = NULL) {
+CEPlot <- function(x, nDraw = NULL, addTestResults = TRUE) {
 
   #Check whether x has a valid class
   objName <- deparse(substitute(x))
@@ -98,7 +101,7 @@ CEPlot <- function(x, nDraw = NULL) {
   yBreaks <- round(c(0 + yMaxVal * c(1/3, 2/3, 3/3), 0,
                      0 - yMaxVal * c(1/3, 2/3, 3/3)),1)
 
-    ggplot(ceF, aes_string(x = "x", y = "y")) +
+    ggout <- ggplot(ceF, aes_string(x = "x", y = "y")) +
       annotate(geom = "polygon", x = c(xVals, rev(xVals)), y = c(y.min, rev(y.max)),
                fill = "aliceblue") +
      geom_line(aes_string(group = "run", linetype = factor("run")), col = "grey", size = 0.1) +
@@ -110,15 +113,21 @@ CEPlot <- function(x, nDraw = NULL) {
       xlab("Cumulative sum of joint eigenvalues") +
       ylab("Cumulative difference in eigenvalues") +
       scale_linetype_manual(guide = FALSE, values = rep(1:5, 5*ceiling(nDraw/5))) +
-      annotate(geom = "label", label = paste(paste(c("KS:   p = ","CvM: p = "),
-                                                  round(c(KS.pvalue,CvM.pvalue),3),sep=""),
-                                            collapse = "\n"),
-               x = -Inf, y = Inf, hjust = "left", vjust = "top",
-               label.r = unit(0, "lines"),
-               label.padding = unit(1, "lines")) +
       annotate(geom = "line", x = xVals, y = y.obs, size = 1) +
       ggtitle(paste("Cumulative eigenvalue difference:", splitLevels[1],
                     "-", splitLevels[2]))
+
+
+    if (addTestResults) {
+      ggout <- ggout  + annotate(geom = "label", label =
+                                   paste(paste(c("KS:   p = ","CvM: p = "),
+                                                 round(c(KS.pvalue,CvM.pvalue),3),sep=""),
+                                         collapse = "\n"),
+                                 x = -Inf, y = Inf, hjust = "left", vjust = "top",
+                                 label.r = unit(0, "lines"),
+                                 label.padding = unit(1, "lines"))
+    }
+    return(ggout)
 }
 
 
